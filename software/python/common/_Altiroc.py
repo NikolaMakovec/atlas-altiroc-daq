@@ -56,7 +56,7 @@ class Altiroc(pr.Device):
             description = 'This device contains Altiroc ASIC\'s triggering controls',
             offset      = 0x00030000,
             enableDeps  = asyncDev,
-            expand      = True,
+            expand      = False,
         ))
 
         self.add(common.AltirocSlowControl(
@@ -64,7 +64,7 @@ class Altiroc(pr.Device):
             description = 'This device contains Altiroc ASIC\'s slow control shift register interface',
             offset      = 0x00040000,
             asicVersion = asicVersion,
-            expand      = False,
+            expand      = True,
         ))
 
         self.add(common.AltirocProbe(
@@ -80,7 +80,7 @@ class Altiroc(pr.Device):
             description = 'This device contains Altiroc ASIC\'s readout controls',
             offset      = 0x00060000,
             enableDeps  = asyncDev,
-            expand      = True,
+            expand      = False,
         ))
 
         @self.command()
