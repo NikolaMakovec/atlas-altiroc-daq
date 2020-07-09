@@ -1,0 +1,35 @@
+##########################################
+#Analysis of the outputs of the measureTOA.py script
+##########################################
+
+#read data from a directory
+python python/anaTOA.py --QRef 52  --allPlots --display --inputDir Data/B4_toa
+
+#read data from a directory using only files with that match a string selection
+python python/anaTOA.py --QRef 52  --allPlots --display --inputDir Data/B4_toa --select thres_3
+
+
+#read data from an input file containing a list of file:
+python python/anaTOA.py --QRef 52 --allPlots --display --fileList  inputTOA.list 
+
+
+# get information about the options
+python python/anaTOA.py -h
+
+##########################################
+#Analysis of the outputs of the thresholdScan.py script
+##########################################
+
+#read data from a directory (it is also possible to provide a list of file as above)
+python python/anaThreshold.py --display --allPlots -i Data/B4_thres/ --xmin 200 --xmax 600 --QRef 52
+
+#in addition to produce plots, it computes DAC10bit and bit_vth_cor which are printed on the screen and pasted to the config file when needed
+
+##########################################
+#Analysis of the outputs of the measureTimeWalk.py script
+##########################################
+
+#read data from a directory (it is also possible to provide a list of file as above)
+python python/anaTimeWalk.py --display --allPlots -i Data/B4_tw/ --Qmin 0 --Qmax 60
+
+

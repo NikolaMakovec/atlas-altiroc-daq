@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Installing (should be done only once)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+git clone  --recursive https://github.com/NikolaMakovec/atlas-altiroc-daq.git atlas-altiroc-daq-testbench
+cd atlas-altiroc-daq-testbench
+git checkout TestBenchNikola
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+cd software/
+source setup_env_XXX.sh
+
+where XXX depends on your PC
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% configuration and parameters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For all scripts, if not specicied, the file config/TestBench/asic_config_BX.yml will be used
+for the configuration with X being the board number.
+A different file can be used with the following option
+--cfg config/asic_config_BLABLA.yml 
+Additionnal parameters are set in  scripts/setASICconfig.py called in all scripts
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% measurements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+====> Threshold scan (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/thresholdScan.py  --skipExistingFile False --N 100 --debug False --display True --checkOFtoa False --checkOFtot False  --board 12   --Rin_Vpa 0 --delay 2450 --minVth 260 --maxVth 1023 --autoStop True --VthStep 2 --Cd 4 --ch 4 --Q 3 --out Data/ --Vthc 64
+
+
+
+====> Charge scan  (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display True -N 100 --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board 12   --Rin_Vpa 0 --delay 2500  --QMin 1 --QMax 63 --QStep 1 --out Data/  --ch 4  --Cd 4 --DAC 330 --Vthc 64
+
+
+====> Delay scan using pulser   (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/measureTOA.py --skipExistingFile False -N 100 --debug False --display True --Cd 4 --checkOFtoa False --checkOFtot False --ch 4 --board 12 --DAC 330 --Q 52 --delayMin 2200 --delayMax 2700 --delayStep 5 --out Data/  --Rin_Vpa 0 --Vthc 64
+
+
+====> Delay scan using external trigger (switch 18 of the IB should be ON)
+
+python scripts/TestBench/measureTOA.py --N 100 --debug False --checkOFtoa True --checkOFtot False  --board 12 --ch 4 --useExt True --delayMin 1800 --delayMax 2300 --delayStep 1  --out Data/
+
+
+
+
+
+
+====> Width scan using external trigger (switch 18 of the IB should be ON)
+
+fallEdge is hardcoded and is equal to 3000
+
+python scripts/TestBench/measureTOT.py --N 50 --debug False --checkOFtoa False --checkOFtot True  --board 2 --ch 6 --useExt True --riseEdgeMin 700 --riseEdgeMax 3000 --riseEdgeStep 10 --out Data/
+python scripts/TestBench/measureTOT.py --N 50 --debug False --checkOFtoa False --checkOFtot True  --board 8 --ch 4 --useExt True --riseEdgeMin 700 --riseEdgeMax 3000 --riseEdgeStep 10 --out Data/
+python scripts/TestBench/measureTOT.py --N 50 --debug False --checkOFtoa False --checkOFtot True  --board 18 --ch 0 --useExt True --riseEdgeMin 700 --riseEdgeMax 3000 --riseEdgeStep 10 --out Data/
+
+
+====> DevGui
+
+
+python scripts/TestBench/DevGui.py --asicVersion 2 --ip 192.168.1.10 --userYaml config/TestBench/config_B2_ch8_probeON_pulserON.yml --liveDisplay 1
+

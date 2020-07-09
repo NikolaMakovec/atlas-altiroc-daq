@@ -1,0 +1,24 @@
+python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV2/images/AtlasAltirocV2-0x40000000-20200623152309-ruckman-19a34a7.mcs 
+
+
+python scripts/DevGui.py --ip 192.168.1.10 --asicVersion 2
+
+
+
+###########################################################
+#
+###########################################################
+
+B=12
+python scripts/TestBench/runPulser.py  -b $B
+python scripts/TestBench/runPulser.py  -b $B --useVthc 
+python scripts/TestBench/runPulser.py  -b $B --useVthc --chON 
+python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON
+
+python scripts/TestBench/runTrigExt.py  -b $B --toa  > runTOA.sh
+python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
+
+
+
+
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display True -N 100 --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --board 12 --delay 2450 --QMin 1 --QMax 63 --QStep 10 --out Data//B12-tw/ --ch 10 --Cd 4 --DAC 394 --Rin_Vpa 0 --Vthc 64

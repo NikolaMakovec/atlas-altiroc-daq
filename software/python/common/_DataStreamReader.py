@@ -261,3 +261,79 @@ class MyPixelReader(rogue.interfaces.stream.Slave):
                     self.HitDataTOTc_int1_tz.append(self.HitDataTOTc_int1_tz_temp)
 
 #################################################################
+
+
+
+###############################################################
+
+# Class for Reading Data output by pixels
+class MakoPixelReader(rogue.interfaces.stream.Slave):
+
+    def __init__(self):
+        rogue.interfaces.stream.Slave.__init__(self)
+        self.count   = 0
+        self.HitData = []
+        self.HitDataTOTf_vpa = []
+        self.HitDataTOTf_tz = []
+        self.HitDataTOTc_vpa = []
+        self.HitDataTOTc_tz = []
+        self.HitDataTOTc_int1_vpa = []
+        self.HitDataTOTc_int1_tz = []
+        self.HitDataTOTf_vpa_temp = 0
+        self.HitDataTOTc_vpa_temp = 0
+        self.HitDataTOTf_tz_temp = 0
+        self.HitDataTOTc_tz_temp = 0
+        self.HitDataTOTc_int1_vpa_temp = 0
+        self.HitDataTOTc_int1_tz_temp = 0
+        self.checkOFtoa = True
+        self.checkOFtot = True
+        self.channelNumber=-1
+        self.doPrint=False
+
+    def clear(self):
+        self.count = 0
+        self.HitData.clear()
+        self.HitDataTOTf_vpa.clear()
+        self.HitDataTOTf_tz.clear()
+        self.HitDataTOTc_vpa.clear()
+        self.HitDataTOTc_tz.clear()
+        self.HitDataTOTc_int1_vpa.clear()
+        self.HitDataTOTc_int1_tz.clear()
+        self.HitDataTOTf_vpa_temp = 0
+        self.HitDataTOTc_vpa_temp = 0
+        self.HitDataTOTf_tz_temp = 0
+        self.HitDataTOTc_tz_temp = 0
+        self.HitDataTOTc_int1_vpa_temp = 0
+        self.HitDataTOTc_int1_tz_temp = 0
+
+        
+    def _acceptFrame(self,frame):
+        # First it is good practice to hold a lock on the frame data.
+        with frame.lock():
+            eventFrame = ParseFrame(frame)
+            if self.doPrint: print("New Frame",self.count,len(eventFrame.pixValue))
+            for i in range( len(eventFrame.pixValue) ):
+                dat = eventFrame.pixValue[i]
+                if (self.doPrint and (dat.Hit > 0)):print ("Frame data: ",self.count,i,dat.Hit,dat.ToaData,dat.TotData)
+                if len(eventFrame.pixValue)>0 and self.channelNumber>=0 and i!=self.channelNumber: continue#Nikola: keep only one  channel
+
+                
+                if (dat.Hit > 0):# and (dat.ToaOverflow == 0):
+                    self.HitData.append(dat.ToaData)
+
+                if (dat.Hit > 0):# and (dat.TotData != 0x1fc):
+                    self.HitDataTOTf_vpa_temp = ((dat.TotData >>  0) & 0x3) + dat.TotOverflow*math.pow(2,2)
+                    self.HitDataTOTc_vpa_temp = (dat.TotData >>  2) & 0x7F
+                    self.HitDataTOTc_int1_vpa_temp = (((dat.TotData >>  2) + 1) >> 1) & 0x3F
+                    self.HitDataTOTf_vpa.append(self.HitDataTOTf_vpa_temp)
+                    self.HitDataTOTc_vpa.append(self.HitDataTOTc_vpa_temp)
+                    self.HitDataTOTc_int1_vpa.append(self.HitDataTOTc_int1_vpa_temp)
+
+                if (dat.Hit > 0):# and (dat.TotData != 0x1f8):
+                    self.HitDataTOTf_tz_temp = ((dat.TotData >>  0) & 0x7) + dat.TotOverflow*math.pow(2,3)
+                    self.HitDataTOTc_tz_temp = (dat.TotData >>  3) & 0x3F
+                    self.HitDataTOTc_int1_tz_temp = (((dat.TotData >>  3) + 1) >> 1) & 0x1F
+                    self.HitDataTOTf_tz.append(self.HitDataTOTf_tz_temp)
+                    self.HitDataTOTc_tz.append(self.HitDataTOTc_tz_temp)
+                    self.HitDataTOTc_int1_tz.append(self.HitDataTOTc_int1_tz_temp)
+        self.count += 1
