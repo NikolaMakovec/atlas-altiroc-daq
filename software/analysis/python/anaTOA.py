@@ -289,6 +289,8 @@ for ich in range(nChannelsMax):
     axjitterMean.scatter(np.multiply(QArray[ich],Qconv),jitterMeanArray[ich],color=colors[ich],label="ch"+str(ich))
 axjitterMean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axjitterMean.set_ylabel("Jitter [ps]", fontsize = 10)
+jitterMax=max(max(jitterMeanArray))                 
+axjitterMean.set_ylim(bottom=0,top=jitterMax*1.5)#np.max(jitterMeanArray[ich])*1.5)
 plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TOA_jitterMeanvsQ.pdf")
 
