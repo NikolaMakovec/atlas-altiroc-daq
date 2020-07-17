@@ -19,20 +19,20 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
 doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 0 # TOA with at least Q=52 and maybe larger N
+doClockTree = 1 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-#chList=[4,9,14]
+chList=[4,9]
 
         
 #####################
@@ -82,17 +82,17 @@ if doDNL:
         
 if doClockTree:
     doTOA=1
-    QTOAList=[13,26,52]#ClockTree
+    #QTOAList=[13,26,52]#ClockTree
     QTOAList=[52]#ClockTree
     Ntoa=100
 
 if doXtalk == 1:
     doTOA=1
-    QTOAList=[13,60]
+    QTOAList=[52]#13,60]
     args.useVthc=True
-    delayMin=2400#200
-    delayMax=2500
-    delayStep=10
+    #delayMin=2400#200
+    #delayMax=2500
+    #delayStep=10
     Ntoa=200
     
 #####################
@@ -130,6 +130,8 @@ def parse_arguments():
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
+    parser.add_argument("--readAllChannels", action="store_true", default = False)
+
     args = parser.parse_args()
     return args
 
@@ -164,7 +166,21 @@ if __name__ == "__main__":
         if doDNL:toaDir+="-dnl"
         if doXtalk:toaDir+="-xtalk"
 
-        
+        if args.useVthc:
+            toaDir+="-Vthc"
+            twDir+="-Vthc"
+            thresDir+="-Vthc"
+
+        if args.chON:
+            toaDir+="-chON"
+            twDir+="-chON"
+            thresDir+="-chON"
+            
+        if args.ctestON:
+            toaDir+="-ctestON"
+            twDir+="-ctestON"
+            thresDir+="-ctestON"
+
 
 
 
@@ -284,8 +300,8 @@ if __name__ == "__main__":
                         if Q<0:#trig ext                        
                             delayMin=1800
                             delayMax=2300
-                        logName=args.outputDir+'/delayTOA_B_%d_rin_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ch,cd,Q,dac)
                         outdir=args.outputDir+"/"+toaDir+"/"
+                        logName=outdir+'/delayTOA_B_%d_rin_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ch,cd,Q,dac)
                         try:os.makedirs(outdir)
                         except:pass
                         cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa)
@@ -304,8 +320,11 @@ if __name__ == "__main__":
                             cmd+=" --useExt True "
                         if doXtalk:
                             cmd+=" --readAllChannels True  --allChON True "
-                            cmd+=" >& "+logName
-
+                            cmd+=" |& tee "+logName
+                        if args.readAllChannels:
+                            cmd+=" --readAllChannels True "
+                            cmd+=" |& tee "+logName
+                        
                         f.write(cmd+"\n sleep 5 \n")
 
 

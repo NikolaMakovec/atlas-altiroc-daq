@@ -14,6 +14,7 @@ python scripts/TestBench/runPulser.py  -b $B
 python scripts/TestBench/runPulser.py  -b $B --useVthc 
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON 
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON
+python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON --readAllChannels
 
 python scripts/TestBench/runTrigExt.py  -b $B --toa  > runTOA.sh
 python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
