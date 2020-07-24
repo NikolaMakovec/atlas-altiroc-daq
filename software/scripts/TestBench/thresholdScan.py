@@ -279,7 +279,7 @@ def thresholdScan(argip,
                 pass
 
 
-        if dac_index>1 and HitCnt[dac_index]/args.N>0.95 and HitCnt2[dac_index]>0:
+        if dac_index>1 and HitCnt[dac_index]/args.N>0.95 and HitCnt2[dac_index]/args.N>0.5:
             #if dac_index
             maxTH = newDacScan[dac_index]
             suspicious=HitCnt2[dac_index]/float(args.N)
@@ -364,7 +364,10 @@ def thresholdScan(argip,
     ax1.set_title('Number of hits vs Threshold', fontsize = 11)
     ax1.set_xlabel('Threshold DAC', fontsize = 10)
     ax1.set_ylabel('Number of TOA hits', fontsize = 10)
-
+    ax1.legend(['Thres: %d ' % maxTH],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    ax1.set_ylim(bottom = 0, top = max(HitCnt)*1.1)
+    ax1.plot([maxTH,maxTH],[0,max(HitCnt)*1.1],linestyle="dashed")
+    
     #plot TOA vs threshold
     ax2.scatter(newDacScan,TOAmean_ps)
     ax2.set_title('Mean TOA vs Threshold', fontsize = 11)

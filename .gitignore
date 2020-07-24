@@ -19,6 +19,7 @@
 data*
 *.dat
 *.csv
+*.pdf
 
 # OS files
 .DS_Store

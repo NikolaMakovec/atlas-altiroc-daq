@@ -19,20 +19,21 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 0 # Thres with high stat for few Q
+doNoise     = 1 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
-doTW        = 1
+doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 1 # TOA with at least Q=52 and maybe larger N
+doClockTree = 0 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
 chList=list(range(0,25));chList.remove(6);chList.remove(11);chList.remove(16);chList.remove(21)
+#chList=list(range(0,5))
 
 
 
@@ -69,11 +70,11 @@ if doPS:
 #####################
     
 Ntoa=100;
-delayStep=5 
+delayStep=10 
 delayMin=2200
 delayMax=2700
 QTOAList=[5,6,7,8,9,13,18,26,52]#default
-QTOAList=[5,7,9,13,18,26,63]#default
+QTOAList=[6,7,11,16,63]#default
 #Ntoa=500;delayStep=20;#QTOAList=[52] #Default to check distributions
 
 
@@ -103,7 +104,7 @@ if doXtalk == 1:
 # Threshold
 #####################
 Nthres=100
-QThresList=[4]#default
+QThresList=[3]#default
 #QThresList=[1,2,3,5]
 thresMin=260  #overwritten for high Q
 thresMax=1023 #max is 1023
@@ -116,7 +117,7 @@ if doLinearity:
     
 if doNoise:
     doThres=1
-    Nthres=500
+    Nthres=200
     thresStep=1
     thresMax=800
     QThresList=[6,13]#10
@@ -342,7 +343,7 @@ if __name__ == "__main__":
         for ch in chList:
             for cd in cdList:
                 for Q in QThresList:#ATT TRIG EXT
-                    if Q >10 and (board,ch,cd) in dacMap.keys():
+                    if Q >600 and (board,ch,cd) in dacMap.keys():
                         thresMinLocal=dacMap[(board,ch,cd)]-20+(Q-3)*7
                         thresMinLocal=min(thresMinLocal,450)
                     else:
