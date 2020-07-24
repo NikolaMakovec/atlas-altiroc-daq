@@ -83,18 +83,18 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
 
         for pulse_iteration in range(Nevts):
             top.Fpga[0].Asic.CalPulse.Start()
-            time.sleep(0.001)
-            if readAllData:time.sleep(0.009)#ALLDATA
+            time.sleep(0.02)
+            if readAllData:time.sleep(0.02)#ALLDATA
 
 
             
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
-        if args.ch<15:
-            pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
-            pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
-        else:
-            pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
-            pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
+        #if args.ch<15:
+        pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
+        pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
+        #else:
+        #    pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
+        #    pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
 
 
 
@@ -356,10 +356,10 @@ def measureTimeWalk(argsip,
        TOTcrms=np.std(np.array(pixel_data['HitDataTOTc'][iQ])[okTOTc])
        TOTfmean=np.mean(np.array(pixel_data['HitDataTOTf'][iQ])[okTOA])
        TOTfrms=np.std(np.array(pixel_data['HitDataTOTf'][iQ])[okTOA])
-       if args.ch<15:
-           TOTmean=(TOTcmean+1.)*args.LSBTOTc-TOTfmean*args.LSBTOTf
-       else:
-           TOTmean=(TOTcmean+1.)*args.LSBTOTc-TOTfmean*20
+       #if args.ch<15:
+       TOTmean=(TOTcmean+1.)*args.LSBTOTc-TOTfmean*args.LSBTOTf
+       #else:
+       #    TOTmean=(TOTcmean+1.)*args.LSBTOTc-TOTfmean*20
        TOTrms=math.sqrt(math.pow(TOTcrms*args.LSBTOTc,2)+math.pow(TOTfrms*args.LSBTOTf,2))
 
        if not math.isnan(eff):effArray[iQ]=eff

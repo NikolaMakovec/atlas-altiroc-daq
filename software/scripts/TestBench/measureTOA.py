@@ -62,8 +62,8 @@ def acquire_data(top, useExt, DelayRange,chNb,readAllData=False):
         for pulse_iteration in range(args.N):#Nikola
             #print ("iter",pulse_iteration)
             top.Fpga[0].Asic.CalPulse.Start()
-            time.sleep(0.005)
-            if readAllData:time.sleep(0.05)#ALLDATA
+            time.sleep(0.002)
+            if readAllData:time.sleep(0.02)#ALLDATA
             
         #print (type(pixel_stream.HitDataTOA.copy()),len(pixel_stream.HitDataTOA.copy()),pixel_stream.HitDataTOA.copy())
         pixel_data.append( pixel_stream.HitData.copy() )

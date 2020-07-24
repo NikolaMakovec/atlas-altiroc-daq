@@ -43,11 +43,11 @@ if __name__ == "__main__":
     NTOT=50
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=20   #Need 1 for TOTf
-    chList=list(range(0,15))
+    totRiseEdgeStep=100   #Need 1 for TOTf
+    chList=list(range(0,25))
     #chList=[4,9,14]    
-    toaDelayStep=1
-    toaDelayMin=1800
+    toaDelayStep=20
+    toaDelayMin=1750
     toaDelayMax=2350
 
     #HighStat

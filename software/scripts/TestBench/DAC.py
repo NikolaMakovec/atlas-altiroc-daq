@@ -206,30 +206,34 @@ def getDACList(board):
     elif board==18:
         pass
     elif board==21:
-        dacList[(21,0,4)]=400
-        dacList[(21,1,4)]=400
-        dacList[(21,2,4)]=400   
-        dacList[(21,3,4)]=400   
-        dacList[(21,4,4)]=340#10,0.82,ok
-        dacList[(21,5,4)]=400   
-        dacList[(21,6,4)]=400   
-        dacList[(21,7,4)]=400   
-        dacList[(21,8,4)]=400   
-        dacList[(21,9,4)]=400        
-        dacList[(21,10,4)]=400
-        dacList[(21,11,4)]=400
-        dacList[(21,12,4)]=400
-        dacList[(21,13,4)]=400    
-        dacList[(21,14,4)]=400
-        dacList[(21,15,4)]=400
-        dacList[(21,16,4)]=400
-        dacList[(21,17,4)]=400    
-        dacList[(21,18,4)]=400
-        dacList[(21,19,4)]=400
-        dacList[(21,20,4)]=400
-        dacList[(21,21,4)]=400
-        dacList[(21,22,4)]=400
-        dacList[(21,23,4)]=400
-        dacList[(21,24,4)]=400
+
+        dacList[(21,0,4)]=310#10,0.89,ok
+        dacList[(21,1,4)]=370#10,0.78,PRB!!!!!!!!! 
+        dacList[(21,2,4)]=360#10,0.92,ok 
+        dacList[(21,3,4)]=340#10,0.99,ok 
+        dacList[(21,4,4)]=340#10,0.95,ok 
+        dacList[(21,5,4)]=350#10,0.64,PRB!!!!!!!!! 
+        dacList[(21,6,4)]=290#10,0.76,PRB!!!!!!!!! #very noisy
+        dacList[(21,7,4)]=340#10,0.98,ok 
+        dacList[(21,8,4)]=350#10,0.92,ok 
+        dacList[(21,9,4)]=380#10,0.99,ok
+        dacList[(21,10,4)]=270#done by hand
+        dacList[(21,11,4)]=330#10,0.60,PRB!!!!!!!!!   #Strange
+        dacList[(21,12,4)]=280#10,0.97,ok 
+        dacList[(21,13,4)]=440#10,0.99,ok 
+        dacList[(21,14,4)]=320#10,1.00,ok 
+        dacList[(21,15,4)]=300#10,1.00,ok 
+        dacList[(21,16,4)]=1020#10,1.00,ok #DEAD? 
+        dacList[(21,17,4)]=390#10,1.00,ok 
+        dacList[(21,18,4)]=390#10,0.74,PRB!!!!!!!!! 
+        dacList[(21,19,4)]=400#10,0.99,ok 
+        dacList[(21,20,4)]=440#10,0.79,PRB!!!!!!!!! 
+        dacList[(21,21,4)]=1020#10,0.99,ok   #DEAD?
+        dacList[(21,22,4)]=590#10,0.94,ok 
+        dacList[(21,23,4)]=370#10,0.99,ok 
+        dacList[(21,24,4)]=330#10,1.00,ok
+
+
+        dacList[(21,4,4)]=310
                 
     return dacList                       

@@ -98,12 +98,12 @@ def acquire_data(top, pulser, PulserRange, using_TZ_TOT):
 
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
         if using_TZ_TOT:
-            pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
+            #pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
             pixel_data['HitDataTOTc_int1'].append( pixel_stream.HitDataTOTc_int1_tz.copy() )
         else:
-            pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
+            #pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
             pixel_data['HitDataTOTc_int1'].append( pixel_stream.HitDataTOTc_int1_vpa.copy() )
@@ -332,7 +332,8 @@ def measureTOT( argsip,
     for ipuls, pulser in enumerate(PulserRange):
       pulser = pulser-fallEdge
       for itot in range(len(pixel_data['HitDataTOTc'][ipuls])):
-        ff.write(str(pulser)+' '+str(pixel_data['allTOTdata'][ipuls][itot])+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
+        ff.write(str(pulser)+' '+"999"+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
+        #ff.write(str(pulser)+' '+str(pixel_data['allTOTdata'][ipuls][itot])+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
         #print(str(pixel_data['HitDataTOTc'][ipuls][itot]), str(pixel_data['HitDataTOA'][ipuls][itot]))
     #ff.write('TOAvalues = '+str(HitDataTOT)+'\n')
     ff.close()
@@ -425,6 +426,6 @@ if __name__ == "__main__":
     print(args)
 
     useTZ=False
-    if int(args.ch)>=15:
-        useTZ=True
+    #if int(args.ch)>=15:
+    #    useTZ=True
     measureTOT(args.ip, args.board, args.useExt, args.cfg, args.ch, args.Q, args.DAC, useTZ, args.riseEdgeMin, args.riseEdgeMax, args.riseEdgeStep, args.out)

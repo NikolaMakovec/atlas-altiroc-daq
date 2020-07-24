@@ -18,7 +18,7 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 1
+doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
@@ -26,14 +26,14 @@ doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 0 # TOA with at least Q=52 and maybe larger N
+doClockTree = 1 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=range(0,24)
-#chList=[4]
+chList=range(0,25)
+chList=[4]
 
         
 #####################
@@ -101,11 +101,11 @@ if doXtalk == 1:
 # Threshold
 #####################
 Nthres=100
-QThresList=[10]#default
+QThresList=[5]#default
 #QThresList=[1,2,3,5]
 thresMin=260  #overwritten for Q>5
 thresMax=1023 #max is 1023
-thresStep=10
+thresStep=5
 if doLinearity:
     doThres= 1
     Nthres=100
