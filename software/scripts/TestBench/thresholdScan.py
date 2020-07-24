@@ -51,6 +51,7 @@ def parse_arguments():
     Vthc=-1
     
     # Add arguments
+    parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
@@ -76,6 +77,8 @@ def parse_arguments():
     parser.add_argument("--VthStep", type = int, required = False, default = DACstep, help = "scan step")
     parser.add_argument("--out", type = str, required = False, default = 'testThreshold.txt', help = "output file name")  
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")
+
+
 
     
     # Get the arguments
@@ -104,7 +107,7 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
     'TOAOvflow' : []
     }
     
-    asicVersion = 2 #hardcoded for now...
+
     effList=[]
     newDacScan=[]
     for scan_value in dacScan:
@@ -124,7 +127,7 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
         top.initialize()#You MUST call this function after doing ASIC configurations!!!
             
         for iteration in range(n_iterations):
-            if (asicVersion == 1): 
+            if (args.asicVersion == 1): 
                 top.Fpga[0].Asic.LegacyV1AsicCalPulseStart()
                 time.sleep(0.01)
                 if readAllData:time.sleep(0.009)#ALLDATA
@@ -137,7 +140,9 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
         effList.append(len(pixel_stream.HitData.copy())/n_iterations)
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
         #pixel_data['TOAOvflow'].append( pixel_stream.TOAOvflow.copy() )
-        while pixel_stream.count < args.N: pass
+        while pixel_stream.count < args.N:
+            #print ("toto")
+            pass
         pixel_stream.clear()
 
 
@@ -165,12 +170,14 @@ def thresholdScan(argip,
     dacScan = range(minDAC,maxDAC,DACstep)
 
     #choose config file:
+    defaultFile='config/AsicVersion'+str(args.asicVersion)+'/defaults.yml'
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
+        #if args.asicVersion==3: Configuration_LOAD_file='config/AsicVersion3/defaults.yml'
 
 
     # Setup root class
-    top = feb.Top(ip = argip, userYaml = [Configuration_LOAD_file])
+    top = feb.Top(ip = argip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
     
     if args.debug:
         top.Fpga[0].AxiVersion.printStatus()
@@ -199,8 +206,6 @@ def thresholdScan(argip,
         
     #You MUST call this function after doing ASIC configurations!!!
     top.initialize()
-
-    print   (top.Fpga[0].Asic.SlowControl.Rin_Vpa.value())
     
     #################################################################
     # Data Processing

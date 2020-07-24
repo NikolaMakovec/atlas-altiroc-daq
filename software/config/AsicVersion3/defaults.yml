@@ -83,10 +83,10 @@ Top:
         DLLcoarse_EXTvctrl_en: 0x0
         coarse_Lcomp_b: 0x0
         coarse_Up_Downb: 0x0
-        EN_8drivers: 0x0
+        EN_8drivers: 0x1
         ON_PLL: 0x0
         PLL_icpb: 0x0A
-        EN_RPG: 0x0
+        EN_RPG: 0x1
         dac_CP_BWb: 0x10
         EN_ExtVin_vco_PLL: 0x0
         setN: 0x3

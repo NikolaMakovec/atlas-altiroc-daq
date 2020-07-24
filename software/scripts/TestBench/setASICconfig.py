@@ -46,7 +46,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     top.Fpga[0].Asic.SlowControl.EN_hyst[pixel_number].set(0x1)
     top.Fpga[0].Asic.SlowControl.cBit_f_TOA[pixel_number].set(0x0)
     top.Fpga[0].Asic.SlowControl.cBit_s_TOA[pixel_number].set(0x0)
-    top.Fpga[0].Asic.SlowControl.cBit_f_TOT[pixel_number].set(0xf)
+    top.Fpga[0].Asic.SlowControl.cBit_f_TOT[pixel_number].set(0x0)#V3: Was 0xf
     top.Fpga[0].Asic.SlowControl.cBit_s_TOT[pixel_number].set(0x0)
     top.Fpga[0].Asic.SlowControl.cBit_c_TOT[pixel_number].set(0xf)
 
