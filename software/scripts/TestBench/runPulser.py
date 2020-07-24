@@ -22,7 +22,7 @@ doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
-doTW        = 0
+doTW        = 1
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
@@ -32,8 +32,9 @@ doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=range(0,25)
-chList=[4]
+chList=list(range(0,25));chList.remove(6);chList.remove(11);chList.remove(16);chList.remove(21)
+
+
 
         
 #####################
@@ -57,7 +58,7 @@ if doTW+doPS>1:
 #####################
 qMin=1
 qMax=63#63#63
-qStep=1
+qStep=2
 Ntw=100
 if doPS:
     doTW=1
@@ -71,20 +72,21 @@ Ntoa=100;
 delayStep=5 
 delayMin=2200
 delayMax=2700
-QTOAList=[4,5,6,7,8,9,13,18,26,52]#default
+QTOAList=[5,6,7,8,9,13,18,26,52]#default
+QTOAList=[5,7,9,13,18,26,63]#default
 #Ntoa=500;delayStep=20;#QTOAList=[52] #Default to check distributions
 
 
 if doDNL:
     doTOA=1
     delayStep=1
-    QTOAList=[52]#ClockTree
+    QTOAList=[63]#ClockTree
     Ntoa=500
         
 if doClockTree:
     doTOA=1
     #QTOAList=[13,26,52]#ClockTree
-    QTOAList=[52]#ClockTree
+    QTOAList=[63]#ClockTree
     Ntoa=100
     delayStep=20
 
@@ -101,11 +103,11 @@ if doXtalk == 1:
 # Threshold
 #####################
 Nthres=100
-QThresList=[5]#default
+QThresList=[4]#default
 #QThresList=[1,2,3,5]
-thresMin=260  #overwritten for Q>5
+thresMin=260  #overwritten for high Q
 thresMax=1023 #max is 1023
-thresStep=5
+thresStep=2 #default 2
 if doLinearity:
     doThres= 1
     Nthres=100
