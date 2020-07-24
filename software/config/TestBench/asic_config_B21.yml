@@ -48,10 +48,11 @@ Top:
         ###################
         DLL_ALockR_en: 0x1 # should be kept to 1
         DLL_CP_b: 0x10 
-        
+        ON_ota_dll: 1
         DLLfast_EXTvctrl_en: 0x1 
         DLLslow_EXTvctrl_en: 0x1 
         DLLcoarse_EXTvctrl_en: 0x1 
+
 
         totf_satovfw: 0x1
         totc_satovfw: 0x1
@@ -86,7 +87,7 @@ Top:
 
         ON_PLL: 0x0
 
-
+        EN_toa_busy: 0
 
       ##########################################################################
       Readout:

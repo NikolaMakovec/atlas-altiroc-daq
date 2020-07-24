@@ -133,8 +133,8 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
                 if readAllData:time.sleep(0.009)#ALLDATA
             else:
                 top.Fpga[0].Asic.CalPulse.Start()
-                time.sleep(0.001)
-                if readAllData:time.sleep(0.009)#ALLDATA
+                time.sleep(0.005)
+                if readAllData:time.sleep(0.05)#ALLDATA
 
         print ("--> N = ",len(pixel_stream.HitData.copy()))
         effList.append(len(pixel_stream.HitData.copy())/n_iterations)

@@ -21,7 +21,7 @@ python python/anaTOA.py -h
 ##########################################
 
 #read data from a directory (it is also possible to provide a list of file as above)
-python python/anaThreshold.py --display --allPlots -i Data/B4_thres/ --xmin 200 --xmax 600 --QRef 52
+python python/anaThreshold.py --display --allPlots -i Data/B4_thres/ --xmin 200 --xmax 600 
 
 #in addition to produce plots, it computes DAC10bit and bit_vth_cor which are printed on the screen and pasted to the config file when needed
 

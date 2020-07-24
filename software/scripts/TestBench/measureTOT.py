@@ -135,6 +135,7 @@ def parse_arguments():
     Rin_Vpa=0 # 0 => 25K, 1 => 15 K
     
     # Add arguments
+    parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
@@ -196,11 +197,12 @@ def measureTOT( argsip,
 
 
     # choose config fileif not specified:
+    defaultFile='config/AsicVersion'+str(args.asicVersion)+'/defaults.yml'
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
     # Setup root class
-    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file])
+    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
     
     if args.debug:
         top.Fpga[0].AxiVersion.printStatus()

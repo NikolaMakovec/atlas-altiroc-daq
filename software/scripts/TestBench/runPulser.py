@@ -18,21 +18,22 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
-doTW        = 1
+doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 1 # TOA with at least Q=52 and maybe larger N
+doClockTree = 0 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=[4,9]
+chList=range(0,24)
+#chList=[4]
 
         
 #####################
@@ -85,6 +86,7 @@ if doClockTree:
     #QTOAList=[13,26,52]#ClockTree
     QTOAList=[52]#ClockTree
     Ntoa=100
+    delayStep=20
 
 if doXtalk == 1:
     doTOA=1
@@ -99,11 +101,11 @@ if doXtalk == 1:
 # Threshold
 #####################
 Nthres=100
-QThresList=[3]#default
+QThresList=[10]#default
 #QThresList=[1,2,3,5]
 thresMin=260  #overwritten for Q>5
 thresMax=1023 #max is 1023
-thresStep=2
+thresStep=10
 if doLinearity:
     doThres= 1
     Nthres=100
@@ -141,7 +143,7 @@ if __name__ == "__main__":
     args = parse_arguments()
     
 
-    boardASICAlone=[4,8,9,10,11,12,14,15]
+    boardASICAlone=[4,8,9,10,11,12,14,15,21]
     board=args.board
 
     
@@ -338,7 +340,7 @@ if __name__ == "__main__":
         for ch in chList:
             for cd in cdList:
                 for Q in QThresList:#ATT TRIG EXT
-                    if Q >6 and (board,ch,cd) in dacMap.keys():
+                    if Q >10 and (board,ch,cd) in dacMap.keys():
                         thresMinLocal=dacMap[(board,ch,cd)]-20+(Q-3)*7
                         thresMinLocal=min(thresMinLocal,450)
                     else:

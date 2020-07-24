@@ -126,6 +126,7 @@ def parse_arguments():
 
 
     # Add arguments
+    parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = Rin_Vpa, help = "RinVpa")
 
@@ -224,11 +225,12 @@ def measureTimeWalk(argsip,
 
 
     # choose config fileif not specified:
+    defaultFile='config/AsicVersion'+str(args.asicVersion)+'/defaults.yml'
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
-        
+
     # Setup root class
-    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file])
+    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
 
     # debug print

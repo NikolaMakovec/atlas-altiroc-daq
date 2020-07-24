@@ -95,6 +95,7 @@ def parse_arguments():
     
     # Add arguments
     #parser.add_argument( "--moreStatForFewPoints", type = argBool, required = False, default = False, help = "")
+    parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")
@@ -159,11 +160,12 @@ def measureTOA(argsip,
     DelayRange = range( delayMin, delayMax, delayStep )
 
     # choose config fileif not specified:
+    defaultFile='config/AsicVersion'+str(args.asicVersion)+'/defaults.yml'
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
     # Setup root class
-    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file])
+    top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
     # debug print
     if args.debug:
