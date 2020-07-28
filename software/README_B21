@@ -1,4 +1,13 @@
 
+############################
+# FPGA
+############################
+
+python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV2/images/AtlasAltirocV2-0x40000000-20200623152309-ruckman-19a34a7.mcs 
+
+python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV3/images/AtlasAltirocV3-0x40000000-20200623150825-ruckman-19a34a7.mcs 
+
+
 
 ############################
 # Measurements
@@ -15,14 +24,20 @@ python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatA
 python scripts/TestBench/measureTOA.py --skipExistingFile False -N 100 --debug False --display True --Cd 4 --checkOFtoa False --checkOFtot False --ch 0 --board 21 --DAC 282 --Q 6 --delayMin 2200 --delayMax 2700 --delayStep 5 --out Data/  --Rin_Vpa 0 --asicVersion 3 --Vthc 64
 
 
+===> avec trigExt
+
+python scripts/TestBench/measureTOA.py --skipExistingFile True -N 100 --debug False --display False --checkOFtoa False --checkOFtot False  --board 21 --ch 0 --Cd 0 --useExt True --delayMin 1750 --delayMax 2350 --delayStep 1  --out Data/delayScanTrigExt_ --asicVersion 3
+
+python scripts/TestBench/measureTOT.py --skipExistingFile True  -N 100 --debug False --display False --checkOFtoa False --checkOFtot False  --board 21 --ch 0 --Cd 0 --useExt True --riseEdgeMin 700 --riseEdgeMax 3000 --riseEdgeStep 10 --out Data/widthScanTrigExt_ --asicVersion 3
+
 
 ############################
 # Analysis
 ############################
 
+cd analysis/
 
 python python/anaTOA.py --allPlots   --QRef 63  --display --inputDir ../Data/B21-toa/
-
 
 python python/anaThreshold.py --allPlots --display  -i ../Data/B21-thres/ --xmin 200 --xmax 500
 

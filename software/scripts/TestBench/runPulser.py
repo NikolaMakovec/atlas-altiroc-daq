@@ -23,9 +23,9 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
 doTW        = 0
-doPS        = 0 # TW with thres. scan
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -74,7 +74,7 @@ delayStep=5
 delayMin=2150
 delayMax=2700
 #QTOAList=[4,5,6,7,10,13,16,32,63]#default
-QTOAList=[63]#,7,16,63]#default
+QTOAList=[6,7,16,63]#default
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 

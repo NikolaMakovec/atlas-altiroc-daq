@@ -115,7 +115,7 @@ plt.savefig("Thres_SummaryEff.pdf")
 # compute Vthc
 ###########################################################################
 
-thresRef=int(np.mean(list(thresDict.values())))
+thresRef=int(np.median(list(thresDict.values())))
 print ("        DAC10bit:  ",thresRef)
 for key in sorted(thresDict.keys(),key=lambda n:n[2]):
     fileName,board,ch,cd,Q=key
