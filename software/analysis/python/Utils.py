@@ -17,22 +17,32 @@ import numpy as np
 
 
 colors=[
-        'green',
-        'cyan',
-        'orange',
-        'purple',
-        'blue',
-        'brown',
-        'pink',
-        'gray',
-        'yellow',
-        'red',
-        'olive',
-        'sandybrown',
-        'violet',
-        'palegreen',
-        'black',
-        ]*100
+    'green',
+    'cyan',
+    'orange',
+    'purple',
+    'blue',
+    'brown',
+    'pink',
+    'gray',
+    'yellow',
+    'red',
+    'olive',
+    'silver',
+    'sandybrown',
+    'violet',
+    'palegreen',
+    'black',
+    'mistyrose',
+    'peachpuff',
+    'burlywood',
+    'beige',
+    'palegreen',
+    'darkseagreen',
+    'lightseagreen',
+    'teal',
+    'thistle',
+]*100
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 # Functions                                                                  # 
@@ -42,13 +52,13 @@ colors=[
 def getFileList(inputDir,fileList,measType="",select="",extension="txt"):
     if inputDir==None and fileList==None:
         print ("No input provided. Exit...")
-        sys.exit
-    
+        sys.exit    
     elif inputDir!=None and fileList!=None:
         print ("You should either the --inputDir or --fileList options but not both")
         sys.exit
     else:
         if inputDir!=None:
+            print (inputDir+"/*"+measType+"*"+select+"*."+extension)
             return glob.glob(inputDir+"/*"+measType+"*"+select+"*."+extension)
         else:
             f=open(fileList)

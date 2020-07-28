@@ -42,7 +42,7 @@ fileNameList=getFileList(options.inputDir,options.fileList,measType="TOA_B",sele
 ###########################################################################
 
 DelayStep=9.5582
-Qconv=10./13.
+Qconv=0.6#10./13.
 delayRef=2450*DelayStep
 nChannelsMax=25
 
@@ -106,7 +106,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         if len(toaList)>    nMax:
             nMax=len(toaList)
         if len(toaOKList)>10:#compute mean and jitter with at N events
-            TOAMean=np.mean(toaOKList)
+            TOAMean=np.median(toaOKList)
             jitter=np.std(toaOKList)
 
 
@@ -219,11 +219,12 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         
         #comparison plots TOAMean
         plt.figure(figTOAMean.number)
-        axTOAMean.scatter(delayArray[okEff],toaMeanArray[okEff]*LSBTOA,s=10,label=label, color=colors[counterColor-1])#, markersize=5)
+        print (delayArray[okEff],toaMeanArray[okEff])
+        axTOAMean.scatter(delayArray[okEff],toaMeanArray[okEff]*LSBTOA,s=10,label=label              , color=colors[counterColor-1])#)
 
         #comparison plots Jitter
         plt.figure(figJitter.number)
-        axJitter.scatter(delayArray[okEff],jitterArray[okEff]*LSBTOA,s=10,label=label, color=colors[counterColor-1])#, markersize=5)
+        axJitter.scatter(delayArray[okEff],jitterArray[okEff]*LSBTOA,s=10,label=label              , color=colors[counterColor-1])#)
 
         #save some data
         LSBList.append(LSBTOA)
@@ -232,7 +233,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
 
     #save more data
-    jitterMean=np.mean(jitterArray[okEff])*LSBTOA
+    jitterMean=np.median(jitterArray[okEff])*LSBTOA
     QList[ch].append(Q)
     jitterMeanList[ch].append(jitterMean)
 
@@ -289,11 +290,12 @@ plt.savefig("TOA_TOARefvsCh.pdf")
 figjitterMean=plt.figure('jitterMean')
 axjitterMean = figjitterMean.add_subplot(1,1,1)
 for ich in range(nChannelsMax):
-    axjitterMean.scatter(np.multiply(QArray[ich],Qconv),jitterMeanArray[ich],color=colors[ich],label="ch"+str(ich))
+    axjitterMean.scatter(np.multiply(QArray[ich],Qconv),jitterMeanArray[ich],label="ch"+str(ich),color=colors[ich])
 axjitterMean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axjitterMean.set_ylabel("Jitter [ps]", fontsize = 10)
 jitterMax=max(max(jitterMeanArray))                 
 axjitterMean.set_ylim(bottom=0,top=jitterMax*1.5)#np.max(jitterMeanArray[ich])*1.5)
+axjitterMean.set_xlim(left=0,right=45)#np.max(jitterMeanArray[ich])*1.5)
 plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TOA_jitterMeanvsQ.pdf")
 

@@ -239,7 +239,7 @@ def measureTOA(argsip,
     nonzero = DataMean != 0
     
     # Average Std. Dev. Calculation; Points with no data (i.e. Std.Dev.= 0) are ignored
-    MeanDataStdev = np.mean(DataStdev[nonzero])
+    MeanDataStdev = np.median(DataStdev[nonzero])
     
     # LSB estimation based on "DelayStep" value, again ignoring zero values
     safety_bound = 0

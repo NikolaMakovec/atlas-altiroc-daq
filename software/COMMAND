@@ -9,7 +9,7 @@ python scripts/DevGui.py --ip 192.168.1.10 --asicVersion 2
 #
 ###########################################################
 
-B=12
+B=21
 python scripts/TestBench/runPulser.py  -b $B
 python scripts/TestBench/runPulser.py  -b $B --useVthc 
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON 

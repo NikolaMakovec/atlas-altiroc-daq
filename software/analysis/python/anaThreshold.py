@@ -126,9 +126,9 @@ for key in sorted(thresDict.keys(),key=lambda n:n[2]):
 
 
     if vthc<0 or vthc>126:
-        print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        break
-
+        #print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        #break
+        pass
 
 
 #display figures

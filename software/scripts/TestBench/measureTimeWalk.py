@@ -214,7 +214,7 @@ def measureTimeWalk(argsip,
   
     
     if args.morePointsAtLowQ:
-        for p in range(13,0,-1):
+        for p in range(10,0,-1):
             if p not in QRange: QRange=[p]+QRange
     QRange=sorted(QRange)
 

@@ -261,7 +261,7 @@ def thresholdScan(argip,
         # Average Std. Dev. Calculation; Points with no data (i.e. Std.Dev.= 0) are ignored
         index = np.where(np.sort(TOAjit))
         if len(index)>1:
-            jitterMean = np.mean(np.sort(TOAjit)[index[0][0]:len(np.sort(TOAjit))])
+            jitterMean = np.median(np.sort(TOAjit)[index[0][0]:len(np.sort(TOAjit))])
         else:
             jitterMean = 0
      

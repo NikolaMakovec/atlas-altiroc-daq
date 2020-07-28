@@ -28,7 +28,7 @@ parser.add_option("-i","--inputDir", help="Data location", default=None)#"Data/B
 parser.add_option("-s","--select", help="select only file names containing this string", default="")
 parser.add_option("-a","--allPlots", help="make all plots for debugging purpose", default=False,action="store_true")
 parser.add_option("-d","--display", help="display summary plots on screen", default=False,action="store_true")
-parser.add_option("-N","--Nevents", help="Nb of events during data taking. Needed to compute efficiency", default=100,type=int)
+parser.add_option("-N","--Nevents", help="Nb of events during data taking. Needed to compute efficiency", default=50,type=int)
 parser.add_option("--Qmax", help="max Q", default=None,type=int)
 parser.add_option("--Qmin", help="min Q", default=None,type=int)
 
@@ -45,7 +45,7 @@ fileNameList=getFileList(options.inputDir,options.fileList,measType="TW_B",selec
 
 LSBTOA=20
 LSBTOTC=160
-Qconv=10./13.
+Qconv=0.6#10./13.
 
 
 
@@ -74,7 +74,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
     # extra informatiaon from the file name
     board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
-    label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)+" Vthc="+str(vthc)
+    label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)#+" Vthc="+str(vthc)
 
     #get data
     QArray,QDACArray,pixel_data=readTimeWalkFile(fileName,Qconv=Qconv)
@@ -177,7 +177,7 @@ axTOAmean.set_ylim(bottom=0)
 axTOAmean.set_ylim(top=127*LSBTOA)
 axTOAmean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axTOAmean.set_ylabel("<TOA>  [ps]", fontsize = 10)
-plt.legend(loc='upper left', prop={"size":6})
+plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryTOAmean.pdf")
 
 
@@ -209,7 +209,7 @@ axTOTCmean.set_ylim(bottom=0)
 axTOTCmean.set_ylim(top=127*LSBTOTC)
 axTOTCmean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axTOTCmean.set_ylabel("<TOTC> [ps]", fontsize = 10)
-plt.legend(loc='upper left', prop={"size":6})
+plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryTOTCmean.pdf")
 
 

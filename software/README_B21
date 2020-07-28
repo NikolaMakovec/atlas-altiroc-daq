@@ -1,0 +1,30 @@
+
+
+############################
+# Measurements
+############################
+
+python scripts/TestBench/thresholdScan.py  --skipExistingFile False --N 100 --debug False --display True --checkOFtoa False --checkOFtot False  --board 21 --delay 2350 --minVth 260 --maxVth 1023 --VthStep 2 --Cd 4 --ch 0 --autoStop True  --Q 3 --out Data/  --Rin_Vpa 0 --asicVersion 3 --Vthc 64
+
+
+
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display True -N 50 --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board 21  --delay 2350  --QMin 1 --QMax 63 --QStep 5 --out Data/  --ch 0  --Cd 4 --DAC 280 --Rin_Vpa 0 --asicVersion 3 --Vthc 64
+
+
+
+python scripts/TestBench/measureTOA.py --skipExistingFile False -N 100 --debug False --display True --Cd 4 --checkOFtoa False --checkOFtot False --ch 0 --board 21 --DAC 282 --Q 6 --delayMin 2200 --delayMax 2700 --delayStep 5 --out Data/  --Rin_Vpa 0 --asicVersion 3 --Vthc 64
+
+
+
+############################
+# Analysis
+############################
+
+
+python python/anaTOA.py --allPlots   --QRef 63  --display --inputDir ../Data/B21-toa/
+
+
+python python/anaThreshold.py --allPlots --display  -i ../Data/B21-thres/ --xmin 200 --xmax 500
+
+python python/anaTimeWalk.py --allPlots  --display -i ../Data/B21-tw/ -N 50 --Qmin 0 --Qmax 50
+
