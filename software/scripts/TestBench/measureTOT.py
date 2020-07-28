@@ -46,7 +46,8 @@ import rogue.utilities.fileio                                  ##
                                                                ##
 import statistics                                              ##
 import math                                                    ##
-import matplotlib.pyplot as plt                                ##
+import matplotlib.pyplot as plt
+import matplotlib
 from setASICconfig import *        ##
                                                                ##
 #################################################################
@@ -329,10 +330,14 @@ def measureTOT( argsip,
     ff.write('mean value = '+str(DataMeanTOT)+'\n')
     ff.write('sigma = '+str(DataStdevTOT)+'\n')
     ff.write('Pulse width   TOT   TOTc   TOTf'+'\n')
+    allTOTC = []
+    allWidth = []
     for ipuls, pulser in enumerate(PulserRange):
-      pulser = pulser-fallEdge
+      width = fallEdge-pulser
       for itot in range(len(pixel_data['HitDataTOTc'][ipuls])):
-        ff.write(str(pulser)+' '+"999"+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
+        ff.write(str(width)+' '+"999"+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
+        allTOTC.append(pixel_data['HitDataTOTc'][ipuls][itot])
+        allWidth.append(width)
         #ff.write(str(pulser)+' '+str(pixel_data['allTOTdata'][ipuls][itot])+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
         #print(str(pixel_data['HitDataTOTc'][ipuls][itot]), str(pixel_data['HitDataTOA'][ipuls][itot]))
     #ff.write('TOAvalues = '+str(HitDataTOT)+'\n')
@@ -356,27 +361,43 @@ def measureTOT( argsip,
 
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows = 2, ncols = 2, figsize=(16,7))
 
-    # Plot (0,0) ; top left
-    ax1.plot(widthRange, DataMeanTOT)
+
+
+    xedges = np.arange(np.min(widthRange)-args.riseEdgeStep/2, np.max(widthRange),args.riseEdgeStep)#DelayRange#np.array(range(0,65))-0.5
+    yedges = range(0,128,1)
+
+    HTOTC, xedges, yedges = np.histogram2d(allWidth, allTOTC, bins=(xedges, yedges))
+    HTOTC = HTOTC.T  # Let each row list bins with common y range.
+    X, Y = np.meshgrid(xedges, yedges)
+    HTOTC[HTOTC==0]=np.nan
+    current_cmap = matplotlib.cm.get_cmap()
+    current_cmap.set_bad(color='white')
+    ax1.pcolormesh(X, Y, HTOTC,cmap=plt.cm.YlGnBu)
+    ax1.scatter(widthRange, DataMeanTOTc, facecolors='none', edgecolors='b')
     ax1.grid(True)
-    ax1.set_title('(1 + TOTc - TOTf/4) * 160 ) ', fontsize = 11)
-    ax1.set_xlabel('Width', fontsize = 10)
-    ax1.set_ylabel('Mean Value [ps]', fontsize = 10)
-    slope=getSlope(widthRange,DataMeanTOT,DelayStep)
-    ax1.legend(['slope: %f ' % slope],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    ax1.set_title('TOTc', fontsize = 11)
+    ax1.set_xlabel('width', fontsize = 10)
+    ax1.set_ylabel('TOTc', fontsize = 10)
+    LSBTOTc=getSlope(widthRange,DataMeanTOTc,DelayStep)
+    ax1.legend(['slope: %f ' % LSBTOTc],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     ax1.set_xlim(left = np.min(widthRange), right = np.max(widthRange))
-    ax1.set_ylim(bottom = 0, top = np.max(DataMeanTOT)*1.1)
+    ax1.set_ylim(bottom = 0, top = np.max(DataMeanTOTc)*1.1)
+
+
+
 
     
-    ax2.plot(widthRange, DataMeanTOTc)
+    # Plot (0,0) ; top left
+    ax2.plot(widthRange, DataMeanTOT)
     ax2.grid(True)
-    ax2.set_title('TOTc', fontsize = 11)
-    ax2.set_xlabel('width', fontsize = 10)
-    ax2.set_ylabel('Mean Value', fontsize = 10)
-    LSBTOTc=getSlope(widthRange,DataMeanTOTc,DelayStep)
-    ax2.legend(['slope: %f ' % LSBTOTc],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    ax2.set_title('(1 + TOTc - TOTf/4) * 160 ) ', fontsize = 11)
+    ax2.set_xlabel('Width', fontsize = 10)
+    ax2.set_ylabel('Mean Value [ps]', fontsize = 10)
+    slope=getSlope(widthRange,DataMeanTOT,DelayStep)
+    ax2.legend(['slope: %f ' % slope],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     ax2.set_xlim(left = np.min(widthRange), right = np.max(widthRange))
-    ax2.set_ylim(bottom = 0, top = np.max(DataMeanTOTc)*1.1)
+    ax2.set_ylim(bottom = 0, top = np.max(DataMeanTOT)*1.1)
+
 
     
     # ax3.scatter(PulserRange, DataStdevTOT)

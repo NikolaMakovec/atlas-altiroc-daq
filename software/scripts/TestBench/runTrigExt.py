@@ -43,10 +43,10 @@ if __name__ == "__main__":
     NTOT=50
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=100   #Need 1 for TOTf
+    totRiseEdgeStep=10   #Need 1 for TOTf
     chList=list(range(0,25))
     #chList=[4,9,14]    
-    toaDelayStep=20
+    toaDelayStep=1
     toaDelayMin=1750
     toaDelayMax=2350
 
@@ -61,11 +61,16 @@ if __name__ == "__main__":
         #chList=[7,8,6,10,12,13,14,5]
 
 
+    boardASICV3=[21]
+    asicVersion=2
+    if board in boardASICV3: asicVersion=3
+
+    
     for ch in chList:
         if args.toa:
             #nameTOA='Data/delayScanTrigExt_B_%d_ch_%d_'%(board,ch)
             nameTOA='Data/delayScanTrigExt_'
-            cmdTOA="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --delayMin %d --delayMax %d --delayStep %d  --out %s"%(NTOA,board,ch,toaDelayMin,toaDelayMax,toaDelayStep,nameTOA)
+            cmdTOA="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --delayMin %d --delayMax %d --delayStep %d  --out %s --asicVersion %d"%(NTOA,board,ch,toaDelayMin,toaDelayMax,toaDelayStep,nameTOA,asicVersion)
             print(cmdTOA)
             print("sleep 5")
 
@@ -73,7 +78,7 @@ if __name__ == "__main__":
         if args.tot:
             #nameTOT='Data/widthScanTrigExt_B_%d_ch_%d_'%(board,ch)
             nameTOT='Data/widthScanTrigExt_'
-            cmdTOT="python scripts/TestBench/measureTOT.py --skipExistingFile True  -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --riseEdgeMin %d --riseEdgeMax %d --riseEdgeStep %s --out %s"%(NTOT,board,ch,totRiseEdgeMin,totRiseEdgeMax,totRiseEdgeStep,nameTOT)
+            cmdTOT="python scripts/TestBench/measureTOT.py --skipExistingFile True  -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --riseEdgeMin %d --riseEdgeMax %d --riseEdgeStep %s --out %s --asicVersion %d"%(NTOT,board,ch,totRiseEdgeMin,totRiseEdgeMax,totRiseEdgeStep,nameTOT,asicVersion)
             print(cmdTOT)
             print("sleep 5")
 

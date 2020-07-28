@@ -18,24 +18,22 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doThres     = 1
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
-doTW        = 0
+doTW        = 1
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 0 # TOA with at least Q=52 and maybe larger N
+doClockTree = 1 # TOA with at least Q=52 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=list(range(0,25));chList.remove(6);chList.remove(11);chList.remove(16);chList.remove(21)
-#chList=list(range(0,5))
-
-
+chList=[4,9]#
+#chList=[0,1,2,3,5,6,7,8,10,11,12,13,14]
 
         
 #####################
@@ -59,7 +57,7 @@ if doTW+doPS>1:
 #####################
 qMin=1
 qMax=63#63#63
-qStep=2
+qStep=1
 Ntw=100
 if doPS:
     doTW=1
@@ -70,12 +68,11 @@ if doPS:
 #####################
     
 Ntoa=100;
-delayStep=10 
+delayStep=5 
 delayMin=2200
 delayMax=2700
-QTOAList=[5,6,7,8,9,13,18,26,52]#default
-QTOAList=[6,7,11,16,63]#default
-#Ntoa=500;delayStep=20;#QTOAList=[52] #Default to check distributions
+QTOAList=[4,5,6,7,10,13,16,32,63]#default
+#Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 
 if doDNL:
@@ -86,14 +83,15 @@ if doDNL:
         
 if doClockTree:
     doTOA=1
-    #QTOAList=[13,26,52]#ClockTree
+    #QTOAList=[13,26,63]#ClockTree
     QTOAList=[63]#ClockTree
     Ntoa=100
-    delayStep=20
-
+    #Ntoa=400
+    #delayStep=10
+    
 if doXtalk == 1:
     doTOA=1
-    QTOAList=[52]#13,60]
+    QTOAList=[63]#13,60]
     args.useVthc=True
     #delayMin=2400#200
     #delayMax=2500
@@ -106,18 +104,18 @@ if doXtalk == 1:
 Nthres=100
 QThresList=[3]#default
 #QThresList=[1,2,3,5]
-thresMin=260  #overwritten for high Q
+thresMin=260  #overwritten for large Q
 thresMax=1023 #max is 1023
-thresStep=2 #default 2
+thresStep=2
 if doLinearity:
     doThres= 1
     Nthres=100
     thresStep=2
-    QThresList=[0,3,5,9,13,18,26,39,52]
+    QThresList=[0,2,4,8,16,32,63]#[0,3,5,9,13,18,26,39,63]
     
 if doNoise:
     doThres=1
-    Nthres=200
+    Nthres=500
     thresStep=1
     thresMax=800
     QThresList=[6,13]#10
@@ -146,9 +144,11 @@ if __name__ == "__main__":
     args = parse_arguments()
     
 
-    boardASICAlone=[4,8,9,10,11,12,14,15,21]
+    boardASICAlone=[4,8,9,10,11,12,14,15]
+    boardASICV3=[21]
     board=args.board
-
+    asicVersion=2
+    if board in boardASICV3: asicVersion=3
     
     #detector capacitance
     cdList=[4]
@@ -275,7 +275,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
 
 
                         if not args.useVthc:#take the one from config
@@ -309,7 +309,7 @@ if __name__ == "__main__":
                         logName=outdir+'/delayTOA_B_%d_rin_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ch,cd,Q,dac)
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa)
+                        cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,asicVersion)
 
                         if not args.useVthc:#take the one from config
                             #vthc=64
@@ -343,7 +343,7 @@ if __name__ == "__main__":
         for ch in chList:
             for cd in cdList:
                 for Q in QThresList:#ATT TRIG EXT
-                    if Q >600 and (board,ch,cd) in dacMap.keys():
+                    if Q >6 and (board,ch,cd) in dacMap.keys():
                         thresMinLocal=dacMap[(board,ch,cd)]-20+(Q-3)*7
                         thresMinLocal=min(thresMinLocal,450)
                     else:
@@ -354,7 +354,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,asicVersion)
                     cmd+=" --Vthc 64"
 
                     f.write(cmd+"\n sleep 5 \n")

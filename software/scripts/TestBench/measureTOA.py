@@ -324,8 +324,8 @@ def measureTOA(argsip,
     # Plot (0,0) ; top left
     #ax1.plot(Delay, np.multiply(DataMean,LSBest))
 
-    xedges = range(delayMin,delayMax)#DelayRange#np.array(range(0,65))-0.5
-    yedges = range(0,128,2)
+    xedges = range(delayMin,delayMax)#args.delayStep)#DelayRange#np.array(range(0,65))-0.5
+    yedges = range(0,128,1)
     HTOA, xedges, yedges = np.histogram2d(allDelay, allTOA, bins=(xedges, yedges))
     HTOA = HTOA.T  # Let each row list bins with common y range.
     X, Y = np.meshgrid(xedges, yedges)
