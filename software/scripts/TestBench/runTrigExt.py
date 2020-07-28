@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     board=args.board
     NTOA=100#was 500
-    NTOT=50
+    NTOT=100
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeStep=10   #Need 1 for TOTf

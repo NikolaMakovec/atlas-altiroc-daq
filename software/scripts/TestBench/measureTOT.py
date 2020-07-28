@@ -359,7 +359,7 @@ def measureTOT( argsip,
     #################################################################
     # Plot Data
 
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows = 2, ncols = 2, figsize=(16,7))
+    fig, ((ax1, ax2)) = plt.subplots(nrows = 1, ncols = 2, figsize=(16,7))
 
 
 
@@ -385,49 +385,49 @@ def measureTOT( argsip,
     ax1.set_ylim(bottom = 0, top = np.max(DataMeanTOTc)*1.1)
 
 
-
-
-    
-    # Plot (0,0) ; top left
-    ax2.plot(widthRange, DataMeanTOT)
+    ax2.plot(widthRange, ValidTOTCnt)
     ax2.grid(True)
-    ax2.set_title('(1 + TOTc - TOTf/4) * 160 ) ', fontsize = 11)
-    ax2.set_xlabel('Width', fontsize = 10)
-    ax2.set_ylabel('Mean Value [ps]', fontsize = 10)
-    slope=getSlope(widthRange,DataMeanTOT,DelayStep)
-    ax2.legend(['slope: %f ' % slope],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
-    ax2.set_xlim(left = np.min(widthRange), right = np.max(widthRange))
-    ax2.set_ylim(bottom = 0, top = np.max(DataMeanTOT)*1.1)
+    ax2.set_title('TOT Valid Counts', fontsize = 11)
+    ax2.set_xlabel('width', fontsize = 10)
+    ax2.set_ylabel('Valid Measurements', fontsize = 10)
+    #ax2.set_xlim(left = widthRange.start, right = widthRange.stop)
+    ax2.set_ylim(bottom = 0, top = np.max(ValidTOTCnt)*1.1)
+
+    
+    # # Plot (0,0) ; top left
+    # ax2.plot(widthRange, DataMeanTOT)
+    # ax2.grid(True)
+    # ax2.set_title('(1 + TOTc - TOTf/4) * 160 ) ', fontsize = 11)
+    # ax2.set_xlabel('Width', fontsize = 10)
+    # ax2.set_ylabel('Mean Value [ps]', fontsize = 10)
+    # slope=getSlope(widthRange,DataMeanTOT,DelayStep)
+    # ax2.legend(['slope: %f ' % slope],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    # ax2.set_xlim(left = np.min(widthRange), right = np.max(widthRange))
+    # ax2.set_ylim(bottom = 0, top = np.max(DataMeanTOT)*1.1) 
 
 
     
-    # ax3.scatter(PulserRange, DataStdevTOT)
+    # # ax3.scatter(PulserRange, DataStdevTOT)
+    # # ax3.grid(True)
+    # # ax3.set_title('TOT rms vs Injected Charge', fontsize = 11)
+    # # ax3.set_xlabel('Pulser DAC Value', fontsize = 10)
+    # # ax3.set_ylabel('Std. Dev. [ps]', fontsize = 10)
+    # # ax3.legend(['Average Std. Dev. = %f ps' % MeanDataStdevTOT], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    # # ax3.set_xlim(left = PulserRange.start, right = PulserRange.stop)
+    # # ax3.set_ylim(bottom = 0, top = np.max(DataStdevTOT)*1.1)
+
+
+
+    # #Plot (1,1)
+    # ax3.hist(HitDataTOTf_cumulative, bins = np.arange(9), edgecolor = 'k', color = 'royalblue')
+    # ax3.set_xlim(left = -1, right = 8)
     # ax3.grid(True)
-    # ax3.set_title('TOT rms vs Injected Charge', fontsize = 11)
-    # ax3.set_xlabel('Pulser DAC Value', fontsize = 10)
-    # ax3.set_ylabel('Std. Dev. [ps]', fontsize = 10)
-    # ax3.legend(['Average Std. Dev. = %f ps' % MeanDataStdevTOT], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
-    # ax3.set_xlim(left = PulserRange.start, right = PulserRange.stop)
-    # ax3.set_ylim(bottom = 0, top = np.max(DataStdevTOT)*1.1)
+    # ax3.set_title('TOT Fine Interpolation Linearity', fontsize = 11)
+    # ax3.set_xlabel('TOT Fine Code', fontsize = 10)
+    # ax3.set_ylabel('N of Measrements', fontsize = 10)
 
 
 
-    #Plot (1,1)
-    ax3.hist(HitDataTOTf_cumulative, bins = np.arange(9), edgecolor = 'k', color = 'royalblue')
-    ax3.set_xlim(left = -1, right = 8)
-    ax3.grid(True)
-    ax3.set_title('TOT Fine Interpolation Linearity', fontsize = 11)
-    ax3.set_xlabel('TOT Fine Code', fontsize = 10)
-    ax3.set_ylabel('N of Measrements', fontsize = 10)
-
-
-    ax4.plot(PulserRange, ValidTOTCnt)
-    ax4.grid(True)
-    ax4.set_title('TOT Valid Counts VS Injected Charge', fontsize = 11)
-    ax4.set_xlabel('Pulser DAC Value', fontsize = 10)
-    ax4.set_ylabel('Valid Measurements', fontsize = 10)
-    ax4.set_xlim(left = PulserRange.start, right = PulserRange.stop)
-    ax4.set_ylim(bottom = 0, top = np.max(ValidTOTCnt)*1.1)
 
 
     
