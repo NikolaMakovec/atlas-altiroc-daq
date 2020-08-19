@@ -40,14 +40,29 @@ Top:
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
         cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        
-        cBit_s_TOA[:]: 0x0
+        cBit_f_TOA[1]: 0x1
+        cBit_f_TOA[12]: 0x1
+        cBit_f_TOA[13]: 0x2
+        cBit_f_TOA[14]: 0x1
+        cBit_f_TOA[17]: 0x1
+        cBit_f_TOA[18]: 0x1 
+        cBit_s_TOA[0]: 0x0
+        cBit_s_TOA[3]: 0x1
+        cBit_s_TOA[4]: 0x1
+        cBit_s_TOA[5]: 0x1
+        cBit_s_TOA[9]: 0x1
+        cBit_s_TOA[15]: 0x1
+        cBit_s_TOA[19]: 0x1
+        cBit_s_TOA[20]: 0x1
+        cBit_s_TOA[22]: 0x1
+        cBit_s_TOA[23]: 0x1
         cBit_f_TOT[:]: 0x0
         cBit_s_TOT[:]: 0x0
         cBit_c_TOT[:]: 0x0
  
         ###################
         DLL_ALockR_en: 0x1 # should be kept to 1
-        DLL_CP_b: 0x10 
+        DLL_CP_b: 0x10
         ON_ota_dll: 1
         DLLfast_EXTvctrl_en: 0x1 
         DLLslow_EXTvctrl_en: 0x1 
@@ -63,9 +78,10 @@ Top:
        
       
         cBitf: 0x0 # with R dividers cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
-        Cbits: 0x0 #
+        Cbits: 0x2 #
         Cbitc: 0 # with R dividers 0     
-      
+
+        ON_rtest: 0x0 # with 1 add  1kOhm in // 
         Rin_Vpa: 0x0 #0 0 => 25K, 1 => 15K.
         Cp_Vpa: 0x0
 

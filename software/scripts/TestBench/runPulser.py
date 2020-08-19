@@ -35,7 +35,7 @@ chList=None
 #chList=range(25)
 #chList=range(5)
 #chList=[0,7,14,18,24]
-#chList=[4,1,2,3]
+chList=[4]
 
         
 #####################
@@ -74,7 +74,7 @@ delayStep=5
 delayMin=2150
 delayMax=2700
 #QTOAList=[4,5,6,7,10,13,16,32,63]#default
-QTOAList=[6,7,16,63]#default
+QTOAList=[16]#6,7,16,63]#default
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 
@@ -266,8 +266,12 @@ if __name__ == "__main__":
                 qMin=0;#for pedestal
                 qMax=26+1#26;
                 qStep=4 #for pulse shape#PULSESHAPE
-                dacListLocal=list(range(dacNom-40,dacNom+200,4))
+                dacListLocal=list(range(dacNom-20,dacNom+110,10))
 
+                qMax=63;qStep=8 #Larger range
+                dacListLocal=list(range(dacNom-20,dacNom+20,2))
+                dacListLocal=list(range(dacNom-52,dacNom,2))
+                
                 #dacListLocal=list(range(dacNom-100,dacNom+150,10))
                 #dacListLocal=list(range(dacNom+150,dacNom+250,10))
 
@@ -284,7 +288,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ False --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
 
 
                         if not args.useVthc:#take the one from config
