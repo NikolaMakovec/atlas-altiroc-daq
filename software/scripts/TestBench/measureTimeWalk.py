@@ -214,7 +214,7 @@ def measureTimeWalk(argsip,
   
     
     if args.morePointsAtLowQ:
-        for p in range(10,0,-1):
+        for p in [0,1,2,3,4,5,6,7,8]:#range(10,0,-1):
             if p not in QRange: QRange=[p]+QRange
     QRange=sorted(QRange)
 
@@ -253,7 +253,8 @@ def measureTimeWalk(argsip,
     set_pixel_specific_parameters(top, pixel_number,args)
 
     #some more config
-    top.Fpga[0].Asic.SlowControl.DAC10bit.set(DAC)
+    if DAC>0:
+        top.Fpga[0].Asic.SlowControl.DAC10bit.set(DAC)
     top.Fpga[0].Asic.SlowControl.dac_pulser.set(QMin)
     top.Fpga[0].Asic.Gpio.DlyCalPulseSet.set(delay)
   

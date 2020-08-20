@@ -69,7 +69,7 @@ for i in range(nChannelsMax):
 
 counterColor=0
 for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFileName(n)[1])):
-    print ("process ",fileName)
+    print ("===> process ",fileName)
     #define lists  to store data
     delayList=[]
     delayDACList=[]
@@ -151,11 +151,12 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     
 
     #compute local LSB
-    deltaT=delayArray[1]-delayArray[0]
-    localLSB=abs(1/(np.concatenate((np.ediff1d(toaMeanArray),np.zeros(1)))/deltaT))
+    if len(delayArray)<12: continue
+    deltaT=delayArray[11]-delayArray[10]
+    #localLSB=abs(1/(np.concatenate((np.ediff1d(toaMeanArray),np.zeros(1)))/deltaT))
     #localLSB=np.concatenate((abs(deltaT/np.ediff1d(toaMeanArray)),np.zeros(1)))
     localLSB=abs(deltaT/np.ediff1d(toaMeanArray))
-    localLSB=np.concatenate((localLSB,np.zeros(1))) #add dummy ele
+    localLSB=np.concatenate((localLSB,np.zeros(1))) #add one dummy ele
 
 
     #TOA vs delay 2D Hist
@@ -207,7 +208,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         ax3.scatter(delayArray[okEff][:-1],localLSB[okEff][:-1],label="TOA with eff cut", facecolors='none', edgecolors='green')
         ax3.set_xlim(left=delayMin)
         ax3.set_xlim(right=delayMax)
-        ax3.set_ylim(top=40)
+        #ax3.set_ylim(top=40)
         ax3.set_ylim(bottom=0)
         ax3.set_ylabel("Local LSB [ps]", fontsize = 10)
         ax3.set_xlabel("Delay [ps]", fontsize = 10)
@@ -219,7 +220,6 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         
         #comparison plots TOAMean
         plt.figure(figTOAMean.number)
-        print (delayArray[okEff],toaMeanArray[okEff])
         axTOAMean.scatter(delayArray[okEff],toaMeanArray[okEff]*LSBTOA,s=10,label=label              , color=colors[counterColor-1])#)
 
         #comparison plots Jitter

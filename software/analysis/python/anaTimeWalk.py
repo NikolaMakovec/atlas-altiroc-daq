@@ -54,14 +54,14 @@ Qconv=0.6#10./13.
 ###########################################################################
 
 #define figures
-figEff=plt.figure('Efficiency')
-axEff = figEff.add_subplot(1,1,1)
 figTOAmean=plt.figure('TOAmean')
 axTOAmean = figTOAmean.add_subplot(1,1,1)
 figTOArms=plt.figure('TOArms')
 axTOArms = figTOArms.add_subplot(1,1,1)
 figTOTCmean=plt.figure('TOTCmean')
 axTOTCmean = figTOTCmean.add_subplot(1,1,1)
+figEff=plt.figure('Efficiency')
+axEff = figEff.add_subplot(1,1,1)
 #figTOTCrms=plt.figure('TOTCrms')
 #axTOTCrms = figTOTCrms.add_subplot(1,1,1)
 
@@ -151,18 +151,6 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     
 
 
-#eff
-plt.figure(figEff.number)
-if options.Qmax is not None:
-    axEff.set_xlim(right=options.Qmax)
-if options.Qmin is not None:
-    axEff.set_xlim(left=options.Qmin)
-axEff.set_ylim(top=1.2)
-axEff.set_xlabel("Injected charge [fC]", fontsize = 10)
-axEff.set_ylabel("Efficiency", fontsize = 10)
-plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryEff.pdf")
-
 
 
 
@@ -212,6 +200,20 @@ axTOTCmean.set_ylabel("<TOTC> [ps]", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryTOTCmean.pdf")
 
+
+
+
+#eff
+plt.figure(figEff.number)
+if options.Qmax is not None:
+    axEff.set_xlim(right=options.Qmax)
+if options.Qmin is not None:
+    axEff.set_xlim(left=options.Qmin)
+axEff.set_ylim(top=1.2)
+axEff.set_xlabel("Injected charge [fC]", fontsize = 10)
+axEff.set_ylabel("Efficiency", fontsize = 10)
+plt.legend(loc='upper right', prop={"size":6})
+plt.savefig("TW_SummaryEff.pdf")
 
 
 # #TOTC rms

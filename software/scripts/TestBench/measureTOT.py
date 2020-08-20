@@ -287,6 +287,12 @@ def measureTOT( argsip,
 
         HitDataTOTf = np.asarray( pixel_data['HitDataTOTf'][pulser_index] )
         HitDataTOTc = np.asarray( pixel_data['HitDataTOTc'][pulser_index] )
+        okTOTc=HitDataTOTc!=127 #used to remove saturated toa
+        HitDataTOTc = HitDataTOTc[okTOTc]
+        HitDataTOTf = HitDataTOTf[okTOTc]
+
+
+        
         HitDataTOTc_int1 = np.asarray( pixel_data['HitDataTOTc_int1'][pulser_index] )
         ValidTOTCnt.append(len(HitDataTOTc))
         #print (pulser_index,HitDataTOTc)
@@ -303,7 +309,13 @@ def measureTOT( argsip,
     
     # Average Std. Dev. Calculation; Points with no data (i.e. Std.Dev.= 0) are ignored
     MeanDataStdevTOT = np.mean( DataStdevTOT[DataStdevTOT!=0] )
-   
+
+
+    #compute LSB
+    widthRange=fallEdge-np.array(PulserRange)
+    LSBTOTc=getSlope(widthRange,DataMeanTOTc,DelayStep)
+
+    
    #################################################################
     # Save Data
     #################################################################
@@ -323,7 +335,7 @@ def measureTOT( argsip,
     ff.write('NofIterations = '+str(args.N)+'\n')
     #ff.write('cmd_pulser = '+str(Qinj)+'\n')
     #ff.write('Delay DAC = '+str(DelayValue)+'\n')
-    ff.write('LSBest = '+str(LSB_TOTc)+'\n')
+    ff.write('LSBest = '+str(LSBTOTc)+'\n')
     #ff.write('Threshold = '+str(DACvalue)+'\n')
     ff.write('N hits = '+str(ValidTOTCnt)+'\n')
     ff.write('Number of events = '+str(len(HitDataTOT))+'\n')
@@ -354,7 +366,7 @@ def measureTOT( argsip,
     print ("-------------------------------------------------------")
 
     
-    widthRange=fallEdge-np.array(PulserRange)
+
 
     #################################################################
     # Plot Data
@@ -379,7 +391,7 @@ def measureTOT( argsip,
     ax1.set_title('TOTc', fontsize = 11)
     ax1.set_xlabel('width', fontsize = 10)
     ax1.set_ylabel('TOTc', fontsize = 10)
-    LSBTOTc=getSlope(widthRange,DataMeanTOTc,DelayStep)
+
     ax1.legend(['slope: %f ' % LSBTOTc],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     ax1.set_xlim(left = np.min(widthRange), right = np.max(widthRange))
     ax1.set_ylim(bottom = 0, top = np.max(DataMeanTOTc)*1.1)

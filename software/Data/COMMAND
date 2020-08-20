@@ -1,0 +1,1 @@
+grep LSB widthScanTrigExt_TOT_B_21_ch_*.txt | awk '{if ($3<200) {S=S+$3;N=N+1;print $1"   "$3" "S"  "N"  "S/N}}'

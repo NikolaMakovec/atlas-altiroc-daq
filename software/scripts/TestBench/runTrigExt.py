@@ -39,26 +39,29 @@ if __name__ == "__main__":
 
 
     board=args.board
-    NTOA=100#was 500
-    NTOT=100
+
+    chList=list(range(0,25))
+
+    NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=10   #Need 1 for TOTf
-    chList=list(range(0,25))
-    #chList=[4,9,14]    
+    totRiseEdgeStep=1   #Need 1 for TOTf
+
+
+    NTOA=100#was 500
     toaDelayStep=1
     toaDelayMin=1750
     toaDelayMax=2350
-
-    #HighStat
-    #chList=[4,9,14]    
-    #NTOA=500#was 500
-    #toaDelayStep=20
     
     if board==14:
         toaDelayMin=1750
         toaDelayMax=2300
         #chList=[7,8,6,10,12,13,14,5]
+        
+    if board==21:
+        toaDelayMin=1750
+        toaDelayMax=2200
+
 
 
     boardASICV3=[21]

@@ -22,11 +22,11 @@ doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
-doTW        = 0
-doPS        = 1 # TW with thres. scan
+doTW        = 1
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
-doClockTree = 0 # TOA with at least Q=52 and maybe larger N
+doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
@@ -35,7 +35,7 @@ chList=None
 #chList=range(25)
 #chList=range(5)
 #chList=[0,7,14,18,24]
-chList=[4]
+#chList=[4]
 
         
 #####################
@@ -57,9 +57,9 @@ if doTW+doPS>1:
 #####################
 # TW
 #####################
-qMin=1
+qMin=0
 qMax=63#63#63
-qStep=4
+qStep=8#1 or x4
 Ntw=50
 if doPS:
     doTW=1
@@ -73,20 +73,19 @@ Ntoa=100;
 delayStep=5 
 delayMin=2150
 delayMax=2700
-#QTOAList=[4,5,6,7,10,13,16,32,63]#default
-QTOAList=[16]#6,7,16,63]#default
+QTOAList=[4,5,6,8,12,16,32,63]#default
+QTOAList=[6,8,16,63]#6,7,16,63]#default
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 
 if doDNL:
     doTOA=1
     delayStep=1
-    QTOAList=[63]#ClockTree
+    QTOAList=[63]
     Ntoa=500
         
 if doClockTree:
     doTOA=1
-    #QTOAList=[13,26,63]#ClockTree
     QTOAList=[63]#ClockTree
     Ntoa=100
     #Ntoa=400
@@ -122,7 +121,7 @@ if doNoise:
     Nthres=100
     thresStep=1
     thresMax=600
-    QThresList=[6,14]#10
+    QThresList=[8,16]#10
     #QThresList=[5,9,6,13]
 
 
@@ -249,8 +248,8 @@ if __name__ == "__main__":
             #dac list
             dacNom=0
             if args.useVthc:                
-                dacRef,vthcMap=getVthc(board,cd)
-                dacNom=dacRef
+                #dacRef,vthcMap=getVthc(board,cd)
+                dacNom=-1#dacRef
                 vthcList=[-1]
             else:
                 vthcList=[64]
@@ -288,7 +287,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ False --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
 
 
                         if not args.useVthc:#take the one from config

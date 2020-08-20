@@ -187,7 +187,8 @@ def measureTOA(argsip,
     set_pixel_specific_parameters(top, pixel_number,args)
 
     #more parameters
-    top.Fpga[0].Asic.SlowControl.DAC10bit.set(DAC)
+    if DAC>0:
+        top.Fpga[0].Asic.SlowControl.DAC10bit.set(DAC)
     top.Fpga[0].Asic.SlowControl.dac_pulser.set(Qinj)
     top.Fpga[0].Asic.Gpio.DlyCalPulseSet.set(delayMin)
     top.Fpga[0].Asic.CalPulse.CalPulseWidth.set(0x12)#was 0x2

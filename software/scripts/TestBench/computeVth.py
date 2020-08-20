@@ -31,7 +31,7 @@ def getVthc(board,cd,doPrint=False):
     if doPrint:    print ("        DAC10bit: "+str(dacRef))
     
     vthcMap={}
-    for ch in range(15):
+    for ch in range(25):
         key=(board,ch,cd)
         d=999999999
         if key in dacMap.keys():
@@ -56,11 +56,11 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--board", type = int, required = False, default = 13,help = "Choose board")
     args = parser.parse_args()
 
-    boardASICAlone=[8,9,10,11,12,14,15]
+    boardASICAlone=[8,9,10,11,12,14,15,21]
     cd=0
     if args.board in boardASICAlone:
         cd=4
 
     getVthc(args.board,cd,True)
-
+    print ("====> Board:",args.board)
 
