@@ -307,6 +307,7 @@ def measureTimeWalk(argsip,
 
 
     QArray=np.array(QRange)*args.Qconv
+    ffData.write('NofIterations = '+str(args.N)+'\n')       
     for iQ in range(len(QRange)):
        Q=QRange[iQ]
        print ('--------------------------',Q)
@@ -318,7 +319,6 @@ def measureTimeWalk(argsip,
            continue
 
 
-       
        writeData(ffData,iQ,Q,"HitDataTOA",pixel_data)       
        writeData(ffData,iQ,Q,"HitDataTOTc",pixel_data)       
        writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)
@@ -374,7 +374,7 @@ def measureTimeWalk(argsip,
        if not math.isnan(TOTrms):TOTRMSArray[iQ]=TOTrms
 
 
-
+       ff.write('NofIterations = '+str(args.N)+'\n')
        ff.write("%f,%f,%f,%f,%f,%f,%f,%f,%f,\n"%(QRange[iQ],TOAmean,TOArms,TOTcmean,TOTcrms,TOTfmean,TOTfrms,TOTmean,TOTrms))
        #print (np.mean(pixel_data['HitDataTOA'][iQ]),np.std(pixel_data['HitDataTOA'][iQ]))
        #print (np.mean(pixel_data['HitDataTOTc'][iQ]),np.std(pixel_data['HitDataTOTc'][iQ]))

@@ -146,7 +146,11 @@ def readTimeWalkFile(filename,Qconv):
     QDACList=[]
     pixel_data={}
     f=open(filename.strip())
+    Nevts=50
     for counter,line in enumerate(f.readlines()):
+        if line.find("NofIterations")>=0:
+            Nevts=int(line.split()[2])
+            continue
         vec=line.strip().split(",")
         QDAC=float(vec[0])
         Q=float(vec[0])*Qconv
@@ -160,7 +164,7 @@ def readTimeWalkFile(filename,Qconv):
             pixel_data[(name,Q)]=np.array(data)
         else:
             print ("There is a prb!!!!")
-    return QList,QDACList,pixel_data
+    return QList,QDACList,pixel_data,Nevts
 
 
 
@@ -171,7 +175,11 @@ def readTOAFile(filename,Qconv,DelayStep):
     delayMap={}
 
     f=open(filename)
+    Nevts=100
     for line in [line.strip() for line in f.readlines()]:
+        if line.find("NofIterations")>=0:
+            Nevts=int(line.split()[2])
+            continue
         if letsGo==True:
             delay,toa=line.split()        
             toa=float(toa)
@@ -185,5 +193,5 @@ def readTOAFile(filename,Qconv,DelayStep):
                 delayMap[delay]=delayDAC
 
         if line.find("Pulse delay   TOA")>=0:letsGo=True
-    return     delayMap,dataMap
+    return     delayMap,dataMap,Nevts
 

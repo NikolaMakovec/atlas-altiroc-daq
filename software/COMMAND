@@ -23,3 +23,9 @@ python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
 
 
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display True -N 100 --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --board 12 --delay 2450 --QMin 1 --QMax 63 --QStep 10 --out Data//B12-tw/ --ch 10 --Cd 4 --DAC 394 --Rin_Vpa 0 --Vthc 64
+
+
+
+
+
+python scripts/TestBench/measureTOA.py --skipExistingFile True -N 100 --debug False --display False --Cd 4 --checkOFtoa False --checkOFtot False --ch 4 --board 21 --Q 8 --delayMin 2150 --delayMax 2700 --delayStep 5 --out Data/delay  --Rin_Vpa 0 --asicVersion 3  --allChON True --allCtestON True --DAC 313

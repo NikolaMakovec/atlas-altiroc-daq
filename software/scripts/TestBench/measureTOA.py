@@ -189,6 +189,7 @@ def measureTOA(argsip,
     #more parameters
     if DAC>0:
         top.Fpga[0].Asic.SlowControl.DAC10bit.set(DAC)
+    print (top.Fpga[0].Asic.SlowControl.DAC10bit.value())
     top.Fpga[0].Asic.SlowControl.dac_pulser.set(Qinj)
     top.Fpga[0].Asic.Gpio.DlyCalPulseSet.set(delayMin)
     top.Fpga[0].Asic.CalPulse.CalPulseWidth.set(0x12)#was 0x2
@@ -231,7 +232,7 @@ def measureTOA(argsip,
         HitDataTOA = np.array(pixel_data[delay_index])[okTOA]
         HitCnt.append(len(HitDataTOA))
         allTOAdata.append(HitDataTOA)
-        if len(HitDataTOA) > 0.5*args.N:
+        if len(HitDataTOA) > 0.7*args.N:
             DataMean[delay_index] = np.mean(HitDataTOA, dtype=np.float64)
             DataStdev[delay_index] = math.sqrt(math.pow(np.std(HitDataTOA, dtype=np.float64),2)+1/12)
         #print (delay_value,HitDataTOA,DataStdev[delay_index])
@@ -256,8 +257,12 @@ def measureTOA(argsip,
         print('LSB ESTIMATE CALCULATION IS BEING SKIPPED!')
         print('LSB ESTIMATE DEFAULTED TO ' + str(LSBest) )
         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n')
+        linear_fit_slope = 1
+        linear_fit_intersep = 1
+        LSBest = 1
     else:
         linear_fit_slope = np.polyfit(fit_x_values, fit_y_values, 1)[0]
+        linear_fit_intersep = np.polyfit(fit_x_values, fit_y_values, 1)[1]
         LSBest = DelayStep/abs(linear_fit_slope)
     
     
@@ -335,6 +340,8 @@ def measureTOA(argsip,
     current_cmap.set_bad(color='white')
     ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.YlGnBu)
     ax1.scatter(Delay, DataMean, facecolors='none', edgecolors='b')
+    ax1.plot(Delay,         linear_fit_slope*Delay+        linear_fit_intersep, color='r')
+
     #ax1.plot(Delay, DataMean)
     #ax1.grid(True)
     ax1.set_title('TOA Measurment VS Programmable Delay Value', fontsize = 11)

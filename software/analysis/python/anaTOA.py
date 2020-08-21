@@ -61,6 +61,7 @@ allData=collections.OrderedDict()
 LSBList=[]
 chList=[]
 TOARefList=[]
+JitterRefList=[]
 QList=[]
 jitterMeanList=[]
 for i in range(nChannelsMax):
@@ -87,7 +88,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)+" Vthc="+str(vthc)+" Q="+str(Q)
 
     #get data
-    delayMap,dataMap=readTOAFile(fileName,Qconv=Qconv,DelayStep=DelayStep)
+    delayMap,dataMap,Nevts=readTOAFile(fileName,Qconv=Qconv,DelayStep=DelayStep)
 
     #loop over data
     nMax=0
@@ -122,9 +123,10 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
     #skip when no data
     if len(effList)==0: continue
-
+    if nMax<0.5*Nevts: continue
+    
     #convert to np array
-    effArray=np.array(effList)/nMax
+    effArray=np.array(effList)/Nevts
     delayArray=np.array(delayList)
     toaMeanArray=np.array(toaMeanList)
     jitterArray=np.array(jitterList)
@@ -148,7 +150,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         LSBTOA=abs(1/params[0])
     #compute TOA with the fit a given delay value
     TOARef=pol1(delayRef , params[0], params[1])*LSBTOA
-    
+
 
     #compute local LSB
     if len(delayArray)<12: continue
@@ -170,6 +172,15 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         current_cmap.set_bad(color='white')
         X, Y = np.meshgrid(xedges, yedges)        
 
+
+
+    #save more data
+    jitterMean=np.median(jitterArray[okEff])*LSBTOA
+    QList[ch].append(Q)
+    jitterMeanList[ch].append(jitterMean)
+
+
+    #additionnal plot for one Q value
     if Q==options.QRef:
         counterColor+=1
         # plots with LSB applied
@@ -229,13 +240,10 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         #save some data
         LSBList.append(LSBTOA)
         chList.append(ch)
+        JitterRefList.append(jitterMean)
         TOARefList.append(TOARef)
 
 
-    #save more data
-    jitterMean=np.median(jitterArray[okEff])*LSBTOA
-    QList[ch].append(Q)
-    jitterMeanList[ch].append(jitterMean)
 
     #print
     #print (board,ch,cd,thres,vthc,Q,LSBTOA,jitterMean,TOARef)
@@ -267,15 +275,8 @@ QArray=np.array(QList)
 chArray=np.array(chList)
 LSBArray=np.array(LSBList)
 TOARefArray=np.array(TOARefList)
+JitterRefArray=np.array(JitterRefList)
 
-#LSB vs channel
-figLSB=plt.figure('LSB')
-axLSB = figLSB.add_subplot(1,1,1)
-axLSB.set_title('Qdac='+str(options.QRef), fontsize = 11)
-axLSB.scatter(chArray,LSBArray)
-axLSB.set_xlabel("Channel nb", fontsize = 10)
-axLSB.set_ylabel("LSB", fontsize = 10)
-plt.savefig("TOA_LSBvsCh.pdf")
 
 #TOA vs channel
 figTOARef=plt.figure('TOARef')
@@ -285,6 +286,19 @@ axTOARef.scatter(chArray,TOARefArray)
 axTOARef.set_xlabel("Channel number", fontsize = 10)
 axTOARef.set_ylabel("TOA for delay="+str(int(delayRef))+"ps [ps]", fontsize = 10)
 plt.savefig("TOA_TOARefvsCh.pdf")
+
+#Jitter vs channel
+figJitterRef=plt.figure('JitterRef')
+axJitterRef = figJitterRef.add_subplot(1,1,1)
+axJitterRef.set_title('Qdac='+str(options.QRef), fontsize = 11)
+axJitterRef.scatter(chArray,JitterRefArray)
+axJitterRef.set_xlabel("Channel number", fontsize = 10)
+axJitterRef.set_ylabel("Jitter for delay="+str(int(delayRef))+"ps [ps]", fontsize = 10)
+plt.savefig("TOA_JitterRefvsCh.pdf")
+
+
+
+
 
 #jitter vs Q
 figjitterMean=plt.figure('jitterMean')
@@ -299,6 +313,16 @@ axjitterMean.set_xlim(left=0,right=45)#np.max(jitterMeanArray[ich])*1.5)
 plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TOA_jitterMeanvsQ.pdf")
 
+
+
+#LSB vs channel
+figLSB=plt.figure('LSB')
+axLSB = figLSB.add_subplot(1,1,1)
+axLSB.set_title('Qdac='+str(options.QRef), fontsize = 11)
+axLSB.scatter(chArray,LSBArray)
+axLSB.set_xlabel("Channel nb", fontsize = 10)
+axLSB.set_ylabel("LSB", fontsize = 10)
+plt.savefig("TOA_LSBvsCh.pdf")
 
 #display figures
 if options.display:

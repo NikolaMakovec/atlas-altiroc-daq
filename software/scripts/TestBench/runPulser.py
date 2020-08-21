@@ -34,7 +34,7 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-#chList=[0,7,14,18,24]
+#chList=[0,10,12,15,24]
 #chList=[4]
 
         
@@ -75,6 +75,7 @@ delayMin=2150
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,32,63]#default
 QTOAList=[6,8,16,63]#6,7,16,63]#default
+QTOAList=[8]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 

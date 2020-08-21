@@ -77,7 +77,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)#+" Vthc="+str(vthc)
 
     #get data
-    QArray,QDACArray,pixel_data=readTimeWalkFile(fileName,Qconv=Qconv)
+    QArray,QDACArray,pixel_data,Nevts=readTimeWalkFile(fileName,Qconv=Qconv)
 
     #initialize list
     effArray = np.zeros(len(QArray))
