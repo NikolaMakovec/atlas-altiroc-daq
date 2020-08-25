@@ -148,7 +148,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             top.Fpga[0].Asic.SlowControl.ON_discri[ipix].set(0x1)
             top.Fpga[0].Asic.SlowControl.EN_ck_SRAM[ipix].set(0x1)#New
 
-    ctestONList=range(0,25,2)
+    ctestONList=range(0,25,8)
     if args.allCtestON:
         #for ipix in range(0,14,2):
         for ipix in ctestONList:
