@@ -23,9 +23,9 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 #  Thres for many Q
 
 doTW        = 0
-doPS        = 0 # TW with thres. scan
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -34,8 +34,8 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-#chList=[0,10,12,15,24]
-#chList=[4]
+chList=[24,17,4,5,0]
+#chList=[0,5,4]
 
         
 #####################
@@ -122,8 +122,8 @@ if doNoise:
     Nthres=100
     thresStep=1
     thresMax=600
-    QThresList=[8,16]#10
-    #QThresList=[5,9,6,13]
+    QThresList=[0,8,16]#10
+
 
 
 #if doThres:chList=range(25)
@@ -158,7 +158,8 @@ if __name__ == "__main__":
     if board in boardASICV3: asicVersion=3
     
     #detector capacitance
-    cdList=[4]
+    cdList=[2,3]
+    #cdList=[4]
     if board not in boardASICAlone:
         cdList=[0];
 
@@ -254,26 +255,29 @@ if __name__ == "__main__":
                 vthcList=[-1]
             else:
                 vthcList=[64]
-                if (board,ch,cd) in dacMap.keys():
-                    dacNom=dacMap[(board,ch,cd)]
+                if (board,ch,cd) in dacMap.keys():dacNom=dacMap[(board,ch,cd)]
+                elif (board,ch,4) in dacMap.keys():
+                    print ("Take thres. for cd=4 while using cd=",cd)
+                    dacNom=dacMap[(board,ch,4)]
+                    time.sleep(5)
                 else:
-                    print ("PRB with dacMap, break")
+                    print ("********** PRB with dacMap, break*****")
+                    time.sleep(5)
                     break
             dacListLocal=[dacNom]
 
             
             if doPS:
                 qMin=0;#for pedestal
-                qMax=26+1#26;
-                qStep=4 #for pulse shape#PULSESHAPE
-                dacListLocal=list(range(dacNom-20,dacNom+110,10))
+                #qMax=26+1#26;
+                #qStep=4 #for pulse shape#PULSESHAPE
+                #dacListLocal=list(range(dacNom-20,dacNom+110,10))
+                qMin=0;#for pedestal
+                qMax=63;
+                qStep=8 #Larger range
+                dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,8))
 
-                qMax=63;qStep=8 #Larger range
-                dacListLocal=list(range(dacNom-20,dacNom+20,2))
-                dacListLocal=list(range(dacNom-52,dacNom,2))
                 
-                #dacListLocal=list(range(dacNom-100,dacNom+150,10))
-                #dacListLocal=list(range(dacNom+150,dacNom+250,10))
 
             
             #print(ch,cd,delay,dacListLocal,vthcList)            
@@ -361,7 +365,6 @@ if __name__ == "__main__":
                         #thresMinLocal=min(thresMinLocal,450)
                     else:
                         thresMinLocal=thresMin
-
 
                     #print (Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,args.outputDir)
                     outdir=args.outputDir+"/"+thresDir+"/"

@@ -106,7 +106,7 @@ Top:
         Cbitc: 5 # with R dividers 0     
 
         ON_rtest: 0x0 # with 1 add  1kOhm in // 
-        Rin_Vpa: 0x0 #0 0 => 25K, 1 => 15K.
+        Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K.
         Cp_Vpa: 0x0
 
         cd[0]: 0x0 
