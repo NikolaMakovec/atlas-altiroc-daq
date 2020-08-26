@@ -226,7 +226,7 @@ def getDACList(board):
         dacList[(21,17,4)]=352#3,0.86,ok
         dacList[(21,18,4)]=338#3,0.77,PRB!!!!!!!!!
         dacList[(21,19,4)]=342#3,0.95,ok 
-        # dacList[(21,20,4)]=334#3,1.00,ok
+        dacList[(21,20,4)]=334#3,1.00,ok
         # #dacList[(21,21,4)]=
         dacList[(21,22,4)]=406#3,0.96,ok 
         dacList[(21,23,4)]=300#3,0.99,ok

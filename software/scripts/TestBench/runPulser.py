@@ -20,7 +20,7 @@ doSepDir = 1
 
 doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
-doLinearity = 0 #  Thres for many Q
+doLinearity = 0 # Thres for many Q
 
 doTW        = 0
 doPS        = 1 # TW with thres. scan
@@ -34,10 +34,15 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-chList=[0,5,24]#,23]#23,5,17]
-#chList=[0,5,4]
+#chList=[24,0,5,10,15,20,23]
+#chList=[0,5,24]#,20,23]
+#chList=[10,15,20]
+chList=[4,9]
 
-cdList=[2,4]
+#cd list #overwritten to 0 for sensor boards
+cdList=[4]
+cdList=[0,2,4]
+
 
 
 #####################
@@ -285,6 +290,7 @@ if __name__ == "__main__":
                 qMax=63;
                 qStep=8 #Larger range
                 dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
+                #if cd==0:dacListLocal+=list(range(dacNom+160,dacNom+240,8))
 
                 
 
