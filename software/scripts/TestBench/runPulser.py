@@ -34,10 +34,12 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-chList=[24,17,4,5,0]
+chList=[0,5,24]#,23]#23,5,17]
 #chList=[0,5,4]
 
-        
+cdList=[2,4]
+
+
 #####################
 # 
 #####################
@@ -158,7 +160,6 @@ if __name__ == "__main__":
     if board in boardASICV3: asicVersion=3
     
     #detector capacitance
-    cdList=[2,3]
     #cdList=[4]
     if board not in boardASICAlone:
         cdList=[0];
@@ -233,11 +234,6 @@ if __name__ == "__main__":
         
     #special settings
     Rin_Vpa=0
-    delay=2450
-    if board==8:
-        delay=2500
-    elif board==21:
-        delay=2350
 
 
         
@@ -246,6 +242,19 @@ if __name__ == "__main__":
     ###############################
     for ch in chList:
         for cd in cdList:
+
+            #delay
+            delay=2450
+            if board==8:
+                delay=2500
+            elif board==21:
+                delay=2400
+                # #if ch>=20:delay=2400
+                # if cd<=2 or ch>=20:
+                #     print ("Change delay for B21 for low cd=0: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! channel:",ch)
+                #     delay=2400
+
+
             #if ch not in [4,9,14] ans:
             #dac list
             dacNom=0
@@ -275,7 +284,7 @@ if __name__ == "__main__":
                 qMin=0;#for pedestal
                 qMax=63;
                 qStep=8 #Larger range
-                dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,8))
+                dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
 
                 
 
