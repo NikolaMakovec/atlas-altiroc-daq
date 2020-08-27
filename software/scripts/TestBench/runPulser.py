@@ -34,14 +34,14 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-#chList=[24,0,5,10,15,20,23]
+chList=[24,0,4,5,9,10,15,20,23]
 #chList=[0,5,24]#,20,23]
 #chList=[10,15,20]
-chList=[4,9]
+#chList=[4,9]
 
 #cd list #overwritten to 0 for sensor boards
 cdList=[4]
-cdList=[0,2,4]
+cdList=[1,3]
 
 
 
