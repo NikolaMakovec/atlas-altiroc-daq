@@ -35,17 +35,17 @@ chList=None
 #chList=range(25)
 #chList=range(5)
 #chList=[24,0,4,5,9,10,15,20,23]
-chList=[0,5,9,10]#,20,23]
+#chList=[0,5,9,10]#,20,23]
 #chList=[10,15,20]
-#chList=[4,9]
+chList=[3,7,12,18,24,0,10,15,4,5]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[4]
+cdList=[1,2,3]
 
 #special settings
 Rin_Vpa=0
-ON_rtest=1
+ON_rtest=0
 
 
 
@@ -210,9 +210,9 @@ if __name__ == "__main__":
             thresDir+="-rtestON"
             
         if Rin_Vpa>0:
-            toaDir+="-Rin_Vpa"+str(Rin_Vpa)
-            twDir+="-Rin_Vpa"+str(Rin_Vpa)
-            thresDir+="-Rin_Vpa"+str(Rin_Vpa)
+            toaDir+="-RinVpa"+str(Rin_Vpa)
+            twDir+="-RinVpa"+str(Rin_Vpa)
+            thresDir+="-RinVpa"+str(Rin_Vpa)
 
 
 
@@ -285,7 +285,7 @@ if __name__ == "__main__":
                 elif (board,ch,4) in dacMap.keys():
                     print ("Take thres. for cd=4 while using cd=",cd)
                     dacNom=dacMap[(board,ch,4)]
-                    time.sleep(5)
+                    time.sleep(1)
                 else:
                     print ("********** PRB with dacMap, break*****")
                     time.sleep(5)
@@ -302,7 +302,7 @@ if __name__ == "__main__":
                 qMax=63;
                 qStep=8 #Larger range
                 dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
-                #if cd==0:dacListLocal+=list(range(dacNom+160,dacNom+240,8))
+                if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,8))
 
                 
 
@@ -424,6 +424,9 @@ print (" " )
 print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
+print ("Rin_vpa:",Rin_Vpa)
+print ("ON_rtest:",ON_rtest)
+
 
 print("===========================================> board: "+str(args.board))
 print ("Cd:",cdList)
