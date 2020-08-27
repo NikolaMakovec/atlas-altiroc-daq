@@ -122,14 +122,15 @@ def parse_arguments():
     dly = 2450 
     outFile = 'TestData/TimeWalk'
     Vthc=-1
-    Rin_Vpa=0 # 0 => 25K, 1 => 15 K
+    #Rin_Vpa=0 # 0 => 25K, 1 => 15 K
+    #ON_rtest=0 # 0 => 25K, 1 => 15 K
 
 
     # Add arguments
     parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
-    parser.add_argument("--Rin_Vpa", type = int, required = False, default = Rin_Vpa, help = "RinVpa")
-
+    parser.add_argument("--Rin_Vpa", type = int, required = False, default = 0, help = "RinVpa")
+    parser.add_argument("--ON_rtest", type = int, required = False, default = 0, help = "RinVpa")
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
@@ -168,7 +169,7 @@ def parse_arguments():
     if args.allCtestON:
         extra+="allCtestON"
 
-    args.out='%sTW_B_%d_rin_%d_ch_%d_cd_%d_delay_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ch,args.Cd,args.delay,args.DAC,args.Vthc,extra)
+    args.out='%sTW_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_delay_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ON_rtest,args.ch,args.Cd,args.delay,args.DAC,args.Vthc,extra)
     print(args.out)
     print(outFile)
 

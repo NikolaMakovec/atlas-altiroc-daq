@@ -34,14 +34,18 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(5)
-chList=[24,0,4,5,9,10,15,20,23]
-#chList=[0,5,24]#,20,23]
+#chList=[24,0,4,5,9,10,15,20,23]
+chList=[0,5,9,10]#,20,23]
 #chList=[10,15,20]
 #chList=[4,9]
 
-#cd list #overwritten to 0 for sensor boards
+#cd list 
+cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4]
-cdList=[1,3]
+
+#special settings
+Rin_Vpa=0
+ON_rtest=1
 
 
 
@@ -166,7 +170,7 @@ if __name__ == "__main__":
     
     #detector capacitance
     #cdList=[4]
-    if board not in boardASICAlone:
+    if board not in boardASICAlone and cdZeroForASICAlone:
         cdList=[0];
 
     #output dir name
@@ -199,6 +203,16 @@ if __name__ == "__main__":
             toaDir+="-ctestON"
             twDir+="-ctestON"
             thresDir+="-ctestON"
+            
+        if ON_rtest>0:
+            toaDir+="-rtestON"
+            twDir+="-rtestON"
+            thresDir+="-rtestON"
+            
+        if Rin_Vpa>0:
+            toaDir+="-Rin_Vpa"+str(Rin_Vpa)
+            twDir+="-Rin_Vpa"+str(Rin_Vpa)
+            thresDir+="-Rin_Vpa"+str(Rin_Vpa)
 
 
 
@@ -237,8 +251,6 @@ if __name__ == "__main__":
 
 
         
-    #special settings
-    Rin_Vpa=0
 
 
         
@@ -307,7 +319,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,asicVersion)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion)
 
 
                         if not args.useVthc:#take the one from config
@@ -338,10 +350,10 @@ if __name__ == "__main__":
                             delayMin=1800
                             delayMax=2300
                         outdir=args.outputDir+"/"+toaDir+"/"
-                        logName=outdir+'/delayTOA_B_%d_rin_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ch,cd,Q,dac)
+                        logName=outdir+'/delayTOA_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ON_rtest,ch,cd,Q,dac)
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,asicVersion)
+                        cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion)
 
                         if not args.useVthc:#take the one from config
                             #vthc=64
@@ -385,7 +397,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,asicVersion)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion)
                     cmd+=" --Vthc 64"
 
                     f.write(cmd+"\n sleep 5 \n")
