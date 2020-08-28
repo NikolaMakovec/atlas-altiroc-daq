@@ -22,10 +22,10 @@ doThres     = 0
 doNoise     = 1 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
-doTW        = 0
+doTW        = 1
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -37,11 +37,11 @@ chList=None
 #chList=[24,0,4,5,9,10,15,20,23]
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
-#chList=[10]#,0,10,15,3,7,12,18,4,5]
+#chList=[3]#,0,10,15,3,7,12,18,4,5]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[4]
+cdList=[2]
 #cdList=range(0,8)
 
 #special settings
