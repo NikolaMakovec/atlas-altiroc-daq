@@ -19,11 +19,11 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 0 # Thres with high stat for few Q
+doNoise     = 1 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 0
-doPS        = 1 # TW with thres. scan
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -36,12 +36,13 @@ chList=None
 #chList=range(5)
 #chList=[24,0,4,5,9,10,15,20,23]
 #chList=[0,5,9,10]#,20,23]
-#chList=[10,15,20]
-chList=[3,7,12,18,24,0,10,15,4,5]
+#chList=[24,0,10,15]
+#chList=[10]#,0,10,15,3,7,12,18,4,5]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[1,2,3]
+cdList=[4]
+#cdList=range(0,8)
 
 #special settings
 Rin_Vpa=0
@@ -70,7 +71,7 @@ if doTW+doPS>1:
 #####################
 qMin=0
 qMax=63#63#63
-qStep=8#1 or x4
+qStep=4#1 or x4
 Ntw=50
 if doPS:
     doTW=1
@@ -86,7 +87,7 @@ delayMin=2150
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,32,63]#default
 QTOAList=[6,8,16,63]#6,7,16,63]#default
-QTOAList=[8,63]
+QTOAList=[6,8,63]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 
@@ -134,6 +135,7 @@ if doNoise:
     thresStep=1
     thresMax=600
     QThresList=[0,8,16]#10
+    QThresList=[8,17]#10
 
 
 
@@ -303,6 +305,8 @@ if __name__ == "__main__":
                 qStep=8 #Larger range
                 dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
                 if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,8))
+                dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,4))
+                if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,4))
 
                 
 
