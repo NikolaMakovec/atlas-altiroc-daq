@@ -42,8 +42,8 @@ chList=[4,9]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[2]
-cdList=range(0,4)
+cdList=[4]
+#cdList=range(0,4+1)
 
 #special settings
 Rin_Vpa=0
