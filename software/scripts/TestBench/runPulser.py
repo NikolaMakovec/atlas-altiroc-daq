@@ -19,13 +19,13 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
-doTW        = 1
-doPS        = 0 # TW with thres. scan
+doTW        = 0
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -38,11 +38,12 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
+chList=[4,9]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[2]
-#cdList=range(0,8)
+cdList=range(0,4)
 
 #special settings
 Rin_Vpa=0
@@ -72,10 +73,11 @@ if doTW+doPS>1:
 qMin=0
 qMax=63#63#63
 qStep=4#1 or x4
-Ntw=50
+Ntw=5
+morePointsAtLowQ=1
 if doPS:
     doTW=1
-
+    morePointsAtLowQ=0
     
 #####################
 # TOA
@@ -304,9 +306,10 @@ if __name__ == "__main__":
                 qMax=63;
                 qStep=8 #Larger range
                 dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
-                if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,8))
-                dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,4))
-                if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,4))
+                if cd<=3:dacListLocal+=list(range(dacNom+160,dacNom+280,8))
+                if cd<=3:dacListLocal+=list(range(dacNom+280,dacNom+780,8))
+                #dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,4))
+                #if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,4))
 
                 
 
@@ -323,7 +326,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ True --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion)
 
 
                         if not args.useVthc:#take the one from config
