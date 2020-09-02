@@ -42,7 +42,7 @@ chList=[4,9]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[4]
+cdList=[0,4]
 #cdList=range(0,4+1)
 
 #special settings
@@ -303,13 +303,14 @@ if __name__ == "__main__":
                 #qStep=4 #for pulse shape#PULSESHAPE
                 #dacListLocal=list(range(dacNom-20,dacNom+110,10))
                 qMin=0;#for pedestal
-                qMax=63;
-                qStep=8 #Larger range
-                dacListLocal=list(range(dacNom-40,dacNom+80,8))+list(range(dacNom+80,dacNom+160,8))
+                qMax=30;
+                qStep=4 #Larger step size
+                dacStep=8
+                dacListLocal=list(range(dacNom-40,dacNom+80,8))
+                dacListLocal+=list(range(dacNom+80,dacNom+160,8))
                 if cd<=3:dacListLocal+=list(range(dacNom+160,dacNom+280,8))
-                if cd<=3:dacListLocal+=list(range(dacNom+280,dacNom+680,40))
-                #dacListLocal=list(range(dacNom-40,dacNom+80,4))+list(range(dacNom+80,dacNom+160,4))
-                #if cd<=1:dacListLocal+=list(range(dacNom+160,dacNom+200,4))
+                dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
+
 
                 
 
