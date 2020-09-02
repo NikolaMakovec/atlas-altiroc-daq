@@ -23,9 +23,9 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 0
-doPS        = 1 # TW with thres. scan
+doPS        = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -42,7 +42,8 @@ chList=[4,9]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[0,4]
+cdList=[4]
+#cdList=[1]
 #cdList=range(0,4+1)
 
 #special settings
@@ -152,6 +153,7 @@ def parse_arguments():
     parser.add_argument("-b", "--board", type = int, required = False, default = 8,help = "Choose board")
     parser.add_argument("-c","--ch", type = int, required = False, default = 4, help = "channel")
     parser.add_argument("--cfg", required = False, default = None)
+    parser.add_argument("-p","--prefix", required = False, default = None)
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
@@ -219,6 +221,10 @@ if __name__ == "__main__":
             thresDir+="-RinVpa"+str(Rin_Vpa)
 
 
+        if args.prefix is not None:
+            toaDir+="-"+args.prefix
+            twDir+="-"+args.prefix
+            thresDir+="-"+args.prefix
 
 
 
@@ -309,6 +315,7 @@ if __name__ == "__main__":
                 dacListLocal=list(range(dacNom-40,dacNom+80,8))
                 dacListLocal+=list(range(dacNom+80,dacNom+160,8))
                 if cd<=3:dacListLocal+=list(range(dacNom+160,dacNom+280,8))
+                if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
                 dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
 
 
