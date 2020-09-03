@@ -18,12 +18,12 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 0
-doPS        = 1 # TW with thres. scan
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -38,7 +38,7 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-chList=[4]
+#chList=[4]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -144,8 +144,19 @@ if doNoise:
 
 #if doThres:chList=range(25)
 
+def getDelay(board,ch,cd):
+    #delay
+    delay=2450
+    if board==8:
+        delay=2500
+    elif board==21:
+        delay=2350
+        # #if ch>=20:delay=2400
+        if cd<4 or ch>=20:
+            delay=2400
+        print (ch,cd,delay)
+    return delay
 
-    
 def parse_arguments():
     parser = argparse.ArgumentParser()
     argBool = lambda s: s.lower() in ['true', 't', 'yes', '1']
@@ -270,17 +281,7 @@ if __name__ == "__main__":
     for ch in chList:
         for cd in cdList:
 
-            #delay
-            delay=2450
-            if board==8:
-                delay=2500
-            elif board==21:
-                delay=2400
-                # #if ch>=20:delay=2400
-                # if cd<=2 or ch>=20:
-                #     print ("Change delay for B21 for low cd=0: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! channel:",ch)
-                #     delay=2400
-
+            delay=getDelay(board,ch,cd)
 
             #if ch not in [4,9,14] ans:
             #dac list
@@ -407,6 +408,8 @@ if __name__ == "__main__":
                     else:
                         thresMinLocal=thresMin
 
+                    delay=getDelay(board,ch,cd)
+                        
                     #print (Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,args.outputDir)
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
