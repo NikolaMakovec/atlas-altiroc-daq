@@ -19,13 +19,13 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 0 # Thres with high stat for few Q
+doNoise     = 1 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
-doTW        = 1
-doPS        = 0 # TW with thres. scan
+doTW        = 0
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -38,7 +38,7 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[4]
+#chList=[24]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -74,23 +74,25 @@ if doTW+doPS>1:
 qMin=0
 qMax=63#63#63
 qStep=4#1 or x4
-Ntw=5
+Ntw=50
 morePointsAtLowQ=1
 if doPS:
     doTW=1
     morePointsAtLowQ=0
+    Ntw=20
     
 #####################
 # TOA
 #####################
     
-Ntoa=100;
-delayStep=5 
+Ntoa=50;
+delayStep=20 
 delayMin=2150
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,32,63]#default
 QTOAList=[6,8,16,63]#6,7,16,63]#default
 QTOAList=[6,8,63]
+QTOAList=[6]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 
@@ -102,6 +104,7 @@ if doDNL:
         
 if doClockTree:
     doTOA=1
+    delayStep=5
     QTOAList=[63]#ClockTree
     Ntoa=100
     #Ntoa=400
@@ -154,7 +157,7 @@ def getDelay(board,ch,cd):
         # #if ch>=20:delay=2400
         if cd<4 or ch>=20:
             delay=2400
-        print (ch,cd,delay)
+        #print (ch,cd,delay)
     return delay
 
 def parse_arguments():
@@ -324,7 +327,7 @@ if __name__ == "__main__":
             
             #print(ch,cd,delay,dacListLocal,vthcList)            
             for dac in dacListLocal:   
-
+                #print (dac)
                 ###############################
                 # measure TW
                 ###############################
@@ -357,39 +360,41 @@ if __name__ == "__main__":
                 # measure TOA
                 ###############################
             
-            if doTOA:
-                for vthc in vthcList:
-                    if dac!=dacNom: continue
-                    for Q in QTOAList:
-                        if Q<0:#trig ext                        
-                            delayMin=1800
-                            delayMax=2300
-                        outdir=args.outputDir+"/"+toaDir+"/"
-                        logName=outdir+'/delayTOA_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ON_rtest,ch,cd,Q,dac)
-                        try:os.makedirs(outdir)
-                        except:pass
-                        cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion)
+                if doTOA:
+                    #print ("/ppppppppppppp",dacNom,dac)
+                    for vthc in vthcList:
+                        if dac!=dacNom: continue
+                        for Q in QTOAList:
+                            if Q<0:#trig ext                        
+                                delayMin=1800
+                                delayMax=2300
+                            outdir=args.outputDir+"/"+toaDir+"/"
+                            logName=outdir+'/delayTOA_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ON_rtest,ch,cd,Q,dac)
+                            print (outdir)
+                            try:os.makedirs(outdir)
+                            except:pass
+                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion)
 
-                        if not args.useVthc:#take the one from config
-                            #vthc=64
-                            cmd+=" --Vthc "+str(vthc)
-                            pass
-                        if args.chON:
-                            cmd+=" --allChON True"
-                            pass
-                        if args.ctestON:
-                            cmd+=" --allCtestON True"
-                            pass
-                        if Q<0:
-                            cmd+=" --useExt True "
-                        if doXtalk:
-                            cmd+=" --readAllChannels True  --allChON True "
-                            cmd+=" |& tee "+logName
-                        if args.readAllChannels:
-                            cmd+=" --readAllChannels True "
-                            cmd+=" |& tee "+logName
-                        
-                        f.write(cmd+"\n sleep 5 \n")
+                            if not args.useVthc:#take the one from config
+                                #vthc=64
+                                cmd+=" --Vthc "+str(vthc)
+                                pass
+                            if args.chON:
+                                cmd+=" --allChON True"
+                                pass
+                            if args.ctestON:
+                                cmd+=" --allCtestON True"
+                                pass
+                            if Q<0:
+                                cmd+=" --useExt True "
+                            if doXtalk:
+                                cmd+=" --readAllChannels True  --allChON True "
+                                cmd+=" |& tee "+logName
+                            if args.readAllChannels:
+                                cmd+=" --readAllChannels True "
+                                cmd+=" |& tee "+logName
+
+                            f.write(cmd+"\n sleep 5 \n")
 
 
 

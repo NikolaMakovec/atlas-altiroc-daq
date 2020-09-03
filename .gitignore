@@ -40,3 +40,9 @@ build*
 *.gz
 *.ltx
 *.xsa
+
+
+
+
+Data/
+TRASH/

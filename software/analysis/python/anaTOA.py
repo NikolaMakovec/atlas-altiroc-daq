@@ -293,7 +293,7 @@ axJitterRef = figJitterRef.add_subplot(1,1,1)
 axJitterRef.set_title('Qdac='+str(options.QRef), fontsize = 11)
 axJitterRef.scatter(chArray,JitterRefArray)
 axJitterRef.set_xlabel("Channel number", fontsize = 10)
-axJitterRef.set_ylabel("Jitter for delay="+str(int(delayRef))+"ps [ps]", fontsize = 10)
+axJitterRef.set_ylabel("Jitter [ps]", fontsize = 10)
 plt.savefig("TOA_JitterRefvsCh.pdf")
 
 
