@@ -157,6 +157,9 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             pass
 
 
+    #print (top.Fpga[0].Asic.SlowControl.dac_biaspa.value())
+    #toto
+
     
 
 

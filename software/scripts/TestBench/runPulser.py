@@ -23,9 +23,9 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 0
-doPS        = 0 # TW with thres. scan
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -38,7 +38,7 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-chList=[4,9]
+chList=[4]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -312,9 +312,8 @@ if __name__ == "__main__":
                 qMax=30;
                 qStep=4 #Larger step size
                 dacStep=8
-                dacListLocal=list(range(dacNom-40,dacNom+80,8))
-                dacListLocal+=list(range(dacNom+80,dacNom+160,8))
-                if cd<=3:dacListLocal+=list(range(dacNom+160,dacNom+280,8))
+                dacListLocal=list(range(dacNom-40,dacNom+200,8))
+                if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
                 if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
                 dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
 
