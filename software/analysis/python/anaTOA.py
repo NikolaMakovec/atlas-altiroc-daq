@@ -82,8 +82,8 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
     # extract information from the file name
     board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
-    if int(board)==21:
-        Qconv=0.59
+    #if int(board)==21:
+    #    Qconv=0.59
         
     label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)+" Vthc="+str(vthc)+" Q="+str(Q)
 
@@ -106,9 +106,12 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         jitter=0
         if len(toaList)>    nMax:
             nMax=len(toaList)
-        if len(toaOKList)>10:#compute mean and jitter with at N events
-            TOAMean=np.median(toaOKList)
-            jitter=np.std(toaOKList)
+
+        #high stat
+        if len(toaList)<0.8*Nevts: continue
+        
+        TOAMean=np.median(toaOKList)
+        jitter=np.std(toaOKList)
 
 
         #store information in list
