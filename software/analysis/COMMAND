@@ -3,7 +3,7 @@ python anaTimeWalk.py --Qmin 0 --Qmax 10
 
 python python/anaThreshold.py --display --allPlots --xmin 200 --xmax 600   -i ../Data/2020_07_28/B21-thres/
 
-python python/anaTOA.py  --allPlots --display --inputDir  --QRef 63 ../Data/B21-toa
+python python/anaTOA.py  --allPlots --display  --QRef 63  --inputDir ../Data/B21-toa
 
 
 python python/anaTimeWalk.py --display --allPlots  --Qmin 0 --Qmax 50  -i ../Data/B21-tw/

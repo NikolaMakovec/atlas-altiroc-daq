@@ -13,7 +13,8 @@ python scripts/TestBench/measureTOA.py --skipExistingFile True -N 100 --debug Fa
 
 B=21
 python scripts/TestBench/runPulser.py  -b $B
-python scripts/TestBench/runPulser.py  -b $B --useVthc 
+#python scripts/TestBench/runPulser.py  -b $B --useVthc
+python scripts/TestBench/runPulser.py  -b $B --chON 
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON 
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON
 python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON --readAllChannels

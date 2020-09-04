@@ -73,7 +73,7 @@ if doTW+doPS>1:
 #####################
 qMin=0
 qMax=63#63#63
-qStep=4#1 or x4
+qStep=8#1 or x4
 Ntw=50
 morePointsAtLowQ=1
 if doPS:
@@ -126,7 +126,7 @@ if doXtalk == 1:
 Nthres=100
 QThresList=[3]#default
 #QThresList=[1,2,3,5]
-thresMin=240  #overwritten for large Q
+thresMin=220  #overwritten for large Q
 thresMax=1023 #max is 1023
 thresStep=2
 if doLinearity:
@@ -321,8 +321,9 @@ if __name__ == "__main__":
                 if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
                 dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
 
-
-                
+                if args.useVthc:
+                    dacListLocal=[-1]
+                    vthcList=range(32,96+1,32)
 
             
             #print(ch,cd,delay,dacListLocal,vthcList)            
@@ -340,7 +341,7 @@ if __name__ == "__main__":
                         cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion)
 
 
-                        if not args.useVthc:#take the one from config
+                        if not args.useVthc  or (args.useVthc and doPS):#take the one from config
                             #vthc=64
                             cmd+=" --Vthc "+str(vthc)
                             pass
@@ -421,6 +422,14 @@ if __name__ == "__main__":
                     except:pass
                     cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion)
                     cmd+=" --Vthc 64"
+
+                    
+                    if args.chON:
+                        cmd+=" --allChON True"
+                        pass
+                    if args.ctestON:
+                        cmd+=" --allCtestON True"
+                        pass
 
                     f.write(cmd+"\n sleep 5 \n")
 

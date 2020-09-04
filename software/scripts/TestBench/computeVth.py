@@ -26,25 +26,28 @@ def getVthc(board,cd,doPrint=False):
     
 
     
-    dacRef=int(np.mean(dacList))
+    dacRef=int(np.median(dacList))
 
     if doPrint:    print ("        DAC10bit: "+str(dacRef))
     
     vthcMap={}
     for ch in range(25):
         key=(board,ch,cd)
-        d=999999999
+        d=9999999999
         if key in dacMap.keys():
             d=dacMap[key]
             vthc=int(64+(dacRef-d)*0.4/0.8)
         else:
-            vthc=1
+            vthc=-1
 
         #print (d,vthc)
-        if doPrint:print ("        bit_vth_cor["+str(key[1])+"]: "+str(vthc)+"   #"+str(d)+" "+str(dacRef))
-        if vthc<0 or vthc>126:
-            print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            break
+      
+        line="        bit_vth_cor["+str(key[1])+"]: "+str(vthc)+"   #"+str(d)+" "+str(dacRef)
+        if vthc<0:line="#"+line
+        if doPrint:print (line)
+        #if vthc<0 or vthc>126:
+            #print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            #break
         vthcMap[ch]=vthc
     return dacRef,vthcMap
 

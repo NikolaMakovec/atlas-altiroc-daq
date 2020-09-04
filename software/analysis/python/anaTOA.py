@@ -25,7 +25,7 @@ from Utils import *
 
 parser = OptionParser()
 
-parser.add_option("--QRef", help="Charge values to make some plots", default=52,type=int)
+parser.add_option("--QRef", help="Charge values to make some plots", default=6,type=int)
 parser.add_option("-f","--fileList", help="file containing a list of input file", default=None)
 parser.add_option("-i","--inputDir", help="Data location", default=None)#"Data/B8_toa_clkTree/")
 parser.add_option("-s","--select", help="select only file names containing this string", default="")
@@ -108,7 +108,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
             nMax=len(toaList)
 
         #high stat
-        if len(toaList)<0.8*Nevts: continue
+        #if len(toaList)<0.5*Nevts: continue
         
         TOAMean=np.median(toaOKList)
         jitter=np.std(toaOKList)
@@ -290,14 +290,6 @@ axTOARef.set_xlabel("Channel number", fontsize = 10)
 axTOARef.set_ylabel("TOA for delay="+str(int(delayRef))+"ps [ps]", fontsize = 10)
 plt.savefig("TOA_TOARefvsCh.pdf")
 
-#Jitter vs channel
-figJitterRef=plt.figure('JitterRef')
-axJitterRef = figJitterRef.add_subplot(1,1,1)
-axJitterRef.set_title('Qdac='+str(options.QRef), fontsize = 11)
-axJitterRef.scatter(chArray,JitterRefArray)
-axJitterRef.set_xlabel("Channel number", fontsize = 10)
-axJitterRef.set_ylabel("Jitter [ps]", fontsize = 10)
-plt.savefig("TOA_JitterRefvsCh.pdf")
 
 
 
@@ -326,6 +318,19 @@ axLSB.scatter(chArray,LSBArray)
 axLSB.set_xlabel("Channel nb", fontsize = 10)
 axLSB.set_ylabel("LSB", fontsize = 10)
 plt.savefig("TOA_LSBvsCh.pdf")
+
+
+#Jitter vs channel
+figJitterRef=plt.figure('JitterRef')
+axJitterRef = figJitterRef.add_subplot(1,1,1)
+axJitterRef.set_title('Qdac='+str(options.QRef), fontsize = 11)
+axJitterRef.scatter(chArray,JitterRefArray)
+axJitterRef.set_xlabel("Channel number", fontsize = 10)
+axJitterRef.set_ylabel("Jitter [ps]", fontsize = 10)
+plt.savefig("TOA_JitterRefvsCh.pdf")
+
+
+
 
 #display figures
 if options.display:

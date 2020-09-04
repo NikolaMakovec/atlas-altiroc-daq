@@ -39,32 +39,59 @@ Top:
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
         DAC10bit: 306
-        bit_vth_cor[0]: 73   #288 306
-        bit_vth_cor[1]: 54   #326 306
-        bit_vth_cor[2]: 61   #312 306
-        bit_vth_cor[3]: 60   #314 306
-        bit_vth_cor[4]: 65   #304 306
-        bit_vth_cor[5]: 69   #296 306
-        #bit_vth_cor[6]: 1   #999999999 306
-        bit_vth_cor[7]: 59   #316 306
-        bit_vth_cor[8]: 62   #310 306
-        bit_vth_cor[9]: 65   #304 306
-        bit_vth_cor[10]: 77   #280 306
-        #bit_vth_cor[11]: 1   #999999999 306
-        bit_vth_cor[12]: 73   #288 306
-        bit_vth_cor[13]: 71   #292 306
-        bit_vth_cor[14]: 67   #300 306
-        bit_vth_cor[15]: 61   #312 306
-        #bit_vth_cor[16]: 1   #999999999 306
-        bit_vth_cor[17]: 49   #336 306
-        bit_vth_cor[18]: 58   #318 306
-        bit_vth_cor[19]: 63   #308 306
-        #bit_vth_cor[20]: 1   #999999999 306
-        #bit_vth_cor[21]: 1   #999999999 306
-        #bit_vth_cor[22]: 1   #999999999 306
-        #bit_vth_cor[23]: 1   #999999999 306
-        bit_vth_cor[24]: 60   #314 306
+        # bit_vth_cor[0]: 73   #288 306
+        # bit_vth_cor[1]: 54   #326 306
+        # bit_vth_cor[2]: 61   #312 306
+        # bit_vth_cor[3]: 60   #314 306
+        # bit_vth_cor[4]: 65   #304 306
+        # bit_vth_cor[5]: 69   #296 306
+        # #bit_vth_cor[6]: 1   #999999999 306
+        # bit_vth_cor[7]: 59   #316 306
+        # bit_vth_cor[8]: 62   #310 306
+        # bit_vth_cor[9]: 65   #304 306
+        # bit_vth_cor[10]: 77   #280 306
+        # #bit_vth_cor[11]: 1   #999999999 306
+        # bit_vth_cor[12]: 73   #288 306
+        # bit_vth_cor[13]: 71   #292 306
+        # bit_vth_cor[14]: 67   #300 306
+        # bit_vth_cor[15]: 61   #312 306
+        # #bit_vth_cor[16]: 1   #999999999 306
+        # bit_vth_cor[17]: 49   #336 306
+        # bit_vth_cor[18]: 58   #318 306
+        # bit_vth_cor[19]: 63   #308 306
+        # #bit_vth_cor[20]: 1   #999999999 306
+        # #bit_vth_cor[21]: 1   #999999999 306
+        # #bit_vth_cor[22]: 1   #999999999 306
+        # #bit_vth_cor[23]: 1   #999999999 306
+        # bit_vth_cor[24]: 60   #314 306  
+        DAC10bit: 297
+        bit_vth_cor[0]: 74   #276 297
+        bit_vth_cor[1]: 51   #322 297
+        bit_vth_cor[2]: 62   #300 297
+        bit_vth_cor[3]: 62   #300 297
+        bit_vth_cor[4]: 67   #290 297
+        bit_vth_cor[5]: 64   #296 297
+#        bit_vth_cor[6]: -1   #9999999999 297
+        bit_vth_cor[7]: 65   #294 297
+        bit_vth_cor[8]: 63   #298 297
+        bit_vth_cor[9]: 57   #310 297
+        bit_vth_cor[10]: 92   #240 297
+#        bit_vth_cor[11]: -1   #9999999999 297
+        bit_vth_cor[12]: 89   #246 297
+        bit_vth_cor[13]: 44   #336 297
+        bit_vth_cor[14]: 74   #276 297
+        bit_vth_cor[15]: 75   #274 297
+#        bit_vth_cor[16]: -1   #9999999999 297
+        bit_vth_cor[17]: 41   #342 297
+        bit_vth_cor[18]: 50   #324 297
+        bit_vth_cor[19]: 49   #326 297
+#        bit_vth_cor[20]: -1   #9999999999 297
+#        bit_vth_cor[21]: -1   #9999999999 297
+#        bit_vth_cor[22]: -1   #9999999999 297
+#        bit_vth_cor[23]: -1   #9999999999 297
+        bit_vth_cor[24]: 68   #288 297
 
+      
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
         cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        
