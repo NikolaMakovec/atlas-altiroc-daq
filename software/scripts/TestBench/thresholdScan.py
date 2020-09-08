@@ -76,8 +76,10 @@ def parse_arguments():
     parser.add_argument("--minVth", type = int, required = False, default = minDAC, help = "scan start")
     parser.add_argument("--maxVth", type = int, required = False, default = maxDAC, help = "scan stop")
     parser.add_argument("--VthStep", type = int, required = False, default = DACstep, help = "scan step")
+    parser.add_argument("--DAC", type = int, required = False, default = -1, help = "DAC vth")
     parser.add_argument("--out", type = str, required = False, default = 'testThreshold.txt', help = "output file name")  
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")
+    parser.add_argument( "--vthcScan", type = argBool, required = False, default = False, help = "")
 
 
 
@@ -90,10 +92,27 @@ def parse_arguments():
         extra+="allChON"
     if args.allCtestON:
         extra+="allCtestON"
-    args.out='%sthres_B_%d_rin_%d_ch_%d_cd_%d_delay_%d_Q_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ch,args.Cd,args.delay,args.Q,args.Vthc,extra)
+    args.out='%sthres_B_%d_rin_%d_ch_%d_cd_%d_delay_%d_Q_%d_vthc_%d_thres_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ch,args.Cd,args.delay,args.Q,args.Vthc,args.DAC,extra)
     return args
 
 ##############################################################################
+def findThres(values,Cnt,Cnt2,N):
+    print (values)
+    print (Cnt)
+    print (Cnt2)
+    
+    # Print Data    #find min th, max th, and middle points:
+    maxTH = 999
+    suspicious=0
+    for dac_index, dac_value in enumerate(values):
+        if dac_index>1 and Cnt[dac_index]/N>0.95 and Cnt2[dac_index]/N>0.5:
+            #if dac_index
+            maxTH = values[dac_index]
+            suspicious=Cnt2[dac_index]/float(N)
+            print (maxTH,suspicious)
+    return maxTH,suspicious
+
+
 def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False): 
     pixel_stream = feb.MakoPixelReader() 
     if readAllData:
@@ -123,8 +142,14 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
         newDacScan.append(scan_value)
 
             
-        print('Vth DAC = %d' %scan_value) 
-        top.Fpga[0].Asic.SlowControl.DAC10bit.set(scan_value)
+        print('Value = %d' %scan_value) 
+        if not args.vthcScan:
+            top.Fpga[0].Asic.SlowControl.DAC10bit.set(scan_value)
+        else:
+            if args.DAC>0:top.Fpga[0].Asic.SlowControl.DAC10bit.set(args.DAC)
+            top.Fpga[0].Asic.SlowControl.bit_vth_cor[args.ch].set(scan_value) # alignment
+
+
         top.initialize()#You MUST call this function after doing ASIC configurations!!!
             
         for iteration in range(n_iterations):
@@ -269,28 +294,12 @@ def thresholdScan(argip,
     #################################################################
     
     #################################################################
-    # Print Data    #find min th, max th, and middle points:
-    maxTH = 999
-    suspicious=0
-    for dac_index, dac_value in enumerate(newDacScan):
-        if args.debug:
-            try:
-                print('Threshold = %d, HitCnt = %d/%d' % (dac_value, HitCnt[dac_index], args.N))
-            except OSError:
-                pass
 
-
-        if dac_index>1 and HitCnt[dac_index]/args.N>0.95 and HitCnt2[dac_index]/args.N>0.5:
-            #if dac_index
-            maxTH = newDacScan[dac_index]
-            suspicious=HitCnt2[dac_index]/float(args.N)
-            print (maxTH,suspicious)
-            
-
-    
-    # th25= (maxTH-minTH)*0.25+minTH
-    # th50= (maxTH-minTH)*0.5+minTH
-    # th75= (maxTH-minTH)*0.75+minTH
+    if not args.vthcScan:
+        myThres,suspicious= findThres(newDacScan,HitCnt,HitCnt2,args.N)
+    else:
+        myThres,suspicious= findThres(list(reversed(newDacScan)),list(reversed(HitCnt)),list(reversed(HitCnt2)),args.N)
+        
 
     print ("**************************************")
     print (suspicious)
@@ -298,12 +307,12 @@ def thresholdScan(argip,
     if suspicious==0:
         print ("Can't find a threshold")
     elif suspicious>0.8:
-        print('Threshold = %d '% (maxTH))
+        print('Threshold = %d '% (myThres))
     else:
-        print('Threshold = %d but LARGE FRAC OF TOA 127 (%f)'% (maxTH,1-suspicious))
+        print('Threshold = %d but LARGE FRAC OF TOA 127 (%f)'% (myThres,1-suspicious))
         thresFlag="PRB!!!!!!!!!"
     print ("**************************************")
-    #print('Found minTH = %d, maxTH = %d  - points at 0.25, 0.50 and 0.75 are %d,%d,%d'% (minTH,maxTH,th25,th50,th75))
+    #print('Found minTH = %d, myThres = %d  - points at 0.25, 0.50 and 0.75 are %d,%d,%d'% (minTH,myThres,th25,th50,th75))
     #print('First DAC with efficiency below 60% = ', th50percent)
 
     if os.path.exists(outFile+'.txt'):
@@ -313,9 +322,10 @@ def thresholdScan(argip,
     ff = open(outFile,'a')
 
 
-    ff.write('dacList[(%d,%d,%d)]=%d#%d,%.2f,%s \n'%(args.board,pixel_number,args.Cd,maxTH,Qinj,round(suspicious,2),thresFlag))
+    ff.write('dacList[(%d,%d,%d)]=%d#%d,%.2f,%s \n'%(args.board,pixel_number,args.Cd,myThres,Qinj,round(suspicious,2),thresFlag))
+    line="        bit_vth_cor["+str(pixel_number)+"]: "+str(myThres)+"   #"+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+" "+str(Qinj)+" "+str(args.Cd)
+    ff.write(line+"\n")
 
-    
     # ff.write('Threshold scan ----'+time.ctime()+'\n')
     # ff.write('Pixel = '+str(pixel_number)+'\n')
     # #ff.write('column = '+hex(column)+'\n')
@@ -325,7 +335,7 @@ def thresholdScan(argip,
     # ff.write('cmd_pulser = '+str(Qinj)+'\n')
     # ff.write('LSBest = '+str(LSBest)+'\n')
     # ff.write('Cd ='+str(cd*0.5)+' fC'+'\n')
-    # #ff.write('Found minTH = %d, maxTH = %d - points at 0.25, 0.50 and 0.75 are %d,%d,%d \n'% (minTH,maxTH,th25,th50,th75))
+    # #ff.write('Found minTH = %d, myThres = %d - points at 0.25, 0.50 and 0.75 are %d,%d,%d \n'% (minTH,myThres,th25,th50,th75))
     # ff.write('First DAC with efficiency below 0.6 = %d  \n' % (th50percent))
     # ff.write('Threshold = '+str(newDacScan)+'\n')
     # ff.write('N hits = '+str(HitCnt)+'\n')
@@ -365,9 +375,9 @@ def thresholdScan(argip,
     ax1.set_title('Number of hits vs Threshold', fontsize = 11)
     ax1.set_xlabel('Threshold DAC', fontsize = 10)
     ax1.set_ylabel('Number of TOA hits', fontsize = 10)
-    ax1.legend(['Thres: %d ' % maxTH],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    ax1.legend(['Thres: %d ' % myThres],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     ax1.set_ylim(bottom = 0, top = max(HitCnt)*1.1)
-    ax1.plot([maxTH,maxTH],[0,max(HitCnt)*1.1],linestyle="dashed")
+    ax1.plot([myThres,myThres],[0,max(HitCnt)*1.1],linestyle="dashed")
     
     #plot TOA vs threshold
     ax2.scatter(newDacScan,TOAmean_ps)

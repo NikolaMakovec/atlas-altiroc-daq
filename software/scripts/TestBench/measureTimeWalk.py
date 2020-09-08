@@ -83,7 +83,7 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
 
         for pulse_iteration in range(Nevts):
             top.Fpga[0].Asic.CalPulse.Start()
-            time.sleep(0.02)
+            time.sleep(0.002)
             if readAllData:time.sleep(0.02)#ALLDATA
 
 
@@ -376,6 +376,9 @@ def measureTimeWalk(argsip,
 
 
        ff.write('NofIterations = '+str(args.N)+'\n')
+       ff.write('DAC10bit = '+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+'\n')
+       ff.write('bit_vth_cor = '+str(top.Fpga[0].Asic.SlowControl.bit_vth_cor[args.ch].set(args.Vthc))+'\n')
+       
        ff.write("%f,%f,%f,%f,%f,%f,%f,%f,%f,\n"%(QRange[iQ],TOAmean,TOArms,TOTcmean,TOTcrms,TOTfmean,TOTfrms,TOTmean,TOTrms))
        #print (np.mean(pixel_data['HitDataTOA'][iQ]),np.std(pixel_data['HitDataTOA'][iQ]))
        #print (np.mean(pixel_data['HitDataTOTc'][iQ]),np.std(pixel_data['HitDataTOTc'][iQ]))

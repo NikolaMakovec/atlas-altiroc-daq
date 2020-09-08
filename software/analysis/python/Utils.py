@@ -97,6 +97,7 @@ def readThresFile(filename):
     f=open(filename)
     for line in [line.strip() for line in f.readlines()]:
         if line.find("dacList")>=0: continue
+        if line.find("vth_cor")>=0: continue
         #the input file should contains: thres, number of events, nb of hits, nb of hits not saturated (!=127)
         thres,N,nHit,nHit2=line.split()
         thresArray.append(float(thres))

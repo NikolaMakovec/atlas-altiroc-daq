@@ -104,8 +104,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     top.Fpga[0].Asic.CalPulse.CalPulseWidth.set(2000)
     top.Fpga[0].Asic.SlowControl.Rin_Vpa.set(args.Rin_Vpa)
     if args.asicVersion==3:  top.Fpga[0].Asic.SlowControl.ON_rtest.set(args.ON_rtest)
-    if args.Vthc>0:
-        top.Fpga[0].Asic.SlowControl.bit_vth_cor[pixel_number].set(args.Vthc) # alignment
+    if args.Vthc>0:        top.Fpga[0].Asic.SlowControl.bit_vth_cor[pixel_number].set(args.Vthc) # alignment
         
     #Readout: only 1 channel
     top.Fpga[0].Asic.Readout.ReadoutSize.set(0)

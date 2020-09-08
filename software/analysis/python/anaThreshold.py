@@ -29,6 +29,7 @@ parser.add_option("-d","--display", help="display summary plots on screen", defa
 parser.add_option("--xmax", help="max of x axis", default=None,type=int)
 parser.add_option("--xmin", help="min of x axis", default=None,type=int)
 parser.add_option("-a","--allPlots", help="make all plots", default=False,action="store_true")
+parser.add_option("--vthcScan", help="", default=False,action="store_true")
 (options, args) = parser.parse_args()
 
 #make list of input files
@@ -57,8 +58,16 @@ for fileName in fileNameList:
     allData[fileName]=(thresArray,effArray,effErArray,eff2Array,eff2ErArray)
 
     #threshold
-    thres,eff,eff2=getThreshold(thresArray,nHitArray,nHit2Array,NArray)
+    if not options.vthcScan:
+        thres,eff,eff2=getThreshold(thresArray,nHitArray,nHit2Array,NArray)
+    else:
+        thres,eff,eff2=getThreshold(list(reversed(thresArray)),list(reversed(nHitArray)),list(reversed(nHit2Array)),NArray)
     thresDict[(fileName,board,ch,cd,Q)]=thres
+
+###########################################################################
+# make efficiency plots
+###########################################################################
+
 
 ###########################################################################
 # make efficiency plots
@@ -116,21 +125,28 @@ plt.savefig("Thres_SummaryEff.pdf")
 ###########################################################################
 
 thresRef=int(np.median(list(thresDict.values())))
-print ("        DAC10bit:  ",thresRef)
-for key in sorted(thresDict.keys(),key=lambda n:n[2]):
-    fileName,board,ch,cd,Q=key
-    thres=thresDict[key]
+if not options.vthcScan:
 
-    vthc=int(64+(thresRef-thres)*0.4/0.8)
-    print ("        bit_vth_cor["+str(ch)+"]: "+str(vthc)+"   #DAC10bit="+str(int(thres)))
-
-
-    if vthc<0 or vthc>126:
-        #print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        #break
-        pass
+    print ("        DAC10bit:  ",thresRef)
+    for key in sorted(thresDict.keys(),key=lambda n:n[2]):
+        fileName,board,ch,cd,Q=key
+        thres=thresDict[key]
+        vthc=int(64+(thresRef-thres)*0.4/0.8)
+        print ("        bit_vth_cor["+str(ch)+"]: "+str(vthc)+"   #DAC10bit="+str(int(thres)))
 
 
+        if vthc<0 or vthc>126:
+            #print ("PRB vthc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            #break
+            pass
+
+else:
+    for key in sorted(thresDict.keys(),key=lambda n:n[2]):
+        fileName,board,ch,cd,Q=key
+        thres=thresDict[key]
+        print ("        bit_vth_cor["+str(ch)+"]: "+str(int(thres)))
+        #print (board,ch,cd,Q,thres)
+    print ("====>",board,cd,Q,thresRef)
 #display figures
 if options.display:
     plt.show()

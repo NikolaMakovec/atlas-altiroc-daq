@@ -21,8 +21,10 @@ doSepDir = 1
 doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
+doVthcScan  = 0
 
-doTW        = 1
+
+doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 1
@@ -61,7 +63,7 @@ ON_rtest=0
 if doTOA+doClockTree +doXtalk+doDNL>1:
     print ("Prb TOA")
     sys.exit()
-if doThres+doNoise+doLinearity >1:
+if doThres+doNoise+doVthcScan+doLinearity >1:
     print ("Prb Thres")
     sys.exit()
 if doTW+doPS>1:
@@ -144,7 +146,13 @@ if doNoise:
     QThresList=[8,17]#10
 
 
-
+if doVthcScan:
+    doThres= 1
+    Nthres=100
+    thresMin=0 
+    thresMax=128
+    thresStep=1
+    
 #if doThres:chList=range(25)
 
 def getDelay(board,ch,cd):
@@ -183,7 +191,7 @@ if __name__ == "__main__":
     
 
     boardASICAlone=[4,8,9,10,11,12,14,15,21]
-    boardASICV3=[21]
+    boardASICV3=[21,24]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
@@ -201,6 +209,7 @@ if __name__ == "__main__":
         bName+=str(args.board)
         thresDir=bName+"-thres"
         if doNoise:thresDir+="-noise"
+        if doVthcScan:thresDir+="-vthcScan"
         if doLinearity:thresDir+="-lin"
         twDir=bName+"-tw"
         if doPS:twDir+="-ps"
@@ -420,7 +429,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d --autoStop True  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion)
                     cmd+=" --Vthc 64"
 
                     
@@ -430,6 +439,10 @@ if __name__ == "__main__":
                     if args.ctestON:
                         cmd+=" --allCtestON True"
                         pass
+                    if doVthcScan:
+                        cmd+=" --vthcScan True "
+                    else:
+                        cmd+=" --autoStop True "
 
                     f.write(cmd+"\n sleep 5 \n")
 
@@ -439,6 +452,7 @@ print ("---------------------------------")
 print ("doThres     ",doThres     )
 print ("doNoise     ",doNoise     )
 print ("doLinearity ",doLinearity )
+print ("doVthcScan  ",doVthcScan     )
 print ("---------------------------------")
 print ("doTW        ",doTW        )
 print ("doPS        ",doPS        )

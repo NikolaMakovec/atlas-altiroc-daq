@@ -131,7 +131,9 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
     # eff plot
     plt.figure(figEff.number)
-    plt.plot(QArray,effArray,label=label,color=colors[fileNb])
+    QThres=QArray[np.argmax(effArray>0.9)]
+    print (np.argmax(effArray>0.9))
+    plt.plot(QArray,effArray,label=label+' '+str(round(QThres,1)),color=colors[fileNb])
 
     # TOA mean
     plt.figure(figTOAmean.number)
