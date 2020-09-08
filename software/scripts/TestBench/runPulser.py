@@ -18,7 +18,7 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -27,20 +27,20 @@ doVthcScan  = 0
 doTW        = 0
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-#chList=range(25)
+chList=range(25)
 #chList=range(5)
 #chList=[24,0,4,5,9,10,15,20,23]
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[24]
+#chList=[2]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -166,6 +166,8 @@ def getDelay(board,ch,cd):
         if cd<4 or ch>=20:
             delay=2400
         #print (ch,cd,delay)
+    elif board==24:
+        delay=2400
     return delay
 
 def parse_arguments():
@@ -190,7 +192,7 @@ if __name__ == "__main__":
     args = parse_arguments()
     
 
-    boardASICAlone=[4,8,9,10,11,12,14,15,21]
+    boardASICAlone=[4,8,9,10,11,12,14,15,21,24]
     boardASICV3=[21,24]
     board=args.board
     asicVersion=2
@@ -293,6 +295,9 @@ if __name__ == "__main__":
     for ch in chList:
         for cd in cdList:
 
+
+            print ("TOTO")
+            
             delay=getDelay(board,ch,cd)
 
             #if ch not in [4,9,14] ans:
@@ -304,14 +309,15 @@ if __name__ == "__main__":
                 vthcList=[-1]
             else:
                 vthcList=[64]
-                if (board,ch,cd) in dacMap.keys():dacNom=dacMap[(board,ch,cd)]
+                if (board,ch,cd) in dacMap.keys():
+                    dacNom=dacMap[(board,ch,cd)]
                 elif (board,ch,4) in dacMap.keys():
                     print ("Take thres. for cd=4 while using cd=",cd)
                     dacNom=dacMap[(board,ch,4)]
                     time.sleep(1)
                 else:
-                    print ("********** PRB with dacMap, break*****")
-                    time.sleep(5)
+                    print ("********** PRB with dacMap, break*****",(board,ch,4))
+                    time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
 

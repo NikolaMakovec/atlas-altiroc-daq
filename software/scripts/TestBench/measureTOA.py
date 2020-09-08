@@ -58,6 +58,8 @@ def acquire_data(top, useExt, DelayRange,chNb,readAllData=False):
         if useExt:
             top.Fpga[0].Asic.Gpio.DlyCalPulseReset.set(delay_value+pulseWidth)
 
+        #top.Fpga[0].Asic.SlowControl.dac_pulser.set(6)
+        
         top.initialize()
         for pulse_iteration in range(args.N):#Nikola
             #print ("iter",pulse_iteration)

@@ -196,6 +196,7 @@ def getDACList(board):
         dacList[(21,8,4)]=298#3,0.79,PRB!!!!!!!!! 
         dacList[(21,9,4)]=310#3,0.87,ok 
 
+    elif board==24:
 
         
         pass

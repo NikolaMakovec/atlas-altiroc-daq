@@ -87,7 +87,7 @@ Top:
         coarse_Up_Downb: 0
         fast_Lcomp_b: 0x0 # 6 bits
         fast_Up_Downb: 0x0
-        slow_Lcomp_b: 1 # 6 bits, B24 8
+        slow_Lcomp_b: 0 # 6 bits, B24 8
         slow_Up_Downb: 0x0
 
         ###################
@@ -129,36 +129,36 @@ Top:
    
         EN_toa_busy: 0
 
-##########****************** Use of the PLL/PS ******************#######################
-        choice_shifted_ck40: 0x0 # 1 if use of Phase Shifted ck40
-        choice_fpga_ck40: 0x1 # 1 if use of FPGA ck 40
-        ON_PLL: 0x0 # 1
-        EN_clps: 0x0 # should be 1 if want to see PS ck40 on SMA
-        PLL_icpb: 32 # 32 6 bits
+# ##########****************** Use of the PLL/PS ******************#######################
+#         choice_shifted_ck40: 0x1 # 1 if use of Phase Shifted ck40
+#         choice_fpga_ck40: 0x0 # 1 if use of FPGA ck 40
+#         ON_PLL: 0x1 # 1
+#         EN_clps: 0x1 # should be 1 if want to see PS ck40 on SMA
+#         PLL_icpb: 32 # 32 6 bits
 
-        dac_CP_BWb: 15 # 15 PLL charge pump
-        EN_ExtVin_vco_PLL: 0x0 # must be set to 1 to minimize PLL jitter (to be understood)
-        setN: 0x0
-        setProbe: 0x0 # select 40 MHz clock for the PS
-        EN_500: 0x0
-        EN_1000: 0x0
-        EN_2000: 0x0
-        EN_4000: 0x1
-        EN_200p: 0x1
-        EN_LowKvco: 0x0 # PLL
-        FineDelay: 0 # PS fine delay LSB 100 ps (4 bits)
-        CoarseDelay: 0x0 # PS corase delay LSB 1.6 ns
-        p: 0x0
-        forcedown: 0x0
-        inita: 0x0 # 1 to init PPS Dll
-        initb: 0x0 # 1 to init PPS Dll
-        initc: 0x0 # 1 to init PPS Dll
-        cpen: 0x0 # 1 to init PPS Dll
-        PS_cp: 0xf
-        En_40M: 0x0 # if 1 input of PS = EXTERNAL ck 40 MHz and not PLL 40 MHz
-        En_640M: 0x0 # if 1 input of PS = EXTERNAL ck 640 MHz and not PLL 640 MHz
-        FineDelayLum: 0x0 # PS fine delay (lumi)
-        detectEn: 0x0
+#         dac_CP_BWb: 15 # 15 PLL charge pump
+#         EN_ExtVin_vco_PLL: 0x1 # must be set to 1 to minimize PLL jitter (to be understood)
+#         setN: 0x0
+#         setProbe: 0x5 # select 40 MHz clock for the PS : METTRE A 5
+#         EN_500: 0x0
+#         EN_1000: 0x0
+#         EN_2000: 0x0
+#         EN_4000: 0x1
+#         EN_200p: 0x1
+#         EN_LowKvco: 0x0 # PLL
+#         FineDelay: 1 # PS fine delay LSB 100 ps (4 bits)
+#         CoarseDelay: 0x0 # PS corase delay LSB 1.6 ns (4 bits)
+#         p: 0x0
+#         forcedown: 0x0
+#         inita: 0x1 # 1 to init PPS Dll
+#         initb: 0x1 # 1 to init PPS Dll
+#         initc: 0x1 # 1 to init PPS Dll
+#         cpen: 0x1 # 1 to init PPS Dll
+#         PS_cp: 0xf
+#         En_40M: 0x0 # if 1 input of PS = EXTERNAL ck 40 MHz and not PLL 40 MHz
+#         En_640M: 0x0 # if 1 input of PS = EXTERNAL ck 640 MHz and not PLL 640 MHz
+#         FineDelayLum: 0x0 # PS fine delay (lumi)
+#         detectEn: 0x0
 
       ##########################################################################
       Readout:

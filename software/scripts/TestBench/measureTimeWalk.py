@@ -66,8 +66,10 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
     for Q_value in QRange:
         print('Testing Q value ' + str(Q_value) )
         top.Fpga[0].Asic.SlowControl.dac_pulser.set(Q_value)
-        top.initialize()#You MUST call this function after doing ASIC configurations!!!
 
+        top.initialize()#You MUST call this function after doing ASIC configurations!!!
+        #time.sleep(1)
+        
 # ######## Vctrl measurement #######
 #         top.Fpga[0].Asic.Gpio.RSTB_DLL.set(0x0)
 #         print('RSTB DLL 0 during 5s ')
