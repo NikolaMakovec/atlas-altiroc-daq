@@ -18,23 +18,23 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 1
+doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 0
+doTW        = 1
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=range(25)
+# chList=range(25)
 #chList=range(5)
 #chList=[24,0,4,5,9,10,15,20,23]
 #chList=[0,5,9,10]#,20,23]

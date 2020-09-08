@@ -197,7 +197,31 @@ def getDACList(board):
         dacList[(21,9,4)]=310#3,0.87,ok 
 
     elif board==24:
-
+        dacList[(24,0,4)]=296#3,0.98,ok 
+        dacList[(24,10,4)]=278#3,0.94,ok 
+        dacList[(24,11,4)]=330#3,0.98,ok 
+        dacList[(24,12,4)]=326#3,0.94,ok 
+        dacList[(24,13,4)]=304#3,0.94,ok 
+        #dacList[(24,14,4)]=270#3,0.99,ok 
+        dacList[(24,15,4)]=268#3,0.99,ok 
+        dacList[(24,16,4)]=302#3,0.96,ok 
+        dacList[(24,17,4)]=292#3,1.00,ok 
+        dacList[(24,18,4)]=302#3,1.00,ok 
+        dacList[(24,19,4)]=254#3,1.00,ok 
+        dacList[(24,1,4)]=312#3,1.00,ok 
+        dacList[(24,20,4)]=282#3,0.97,ok 
+        dacList[(24,21,4)]=332#3,0.98,ok 
+        dacList[(24,22,4)]=320#3,0.99,ok 
+        dacList[(24,23,4)]=334#3,0.96,ok 
+        dacList[(24,24,4)]=254#3,0.99,ok 
+        dacList[(24,2,4)]=292#3,1.00,ok 
+        dacList[(24,3,4)]=302#3,0.99,ok 
+        dacList[(24,4,4)]=278#3,0.96,ok 
+        dacList[(24,5,4)]=290#3,0.98,ok 
+        dacList[(24,6,4)]=272#3,1.00,ok 
+        #dacList[(24,7,4)]=999#3,0.00,ok 
+        dacList[(24,8,4)]=300#3,0.95,ok 
+        dacList[(24,9,4)]=304#3,0.98,ok 
         
         pass
     return dacList                       
