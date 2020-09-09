@@ -24,7 +24,7 @@ doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 1
+doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 1
@@ -50,7 +50,7 @@ cdList=[4]
 
 #special settings
 Rin_Vpa=0
-ON_rtest=0
+ON_rtest=1
 
 
 
@@ -93,7 +93,7 @@ delayMin=2150
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,32,63]#default
 QTOAList=[6,8,16,63]#6,7,16,63]#default
-QTOAList=[6,8,63]
+#QTOAList=[6,8,63]
 QTOAList=[6]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
