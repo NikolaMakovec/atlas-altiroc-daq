@@ -89,7 +89,7 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
             if readAllData:time.sleep(0.02)#ALLDATA
 
 
-            
+
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
         #if args.ch<15:
         pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
@@ -105,6 +105,9 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
         while pixel_stream.count < args.N: pass
         pixel_stream.clear()
 
+
+    print (pixel_data['HitDataTOA'])
+    print (pixel_data['HitDataTOTc'])
     return pixel_data
 
 
@@ -233,6 +236,7 @@ def measureTimeWalk(argsip,
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
     # Setup root class
+    #top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file,"config/testing_2020_ch14.yml"],defaultFile=defaultFile,asicVersion=args.asicVersion)
     top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
 

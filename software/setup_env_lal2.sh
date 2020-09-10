@@ -12,6 +12,9 @@
 export alias fpga_aa=192.168.1.192
 export alias fpga_ab=192.168.1.193
 export alias fpga_ad=192.168.1.195
+export alias fpga_ea=192.168.1.196
+export alias fpga_eb=192.168.1.197
+
 source /home/hgtd-lal/Documents/anaconda3/etc/profile.d/conda.sh
 conda activate rogue_V3
 
