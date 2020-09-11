@@ -36,7 +36,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         for ipix in range(25):
             if self.toa_counter[ipix]>1:
                 rms=sqrt(self.toa_beta[ipix]/(self.toa_counter[ipix]))
-                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
+                #print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
                 #print ( np.std(self.toa_all) )
                 #time.sleep(100000)
 
@@ -139,7 +139,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
             eventFrame = feb.ParseFrame(frame)
 
             hit_data = np.zeros(self.xpixels*self.ypixels, dtype=int)
-            toa_list = []
+            #toa_list = []
             totc_list = []
             self.timing_data.append(eventFrame.Timestamp)
             for i in range( len(eventFrame.pixValue) ):
@@ -154,7 +154,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
                     totc_bin = int( totc * (self.totc_max/len(self.totc_array)) )
                     self.toa_array[toa_bin][pixel.PixelIndex] += 1
                     self.totc_array[totc_bin][pixel.PixelIndex] += 1
-                    toa_list.append(toa)
+                    #toa_list.append(toa)
                     hit_data[pixel.PixelIndex] = pixel.Hit
 
 

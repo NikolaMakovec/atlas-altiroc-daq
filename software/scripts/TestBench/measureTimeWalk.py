@@ -316,9 +316,9 @@ def measureTimeWalk(argsip,
     ffData.write('NofIterations = '+str(args.N)+'\n')       
     for iQ in range(len(QRange)):
        Q=QRange[iQ]
-       print ('--------------------------',Q)
-       print (len(pixel_data['HitDataTOA'][iQ]))
-       print (len(pixel_data['HitDataTOTc'][iQ]))
+       # print ('--------------------------',Q)
+       # print (len(pixel_data['HitDataTOA'][iQ]))
+       # print (len(pixel_data['HitDataTOTc'][iQ]))
      
        if len(pixel_data['HitDataTOA'])==0:
            print ("No data for Q=",QRange[iQ])
@@ -348,7 +348,7 @@ def measureTimeWalk(argsip,
 
 
 
-       print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
+       #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
        
        okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
        okTOTc=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
