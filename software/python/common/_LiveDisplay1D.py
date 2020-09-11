@@ -8,7 +8,8 @@ import matplotlib.gridspec as gridspec
 matplotlib.use('QT5Agg')
 import os
 import common as feb
-
+from math import sqrt
+import time
 
 class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
     def refresh_histograms(self):
@@ -32,7 +33,12 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.ax3.set_xlabel('Time (s)')
         self.ax3.set_ylabel('Rate (Hz)')
 
-    
+        for ipix in range(25):
+            if self.toa_counter[ipix]>1:
+                rms=sqrt(self.toa_beta[ipix]/(self.toa_counter[ipix]))
+                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
+                #print ( np.std(self.toa_all) )
+                #time.sleep(100000)
 
     def __init__(self, plot_title='Live Display', font_size=6, fig_size=(15,8),
                  toa_max=128, totc_max=128, xpixels=5, ypixels=5, num_bins=128, pixel_enable_list=range(25) ):
@@ -43,6 +49,15 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.num_channels = xpixels*ypixels
         self.num_bins = num_bins
 
+        #self.toa_all = []
+        self.totc_counter =np.zeros(self.num_channels, dtype=int)
+        self.totc_mean =np.zeros(self.num_channels, dtype=float)
+        self.toa_counter =np.zeros(self.num_channels, dtype=int)
+        self.toa_mean =np.zeros(self.num_channels, dtype=float)
+        self.toa_beta =np.zeros(self.num_channels, dtype=float)
+        self.toa_alpha =np.zeros(self.num_channels, dtype=float)
+        self.toa_prevalpha =np.zeros(self.num_channels, dtype=float)
+        
         self.toa_array = np.zeros((self.num_bins,self.num_channels), dtype=int)
         self.totc_array = np.zeros((self.num_bins,self.num_channels), dtype=int)
         self.hit_array = np.zeros((self.ypixels,self.xpixels), dtype=int)
@@ -132,15 +147,36 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
                 if pixel.Hit and not pixel.ToaOverflow:
                     toa = pixel.ToaData
                     totc = (pixel.TotData >>  2) & 0x7F
-                    if pixel.PixelIndex > 14:
-                        totc = (pixel.TotData >>  3) & 0x3F
+                    #if pixel.PixelIndex > 14:  #No TZ for v3
+                    #    totc = (pixel.TotData >>  3) & 0x3F
 
                     toa_bin = int( toa * (self.toa_max/len(self.toa_array)) )
                     totc_bin = int( totc * (self.totc_max/len(self.totc_array)) )
                     self.toa_array[toa_bin][pixel.PixelIndex] += 1
                     self.totc_array[totc_bin][pixel.PixelIndex] += 1
-
+                    toa_list.append(toa)
                     hit_data[pixel.PixelIndex] = pixel.Hit
+
+
+                    #self.toa_all.append(toa)
+                    self.toa_counter[pixel.PixelIndex]+=1
+                    self.toa_mean[pixel.PixelIndex]=self.toa_mean[pixel.PixelIndex]+(toa-self.toa_mean[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
+                    self.totc_counter[pixel.PixelIndex]+=1
+                    self.totc_mean[pixel.PixelIndex]=self.totc_mean[pixel.PixelIndex]+(totc-self.totc_mean[pixel.PixelIndex])/self.totc_counter[pixel.PixelIndex]
+                    
+                    if self.toa_counter[pixel.PixelIndex]<=1:
+                        self.toa_alpha[pixel.PixelIndex]=toa
+                    else:
+                        self.toa_prevalpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]
+                        self.toa_alpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
+                    self.toa_beta[pixel.PixelIndex]=self.toa_beta[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])*(toa-self.toa_prevalpha[pixel.PixelIndex])
+
+                    # print (toa)
+                    # if self.toa_counter[pixel.PixelIndex]>1:                   
+                    #     rms=sqrt(self.toa_beta[pixel.PixelIndex]/(self.toa_counter[pixel.PixelIndex]))
+                    #     print(toa,self.toa_alpha[pixel.PixelIndex],self.toa_prevalpha[pixel.PixelIndex],self.toa_beta[pixel.PixelIndex],rms)
+                   
+                   
 
             hits_data_binary = np.reshape(hit_data, (self.ypixels,self.xpixels), order='F')
             self.hit_array += hits_data_binary

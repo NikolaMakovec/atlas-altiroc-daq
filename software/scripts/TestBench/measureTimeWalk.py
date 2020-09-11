@@ -236,7 +236,6 @@ def measureTimeWalk(argsip,
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
     # Setup root class
-    #top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file,"config/testing_2020_ch14.yml"],defaultFile=defaultFile,asicVersion=args.asicVersion)
     top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
 
@@ -442,7 +441,7 @@ def measureTimeWalk(argsip,
         current_cmap.set_bad(color='white')
         ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.YlGnBu)
         ax1.scatter(QArray, TOAMeanArray, facecolors='none', edgecolors='r')
-        #ax1.grid(True)
+        ax1.grid(True)
         ax1.set_title('', fontsize = 11)
         ax1.set_xlabel(QTitle, fontsize = 10)
         ax1.set_ylabel(TOATitle, fontsize = 10)

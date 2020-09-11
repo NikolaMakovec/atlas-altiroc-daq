@@ -27,7 +27,9 @@ python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
 
 
 
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/testing_2020_ch14.yml --liveDisplay True --asicVersion 2
+
 python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/testing_2020_ch14.yml --liveDisplay True --asicVersion 2 --refClkSel ExtSmaClk
 
-python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ 0 --debug True --display True -N 50 --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --delay 2450 --QMin 8 --QMax 12 --QStep 8 --out Data//B12-tw/ --DAC 360 --Rin_Vpa 0 --ON_rtest 0 --asicVersion 2 --Vthc 64 --ip 192.168.1.197     --board 12 --ch 14 --Cd 4 --QMin 10 --QMax 63 --QStep 10 --DAC 360
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ 0 --display True -N 50 --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --delay 2450 --out Data/ --Rin_Vpa 0 --ON_rtest 0 --asicVersion 2 --Vthc 64 --ip 192.168.1.197   --debug False   --board 12 --ch 14 --Cd 4 --QMin 5 --QMax 63 --QStep 5 --DAC 340
 
