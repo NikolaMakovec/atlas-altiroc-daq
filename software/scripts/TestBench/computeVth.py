@@ -25,7 +25,7 @@ def getVthc(board,cd,doPrint=False):
         dacList.append(val)
     
 
-    
+    print (dacList)
     dacRef=int(np.median(dacList))
 
     if doPrint:    print ("        DAC10bit: "+str(dacRef))
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--board", type = int, required = False, default = 13,help = "Choose board")
     args = parser.parse_args()
 
-    boardASICAlone=[8,9,10,11,12,14,15,21]
+    boardASICAlone=[8,9,10,11,12,14,15,21,24]
     cd=0
     if args.board in boardASICAlone:
         cd=4

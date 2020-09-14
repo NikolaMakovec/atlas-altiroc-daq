@@ -138,7 +138,11 @@ def set_pixel_specific_parameters(top, pixel_number,args):
         #pass
 
     chONList=[4,9]
-    chONList=list(set(range(0,25)).difference(set([6,11,16,20,21,22,23])))
+    #chONList=list(set(range(0,25)).difference(set([6,11,16,20,21,22,23])))
+    chONList=list(set(range(0,25)).difference(set([7,14,20,21,22,23])))
+    #chONList=list(set(range(0,25)))
+    #chONList=list(set(range(0,25)))
+
     print (chONList)
     #toto
     if args.allChON:
@@ -150,6 +154,10 @@ def set_pixel_specific_parameters(top, pixel_number,args):
 
     #ctestONList=[7,12,18]#range(0,25,8)
     ctestONList=[0,12,24]#range(0,25,8)
+    #ctestONList=[7,8,9]#range(0,25,8)
+    #ctestONList=[12,13,14]#range(0,25,8)
+    #ctestONList=[0,1,2]#range(0,25,8)
+    #ctestONList=[0,5,10]#range(0,25,8)
     if args.allCtestON:
         #for ipix in range(0,14,2):
         for ipix in ctestONList:
