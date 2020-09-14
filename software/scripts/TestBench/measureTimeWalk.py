@@ -89,7 +89,7 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
             if readAllData:time.sleep(0.02)#ALLDATA
 
 
-            
+
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
         #if args.ch<15:
         pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
@@ -105,6 +105,9 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
         while pixel_stream.count < args.N: pass
         pixel_stream.clear()
 
+
+    print (pixel_data['HitDataTOA'])
+    print (pixel_data['HitDataTOTc'])
     return pixel_data
 
 
@@ -313,9 +316,9 @@ def measureTimeWalk(argsip,
     ffData.write('NofIterations = '+str(args.N)+'\n')       
     for iQ in range(len(QRange)):
        Q=QRange[iQ]
-       print ('--------------------------',Q)
-       print (len(pixel_data['HitDataTOA'][iQ]))
-       print (len(pixel_data['HitDataTOTc'][iQ]))
+       # print ('--------------------------',Q)
+       # print (len(pixel_data['HitDataTOA'][iQ]))
+       # print (len(pixel_data['HitDataTOTc'][iQ]))
      
        if len(pixel_data['HitDataTOA'])==0:
            print ("No data for Q=",QRange[iQ])
@@ -345,7 +348,7 @@ def measureTimeWalk(argsip,
 
 
 
-       print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
+       #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
        
        okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
        okTOTc=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
@@ -438,7 +441,7 @@ def measureTimeWalk(argsip,
         current_cmap.set_bad(color='white')
         ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.YlGnBu)
         ax1.scatter(QArray, TOAMeanArray, facecolors='none', edgecolors='r')
-        #ax1.grid(True)
+        ax1.grid(True)
         ax1.set_title('', fontsize = 11)
         ax1.set_xlabel(QTitle, fontsize = 10)
         ax1.set_ylabel(TOATitle, fontsize = 10)
