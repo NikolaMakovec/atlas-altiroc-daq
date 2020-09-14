@@ -36,7 +36,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         for ipix in range(25):
             if self.toa_counter[ipix]>1:
                 rms=sqrt(self.toa_beta[ipix]/(self.toa_counter[ipix]))
-                #print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
+                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
                 #print ( np.std(self.toa_all) )
                 #time.sleep(100000)
 

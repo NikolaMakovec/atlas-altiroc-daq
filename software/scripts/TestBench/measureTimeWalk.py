@@ -102,7 +102,7 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
 
         
         
-        while pixel_stream.count < args.N: pass
+        #while pixel_stream.count < args.N: pass
         pixel_stream.clear()
 
 
