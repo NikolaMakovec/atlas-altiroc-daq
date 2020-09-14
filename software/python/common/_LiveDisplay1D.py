@@ -157,6 +157,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
                     #toa_list.append(toa)
                     hit_data[pixel.PixelIndex] = pixel.Hit
 
+                    #print (toa)
 
                     #self.toa_all.append(toa)
                     self.toa_counter[pixel.PixelIndex]+=1

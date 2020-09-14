@@ -167,6 +167,10 @@ class PrintEventReader(rogue.interfaces.stream.Slave):
                     ])
 
             self.count += 1
+            #print("sleep")
+            #time.sleep(1)
+
+            
 #################################################################
 
 # Class for Reading the Data from File
