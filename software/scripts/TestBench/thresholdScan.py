@@ -166,9 +166,9 @@ def acquire_data(dacScan, top, n_iterations,autoStop=False,readAllData=False):
         effList.append(len(pixel_stream.HitData.copy())/n_iterations)
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
         #pixel_data['TOAOvflow'].append( pixel_stream.TOAOvflow.copy() )
-        while pixel_stream.count < args.N:
-            #print ("toto")
-            pass
+        #while pixel_stream.count < args.N:
+        #print ("toto")
+        #    pass
         pixel_stream.clear()
 
 

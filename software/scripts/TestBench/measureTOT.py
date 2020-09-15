@@ -109,7 +109,7 @@ def acquire_data(top, pulser, PulserRange, using_TZ_TOT):
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
             pixel_data['HitDataTOTc_int1'].append( pixel_stream.HitDataTOTc_int1_vpa.copy() )
 
-        while pixel_stream.count < args.N: pass
+        #while pixel_stream.count < args.N: pass
         pixel_stream.clear()
 
     return pixel_data

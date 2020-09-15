@@ -69,9 +69,10 @@ def acquire_data(top, useExt, DelayRange,chNb,readAllData=False):
             
         #print (type(pixel_stream.HitDataTOA.copy()),len(pixel_stream.HitDataTOA.copy()),pixel_stream.HitDataTOA.copy())
         pixel_data.append( pixel_stream.HitData.copy() )
-        while pixel_stream.count < args.N:
-            #print (pixel_stream.count,args.N)
-            pass
+        #while pixel_stream.count < args.N:
+        #    print ('Waiting...')
+        #    #print (pixel_stream.count,args.N)
+        #    pass
         pixel_stream.clear()
 
     return pixel_data
