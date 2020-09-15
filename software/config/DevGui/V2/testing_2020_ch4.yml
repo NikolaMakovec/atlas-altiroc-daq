@@ -27,7 +27,7 @@ Top:
         FpgaTdcClkLow: 0x1
       CalPulse:
         CalPulseDelay: 0x32
-        CalPulseWidth: 8
+        CalPulseWidth: 2000
         Continuous: 0x0
       ##########################################################################
       SlowControl:
