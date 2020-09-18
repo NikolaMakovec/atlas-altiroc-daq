@@ -19,6 +19,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.ax0.grid(linewidth=1)
         self.ax0.tick_params(which="minor", bottom=False, left=False)
         self.ax0.set_xticks( np.arange(0,self.toa_max,10) )
+        plt.yscale('log')
 
         self.ax1.cla()
         self.ax1.hist(**self.totc_plot_info)

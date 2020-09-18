@@ -18,7 +18,7 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -40,7 +40,7 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[14]
+chList=[4]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards

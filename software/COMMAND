@@ -32,13 +32,13 @@ python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatA
 
 
 
-python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_ch4_noProbe.yml --liveDisplay True --asicVersion 2
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2
 
-python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_ch4_noProbe.yml --liveDisplay True --asicVersion 2  --printEvents True
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2  --printEvents True
 
-python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_ch4_noProbe.yml --liveDisplay True --asicVersion 2 --refClkSel ExtSmaClk
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2 --refClkSel ExtSmaClk
 
-
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch4_noProbe.yml --liveDisplay True --asicVersion 2
 
 
 
