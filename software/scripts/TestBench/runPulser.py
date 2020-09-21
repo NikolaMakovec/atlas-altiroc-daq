@@ -27,7 +27,7 @@ doVthcScan  = 0
 doTW        = 1
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -40,7 +40,7 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[14]
+#chList=[12,13,15,16,17,18,19,24]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -51,7 +51,6 @@ cdList=[4]
 #special settings
 Rin_Vpa=0
 ON_rtest=0
-
 
 
 #####################
@@ -75,7 +74,7 @@ if doTW+doPS>1:
 #####################
 qMin=0
 qMax=63#63#63
-qStep=8#1 or x4
+qStep=1#1 or x4
 Ntw=50
 morePointsAtLowQ=1
 if doPS:
@@ -88,13 +87,13 @@ if doPS:
 #####################
     
 Ntoa=50;
-delayStep=20 
-delayMin=2150
+delayStep=5 
+delayMin=2200
 delayMax=2700
-QTOAList=[4,5,6,8,12,16,32,63]#default
-QTOAList=[4,6,8,16,63]#6,7,16,63]#default
+QTOAList=[4,5,6,8,12,16,24,32,63]#default
+#QTOAList=[4,6,63]#6,7,16,63]#default
 #QTOAList=[6,8,63]
-QTOAList=[6,63]
+#QTOAList=[6,63]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
 

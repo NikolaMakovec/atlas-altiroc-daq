@@ -38,6 +38,8 @@ Top:
         ON_discri[:]: 0x0      
   
         DAC10bit: 300
+
+        #chOFF rtest=0
         # bit_vth_cor[0]: 68   #300 3 4
         # bit_vth_cor[10]: 83   #300 3 4
         # bit_vth_cor[11]: 62   #300 3 4
@@ -57,6 +59,8 @@ Top:
         # bit_vth_cor[6]: 86   #300 3 4
         # bit_vth_cor[8]: 76   #300 3 4
         # bit_vth_cor[9]: 75   #300 3 4
+
+        #chON rtest=0
         bit_vth_cor[0]: 68   #300 3 4
         bit_vth_cor[10]: 81   #300 3 4
         bit_vth_cor[11]: 60   #300 3 4
@@ -77,6 +81,26 @@ Top:
         bit_vth_cor[8]: 73   #300 3 4
         bit_vth_cor[9]: 72   #300 3 4
 
+        # # #chON rtest=1
+        # bit_vth_cor[0]: 69   #300 3 4
+        # bit_vth_cor[10]: 82   #300 3 4
+        # bit_vth_cor[11]: 60   #300 3 4
+        # bit_vth_cor[12]: 61   #300 3 4
+        # bit_vth_cor[13]: 71   #300 3 4
+        # bit_vth_cor[15]: 84   #300 3 4
+        # bit_vth_cor[16]: 68   #300 3 4
+        # bit_vth_cor[17]: 75   #300 3 4
+        # bit_vth_cor[18]: 71   #300 3 4
+        # bit_vth_cor[19]: 95   #300 3 4
+        # bit_vth_cor[1]: 62   #300 3 4
+        # bit_vth_cor[24]: 91   #300 3 4
+        # bit_vth_cor[2]: 76   #300 3 4
+        # bit_vth_cor[3]: 73   #300 3 4
+        # bit_vth_cor[4]: 85   #300 3 4
+        # bit_vth_cor[5]: 74   #300 3 4
+        # bit_vth_cor[6]: 84   #300 3 4
+        # bit_vth_cor[8]: 74   #300 3 4
+        # bit_vth_cor[9]: 74   #300 3 4
 
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
