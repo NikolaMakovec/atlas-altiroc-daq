@@ -130,6 +130,16 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.toa_array.fill(0)
         self.totc_array.fill(0)
         self.hit_array = np.zeros((self.ypixels,self.xpixels), dtype=int)
+
+        for ipix in range(len(self.totc_counter)):
+            self.totc_counter [ipix]=0
+            self.totc_mean [ipix]=0
+            self.toa_counter [ipix]=0
+            self.toa_mean [ipix]=0
+            self.toa_beta  [ipix]=0
+            self.toa_alpha  [ipix]=0
+            self.toa_prevalpha  [ipix]=0
+        
         self.refreshDisplay()
     
 

@@ -27,7 +27,7 @@ Top:
         FpgaTdcClkLow: 0x1
       CalPulse:
         CalPulseDelay: 0x32
-        CalPulseWidth: 2000
+        CalPulseWidth: 8 #2000
         Continuous: 0x0
       ##########################################################################
       SlowControl:
@@ -100,10 +100,10 @@ Top:
       ##########################################################################
       Probe:
         en_probe_dig: 0x1
-        en_probe_pa: 0x1
+        en_probe_pa: 0x0
         EN_dout: 0x0
         pix[4]:
-            probe_pa: 0x1
+            probe_pa: 0x0
             probe_dig_out_disc: 0x1
             probe_vthc: 0x0
             probe_toa: 0x0
@@ -126,13 +126,13 @@ Top:
         RckHighWidth: 0x2   # Min. tuned on 18JULY2019:LLR
         RckLowWidth: 0x2    # Min. tuned on 18JULY2019:LLR
         #####################
-        RestoreProbeConfig: 0x0
+        RestoreProbeConfig: 0x1
         EnProbeWrite: 0x1
         OnlySendFirstHit: 0x1
         #####################
         #Probe cofiguration
-        EnProbeDigOutDisc: 0x0
+        EnProbeDigOutDisc: 0x1
         EnProbeDigSelect: 0x0
-        EnProbeDig: 0x1
-        EnProbePa: 0x1
+        EnProbeDig: 0x4
+        EnProbePa: 0x4
 
