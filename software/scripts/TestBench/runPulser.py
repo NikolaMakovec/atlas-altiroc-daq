@@ -40,11 +40,9 @@ chList=None
 #chList=[0,5,9,10]#,20,23]
 #chList=[24,0,10,15]
 #chList=[3]#,0,10,15,3,7,12,18,4,5]
-<<<<<<< HEAD
-chList=[4]
-=======
+#chList=[4]
 #chList=[12,13,15,16,17,18,19,24]
->>>>>>> 6c5aa043a2d019de98c3964aa4c825fedc7bd70d
+
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
