@@ -18,13 +18,13 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 1
+doTW        = 0
 doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
@@ -167,6 +167,8 @@ def getDelay(board,ch,cd):
         #print (ch,cd,delay)
     elif board==24:
         delay=2400
+    elif board==31:
+        delay=2400
     return delay
 
 def parse_arguments():
@@ -191,8 +193,8 @@ if __name__ == "__main__":
     args = parse_arguments()
     
 
-    boardASICAlone=[4,8,9,10,11,12,14,15,21,24]
-    boardASICV3=[21,24]
+    boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31]
+    boardASICV3=[21,24,31]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
