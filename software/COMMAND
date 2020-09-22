@@ -29,16 +29,14 @@ python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
 
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ 0 --display True --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --delay 2450 --out Data/ --Rin_Vpa 0 --ON_rtest 0 --asicVersion 2 --Vthc 64 --ip 192.168.1.197   --debug False    -N 50 --board 12 --ch 4 --Cd 4 --QMin 5 --QMax 63 --QStep 5 --DAC 320
 
-
-
-
 python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2
-
 python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2  --printEvents True
-
 python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2 --refClkSel ExtSmaClk
 
-python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch4_noProbe.yml --liveDisplay True --asicVersion 2
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --moreStatAtLowQ False --morePointsAtLowQ 0 --display True --useProbePA False --useProbeDiscri False --checkOFtoa False --checkOFtot False --delay 2450 --out Data/ --Rin_Vpa 0 --ON_rtest 0 --asicVersion 2 --Vthc 64 --ip 192.168.1.197   --debug False    -N 50 --board 13 --ch 3 --Cd 4 --QMin 5 --QMax 63 --QStep 5 --DAC 320
+
+
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch3_noProbe.yml --liveDisplay True --asicVersion 2
 
 
 
