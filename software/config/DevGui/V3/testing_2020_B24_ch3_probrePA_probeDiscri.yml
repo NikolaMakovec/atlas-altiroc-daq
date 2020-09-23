@@ -91,6 +91,14 @@ Top:
         #Shifted_ck40: 0x0
         #dac_CP_BWb: 0x10 # V2 maps dac_CP_BW<0> to Shifted_ck40
 
+        ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
+ 
+        coarse_Lcomp_b: 0 # 6 bits
+        coarse_Up_Downb: 0
+        fast_Lcomp_b: 24 # 6 bits
+        fast_Up_Downb: 0x0
+        slow_Lcomp_b: 20 # 6 bits, B24 8
+        slow_Up_Downb: 0x0
 
       ##########################################################################
       Probe:
