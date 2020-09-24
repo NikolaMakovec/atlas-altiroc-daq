@@ -8,32 +8,30 @@ Top:
         RST_COUNTER: 0x0
         DlyCalPulseSet: 2450 # Rising edge of EXT_TRIG
         DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
-      TdcClk:
-        Tdc40MHzClkSel: Pll
-        FpgaTdcClkHigh: 0x1
-        FpgaTdcClkLow: 0x1
       Trig:
         TrigTypeSel: Master
         CalStrobeAlign: 0x3      # Same as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
-        EnCalPulseTrig: 0x1      # Disable calibration pulse
+        EnCalPulseTrig: 0x0      # Disable calibration pulse
         EnBncExtTrig: 0x0        # Disable BNC external trigger
-        EnPcieLocalTrig: 0x0     # Enable the local TOA_BUSY trigger
+        EnPcieLocalTrig: 0x1     # Enable the local TOA_BUSY trigger
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
         TrigSizeBeforePause: 0 # number of triggers before o-scope deadtime (zero bypass deadtime
         DeadtimeDuration: 0    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
+      TdcClk:
+        Tdc40MHzClkSel: Pll
+        FpgaTdcClkHigh: 0x1
+        FpgaTdcClkLow: 0x1
       CalPulse:
         CalPulseDelay: 0x32
-        CalPulseWidth: 20 #2000
+        CalPulseWidth: 2 #2000
         Continuous: 0x0
       ##########################################################################
       SlowControl:
         ########################
-        EN_RPG: 0x1       #inverted???
-        EN_8drivers: 0x1  #inverted???
 
         #general settings:all OFF
         EN_ck_SRAM[:]: 0x0
@@ -58,8 +56,12 @@ Top:
         bit_vth_cor[3]: 64
         ###################
         
-        DLL_ALockR_en: 0x1
+        EN_RPG: 0x1       # ???
+        EN_8drivers: 0x1  #inverted???
 
+        EN_toa_busy: 0
+
+        DLL_ALockR_en: 0x1
 
         totf_satovfw: 0x0
         totc_satovfw: 0x0

@@ -27,13 +27,11 @@ Top:
         FpgaTdcClkLow: 0x1
       CalPulse:
         CalPulseDelay: 0x32
-        CalPulseWidth: 20 #2000
+        CalPulseWidth: 2 #2000
         Continuous: 0x0
       ##########################################################################
       SlowControl:
         ########################
-        EN_RPG: 0x1       #inverted???
-        EN_8drivers: 0x1  #inverted???
 
         #general settings:all OFF
         EN_ck_SRAM[:]: 0x0
@@ -58,8 +56,12 @@ Top:
         bit_vth_cor[3]: 64
         ###################
         
-        DLL_ALockR_en: 0x1
+        EN_RPG: 0x1       #inverted???
+        EN_8drivers: 0x1  #inverted???
 
+        EN_toa_busy: 0
+
+        DLL_ALockR_en: 0x1
 
         totf_satovfw: 0x0
         totc_satovfw: 0x0
