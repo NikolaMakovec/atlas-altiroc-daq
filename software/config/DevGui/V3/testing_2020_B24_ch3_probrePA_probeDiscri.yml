@@ -8,6 +8,10 @@ Top:
         RST_COUNTER: 0x0
         DlyCalPulseSet: 2450 # Rising edge of EXT_TRIG
         DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
+      TdcClk:
+        Tdc40MHzClkSel: Pll
+        FpgaTdcClkHigh: 0x1
+        FpgaTdcClkLow: 0x1
       Trig:
         TrigTypeSel: Master
         CalStrobeAlign: 0x3      # Same as calibration pulse testing
@@ -21,17 +25,16 @@ Top:
         TrigSizeBeforePause: 0 # number of triggers before o-scope deadtime (zero bypass deadtime
         DeadtimeDuration: 0    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
-      TdcClk:
-        Tdc40MHzClkSel: Pll
-        FpgaTdcClkHigh: 0x1
-        FpgaTdcClkLow: 0x1
       CalPulse:
         CalPulseDelay: 0x32
-        CalPulseWidth: 8 #2000
+        CalPulseWidth: 20 #2000
         Continuous: 0x0
       ##########################################################################
       SlowControl:
         ########################
+        EN_RPG: 0x1       #inverted???
+        EN_8drivers: 0x1  #inverted???
+
         #general settings:all OFF
         EN_ck_SRAM[:]: 0x0
         ON_Ctest[:]: 0x0
@@ -74,14 +77,14 @@ Top:
         Rin_Vpa: 0x0 #0
         Cp_Vpa: 0x0
       
-        cd[0]: 0x0 #6
-        cd[1]: 0x0 #6
-        cd[2]: 0x0 #6
+        cd[0]: 0x4 #6
+        cd[1]: 0x4 #6
+        cd[2]: 0x4 #6
    
         dac_biaspa: 30
         dac_pulser: 60
       
-        DAC10bit: 360 #320
+        DAC10bit: 300 #320
 
         ON_dac_LR: 0x0
         #Ck40_choice: 0x1
