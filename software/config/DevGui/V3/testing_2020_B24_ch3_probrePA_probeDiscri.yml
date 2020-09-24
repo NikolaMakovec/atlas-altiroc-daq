@@ -16,9 +16,9 @@ Top:
         TrigTypeSel: Master
         CalStrobeAlign: 0x3      # Same as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
-        EnCalPulseTrig: 0x0      # Disable calibration pulse
+        EnCalPulseTrig: 0x1      # Disable calibration pulse
         EnBncExtTrig: 0x0        # Disable BNC external trigger
-        EnPcieLocalTrig: 0x1     # Enable the local TOA_BUSY trigger
+        EnPcieLocalTrig: 0x0     # Enable the local TOA_BUSY trigger
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
