@@ -87,8 +87,9 @@ Top:
         en_rstb_tot[:]: 0x0
 
         dac_biaspa: 30
-        dac_pulser: 60
 
+        dac_pulser: 60
+        bit_vth_cor[:]: 0x40
         DAC10bit: 300 #320
 
         ON_dac_LR: 0x0
