@@ -39,26 +39,47 @@ Top:
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
         DAC10bit: 300
-        bit_vth_cor[10]: 55   #300 3 4
-        bit_vth_cor[11]: 60   #300 3 4
-        bit_vth_cor[12]: 61   #300 3 4
-        bit_vth_cor[13]: 68   #300 3 4
-        bit_vth_cor[15]: 67   #300 3 4
-        bit_vth_cor[17]: 35   #300 3 4
+        # bit_vth_cor[0]: 70   #300 3 4
+        # bit_vth_cor[10]: 73   #300 3 4
+        # bit_vth_cor[12]: 70   #300 3 4
+        # bit_vth_cor[13]: 67   #300 3 4
+        # bit_vth_cor[14]: 65   #300 3 4
+        # bit_vth_cor[15]: 57   #300 3 4
+        # bit_vth_cor[17]: 49   #300 3 4
+        # bit_vth_cor[18]: 55   #300 3 4
+        # bit_vth_cor[19]: 59   #300 3 4
+        # bit_vth_cor[1]: 52   #300 3 4
+        # bit_vth_cor[24]: 57   #300 3 4
+        # bit_vth_cor[2]: 58   #300 3 4
+        # bit_vth_cor[3]: 58   #300 3 4
+        # bit_vth_cor[4]: 64   #300 3 4
+        # bit_vth_cor[5]: 66   #300 3 4
+        # bit_vth_cor[7]: 56   #300 3 4
+        # bit_vth_cor[8]: 60   #300 3 4
+        # bit_vth_cor[9]: 61   #300 3 4
+        bit_vth_cor[0]: 71   #300 3 4
+        bit_vth_cor[10]: 78   #300 3 4
+        bit_vth_cor[12]: 77   #300 3 4
+        bit_vth_cor[13]: 75   #300 3 4
+        bit_vth_cor[14]: 71   #300 3 4
+        bit_vth_cor[15]: 60   #300 3 4
+        bit_vth_cor[17]: 53   #300 3 4
         bit_vth_cor[18]: 61   #300 3 4
-        bit_vth_cor[19]: 54   #300 3 4
-        bit_vth_cor[24]: 47   #300 3 4
-        bit_vth_cor[2]: 76   #300 3 4
-        bit_vth_cor[3]: 74   #300 3 4
-        bit_vth_cor[4]: 70   #300 3 4
-        bit_vth_cor[5]: 60   #300 3 4
-        bit_vth_cor[6]: 71   #300 3 4
-        bit_vth_cor[7]: 70   #300 3 4
-        bit_vth_cor[8]: 60   #300 3 4
-        bit_vth_cor[9]: 80   #300 3 4
+        bit_vth_cor[19]: 66   #300 3 4
+        bit_vth_cor[1]: 56   #300 3 4
+        bit_vth_cor[24]: 61   #300 3 4
+        bit_vth_cor[2]: 65   #300 3 4
+        bit_vth_cor[3]: 63   #300 3 4
+        bit_vth_cor[4]: 68   #300 3 4
+        bit_vth_cor[5]: 70   #300 3 4
+        bit_vth_cor[7]: 63   #300 3 4
+        bit_vth_cor[8]: 67   #300 3 4
+        bit_vth_cor[9]: 70   #300 3 4
 
+      
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
+
         cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        
         cBit_f_TOA[1]: 0x1
         cBit_f_TOA[12]: 0x1
@@ -80,27 +101,25 @@ Top:
         cBit_s_TOT[:]: 0x0
         cBit_c_TOT[:]: 0x0
         ###################
-        DLL_ALockR_en: 0x1 # should be kept to 1
-        DLL_CP_b: 31 # 5 bits 31 max
 
+        DLL_ALockR_en: 0x1 # should be kept to 1
+        DLL_CP_b: 16 # 10, 5 bits max 31
         ON_ota_dll: 1
-        DLLfast_EXTvctrl_en: 0x1
-        DLLslow_EXTvctrl_en: 0x1
-        DLLcoarse_EXTvctrl_en: 0x1
+        DLLfast_EXTvctrl_en: 0x0
+        DLLslow_EXTvctrl_en: 0x0 
+        DLLcoarse_EXTvctrl_en: 0x0
 
         en_rstb_toa[:]: 0x0  # if 1, tdc under reset
         en_rstb_tot[:]: 0x0
  
-        
+        coarse_Lcomp_b: 4 # 6 bits, max 63
+        coarse_Up_Downb: 1
 
-        fast_Lcomp_b: 63 #50 750 mV, pin 9
-        fast_Up_Downb: 0x1
+        fast_Lcomp_b: 0x0
+        fast_Up_Downb: 0x0
 
-        slow_Lcomp_b: 63 #50 820 mV, pin 10
-        slow_Up_Downb: 0x1
-
-        coarse_Lcomp_b: 0 # 6 bits, max 63, 860 mV, pin 12
-        coarse_Up_Downb: 0
+        slow_Lcomp_b: 0x0
+        slow_Up_Downb: 0x0
 
 
         totf_satovfw: 0x1
@@ -112,7 +131,7 @@ Top:
        
       
         cBitf: 0x0 # with R dividers cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
-        Cbits: 0 #
+        Cbits: 0x0 #
         Cbitc: 0 # with R dividers 0     
 
         ON_rtest: 0x0 # with 1 add  1kOhm in // 
@@ -135,12 +154,47 @@ Top:
         choice_fpga_ck40: 0x1
         EN_8drivers: 0x1
 
-        ON_PLL: 0x0
+# ON_PLL: 0x0
 
-        EN_toa_busy: 0
-
+        EN_toa_busy: 1
 
         ref_bg: 0x0
+
+# ##########****************** Use of the PLL/PS ******************#######################
+        choice_shifted_ck40: 0x0 # 1 if use of Phase Shifted ck40
+        choice_fpga_ck40: 0x1 # 1 if use of FPGA ck 40
+        ON_PLL: 0x0 # 1
+        EN_clps: 0x0 # should be 1 if want to see PS ck40 on SMA
+        PLL_icpb: 32 # 32 6 bits
+
+        dac_CP_BWb: 15 # 15 PLL charge pump
+        EN_ExtVin_vco_PLL: 0x1 # must be set to 1 to minimize PLL jitter (to be understood)
+        setN: 0x0
+        setProbe: 0x5 # select 40 MHz clock for the PS  must be set to 5
+        EN_500: 0x0
+        EN_1000: 0x0
+        EN_2000: 0x0
+        EN_4000: 0x1
+        EN_200p: 0x1
+        EN_LowKvco: 0x0 # PLL
+        FineDelay: 0 # PS fine delay LSB 100 ps (4 bits)
+        CoarseDelay: 0x1 # PS corase delay LSB 1.6 ns (4 bits)
+        p: 0x2
+        forcedown: 0x0
+        inita: 0x1 # 1 to init PPS Dll
+        initb: 0x1 # 1 to init PPS Dll
+        initc: 0x1 # 1 to init PPS Dll
+        cpen: 0x1 # 1 to init PPS Dll
+        PS_cp: 0xf
+        En_40M: 0x0 # if 1 input of PS = EXTERNAL ck 40 MHz and not PLL 40 MHz
+        En_640M: 0x0 # if 1 input of PS = EXTERNAL ck 640 MHz and not PLL 640 MHz
+        FineDelayLum: 0x0 # PS fine delay (lumi)
+        detectEn: 0x0
+
+      ##########################################################################
+
+
+
 
       ##########################################################################
       Readout:
