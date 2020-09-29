@@ -75,7 +75,8 @@ Top:
         cBitf: 0x0 #0
         Cbits: 0x0 #f
         Cbitc: 0x0 #f      
-      
+
+        ON_rtest: 0x0
         Rin_Vpa: 0x0 #0
         Cp_Vpa: 0x0
       

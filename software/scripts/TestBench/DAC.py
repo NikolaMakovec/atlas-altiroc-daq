@@ -223,6 +223,11 @@ def getDACList(board):
         dacList[(24,8,4)]=300#3,0.95,ok 
         dacList[(24,9,4)]=304#3,0.98,ok 
     elif board==27:
+        dacList[(27,20,0)]=266#3,0.83,ok 
+        dacList[(27,21,0)]=276#3,0.92,ok 
+        dacList[(27,22,0)]=266#3,0.82,ok 
+        dacList[(27,23,0)]=266#3,0.51,PRB!!!!!!!!! 
+        dacList[(27,24,0)]=238#3,0.70,PRB!!!!!!!!! 
         pass
     elif board==31:
         #dacList[(31,0,4)]=312#3,0.87,ok 

@@ -75,13 +75,16 @@ Top:
         cBitf: 0x0 #0
         Cbits: 0x0 #f
         Cbitc: 0x0 #f      
-      
+
+        ON_rtest: 0x0
         Rin_Vpa: 0x0 #0
         Cp_Vpa: 0x0
       
         cd[0]: 0x4 #6
         cd[1]: 0x4 #6
         cd[2]: 0x4 #6
+        cd[3]: 0x4 #6
+        cd[4]: 0x4 #6
    
         en_rstb_toa[:]: 0x0  # if 1, tdc under reset
         en_rstb_tot[:]: 0x0
@@ -89,7 +92,6 @@ Top:
         dac_biaspa: 30
 
         dac_pulser: 60
-        bit_vth_cor[:]: 0x40
         DAC10bit: 300 #320
 
         ON_dac_LR: 0x0
