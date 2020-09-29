@@ -19,15 +19,15 @@ from computeVth import *
 doSepDir = 1
 
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 1
-doPS        = 0 # TW with thres. scan
+doTW        = 0
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -36,12 +36,7 @@ doXtalk     = 0 # TOA Channels should be ON
 chList=None
 #chList=range(25)
 #chList=range(20,25)
-#chList=[24,0,4,5,9,10,15,20,23]
-#chList=[0,5,9,10]#,20,23]
-#chList=[24,0,10,15]
-#chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[4]
-#chList=[12,13,15,16,17,18,19,24]
+#chList=range(22,25)
 
 
 #cd list 
@@ -127,7 +122,7 @@ if doXtalk == 1:
 #####################
 
 Nthres=100
-QThresList=[3]#default
+QThresList=[4]#default
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
 thresMax=600 #max is 1023
@@ -302,7 +297,7 @@ if __name__ == "__main__":
         for cd in cdList:
 
 
-            print ("TOTO")
+
             
             delay=getDelay(board,ch,cd)
 
@@ -326,7 +321,7 @@ if __name__ == "__main__":
                     time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
-
+            #dacListLocal=list(range(dacNom,dacNom+20,4))
             
             if doPS:
                 qMin=0;#for pedestal

@@ -156,7 +156,7 @@ Top:
 
 # ON_PLL: 0x0
 
-        EN_toa_busy: 1
+        EN_toa_busy: 0
 
         ref_bg: 0x0
 
