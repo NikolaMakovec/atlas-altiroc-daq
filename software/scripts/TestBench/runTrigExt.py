@@ -37,15 +37,18 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
 
-
+    boardASICV3=[21,24,27,29,31]
     board=args.board
+    asicVersion=2
+    if board in boardASICV3: asicVersion=3
+
 
     chList=list(range(0,25))
 
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=1   #Need 1 for TOTf
+    totRiseEdgeStep=20   #Need 1 for TOTf
 
 
     NTOA=100#was 500
@@ -58,15 +61,13 @@ if __name__ == "__main__":
         toaDelayMax=2300
         #chList=[7,8,6,10,12,13,14,5]
         
-    if board==21:
+    if board in boardASICV3:
         toaDelayMin=1750
         toaDelayMax=2200
 
 
 
-    boardASICV3=[21]
-    asicVersion=2
-    if board in boardASICV3: asicVersion=3
+
 
     
     for ch in chList:
