@@ -41,7 +41,7 @@ build*
 *.ltx
 *.xsa
 
-
+run*sh
 
 
 Data/
