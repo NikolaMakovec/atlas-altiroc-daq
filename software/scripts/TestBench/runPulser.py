@@ -24,8 +24,8 @@ doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 0
-doPS        = 1 # TW with thres. scan
+doTW        = 1
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -321,7 +321,7 @@ if __name__ == "__main__":
                     time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
-            #dacListLocal=list(range(dacNom,dacNom+20,4))
+            #dacListLocal=list(range(dacNom,dacNom+20,8))
             
             if doPS:
                 qMin=0;#for pedestal
@@ -331,10 +331,12 @@ if __name__ == "__main__":
                 qMin=0;#for pedestal
                 qMax=30;
                 qStep=4 #Larger step size
-                dacStep=8
-                dacListLocal=list(range(dacNom-40,dacNom+200,8))
-                if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
-                if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
+                #dacStep=8
+                dacListLocal=list(range(dacNom-40,dacNom+100,2))
+                #dacListLocal+=list(range(dacNom+100,dacNom+200,4))
+                if board in boardASICAlone:
+                    if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
+                    if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
                 dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
 
                 if args.useVthc:

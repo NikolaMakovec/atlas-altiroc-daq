@@ -206,7 +206,7 @@ def measureTimeWalk(argsip,
       outFile):
 
 
-    if args.skipExistingFile and os.path.exists(outFile+'.csv'):
+    if args.skipExistingFile  and os.path.exists(outFile+'.data'):
         print ('output file already exist. Skip......')
         sys.exit()
 
@@ -284,7 +284,7 @@ def measureTimeWalk(argsip,
        ts = str(int(time.time()))
        outFile = outFile+"_"+ts
     outFile = outFile+'.csv'
-    ff = open(outFile,'a')
+    #ff = open(outFile,'a')
     
     #store raw
     outPickle=outFile.replace(".csv",".pkl")
@@ -377,15 +377,15 @@ def measureTimeWalk(argsip,
        if not math.isnan(TOTrms):TOTRMSArray[iQ]=TOTrms
 
 
-       ff.write('NofIterations = '+str(args.N)+'\n')
-       ff.write('DAC10bit = '+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+'\n')
-       ff.write('bit_vth_cor = '+str(top.Fpga[0].Asic.SlowControl.bit_vth_cor[args.ch].set(args.Vthc))+'\n')
+       #ff.write('NofIterations = '+str(args.N)+'\n')
+       #ff.write('DAC10bit = '+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+'\n')
+       #ff.write('bit_vth_cor = '+str(top.Fpga[0].Asic.SlowControl.bit_vth_cor[args.ch].set(args.Vthc))+'\n')
        
-       ff.write("%f,%f,%f,%f,%f,%f,%f,%f,%f,\n"%(QRange[iQ],TOAmean,TOArms,TOTcmean,TOTcrms,TOTfmean,TOTfrms,TOTmean,TOTrms))
+       #ff.write("%f,%f,%f,%f,%f,%f,%f,%f,%f,\n"%(QRange[iQ],TOAmean,TOArms,TOTcmean,TOTcrms,TOTfmean,TOTfrms,TOTmean,TOTrms))
        #print (np.mean(pixel_data['HitDataTOA'][iQ]),np.std(pixel_data['HitDataTOA'][iQ]))
        #print (np.mean(pixel_data['HitDataTOTc'][iQ]),np.std(pixel_data['HitDataTOTc'][iQ]))
        #print (np.mean(pixel_data['HitDataTOTc']),np.std(pixel_data['HitDataTOTc']))
-    ff.close()
+    #ff.close()
     ffData.close()
     #print (QRange)
     #print (TOAMeanArray)
