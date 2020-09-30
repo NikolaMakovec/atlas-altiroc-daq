@@ -32,6 +32,7 @@ Top:
       ##########################################################################
       SlowControl:
         ########################
+
         #general settings:all OFF
         EN_ck_SRAM[:]: 0x0
         ON_Ctest[:]: 0x0
@@ -55,12 +56,16 @@ Top:
         bit_vth_cor[3]: 64
         ###################
         
-        DLL_ALockR_en: 0x1
+        EN_RPG: 0x1       # ???
+        EN_8drivers: 0x1  #inverted???
 
+        EN_toa_busy: 0
+
+        DLL_ALockR_en: 0x1
 
         totf_satovfw: 0x0
         totc_satovfw: 0x0
-        #toa_satovfw: 0x0      
+        toac_satovfw: 0x0      
       
         SatFVa: 0x0 #3
         IntFVa: 0x0 #1
@@ -68,20 +73,26 @@ Top:
         #IntFTz: 0x0 #1  
       
         cBitf: 0x0 #0
-        #cBits: 0x0 #f
-        #cBitc: 0x0 #f      
-      
+        Cbits: 0x0 #f
+        Cbitc: 0x0 #f      
+
+        ON_rtest: 0x0
         Rin_Vpa: 0x0 #0
         Cp_Vpa: 0x0
       
-        cd[0]: 0x0 #6
-        cd[1]: 0x0 #6
-        cd[2]: 0x0 #6
+        cd[0]: 0x4 #6
+        cd[1]: 0x4 #6
+        cd[2]: 0x4 #6
+        cd[3]: 0x4 #6
+        cd[4]: 0x4 #6
    
+        en_rstb_toa[:]: 0x0  # if 1, tdc under reset
+        en_rstb_tot[:]: 0x0
+
         dac_biaspa: 30
+
         dac_pulser: 60
-      
-        DAC10bit: 360 #320
+        DAC10bit: 300 #320
 
         ON_dac_LR: 0x0
         #Ck40_choice: 0x1
@@ -100,6 +111,13 @@ Top:
         slow_Lcomp_b: 20 # 6 bits, B24 8
         slow_Up_Downb: 0x0
 
+
+        DLL_ALockR_en: 0x1 # should be kept to 1
+        DLL_CP_b: 16 # 5 bits
+        ON_ota_dll: 1
+        DLLfast_EXTvctrl_en: 0x1
+        DLLslow_EXTvctrl_en: 0x1
+        DLLcoarse_EXTvctrl_en: 0x1
       ##########################################################################
       Probe:
         en_probe_dig: 0x0

@@ -38,6 +38,7 @@ Top:
         ON_discri[:]: 0x0      
   
         DAC10bit: 300
+        bit_vth_cor[:]: 0x40
 
         #chOFF rtest=0
         # bit_vth_cor[0]: 68   #300 3 4

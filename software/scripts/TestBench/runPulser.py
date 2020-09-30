@@ -25,9 +25,9 @@ doVthcScan  = 0
 
 
 doTW        = 0
-doPS        = 0 # TW with thres. scan
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -35,13 +35,8 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=range(25)
-#chList=range(5)
-#chList=[24,0,4,5,9,10,15,20,23]
-#chList=[0,5,9,10]#,20,23]
-#chList=[24,0,10,15]
-#chList=[3]#,0,10,15,3,7,12,18,4,5]
-#chList=[4]
-#chList=[12,13,15,16,17,18,19,24]
+#chList=range(20,25)
+#chList=range(22,25)
 
 
 #cd list 
@@ -93,8 +88,8 @@ delayStep=5
 delayMin=2200
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,24,32,63]#default
-#QTOAList=[6,63]#6,7,16,63]#default
-QTOAList=[4,8,16]
+QTOAList=[6,63]#6,7,16,63]#default
+#QTOAList=[4,8,16]
 #QTOAList=[6,63]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
 
@@ -127,7 +122,7 @@ if doXtalk == 1:
 #####################
 
 Nthres=100
-QThresList=[3]#default
+QThresList=[4]#default
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
 thresMax=600 #max is 1023
@@ -177,6 +172,7 @@ def getDelay(board,ch,cd):
 def parse_arguments():
     parser = argparse.ArgumentParser()
     argBool = lambda s: s.lower() in ['true', 't', 'yes', '1']
+    parser.add_argument("--ip", required = False, default = '192.168.1.197', help = "IP address")
     parser.add_argument("-o", "--outputDir", default = "Data/")
     parser.add_argument("-b", "--board", type = int, required = False, default = 8,help = "Choose board")
     parser.add_argument("-c","--ch", type = int, required = False, default = 4, help = "channel")
@@ -201,6 +197,7 @@ if __name__ == "__main__":
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
+    ip=args.ip
     
     #detector capacitance
     #cdList=[4]
@@ -300,7 +297,7 @@ if __name__ == "__main__":
         for cd in cdList:
 
 
-            print ("TOTO")
+
             
             delay=getDelay(board,ch,cd)
 
@@ -324,7 +321,7 @@ if __name__ == "__main__":
                     time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
-
+            #dacListLocal=list(range(dacNom,dacNom+20,4))
             
             if doPS:
                 qMin=0;#for pedestal
@@ -357,7 +354,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion,ip)
 
 
                         if not args.useVthc  or (args.useVthc and doPS):#take the one from config
@@ -393,7 +390,7 @@ if __name__ == "__main__":
                             print (outdir)
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion)
+                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion,ip)
 
                             if not args.useVthc:#take the one from config
                                 #vthc=64
@@ -439,7 +436,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion,ip)
                     cmd+=" --Vthc 64"
 
                     
