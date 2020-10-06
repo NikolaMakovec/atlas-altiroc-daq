@@ -33,33 +33,34 @@ Top:
       SlowControl:
         ########################
         #general settings -> all off
-        EN_ck_SRAM[:]: 0x1
+        EN_ck_SRAM[:]: 0x0
         ON_Ctest[:]: 0x0
         disable_pa[:]: 0x0
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
         DAC10bit: 300
+        #EN_ck_SRAM[2]: 0x1
 
-        bit_vth_cor[0]: 67   # NSM alignement at 310 for Q=3
-        bit_vth_cor[1]: 58   # NSM alignement at 310 for Q=3
+        bit_vth_cor[0]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[1]: 64  # NSM alignement at 310 for Q=3
         bit_vth_cor[2]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[3]: 59   # NSM alignement at 310 for Q=3
-        bit_vth_cor[4]: 63   # NSM alignement at 310 for Q=3
-        bit_vth_cor[5]: 70   # NSM alignement at 310 for Q=3
+        bit_vth_cor[3]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[4]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[5]: 64  # NSM alignement at 310 for Q=3
         bit_vth_cor[6]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[7]: 61   # NSM alignement at 310 for Q=3
-        bit_vth_cor[8]: 63   # NSM alignement at 310 for Q=3
+        bit_vth_cor[7]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[8]: 64   # NSM alignement at 310 for Q=3
         bit_vth_cor[9]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[10]: 77   # NSM alignement at 310 for Q=3
+        bit_vth_cor[10]: 64   # NSM alignement at 310 for Q=3
         bit_vth_cor[11]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[12]: 71   # NSM alignement at 310 for Q=3
-        bit_vth_cor[13]: 68   # NSM alignement at 310 for Q=3
-        bit_vth_cor[14]: 67   # NSM alignement at 310 for Q=3
+        bit_vth_cor[12]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[13]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[14]: 64   # NSM alignement at 310 for Q=3
         bit_vth_cor[15]: 64   # NSM alignement at 310 for Q=3
         bit_vth_cor[16]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[17]: 48   # NSM alignement at 310 for Q=3
-        bit_vth_cor[18]: 57   # NSM alignement at 310 for Q=3
-        bit_vth_cor[19]: 63   # NSM alignement at 310 for Q=3
+        bit_vth_cor[17]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[18]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[19]: 64   # NSM alignement at 310 for Q=3
         bit_vth_cor[20]: 64   # 
         bit_vth_cor[21]: 64   # 
         bit_vth_cor[22]: 64   # 
@@ -69,42 +70,55 @@ Top:
       
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
+
         cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        
-        cBit_f_TOA[1]: 0x1
-        cBit_f_TOA[12]: 0x1
-        cBit_f_TOA[13]: 0x2
-        cBit_f_TOA[14]: 0x1
-        cBit_f_TOA[17]: 0x1
-        cBit_f_TOA[18]: 0x1 
+        cBit_f_TOA[1]: 0x0
+        cBit_f_TOA[12]: 0x0
+        cBit_f_TOA[13]: 0x0
+        cBit_f_TOA[14]: 0x0
+        cBit_f_TOA[17]: 0x0
+        cBit_f_TOA[18]: 0x0
+ 
         cBit_s_TOA[0]: 0x0
-        cBit_s_TOA[3]: 0x1
-        cBit_s_TOA[4]: 0x1
-        cBit_s_TOA[5]: 0x1
-        cBit_s_TOA[9]: 0x1
-        cBit_s_TOA[15]: 0x1
-        cBit_s_TOA[19]: 0x1
-        cBit_s_TOA[20]: 0x1
-        cBit_s_TOA[22]: 0x1
-        cBit_s_TOA[23]: 0x1
+        cBit_s_TOA[3]: 0x0
+        cBit_s_TOA[4]: 0x0
+        cBit_s_TOA[5]: 0x0
+        cBit_s_TOA[9]: 0x0
+        cBit_s_TOA[15]: 0x0
+        cBit_s_TOA[19]: 0x0
+        cBit_s_TOA[20]: 0x0
+        cBit_s_TOA[22]: 0x0
+        cBit_s_TOA[23]: 0x0
+
         cBit_f_TOT[:]: 0x0
         cBit_s_TOT[:]: 0x0
         cBit_c_TOT[:]: 0x0
         ###################
 
+        cBitf: 0x0 # Global SC, B24 2. DLL cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
+        Cbits: 0x0 #
+        Cbitc: 0 # 
+
+        en_rstb_toa[:]: 0x0  # if 1, tdc under reset
+        en_rstb_tot[:]: 0x0
+
+        ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
+ 
+        ###################
         DLL_ALockR_en: 0x1 # should be kept to 1
-        DLL_CP_b: 0x10
+        DLL_CP_b: 16 # 5 bits
         ON_ota_dll: 1
-        DLLfast_EXTvctrl_en: 0x1
-        DLLslow_EXTvctrl_en: 0x1 
-        DLLcoarse_EXTvctrl_en: 0x1 
+        DLLfast_EXTvctrl_en: 0x0
+        DLLslow_EXTvctrl_en: 0x0
+        DLLcoarse_EXTvctrl_en: 0x0
 
-        coarse_Lcomp_b: 0 #63 # 6 bits
-        coarse_Up_Downb: 0 # 1
-        fast_Lcomp_b: 0 #63 # 6 bits
-        fast_Up_Downb: 0 #1
-        slow_Lcomp_b: 0 # 63 # 6 bits, B24 8
-        slow_Up_Downb: 0 #1
-
+        coarse_Lcomp_b: 8 # 6 bits, B29 8
+        coarse_Up_Downb: 1 # B29 1
+        fast_Lcomp_b: 0 # 6 bits, B29 0
+        fast_Up_Downb: 0 
+        slow_Lcomp_b: 0 # 6 bits, B29 0
+        slow_Up_Downb: 0
+       ###################
 
         totf_satovfw: 0x1
         totc_satovfw: 0x1
@@ -112,25 +126,19 @@ Top:
       
         SatFVa: 0x4 #3
         IntFVa: 0x0 #1
-       
-        cBitf: 0x0 # with R dividers cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
-        Cbits: 0x2 #
-        Cbitc: 5 # with R dividers 0     
+                 
+        Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K for V3, 15K for V2
+        Cp_Vpa: 0x0 # 3 bits
 
-        ON_rtest: 0x0 # with 1 add  1kOhm in // 
-        Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K.
-        Cp_Vpa: 0x0
-
-        cd[0]: 0x0 
-        cd[1]: 0x0 
-        cd[2]: 0x0
-        cd[3]: 0x0
-        cd[4]: 0x0 
+        cd[0]: 0x0 # for all pixels in the column
+        cd[1]: 0x0 # for all pixels in the column
+        cd[2]: 0x0 # for all pixels in the column
+        cd[3]: 0x0 # for all pixels in the column
+        cd[4]: 0x0 # only for last pixel (V3)
    
-        dac_biaspa: 30 #10
+        dac_biaspa: 30 #30
         #ON_dac_biaspa: 0x1
         dac_pulser: 12 
-      
 
         ON_dac_LR: 0x0 #RPG
         choice_shifted_ck40: 0x0
@@ -141,8 +149,48 @@ Top:
 
         EN_toa_busy: 0
 
-
         ref_bg: 0x0
+
+##########****************** Use of RPG ******************#######################
+        ON_dac_LR: 0x0 #RPG
+        dac: 0 # DAC for RPG
+        EN_RPG: 0x1 # !!! if 1, RPG OFF.......
+##########****************** Use of RPG ******************#######################       
+        
+        EN_8drivers: 0x1
+
+
+# ##########****************** Use of the PLL/PS ******************#######################
+#         choice_shifted_ck40: 0x1 # 1 if use of Phase Shifted ck40
+#         choice_fpga_ck40: 0x0 # 1 if use of FPGA ck 40
+#         ON_PLL: 0x1 # 1
+#         EN_clps: 0x1 # should be 1 if want to see PS ck40 on SMA
+#         PLL_icpb: 32 # 32 6 bits
+
+#         dac_CP_BWb: 15 # 15 PLL charge pump
+#         EN_ExtVin_vco_PLL: 0x1 # must be set to 1 to minimize PLL jitter (to be understood)
+#         setN: 0x0
+#         setProbe: 0x5 # select 40 MHz clock for the PS : METTRE A 5
+#         EN_500: 0x0
+#         EN_1000: 0x0
+#         EN_2000: 0x0
+#         EN_4000: 0x1
+#         EN_200p: 0x1
+#         EN_LowKvco: 0x0 # PLL
+#         FineDelay: 1 # PS fine delay LSB 100 ps (4 bits)
+#         CoarseDelay: 0x0 # PS corase delay LSB 1.6 ns (4 bits)
+#         p: 0x0
+#         forcedown: 0x0
+#         inita: 0x1 # 1 to init PPS Dll
+#         initb: 0x1 # 1 to init PPS Dll
+#         initc: 0x1 # 1 to init PPS Dll
+#         cpen: 0x1 # 1 to init PPS Dll
+#         PS_cp: 0xf
+#         En_40M: 0x0 # if 1 input of PS = EXTERNAL ck 40 MHz and not PLL 40 MHz
+#         En_640M: 0x0 # if 1 input of PS = EXTERNAL ck 640 MHz and not PLL 640 MHz
+#         FineDelayLum: 0x0 # PS fine delay (lumi)
+#         detectEn: 0x0
+
 
 
       ##########################################################################
