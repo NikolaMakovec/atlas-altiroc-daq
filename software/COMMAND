@@ -11,16 +11,17 @@ python scripts/TestBench/measureTOA.py --skipExistingFile True -N 100 --debug Fa
 #
 ###########################################################
 
+ip=192.168.1.197
 B=21
 
-python scripts/TestBench/runTrigExt.py  -b $B --toa  > runTOA.sh
-python scripts/TestBench/runTrigExt.py  -b $B --tot  > runTOT.sh
+python scripts/TestBench/runTrigExt.py  -b $B --toa  --ip $ip  > runTOA.sh
+python scripts/TestBench/runTrigExt.py  -b $B --tot  --ip $ip  > runTOT.sh
 
-python scripts/TestBench/runPulser.py  -b $B
-#python scripts/TestBench/runPulser.py  -b $B --useVthc
-#python scripts/TestBench/runPulser.py  -b $B --chON 
-python scripts/TestBench/runPulser.py  -b $B --useVthc --chON 
-python scripts/TestBench/runPulser.py  -b $B --useVthc --chON --ctestON
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip
+#python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc
+#python scripts/TestBench/runPulser.py  -b $B  --ip $ip --chON 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON
 
 #######################################################################################################################
 

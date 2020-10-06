@@ -18,14 +18,14 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
 doTW        = 0
-doPS        = 1 # TW with thres. scan
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -41,7 +41,7 @@ chList=None
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[6]
+cdList=[4]
 #cdList=[1]
 #cdList=range(0,4+1)
 
