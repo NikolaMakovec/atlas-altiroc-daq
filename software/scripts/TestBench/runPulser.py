@@ -24,8 +24,8 @@ doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
-doTW        = 1
-doPS        = 0 # TW with thres. scan
+doTW        = 0
+doPS        = 1 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -41,7 +41,7 @@ chList=None
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[4]
+cdList=[6]
 #cdList=[1]
 #cdList=range(0,4+1)
 
@@ -122,7 +122,7 @@ if doXtalk == 1:
 #####################
 
 Nthres=100
-QThresList=[4]#default
+QThresList=[3,4]#default
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
 thresMax=600 #max is 1023
@@ -332,8 +332,8 @@ if __name__ == "__main__":
                 qMax=30;
                 qStep=4 #Larger step size
                 #dacStep=8
-                dacListLocal=list(range(dacNom-40,dacNom+100,2))
-                #dacListLocal+=list(range(dacNom+100,dacNom+200,4))
+                dacListLocal=list(range(dacNom-40,dacNom+100,8))
+                dacListLocal+=list(range(dacNom+100,dacNom+200,8))
                 if board in boardASICAlone:
                     if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
                     if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
