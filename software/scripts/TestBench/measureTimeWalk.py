@@ -280,16 +280,16 @@ def measureTimeWalk(argsip,
     # Data Processing TOA #
     #######################
     #store mean and rms
-    if os.path.exists(outFile+'.csv'):
+    if os.path.exists(outFile+'.data'):
        ts = str(int(time.time()))
        outFile = outFile+"_"+ts
-    outFile = outFile+'.csv'
+    outFile = outFile+'.data'
     #ff = open(outFile,'a')
     
     #store raw
-    outPickle=outFile.replace(".csv",".pkl")
+    outPickle=outFile.replace(".data",".pkl")
     #pickle.dump((QRange,pixel_data),open(outPickle,"wb"))
-    outData=outFile.replace(".csv",".data")
+    outData=outFile
     ffData = open(outData,'a')
 
 
@@ -506,7 +506,7 @@ def measureTimeWalk(argsip,
         # ax6.set_ylim(bottom = 0, top = np.max(TOTcMeanArray)*1.1)
 
        #  plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
-        plt.savefig(outFile.replace(".csv",".pdf"))
+        plt.savefig(outFile.replace(".data",".pdf"))
         if args.display:plt.show()
        #  #################################################################
 
