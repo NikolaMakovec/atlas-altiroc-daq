@@ -18,16 +18,16 @@ from computeVth import *
 
 doSepDir = 1
 
-doThres     = 1
+doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 
 doTW        = 0
-doPS        = 0 # TW with thres. scan
+doPS        = 1 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -88,7 +88,7 @@ delayStep=5
 delayMin=2200
 delayMax=2700
 QTOAList=[4,5,6,8,12,16,24,32,63]#default
-QTOAList=[6,63]#6,7,16,63]#default
+#QTOAList=[6,63]#6,7,16,63]#default
 #QTOAList=[4,8,16]
 #QTOAList=[6,63]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
@@ -158,10 +158,10 @@ def getDelay(board,ch,cd):
     if board==8:
         delay=2500
     elif board==21:
-        delay=2350
-        # #if ch>=20:delay=2400
-        if cd<4 or ch>=20:
-            delay=2400
+        #delay=2350
+        ## #if ch>=20:delay=2400
+        #if cd<4 or ch>=20:
+        delay=2400
         #print (ch,cd,delay)
     elif board==24:
         delay=2400
