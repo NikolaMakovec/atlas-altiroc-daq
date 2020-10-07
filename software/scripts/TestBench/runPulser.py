@@ -165,6 +165,8 @@ def getDelay(board,ch,cd):
         #print (ch,cd,delay)
     elif board==24:
         delay=2400
+    elif board==29:
+        delay=2400
     elif board==31:
         delay=2400
     return delay
@@ -279,7 +281,7 @@ if __name__ == "__main__":
     #channel list
     if chList==None:
         if dacMap==None or len(dacMap)==0:
-            chList=range(15)
+            chList=range(25)
         else:            
             chList= set([k[1] for k in sorted(dacMap.keys())])
         #chList=list(range(15,25))+list(range(0,15))
