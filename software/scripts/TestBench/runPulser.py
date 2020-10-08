@@ -87,8 +87,7 @@ Ntoa=50;
 delayStep=5 
 delayMin=2200
 delayMax=2700
-QTOAList=[4,5,6,8,12,16,24,32,63]#default
-#QTOAList=[6,63]#6,7,16,63]#default
+
 #QTOAList=[4,8,16]
 #QTOAList=[6,63]
 #Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
@@ -122,7 +121,6 @@ if doXtalk == 1:
 #####################
 
 Nthres=100
-QThresList=[3,4]#default
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
 thresMax=600 #max is 1023
@@ -391,7 +389,6 @@ if __name__ == "__main__":
                                 delayMax=2300
                             outdir=args.outputDir+"/"+toaDir+"/"
                             logName=outdir+'/delayTOA_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ON_rtest,ch,cd,Q,dac)
-                            print (outdir)
                             try:os.makedirs(outdir)
                             except:pass
                             cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion,ip)
