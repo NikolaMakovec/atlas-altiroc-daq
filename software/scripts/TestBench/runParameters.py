@@ -13,7 +13,7 @@ doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-#chList=[0]
+#chList=[0,2]
 #chList=range(25)
 
 #cd list 
@@ -29,7 +29,7 @@ QThresList=[3,4]#default
 #special settings
 Rin_Vpa=0
 ON_rtest=0
-toa_busy=1
+toa_busy=0
 
 
 doSepDir = 1

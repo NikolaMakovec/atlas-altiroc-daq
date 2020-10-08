@@ -289,7 +289,7 @@ if __name__ == "__main__":
                     time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
-            #dacListLocal=list(range(dacNom,dacNom+20,8))
+            #dacListLocal=list(range(dacNom-8,dacNom+40,8))
             
             if doPS:
                 qMin=0;#for pedestal
