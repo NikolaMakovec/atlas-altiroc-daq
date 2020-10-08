@@ -57,6 +57,7 @@ def parse_arguments():
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = Rin_Vpa, help = "RinVpa")
     parser.add_argument("--ON_rtest", type = int, required = False, default = 0, help = "RinVpa")
+    parser.add_argument("--toa_busy", type = int, required = False, default = 0, help = "")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
     parser.add_argument("--Cd", type = int, required = False, default = -1, help = "Cd")
     parser.add_argument("--N","-N", type = int, required = False, default = 100, help = "Nb of events")
@@ -92,7 +93,12 @@ def parse_arguments():
         extra+="allChON"
     if args.allCtestON:
         extra+="allCtestON"
-    args.out='%sthres_B_%d_rin_%d_ch_%d_cd_%d_delay_%d_Q_%d_vthc_%d_thres_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ch,args.Cd,args.delay,args.Q,args.Vthc,args.DAC,extra)
+    args.out='%sthres_B_%d_rin_%d_%d_toabusy_%d_rtest_ch_%d_cd_%d_delay_%d_Q_%d_vthc_%d_thres_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.toa_busy,args.ON_rtest,args.ch,args.Cd,args.delay,args.Q,args.Vthc,args.DAC,extra)
+
+
+
+
+            
     return args
 
 ##############################################################################

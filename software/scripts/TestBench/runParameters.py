@@ -6,13 +6,14 @@ doVthcScan  = 0
 doTW        = 1
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
+#chList=[0]
 #chList=range(25)
 
 #cd list 
@@ -28,6 +29,7 @@ QThresList=[3,4]#default
 #special settings
 Rin_Vpa=0
 ON_rtest=0
+toa_busy=1
 
 
 doSepDir = 1

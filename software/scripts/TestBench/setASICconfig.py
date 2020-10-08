@@ -108,7 +108,10 @@ def set_pixel_specific_parameters(top, pixel_number,args):
 
 
     top.Fpga[0].Asic.SlowControl.Rin_Vpa.set(args.Rin_Vpa)
-    if args.asicVersion==3:  top.Fpga[0].Asic.SlowControl.ON_rtest.set(args.ON_rtest)
+    if args.asicVersion==3:
+        top.Fpga[0].Asic.SlowControl.ON_rtest.set(args.ON_rtest)
+        top.Fpga[0].Asic.SlowControl.EN_toa_busy.set(args.toa_busy)
+        
     if args.Vthc>0:        top.Fpga[0].Asic.SlowControl.bit_vth_cor[pixel_number].set(args.Vthc) # alignment
         
     #Readout: only 1 channel

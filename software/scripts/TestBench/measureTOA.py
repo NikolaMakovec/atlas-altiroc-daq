@@ -104,6 +104,7 @@ def parse_arguments():
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = 0, help = "RinVpa")
     parser.add_argument("--ON_rtest", type = int, required = False, default = 0, help = "RinVpa")
+    parser.add_argument("--toa_busy", type = int, required = False, default = 0, help = "")
     parser.add_argument("--Vthc", type = int, required = False, default = -1, help = "Vth cor")
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
@@ -136,7 +137,11 @@ def parse_arguments():
         extra+="allChON"
     if args.allCtestON:
         extra+="allCtestON"
-    args.out='%sTOA_B_%d_rin_%d_ch_%d_cd_%d_Q_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.ch,args.Cd,args.Q,args.DAC,args.Vthc,extra)
+    args.out='%sTOA_B_%d_rin_toabusy_%d_rtest_%d_%d_ch_%d_cd_%d_Q_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.toa_busy,args.ON_rtest,args.ch,args.Cd,args.Q,args.DAC,args.Vthc,extra)
+
+
+
+
         
 
     return args

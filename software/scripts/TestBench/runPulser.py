@@ -12,43 +12,6 @@ import math                                                    ##
 from DAC import *
 from computeVth import *
 from runParameters import *
-#####################
-# 
-#####################
-
-# doSepDir = 1
-
-# doThres     = 1
-# doNoise     = 0 # Thres with high stat for few Q
-# doLinearity = 0 # Thres for many Q
-# doVthcScan  = 0
-
-
-# doTW        = 0
-# doPS        = 0 # TW with thres. scan
-
-# doTOA       = 0
-# doClockTree = 0 # TOA with at least Q=63 and maybe larger N
-# doDNL       = 0 # TOA step=1
-# doXtalk     = 0 # TOA Channels should be ON
-
-# #ch list
-# chList=None
-# #chList=range(25)
-# #chList=range(20,25)
-# #chList=range(22,25)
-
-
-# #cd list 
-# cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-# cdList=[6,7]
-# #cdList=[1]
-# #cdList=range(0,4+1)
-
-# #special settings
-# Rin_Vpa=0
-# ON_rtest=0
-
 
 #####################
 # 
@@ -241,6 +204,11 @@ if __name__ == "__main__":
             twDir+="-rtestON"
             thresDir+="-rtestON"
             
+        if toa_busy>0:
+            toaDir+="-toabusy1"
+            twDir+="-toabusy1"
+            thresDir+="-toabusy1"
+            
         if Rin_Vpa>0:
             toaDir+="-RinVpa"+str(Rin_Vpa)
             twDir+="-RinVpa"+str(Rin_Vpa)
@@ -330,10 +298,10 @@ if __name__ == "__main__":
                 #dacListLocal=list(range(dacNom-20,dacNom+110,10))
                 qMin=0;#for pedestal
                 qMax=30;
-                qStep=4 #Larger step size
-                #dacStep=8
-                dacListLocal=list(range(dacNom-40,dacNom+100,8))
-                dacListLocal+=list(range(dacNom+100,dacNom+200,8))
+                qStep=8 #default 8
+                dacStep=8 #default 8
+                dacListLocal=list(range(dacNom-40,dacNom+200,dacStep))
+                #dacListLocal+=list(range(dacNom+100,dacNom+200,4))
                 if board in boardASICAlone:
                     if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
                     if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
@@ -356,7 +324,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,ON_rtest,asicVersion,ip)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
 
 
                         if not args.useVthc  or (args.useVthc and doPS):#take the one from config
@@ -388,10 +356,10 @@ if __name__ == "__main__":
                                 delayMin=1800
                                 delayMax=2300
                             outdir=args.outputDir+"/"+toaDir+"/"
-                            logName=outdir+'/delayTOA_B_%d_rin_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,ON_rtest,ch,cd,Q,dac)
+                            logName=outdir+'/delayTOA_B_%d_rin_%d_toa_busy_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,toa_busy,ON_rtest,ch,cd,Q,dac)
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
 
                             if not args.useVthc:#take the one from config
                                 #vthc=64
@@ -437,7 +405,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,ON_rtest,asicVersion,ip)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d  --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
                     cmd+=" --Vthc 64"
 
                     
@@ -479,6 +447,7 @@ print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
 print ("Rin_vpa:",Rin_Vpa)
 print ("ON_rtest:",ON_rtest)
+print ("EN_toa_busy:",toa_busy)
 
 
 print("===========================================> board: "+str(args.board))
