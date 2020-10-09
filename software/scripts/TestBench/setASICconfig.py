@@ -103,7 +103,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     #some more config
     #top.Fpga[0].Asic.CalPulse.CalPulseDelay.set(2000) # CAL pulse frequency 4000=0xfa0 = 100 KHz (100 µs)
     #top.Fpga[0].Asic.CalPulse.CalPulseWidth.set(12) # CAL pulse width 12 = 0xc= 75 ns
-    top.Fpga[0].Asic.CalPulse.CalPulseDelay.set(50)
+    top.Fpga[0].Asic.CalPulse.CalPulseDelay.set(2000)
     top.Fpga[0].Asic.CalPulse.CalPulseWidth.set(2000)
 
 
