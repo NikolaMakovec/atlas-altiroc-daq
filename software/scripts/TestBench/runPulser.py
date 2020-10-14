@@ -293,16 +293,13 @@ if __name__ == "__main__":
             
             if doPS:
                 qMin=0;#for pedestal
-                #qMax=26+1#26;
-                #qStep=4 #for pulse shape#PULSESHAPE
-                #dacListLocal=list(range(dacNom-20,dacNom+110,10))
-                qMin=0;#for pedestal
-                qMax=30;
-                qStep=8 #default 8
-                dacStep=8 #default 8
-                dacListLocal=list(range(dacNom-40,dacNom+200,dacStep))
-                #dacListLocal+=list(range(dacNom+100,dacNom+200,4))
+                qMax=60;
+                qStep=8   #default 8
+                dacStep=4 #default 8
+                dacListLocal=list(range(dacNom-40,dacNom+100,dacStep))
+                dacListLocal+=list(range(dacNom+100,dacNom+160,dacStep))
                 if board in boardASICAlone:
+                    dacListLocal+=list(range(dacNom+160,dacNom+200,dacStep))
                     if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
                     if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
                 dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
