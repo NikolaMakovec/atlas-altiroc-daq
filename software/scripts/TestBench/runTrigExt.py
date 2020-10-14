@@ -44,6 +44,7 @@ if __name__ == "__main__":
     ip=args.ip
 
     chList=list(range(0,25))
+    #chList=[6,11,16,21]
 
     NTOT=20
     totRiseEdgeMin=700
@@ -67,21 +68,29 @@ if __name__ == "__main__":
 
 
 
-
+    bName="B"
+    if args.board<10:
+        bName+="0"
+    bName+=str(args.board)
+    
 
     
     for ch in chList:
         if args.toa:
-            #nameTOA='Data/delayScanTrigExt_B_%d_ch_%d_'%(board,ch)
-            nameTOA='Data/delayScanTrigExt_'
+            outdir="Data/"+bName+"-toaTrigExt/"
+            try:os.makedirs(outdir)
+            except:pass
+            nameTOA=outdir+'/delayScanTrigExt_'
             cmdTOA="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --delayMin %d --delayMax %d --delayStep %d  --out %s --asicVersion %d --ip %s"%(NTOA,board,ch,toaDelayMin,toaDelayMax,toaDelayStep,nameTOA,asicVersion,ip)
             print(cmdTOA)
             print("sleep 5")
 
 
         if args.tot:
-            #nameTOT='Data/widthScanTrigExt_B_%d_ch_%d_'%(board,ch)
-            nameTOT='Data/widthScanTrigExt_'
+            outdir="Data/"+bName+"-totTrigExt/"
+            try:os.makedirs(outdir)
+            except:pass
+            nameTOT=outdir+'/widthScanTrigExt_'
             cmdTOT="python scripts/TestBench/measureTOT.py --skipExistingFile True  -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --riseEdgeMin %d --riseEdgeMax %d --riseEdgeStep %s --out %s --asicVersion %d --ip %s"%(NTOT,board,ch,totRiseEdgeMin,totRiseEdgeMax,totRiseEdgeStep,nameTOT,asicVersion,ip)
             print(cmdTOT)
             print("sleep 5")
