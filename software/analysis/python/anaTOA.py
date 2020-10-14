@@ -147,7 +147,10 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         
     #compute LSB from a fit
     #params, covariance = optimize.curve_fit(pol1, delayArray[okEff],toaMeanArray[okEff],p0=[1/20, 10000])#fit using scipy
-    params=np.polyfit(delayArray[okEff],toaMeanArray[okEff], 1)
+    if len(delayArray[okEff])>0:
+        params=np.polyfit(delayArray[okEff],toaMeanArray[okEff], 1)
+    else:
+        continue
     LSBTOA=0
     if params[0]!=0:
         LSBTOA=abs(1/params[0])
