@@ -51,11 +51,6 @@ delayStep=5
 delayMin=2200
 delayMax=2700
 
-#QTOAList=[4,8,16]
-#QTOAList=[6,63]
-#Ntoa=500;delayStep=20;#QTOAList=[63] #Default to check distributions
-
-
 if doDNL:
     doTOA=1
     delayStep=1
