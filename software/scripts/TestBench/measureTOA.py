@@ -347,7 +347,7 @@ def measureTOA(argsip,
     HTOA[HTOA==0]=np.nan
     current_cmap = matplotlib.cm.get_cmap()
     current_cmap.set_bad(color='white')
-    ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.YlGnBu)
+    ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.rainbow)
     ax1.scatter(Delay, DataMean, facecolors='none', edgecolors='b')
     ax1.plot(Delay,         linear_fit_slope*Delay+        linear_fit_intersep, color='r')
 
