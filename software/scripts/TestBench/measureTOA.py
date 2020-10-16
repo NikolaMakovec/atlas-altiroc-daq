@@ -100,6 +100,7 @@ def parse_arguments():
     #parser.add_argument( "--moreStatForFewPoints", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
+    parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = 0, help = "RinVpa")
@@ -135,6 +136,8 @@ def parse_arguments():
     extra=""
     if args.allChON:
         extra+="allChON"
+    if args.allCkSRAMON:
+        extra+="allCkSRAMON"
     if args.allCtestON:
         extra+="allCtestON"
     args.out='%sTOA_B_%d_rin_toabusy_%d_rtest_%d_%d_ch_%d_cd_%d_Q_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.toa_busy,args.ON_rtest,args.ch,args.Cd,args.Q,args.DAC,args.Vthc,extra)

@@ -3,8 +3,8 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
-doTW        = 0
-doPS        = 1 # TW with thres. scan
+doTW        = 1
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -13,7 +13,7 @@ doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=[2,7]
+#chList=[20]
 #chList=range(25)
 
 #cd list 
@@ -30,7 +30,7 @@ QThresList=[3,4]#default
 #special settings
 Rin_Vpa=0
 ON_rtest=0
-toa_busy=0
+#toa_busy=0
 
 
 doSepDir = 1

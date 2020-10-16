@@ -137,6 +137,8 @@ def parse_arguments():
     parser.add_argument("--cfg", required = False, default = None)
     parser.add_argument("-p","--prefix", required = False, default = None)
     parser.add_argument("--chON", action="store_true", default = False)
+    parser.add_argument("--toabusyON", action="store_true", default = False)
+    parser.add_argument("--ckSRAMON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
     parser.add_argument("--readAllChannels", action="store_true", default = False)
@@ -184,6 +186,16 @@ if __name__ == "__main__":
             twDir+="-Vthc"
             thresDir+="-Vthc"
 
+        if args.toabusyON:
+            toaDir+="-toabusyON"
+            twDir+="-toabusyON"
+            thresDir+="-toabusyON"
+            
+        if args.ckSRAMON:
+            toaDir+="-ckSRAMON"
+            twDir+="-ckSRAMON"
+            thresDir+="-ckSRAMON"
+            
         if args.chON:
             toaDir+="-chON"
             twDir+="-chON"
@@ -198,11 +210,6 @@ if __name__ == "__main__":
             toaDir+="-rtestON"
             twDir+="-rtestON"
             thresDir+="-rtestON"
-            
-        if toa_busy>0:
-            toaDir+="-toabusy1"
-            twDir+="-toabusy1"
-            thresDir+="-toabusy1"
             
         if Rin_Vpa>0:
             toaDir+="-RinVpa"+str(Rin_Vpa)
@@ -221,6 +228,10 @@ if __name__ == "__main__":
     fname="runPulser"#TW_B"+str(board)
     if args.useVthc:
         fname+="_useVthc"
+    if args.toabusyON:
+        fname+="_toabusyON"
+    if args.ckSRAMON:
+        fname+="_ckSRAMON"
     if args.chON:
         fname+="_chON"
     if args.ctestON:
@@ -316,7 +327,7 @@ if __name__ == "__main__":
 
                         try:os.makedirs(outdir)
                         except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
+                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
 
                         if not args.useVthc  or (args.useVthc and doPS):#take the one from config
@@ -325,6 +336,9 @@ if __name__ == "__main__":
                             pass
                         if args.chON:
                             cmd+=" --allChON True"
+                            pass
+                        if args.ckSRAMON:
+                            cmd+=" --allCkSRAMON True"
                             pass
                         if args.ctestON:
                             cmd+=" --allCtestON True"
@@ -348,10 +362,10 @@ if __name__ == "__main__":
                                 delayMin=1800
                                 delayMax=2300
                             outdir=args.outputDir+"/"+toaDir+"/"
-                            logName=outdir+'/delayTOA_B_%d_rin_%d_toa_busy_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,toa_busy,ON_rtest,ch,cd,Q,dac)
+                            logName=outdir+'/delayTOA_B_%d_rin_%d_toabusy_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,args.toabusyON,ON_rtest,ch,cd,Q,dac)
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
                             if not args.useVthc:#take the one from config
                                 #vthc=64
@@ -359,6 +373,9 @@ if __name__ == "__main__":
                                 pass
                             if args.chON:
                                 cmd+=" --allChON True"
+                                pass
+                            if args.ckSRAMON:
+                                cmd+=" --allCkSRAMON True"
                                 pass
                             if args.ctestON:
                                 cmd+=" --allCtestON True"
@@ -397,10 +414,13 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d  --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,toa_busy,ON_rtest,asicVersion,ip)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d  --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
                     cmd+=" --Vthc 64"
 
                     
+                    if args.ckSRAMON:
+                        cmd+=" --allCkSRAMON True"
+                        pass
                     if args.chON:
                         cmd+=" --allChON True"
                         pass
@@ -439,7 +459,7 @@ print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
 print ("Rin_vpa:",Rin_Vpa)
 print ("ON_rtest:",ON_rtest)
-print ("EN_toa_busy:",toa_busy)
+print ("EN_toabusy:",args.toabusyON)
 
 
 print("===========================================> board: "+str(args.board))

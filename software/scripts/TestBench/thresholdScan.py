@@ -53,6 +53,7 @@ def parse_arguments():
     # Add arguments
     parser.add_argument( "--asicVersion", type = int, default = 3)
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
+    parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = Rin_Vpa, help = "RinVpa")
@@ -89,6 +90,8 @@ def parse_arguments():
     
     extra=""
     args = parser.parse_args()
+    if args.allCkSRAMON:
+        extra+="allCkSRAMON"
     if args.allChON:
         extra+="allChON"
     if args.allCtestON:

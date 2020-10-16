@@ -142,6 +142,7 @@ def parse_arguments():
     parser.add_argument( "--moreStatAtLowQ", type = argBool, required = False, default = True, help = "increase statistics for low Q")
     parser.add_argument( "--morePointsAtLowQ", type = argBool, required = False, default = False, help = "increase statistics for low Q")
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
+    parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
@@ -167,6 +168,8 @@ def parse_arguments():
     # Get the arguments
     args = parser.parse_args()
     extra=""
+    if args.allCkSRAMON:
+        extra+="allCkSRAMON"
     if args.allChON:
         extra+="allChON"
     if args.allCtestON:
@@ -330,12 +333,15 @@ def measureTimeWalk(argsip,
        #fraction of saturated toa
        toaof=0
        for ele in  pixel_data['HitDataTOA'][iQ]:
-           if ele==127:toaof+=1
            allTOA.append(ele)
            allQ.append(Q)
+           if ele==127:
+               toaof+=1
        eff=(len(pixel_data['HitDataTOA'][iQ]))/Nevts
        eff2=(len(pixel_data['HitDataTOA'][iQ])-toaof)/Nevts
-           
+       print ("==>",Q,eff,eff2,toaof)
+
+       
        for ele in  pixel_data['HitDataTOTc'][iQ]:
            allTOTc.append(ele)
        if len(pixel_data['HitDataTOA'][iQ])>0:
@@ -349,7 +355,7 @@ def measureTimeWalk(argsip,
        #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
        
        okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
-       okTOTc=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
+       okTOTc=np.array(pixel_data['HitDataTOTc'][iQ])!=127 #used to remove saturated toa
 
 
 
@@ -430,14 +436,15 @@ def measureTimeWalk(argsip,
         #plt.zscale("log")
         # Plot (0,0) ; top left
         xedges = np.array(range(0,65))-0.5
-        yedges = range(0,128,2)
+        yedges = range(0,130,2)
+
         HTOA, xedges, yedges = np.histogram2d(allQ, allTOA, bins=(xedges, yedges))
         HTOA = HTOA.T  # Let each row list bins with common y range.
         X, Y = np.meshgrid(xedges, yedges)
         HTOA[HTOA==0]=np.nan
         current_cmap = matplotlib.cm.get_cmap()
         current_cmap.set_bad(color='white')
-        ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.YlGnBu)
+        ax1.pcolormesh(X, Y, HTOA,cmap=plt.cm.rainbow)
         ax1.scatter(QArray, TOAMeanArray, facecolors='none', edgecolors='r')
         ax1.grid(True)
         ax1.set_title('', fontsize = 11)
@@ -459,12 +466,12 @@ def measureTimeWalk(argsip,
 
         # Plot (1,0) ; bottom left
         xedges = np.array(range(0,65))-0.5
-        yedges = range(0,128,2)
+        yedges = range(0,130,2)
         HTOTc, xedges, yedges = np.histogram2d(allQ, allTOTc, bins=(xedges, yedges))
         HTOTc = HTOTc.T  # Let each row list bins with common y range.
         HTOTc[HTOTc==0]=np.nan
         X, Y = np.meshgrid(xedges, yedges)        
-        ax3.pcolormesh(X, Y, HTOTc,cmap=plt.cm.YlGnBu)
+        ax3.pcolormesh(X, Y, HTOTc,cmap=plt.cm.rainbow)
         ax3.scatter(QArray, TOTcMeanArray, facecolors='none', edgecolors='r')
         ax3.grid(True)
         ax3.set_title('', fontsize = 11)
@@ -490,13 +497,23 @@ def measureTimeWalk(argsip,
         ax5.set_xlim(left = np.min(QArray)*0.9, right = np.max(QArray)*1.1)
         ax5.set_ylim(bottom = 0, top = 1.1)
 
-        ax6.scatter( TOTcMeanArray, TOAMeanArray)
+
+        xedges = range(0,130,2)
+        yedges = range(0,130,2)
+        H, xedges, yedges = np.histogram2d(allTOTc,allTOA,  bins=(xedges, yedges))
+        H = H.T  # Let each row list bins with common y range.
+        X, Y = np.meshgrid(xedges, yedges)
+        H[H==0]=np.nan
+        current_cmap = matplotlib.cm.get_cmap()
+        current_cmap.set_bad(color='white')
+        ax6.pcolormesh(X, Y, H,cmap=plt.cm.rainbow)
+        ax6.scatter(TOTcMeanArray, TOAMeanArray, facecolors='none', edgecolors='r')
         ax6.grid(True)
         ax6.set_title('', fontsize = 11)
         ax6.set_xlabel(TOTcTitle, fontsize = 10)
         ax6.set_ylabel(TOATitle, fontsize = 10)
-        ax6.set_xlim(left = np.min(TOTMeanArray)*0.9, right = np.max(TOTcMeanArray)*1.1)
-        ax6.set_ylim(bottom = 0, top = np.max(TOAMeanArray)*1.1)
+        #ax6.set_xlim(left = np.min(TOTMeanArray)*0.9, right = np.max(TOTcMeanArray)*1.1)
+        #ax6.set_ylim(bottom = 0, top = np.max(TOAMeanArray)*1.1)
         
         # ax6.scatter(QArray, TOTcMeanArray)
         # ax6.grid(True)
