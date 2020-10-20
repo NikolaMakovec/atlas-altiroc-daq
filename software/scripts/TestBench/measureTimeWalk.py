@@ -339,7 +339,7 @@ def measureTimeWalk(argsip,
                toaof+=1
        eff=(len(pixel_data['HitDataTOA'][iQ]))/Nevts
        eff2=(len(pixel_data['HitDataTOA'][iQ])-toaof)/Nevts
-       print ("==>",Q,eff,eff2,toaof)
+
 
        
        for ele in  pixel_data['HitDataTOTc'][iQ]:
@@ -355,7 +355,7 @@ def measureTimeWalk(argsip,
        #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
        
        okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
-       okTOTc=np.array(pixel_data['HitDataTOTc'][iQ])!=127 #used to remove saturated toa
+       okTOTc=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa even when computed TOTc mean
 
 
 

@@ -25,7 +25,7 @@ if doTOA+doClockTree +doXtalk+doDNL>1:
 if doThres+doNoise+doVthcScan+doLinearity >1:
     print ("Prb Thres")
     sys.exit()
-if doTW+doPS>1:
+if doTW+doTWscan+doPS>1:
     print ("Prb TW")
     sys.exit()
     
@@ -42,6 +42,8 @@ if doPS:
     morePointsAtLowQ=0
     Ntw=20
     
+if doTWscan:
+    doTW=1
 #####################
 # TOA
 #####################
@@ -135,7 +137,7 @@ def parse_arguments():
     parser.add_argument("-b", "--board", type = int, required = False, default = 8,help = "Choose board")
     parser.add_argument("-c","--ch", type = int, required = False, default = 4, help = "channel")
     parser.add_argument("--cfg", required = False, default = None)
-    parser.add_argument("-p","--prefix", required = False, default = None)
+    parser.add_argument("-p","--prefix", required = False, default = "")
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--toabusyON", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)
@@ -176,6 +178,7 @@ if __name__ == "__main__":
         if doLinearity:thresDir+="-lin"
         twDir=bName+"-tw"
         if doPS:twDir+="-ps"
+        if doTWscan:twDir+="-scan"
         toaDir=bName+"-toa"
         if doClockTree:toaDir+="-clkTree"
         if doDNL:toaDir+="-dnl"
@@ -295,7 +298,8 @@ if __name__ == "__main__":
                     time.sleep(0.005)
                     break
             dacListLocal=[dacNom]
-            #dacListLocal=list(range(dacNom-8,dacNom+40,8))
+            if doTWscan:
+                dacListLocal=list(range(dacNom,dacNom+20,4))
             
             if doPS:
                 qMin=0;#for pedestal
@@ -443,6 +447,7 @@ print ("doLinearity ",doLinearity )
 print ("doVthcScan  ",doVthcScan     )
 print ("---------------------------------")
 print ("doTW        ",doTW        )
+print ("doTWscan        ",doTWscan        )
 print ("doPS        ",doPS        )
 print ("---------------------------------")
 print ("doTOA       ",doTOA       )
