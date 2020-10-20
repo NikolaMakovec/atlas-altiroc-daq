@@ -137,6 +137,7 @@ def parse_arguments():
     
     # Add arguments
     parser.add_argument( "--asicVersion", type = int, default = 3)
+    parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
@@ -147,12 +148,12 @@ def parse_arguments():
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
-    parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
+    parser.add_argument( "--debug", type = argBool, required = False, default = False, help = "debug")
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--checkOFtoa", type = argBool, required = False, default = True, help = "check TOA overflow")
     parser.add_argument( "--checkOFtot", type = argBool, required = False, default = True, help = "check TOT overflow")
     parser.add_argument( "--useProbeDiscri", type = argBool, required = False, default = False, help = "use probe Discri")
-    parser.add_argument("-N","--N", type = int, required = False, default = 50, help = "Nb of events")
+    parser.add_argument("-N","--N", type = int, required = False, default = 100, help = "Nb of events")
     parser.add_argument("--Cd", type = int, required = False, default = -1, help = "Cd")
     parser.add_argument( "--useExt", type = argBool, required = False, default = False,help = "Use external trigger")
     parser.add_argument( "--cfg", type = str, required = False, default = config_file, help = "Select yml configuration file to load")  
@@ -390,8 +391,8 @@ def measureTOT( argsip,
     ax1.plot(widthRange, DataMeanTOTc)
     #ax1.scatter(widthRange, DataMeanTOTc       , facecolors='none', edgecolors='b')
     ax1.grid(True)
-    ax1.set_title('TOTc', fontsize = 11)
-    ax1.set_xlabel('width', fontsize = 10)
+    ax1.set_title('', fontsize = 11)
+    ax1.set_xlabel('Width [step estimate = %f ps]' % DelayStep, fontsize = 10)
     ax1.set_ylabel('TOTc', fontsize = 10)
 
     ax1.legend(['slope: %f ' % LSBTOTc],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
@@ -401,9 +402,9 @@ def measureTOT( argsip,
 
     ax2.plot(widthRange, ValidTOTCnt)
     ax2.grid(True)
-    ax2.set_title('TOT Valid Counts', fontsize = 11)
-    ax2.set_xlabel('width', fontsize = 10)
-    ax2.set_ylabel('Valid Measurements', fontsize = 10)
+    ax2.set_title('', fontsize = 11)
+    ax2.set_xlabel('Width', fontsize = 10)
+    ax2.set_ylabel('Nb of non saturated TOTc', fontsize = 10)
     #ax2.set_xlim(left = widthRange.start, right = widthRange.stop)
     ax2.set_ylim(bottom = 0, top = np.max(ValidTOTCnt)*1.1)
 

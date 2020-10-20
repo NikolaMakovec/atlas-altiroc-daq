@@ -91,7 +91,7 @@ def parse_arguments():
     dlyMin = 2300 
     dlyMax = 2700 
     dlyStep = 10
-    outFile = 'TestData/TOAmeasurement'
+    outFile = './'
     config_file = None
 
     
@@ -110,13 +110,13 @@ def parse_arguments():
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
-    parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
+    parser.add_argument( "--debug", type = argBool, required = False, default = False, help = "debug")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--checkOFtoa", type = argBool, required = False, default = True, help = "check TOA overflow")
     parser.add_argument( "--checkOFtot", type = argBool, required = False, default = True, help = "check TOT overflow")
     parser.add_argument( "--useProbeDiscri", type = argBool, required = False, default = False, help = "use probe Discri")
-    parser.add_argument("-N","--N", type = int, required = False, default = 50, help = "Nb of events")
+    parser.add_argument("-N","--N", type = int, required = False, default = 100, help = "Nb of events")
     parser.add_argument("--Cd", type = int, required = False, default = -1, help = "Cd")
     parser.add_argument( "--useExt", type = argBool, required = False, default = False,help = "Use external trigger")
     parser.add_argument( "--cfg", type = str, required = False, default = config_file, help = "Select yml configuration file to load")  
@@ -356,9 +356,9 @@ def measureTOA(argsip,
 
     #ax1.plot(Delay, DataMean)
     #ax1.grid(True)
-    ax1.set_title('TOA Measurment VS Programmable Delay Value', fontsize = 11)
+    ax1.set_title('', fontsize = 11)
     ax1.set_xlabel('Programmable Delay Value [step estimate = %f ps]' % DelayStep, fontsize = 10)
-    ax1.set_ylabel('Mean Value', fontsize = 10)
+    ax1.set_ylabel('TOA Mean Value', fontsize = 10)
     ax1.legend(['LSB estimate: %f ps' % LSBest],loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     #ax1.set_ylim(bottom = 0, top = np.max(np.multiply(DataMean,LSBest))+100)
     ax1.set_xlim(left = np.min(Delay), right = np.max(Delay))
@@ -372,10 +372,10 @@ def measureTOA(argsip,
     #ax2.scatter(Delay, np.multiply(DataStdev,LSBForPlotest))
     ax2.scatter(Delay, np.multiply(DataStdev,LSBForPlot))
     ax2.grid(True)
-    ax2.set_title('TOA Jitter VS Programmable Delay Value', fontsize = 11)
+    ax2.set_title('', fontsize = 11)
     ax2.set_xlabel('Programmable Delay Value', fontsize = 10)
-    ax2.set_ylabel('Std. Dev. [ps] (LSBForPlot='+str(round(LSBForPlot))+'ps)', fontsize = 10)
-    ax2.legend(['Average Std. Dev. = %f ps' % (MeanDataStdev*LSBForPlot)], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+    ax2.set_ylabel('Jitter [ps] (using LSB='+str(round(LSBForPlot))+'ps)', fontsize = 10)
+    ax2.legend(['Median jitter = %f ps' % (MeanDataStdev*LSBForPlot)], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
     ax2.set_xlim(left = np.min(Delay), right = np.max(Delay))
     ax2.set_ylim(bottom = 0, top = np.max(np.multiply(DataStdev,LSBForPlot))+20)
     ax2.set_ylim(bottom = 0, top = 100)
@@ -395,20 +395,20 @@ def measureTOA(argsip,
         binlow = ( int(DataMean[delay_index_to_plot])-hist_range ) * LSB
         binhigh = ( int(DataMean[delay_index_to_plot])+hist_range ) * LSB
         hist_bin_list = np.arange(binlow, binhigh, LSB)
-        ax3.hist(np.multiply(pixel_data[delay_index_to_plot],LSB), bins = hist_bin_list, align = 'left', edgecolor = 'k', color = 'royalblue')
-        ax3.set_title('TOA Measurment for Programmable Delay = %d' % DelayRange[delay_index_to_plot], fontsize = 11)
-        ax3.set_xlabel('TOA Measurement [ps]', fontsize = 10)
-        ax3.set_ylabel('N of Measrements', fontsize = 10)
-        ax3.legend(['Mean = %f ps \nStd. Dev. = %f ps \nN of Events = %d' % (DataMean[delay_index_to_plot]*LSB, DataStdev[delay_index_to_plot]*LSB, HitCnt[delay_index_to_plot])], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
+        ax4.hist(np.multiply(pixel_data[delay_index_to_plot],LSB), bins = hist_bin_list, align = 'left', edgecolor = 'k', color = 'royalblue')
+        ax4.set_title('TOA Measurement for Programmable Delay = %d' % DelayRange[delay_index_to_plot], fontsize = 8)
+        ax4.set_xlabel('TOA Measurement [ps]', fontsize = 10)
+        ax4.set_ylabel('N of Measrements', fontsize = 10)
+        ax4.legend(['Mean = %f ps \nStd. Dev. = %f ps \nN of Events = %d' % (DataMean[delay_index_to_plot]*LSB, DataStdev[delay_index_to_plot]*LSB, HitCnt[delay_index_to_plot])], loc = 'upper right', fontsize = 9, markerfirst = False, markerscale = 0, handlelength = 0)
 
     # Plot (1,1)
-    ax4.plot(Delay, HitCnt)
-    ax4.grid(True)
-    ax4.set_title('TOA Valid Counts VS Programmable Delay Value', fontsize = 11)
-    ax4.set_xlabel('Programmable Delay Value', fontsize = 10)
-    ax4.set_ylabel('Valid Measurements', fontsize = 10)
-    ax4.set_xlim(left = np.min(Delay), right = np.max(Delay))
-    ax4.set_ylim(bottom = 0, top = np.max(HitCnt)*1.1)
+    ax3.plot(Delay, HitCnt)
+    ax3.grid(True)
+    ax3.set_title('', fontsize = 11)
+    ax3.set_xlabel('Programmable Delay Value', fontsize = 10)
+    ax3.set_ylabel('Nb of non saturated TOA', fontsize = 10)
+    ax3.set_xlim(left = np.min(Delay), right = np.max(Delay))
+    ax3.set_ylim(bottom = 0, top = np.max(HitCnt)*1.1)
     plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
 
         

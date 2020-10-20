@@ -39,3 +39,11 @@ python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --display True  --debug False   --Vthc 64 --delay 2450 --out Data/  --asicVersion 3 --ip 192.168.1.196   --useProbePA False --useProbeDiscri False  -N 50 --board 24 --ch 3 --Cd 4 --QMin 5 --QMax 63 --QStep 5 --DAC 300
 python scripts/DevGui.py --ip 192.168.1.196 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B24_ch3_probrePA_probeDiscri.yml
 
+
+
+
+python scripts/TestBench/measureTOA.py --asicVersion 3 --useExt  True  --cfg config/TestBench/asic_config_B28.yml --ch 0 --delayMin 1750 --delayMax 2200 --delayStep 1 --ip 192.168.1.197 --out Data/
+
+python scripts/TestBench/measureTOT.py --asicVersion 3 --useExt  True  --cfg config/TestBench/asic_config_B28.yml --ch 0 --riseEdgeMin 700 --riseEdgeMax 3000 --riseEdgeStep 20  --ip 192.168.1.197 --out Data/
+
+
