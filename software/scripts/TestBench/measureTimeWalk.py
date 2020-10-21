@@ -432,8 +432,8 @@ def measureTimeWalk(argsip,
 
         fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(nrows = 3, ncols = 2, figsize=(13,9))
 
-        for Q,toa,jitter,totc in zip(QArray, TOAMeanArray, TOARMSArray, TOTcMeanArray):
-            print (Q,toa,jitter,totc)
+        #for Q,toa,jitter,totc in zip(QArray, TOAMeanArray, TOARMSArray, TOTcMeanArray):
+        #    print (Q,toa,jitter,totc)
         
         #plt.zscale("log")
         # Plot (0,0) ; top left
