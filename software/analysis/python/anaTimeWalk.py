@@ -60,6 +60,8 @@ figTOArms=plt.figure('TOArms')
 axTOArms = figTOArms.add_subplot(1,1,1)
 figTOTCmean=plt.figure('TOTCmean')
 axTOTCmean = figTOTCmean.add_subplot(1,1,1)
+figTOTCdist=plt.figure('TOTCdist')
+axTOTCdist = figTOTCdist.add_subplot(1,1,1)
 figEff=plt.figure('Efficiency')
 axEff = figEff.add_subplot(1,1,1)
 #figTOTCrms=plt.figure('TOTCrms')
@@ -120,7 +122,14 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
        if len(totcVec)>0:
            TOTCmean=np.mean(totcVec)*LSBTOTC
            TOTCrms=np.std(totcVec)*LSBTOTC
+           pass
+       plt.figure(figTOTCdist.number)
 
+       binlow = 0
+       binhigh = 128
+       hist_bin_list = np.arange(binlow, binhigh, 1)
+       if QDAC==60:plt.hist(pixel_data[('HitDataTOTc',Q)], bins = hist_bin_list,label=str(QDAC))#, align = 'left', edgecolor = 'k', color = 'royalblue')
+           
        #fill list
        effArray[counter]=eff
        if not math.isnan(TOAmean):TOAmeanArray[counter]=TOAmean
@@ -203,6 +212,9 @@ plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryTOTCmean.pdf")
 
 
+plt.figure(figTOTCdist.number)
+plt.legend(loc='upper right', prop={"size":6})
+plt.savefig("TW_SummaryTOTCdist.pdf")
 
 
 #eff

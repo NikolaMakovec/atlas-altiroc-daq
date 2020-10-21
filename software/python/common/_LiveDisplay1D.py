@@ -19,6 +19,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.ax0.grid(linewidth=1)
         self.ax0.tick_params(which="minor", bottom=False, left=False)
         self.ax0.set_xticks( np.arange(0,self.toa_max,10) )
+        
         plt.yscale('log')
 
         self.ax1.cla()
@@ -37,10 +38,13 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         for ipix in range(25):
             if self.toa_counter[ipix]>1:
                 rms=sqrt(self.toa_beta[ipix]/(self.toa_counter[ipix]))
-                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms,1),round(self.totc_mean[ipix],1))
+                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms*20,1),round(self.totc_mean[ipix],1))
                 #print ( np.std(self.toa_all) )
                 #time.sleep(100000)
+                self.ax0.set_title( "TOA     "+str(round(self.toa_mean[ipix],1))+"     "+str(round(rms*20,1)) )
+                self.ax1.set_title("TOTc    "+str(round(self.totc_mean[ipix],1)) )
 
+                
     def __init__(self, plot_title='Live Display', font_size=6, fig_size=(15,8),
                  toa_max=128, totc_max=128, xpixels=5, ypixels=5, num_bins=128, pixel_enable_list=range(25) ):
         rogue.interfaces.stream.Slave.__init__(self)
