@@ -60,8 +60,10 @@ figTOArms=plt.figure('TOArms')
 axTOArms = figTOArms.add_subplot(1,1,1)
 figTOTCmean=plt.figure('TOTCmean')
 axTOTCmean = figTOTCmean.add_subplot(1,1,1)
-figTOTCdist=plt.figure('TOTCdist')
-axTOTCdist = figTOTCdist.add_subplot(1,1,1)
+figTOTChist=plt.figure('TOTChist',figsize=(12,4))
+axTOTChist = figTOTChist.add_subplot(1,1,1)
+figTOAhist=plt.figure('TOAhist',figsize=(12,4))
+axTOAhist = figTOAhist.add_subplot(1,1,1)
 figEff=plt.figure('Efficiency')
 axEff = figEff.add_subplot(1,1,1)
 #figTOTCrms=plt.figure('TOTCrms')
@@ -88,6 +90,10 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     TOTCmeanArray = np.zeros(len(QArray))-9999.
     TOTCrmsArray = np.zeros(len(QArray))-9999.
 
+    binlow = 0
+    binhigh = 128
+    hist_bin_list = np.arange(binlow, binhigh, 1)
+       
     # loop over charges
     for counter,Q in enumerate(QArray):
        QDAC=QDACArray[counter]
@@ -113,7 +119,11 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
        if len(toaVec)>0:
            TOAmean=np.mean(toaVec)*LSBTOA
            TOArms=np.std(toaVec)*LSBTOA
+       plt.figure(figTOAhist.number)
+       if QDAC in [5,10,30,60]:
+           plt.hist(pixel_data[('HitDataTOA',Q)], bins = hist_bin_list,fill=False,histtype='step',label=str(QDAC)+" "+str(round(TOAmean/LSBTOA,1))+" "+str(round(TOArms,1)) )#, align = 'left', edgecolor = 'k', color = 'royalblue')
 
+       
        #compute TOTC mean and rms without saturated TOTC
        okTOTC=pixel_data[('HitDataTOTc',Q)]!=127 #used to remove saturated totc
        totcVec=pixel_data[('HitDataTOTc',Q)][okTOTC]
@@ -123,12 +133,8 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
            TOTCmean=np.mean(totcVec)*LSBTOTC
            TOTCrms=np.std(totcVec)*LSBTOTC
            pass
-       plt.figure(figTOTCdist.number)
-
-       binlow = 0
-       binhigh = 128
-       hist_bin_list = np.arange(binlow, binhigh, 1)
-       if QDAC==60:plt.hist(pixel_data[('HitDataTOTc',Q)], bins = hist_bin_list,label=str(QDAC))#, align = 'left', edgecolor = 'k', color = 'royalblue')
+       plt.figure(figTOTChist.number)
+       if          QDAC in [5,10,30,60]:plt.hist(pixel_data[('HitDataTOTc',Q)], bins = hist_bin_list,fill=False,histtype='step',label=str(QDAC)+" "+str(round(TOTCmean/LSBTOTC,1)))#, align = 'left', edgecolor = 'k', color = 'royalblue')
            
        #fill list
        effArray[counter]=eff
@@ -197,6 +203,10 @@ plt.savefig("TW_SummaryTOArms.pdf")
 
 
 
+plt.figure(figTOAhist.number)
+plt.legend(loc='upper right', prop={"size":6})
+plt.savefig("TW_SummaryTOAhist.pdf")
+
 #TOTC mean
 axTOTCmean.set_title('Plot done with LSBTOTC='+str(LSBTOTC)+"ps", fontsize = 11)
 plt.figure(figTOTCmean.number)
@@ -212,9 +222,9 @@ plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryTOTCmean.pdf")
 
 
-plt.figure(figTOTCdist.number)
+plt.figure(figTOTChist.number)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOTCdist.pdf")
+plt.savefig("TW_SummaryTOTChist.pdf")
 
 
 #eff
