@@ -1,5 +1,6 @@
 python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV2/images/AtlasAltirocV2-0x40000000-20200623152309-ruckman-19a34a7.mcs 
 
+python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV3/images/AtlasAltirocV3-0x40000000-20200623150825-ruckman-19a34a7.mcs
 
 python scripts/DevGui.py --ip 192.168.1.10 --asicVersion 2
 
@@ -48,10 +49,11 @@ python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_
 
 
  
-python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA False --useProbeDiscri False --delay 2400 --out Data/ --asicVersion 3 --Vthc 64 --ip 192.168.1.197     -N 100 --board 29 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 300
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA True --useProbeDiscri True --delay 2400 --out Data/ --asicVersion 3 --Vthc 64 --ip 192.168.1.197     -N 1000 --board 29 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 300
 
 
-python scripts/DevGui.py --ip 192.168.1.196 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B29_ch3_probrePA_probeDiscri.yml
+python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B29_ch3_probrePA_probeDiscri.yml               --printEvents True
+
 
 
 

@@ -123,10 +123,10 @@ class PrintEventReader(rogue.interfaces.stream.Slave):
             for i in range( len(eventFrame.pixValue) ):
                 pixel = eventFrame.pixValue[i]
                 pixIndex = pixel.PixelIndex
-
+                if pixel.ToaOverflow: continue
                 #if pixel.ToaOverflow != 1: #make sure this pixel is worth printing
-                if (pixel.Hit != 0) and (pixel.ToaData != 0x7F): #make sure this pixel is worth printing
-                    if header_still_needs_to_be_printed: #print the header only once per pixel
+                if (pixel.Hit != 0):# and (pixel.ToaData != 0x7F): #make sure this pixel is worth printing
+                    #if header_still_needs_to_be_printed: #print the header only once per pixel
                         # print('FPGA {:#}'.format( frame.getChannel() ) +
                         #       ', payloadSize(Bytes) {:#}'.format( frame.getPayload() ) +
                         #       ', FormatVersion {:#}'.format(eventFrame.FormatVersion) +
@@ -136,19 +136,25 @@ class PrintEventReader(rogue.interfaces.stream.Slave):
                         #       ', SeqCnt {:#}'.format(eventFrame.SeqCnt) +
                         #       ', Timestamp {:#}'.format( eventFrame.Timestamp ) )
                         # print('    Pixel : TotOverflow | TotData | ToaOverflow | ToaData | Hit | Sof')
-                        header_still_needs_to_be_printed = False
+                  #header_still_needs_to_be_printed = False
 
-                    print('    {:>#5} | {:>#11} | {:>#7} | {:>#11} | {:>#7} | {:>#3} | {:>#3}'.format(
-                        pixIndex,
-                        pixel.TotOverflow,
-                        pixel.TotData,
-                        pixel.ToaOverflow,
-                        pixel.ToaData,
-                        pixel.Hit,
-                      #pixel.Sof
-                      (pixel.TotData >>  2) & 0x7F
-                    )
-                    )
+                    # print('    {:>#5} | {:>#11} | {:>#7} | {:>#11} | {:>#7} | {:>#3} | {:>#3}'.format(
+                    #     pixIndex,
+                    #     pixel.TotOverflow,
+                    #     pixel.TotData,
+                    #     pixel.ToaOverflow,
+                    #     pixel.ToaData,
+                    #     pixel.Hit,
+                    #   #pixel.Sof
+                    #   (pixel.TotData >>  2) & 0x7F
+                    # )
+                    # )
+                    print (pixIndex,pixel.ToaOverflow,"TOA=",pixel.ToaData,"TOTC=",(pixel.TotData >>  2) & 0x7F)
+
+
+
+                          
+                    
 
                 # Check if dumping to .CVS file
                 if self.cvsDump:

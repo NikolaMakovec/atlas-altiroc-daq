@@ -38,7 +38,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         for ipix in range(25):
             if self.toa_counter[ipix]>1:
                 rms=sqrt(self.toa_beta[ipix]/(self.toa_counter[ipix]))
-                print ("Channel,toa,jitter,totc: ",ipix,round(self.toa_mean[ipix],1), round(rms*20,1),round(self.totc_mean[ipix],1))
+                print ("Channel,toa,jitter,totc: ",ipix,"- ",self.toa_counter[ipix],round(self.toa_mean[ipix],1), round(rms,1),"- ",self.totc_counter[ipix],round(self.totc_mean[ipix],1))
                 #print ( np.std(self.toa_all) )
                 #time.sleep(100000)
                 self.ax0.set_title( "TOA     "+str(round(self.toa_mean[ipix],1))+"     "+str(round(rms*20,1)) )
@@ -159,7 +159,9 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
             self.timing_data.append(eventFrame.Timestamp)
             for i in range( len(eventFrame.pixValue) ):
                 pixel = eventFrame.pixValue[i]
+                pixIndex = pixel.PixelIndex
                 if pixel.Hit and not pixel.ToaOverflow:
+                    #print ("Display",pixIndex,pixel.ToaOverflow,"TOA=",pixel.ToaData,"TOTC=",(pixel.TotData >>  2) & 0x7F)
                     toa = pixel.ToaData
                     totc = (pixel.TotData >>  2) & 0x7F
                     #if pixel.PixelIndex > 14:  #No TZ for v3
