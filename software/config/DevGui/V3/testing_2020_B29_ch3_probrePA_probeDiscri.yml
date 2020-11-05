@@ -63,11 +63,11 @@ Top:
 
         DLL_ALockR_en: 0x1
 
-        totf_satovfw: 0x0
-        totc_satovfw: 0x0
-        toac_satovfw: 0x0      
+        totf_satovfw: 0x1
+        totc_satovfw: 0x1
+        toac_satovfw: 0x1      
       
-        SatFVa: 0x0 #3
+        SatFVa: 0x4 #3
         IntFVa: 0x0 #1
         #SatFTz: 0x0 #4
         #IntFTz: 0x0 #1  
@@ -95,6 +95,8 @@ Top:
         DAC10bit: 300 #320
 
         ON_dac_LR: 0x0
+        choice_shifted_ck40: 0x0
+        choice_fpga_ck40: 0x1
         #Ck40_choice: 0x1
         #en_8drivers: 0x1
 
@@ -103,21 +105,24 @@ Top:
         #dac_CP_BWb: 0x10 # V2 maps dac_CP_BW<0> to Shifted_ck40
 
         ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
- 
-        coarse_Lcomp_b: 0 # 6 bits
-        coarse_Up_Downb: 0
-        fast_Lcomp_b: 24 # 6 bits
+        ON_PLL: 0x0
+
+
+
+        coarse_Lcomp_b:  8 
+        coarse_Up_Downb: 1
+        fast_Lcomp_b:    0 
         fast_Up_Downb: 0x0
-        slow_Lcomp_b: 20 # 6 bits, B24 8
+        slow_Lcomp_b:    0 
         slow_Up_Downb: 0x0
 
 
         DLL_ALockR_en: 0x1 # should be kept to 1
         DLL_CP_b: 16 # 5 bits
         ON_ota_dll: 1
-        DLLfast_EXTvctrl_en: 0x1
-        DLLslow_EXTvctrl_en: 0x1
-        DLLcoarse_EXTvctrl_en: 0x1
+        DLLfast_EXTvctrl_en: 0x0
+        DLLslow_EXTvctrl_en: 0x0
+        DLLcoarse_EXTvctrl_en: 0x0
       ##########################################################################
       Probe:
         en_probe_dig: 0x1
