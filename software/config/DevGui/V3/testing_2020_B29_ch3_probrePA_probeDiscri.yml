@@ -30,6 +30,8 @@ Top:
         #EnCalPulseTrig: 0x0
         #EnPcieLocalTrig: 0x1
         #EnableReadout: 0x0
+        #TrigSizeBeforePause: 4000
+        #DeadtimeDuration: 20 
       CalPulse:
         CalPulseDelay: 2000
         CalPulseWidth: 2000
