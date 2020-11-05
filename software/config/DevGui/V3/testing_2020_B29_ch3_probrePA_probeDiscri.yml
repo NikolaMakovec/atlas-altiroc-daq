@@ -13,7 +13,7 @@ Top:
         FpgaTdcClkHigh: 0x1
         FpgaTdcClkLow: 0x1
       Trig:
-        #enable: True
+        enable: True
         TrigTypeSel: Master
         CalStrobeAlign: 0x3      # Same as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
@@ -27,7 +27,6 @@ Top:
         DeadtimeDuration: 0      # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
         #for noise,cosmics,testbeams:
-        #enable: False
         #EnCalPulseTrig: 0x0
         #EnPcieLocalTrig: 0x1
         #EnableReadout: 0x0
