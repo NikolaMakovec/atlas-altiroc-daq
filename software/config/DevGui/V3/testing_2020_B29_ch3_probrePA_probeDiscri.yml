@@ -125,7 +125,7 @@ Top:
         EN_8drivers: 0x1
 
         ON_PLL: 0x0
-
+        ON_rtest: 0
         EN_toa_busy: 0
 
         ref_bg: 0x0
