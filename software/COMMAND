@@ -27,8 +27,8 @@ python scripts/TestBench/runTrigExt.py  -b $B --toa  --ip $ip  > runTOA.sh
 python scripts/TestBench/runTrigExt.py  -b $B --tot  --ip $ip  > runTOT.sh
 
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip
-python scripts/TestBench/runPulser.py  -b $B  --ip $ip --ckSRAMON
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip --toabusyON
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --ckSRAMON
 source runPulser_ckSRAMON.sh; source runPulser.sh; source runPulser_toabusyON.sh
 
 #python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc

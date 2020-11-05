@@ -17,8 +17,6 @@ from runParameters import *
 # 
 #####################
 
-
-
 if doTOA+doClockTree +doXtalk+doDNL>1:
     print ("Prb TOA")
     sys.exit()
@@ -129,7 +127,7 @@ def getDelay(board,ch,cd):
         delay=2400
     return delay
 
-def parse_arguments():
+def parse_arguments():    
     parser = argparse.ArgumentParser()
     argBool = lambda s: s.lower() in ['true', 't', 'yes', '1']
     parser.add_argument("--ip", required = False, default = '192.168.1.196', help = "IP address")
@@ -137,7 +135,7 @@ def parse_arguments():
     parser.add_argument("-b", "--board", type = int, required = False, default = 8,help = "Choose board")
     parser.add_argument("-c","--ch", type = int, required = False, default = 4, help = "channel")
     parser.add_argument("--cfg", required = False, default = None)
-    parser.add_argument("-p","--prefix", required = False, default = None)
+    parser.add_argument("-p","--prefix", required = False, default = prefix)
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--toabusyON", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)

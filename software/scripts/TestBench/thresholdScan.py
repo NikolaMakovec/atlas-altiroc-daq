@@ -111,7 +111,7 @@ def findThres(values,Cnt,Cnt2,N):
     print (Cnt2)
     
     # Print Data    #find min th, max th, and middle points:
-    maxTH = 999
+    maxTH = 99
     suspicious=0
     for dac_index, dac_value in enumerate(values):
         if dac_index>1 and Cnt[dac_index]/N>0.95 and Cnt2[dac_index]/N>0.5:

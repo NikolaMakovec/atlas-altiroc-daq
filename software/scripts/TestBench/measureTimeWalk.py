@@ -165,6 +165,7 @@ def parse_arguments():
     parser.add_argument("--LSBTOTf", type = float, required = False, default = 40, help = "LSB TOTf")
     parser.add_argument("--out", type = str, required = False, default = outFile, help = "output file")
 
+
     # Get the arguments
     args = parser.parse_args()
     extra=""
@@ -180,6 +181,9 @@ def parse_arguments():
     print(outFile)
 
 
+    #args.useProbePA=True
+    #args.useProbeDiscri=False
+    
     return args
 
 

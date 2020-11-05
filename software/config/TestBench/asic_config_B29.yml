@@ -39,33 +39,7 @@ Top:
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
         DAC10bit: 300
-        #EN_ck_SRAM[2]: 0x1
-
-        bit_vth_cor[0]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[1]: 64  # NSM alignement at 310 for Q=3
-        bit_vth_cor[2]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[3]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[4]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[5]: 64  # NSM alignement at 310 for Q=3
-        bit_vth_cor[6]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[7]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[8]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[9]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[10]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[11]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[12]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[13]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[14]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[15]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[16]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[17]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[18]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[19]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[20]: 64   # 
-        bit_vth_cor[21]: 64   # 
-        bit_vth_cor[22]: 64   # 
-        bit_vth_cor[23]: 64   # 
-        bit_vth_cor[24]: 64   # NSM alignement at 310 for Q=3
+    
         
       
         EN_hyst[:]: 0x1
