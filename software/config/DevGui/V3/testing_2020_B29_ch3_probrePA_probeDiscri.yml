@@ -46,7 +46,7 @@ Top:
         disable_pa[:]: 0x1
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
-        DAC10bit: 300#278
+        DAC10bit: 300
 
         EN_ck_SRAM[3]: 0x1
         ON_Ctest[3]: 0x1
