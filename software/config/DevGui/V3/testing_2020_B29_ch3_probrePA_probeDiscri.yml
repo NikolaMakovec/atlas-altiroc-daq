@@ -26,12 +26,11 @@ Top:
         TrigSizeBeforePause: 0   # number of triggers before o-scope deadtime (zero bypass deadtime
         DeadtimeDuration: 0      # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
-        #for noise,cosmics,testbeams:
-        #EnCalPulseTrig: 0x0
-        #EnPcieLocalTrig: 0x1
-        #EnableReadout: 0x0
-        #TrigSizeBeforePause: 4000
-        #DeadtimeDuration: 20 
+        # #for noise,cosmics,testbeams:
+        # EnCalPulseTrig: 0x0
+        # EnPcieLocalTrig: 0x1
+        ###TrigSizeBeforePause: 4000
+        ###DeadtimeDuration: 20 
       CalPulse:
         CalPulseDelay: 2000
         CalPulseWidth: 2000
@@ -47,7 +46,7 @@ Top:
         disable_pa[:]: 0x1
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
-        DAC10bit: 300
+        DAC10bit: 300#278
 
         EN_ck_SRAM[3]: 0x1
         ON_Ctest[3]: 0x1
