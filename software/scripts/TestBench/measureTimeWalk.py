@@ -91,9 +91,17 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
 
 
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
-        #if args.ch<15:
-        pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
-        pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
+
+        if args.ch>=15 and args.asicVersion==2:
+            pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
+            pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
+            #print  (pixel_stream.HitDataTOTc_tz.copy())
+        else:
+            pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
+            pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
+            
+
+        
         #else:
         #    pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
         #    pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
@@ -334,12 +342,20 @@ def measureTimeWalk(argsip,
        writeData(ffData,iQ,Q,"HitDataTOTc",pixel_data)       
        writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)
 
+       #max
+       toaSatVal=127
+       totcSatVal=127
+       if args.ch>=15 and args.asicVersion==2:
+           totcSatVal=63
+       print(toaSatVal)
+
+       
        #fraction of saturated toa
        toaof=0
        for ele in  pixel_data['HitDataTOA'][iQ]:
            allTOA.append(ele)
            allQ.append(Q)
-           if ele==127:
+           if ele==toaSatVal:
                toaof+=1
        eff=(len(pixel_data['HitDataTOA'][iQ]))/Nevts
        eff2=(len(pixel_data['HitDataTOA'][iQ])-toaof)/Nevts
@@ -357,9 +373,9 @@ def measureTimeWalk(argsip,
 
 
        #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
-       
-       okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa
-       okTOTc=np.array(pixel_data['HitDataTOA'][iQ])!=127 #used to remove saturated toa even when computed TOTc mean
+
+       okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=toaSatVal #used to remove saturated toa
+       okTOTc=okTOA #used to remove saturated toa even when computed TOTc mean
 
 
 
@@ -367,6 +383,7 @@ def measureTimeWalk(argsip,
        
        TOAmean=np.mean(np.array(pixel_data['HitDataTOA'][iQ])[okTOA])#*args.LSBTOA
        TOArms=np.std(np.array(pixel_data['HitDataTOA'][iQ])[okTOA])*args.LSBTOA
+       #print(pixel_data['HitDataTOTc'][iQ])
        TOTcmean=np.mean(np.array(pixel_data['HitDataTOTc'][iQ])[okTOTc])
        TOTcrms=np.std(np.array(pixel_data['HitDataTOTc'][iQ])[okTOTc])
        TOTfmean=np.mean(np.array(pixel_data['HitDataTOTf'][iQ])[okTOA])
@@ -484,7 +501,7 @@ def measureTimeWalk(argsip,
         ax3.set_xlabel(QTitle, fontsize = 10)
         ax3.set_ylabel(TOTcTitle, fontsize = 10)
         #ax3.set_xlim(left = np.min(QArray)*0.9, right = np.max(QArray)*1.1)
-        ax3.set_ylim(bottom = 0, top = 128)
+        ax3.set_ylim(bottom = 0, top = totcSatVal+1)
 
         ax4.scatter( QArray, TOTcRMSArray)
         ax4.grid(True)
@@ -518,6 +535,7 @@ def measureTimeWalk(argsip,
         ax6.set_title('', fontsize = 11)
         ax6.set_xlabel(TOTcTitle, fontsize = 10)
         ax6.set_ylabel(TOATitle, fontsize = 10)
+        #ax6.set_xlim(left = 0, right = np.max(TOTcRMSArray)*1.1)
         #ax6.set_xlim(left = np.min(TOTMeanArray)*0.9, right = np.max(TOTcMeanArray)*1.1)
         #ax6.set_ylim(bottom = 0, top = np.max(TOAMeanArray)*1.1)
         

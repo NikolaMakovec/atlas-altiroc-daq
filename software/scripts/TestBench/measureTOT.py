@@ -98,13 +98,11 @@ def acquire_data(top, pulser, PulserRange, using_TZ_TOT):
                 time.sleep(0.001)
 
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
-        if using_TZ_TOT:
-            #pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
+        if int(args.ch)>=15 and args.asicVersion==2:
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
             pixel_data['HitDataTOTc_int1'].append( pixel_stream.HitDataTOTc_int1_tz.copy() )
         else:
-            #pixel_data['allTOTdata'].append( pixel_stream.HitDataTOT.copy() )
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_vpa.copy() )
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_vpa.copy() )
             pixel_data['HitDataTOTc_int1'].append( pixel_stream.HitDataTOTc_int1_vpa.copy() )
@@ -387,7 +385,7 @@ def measureTOT( argsip,
     HTOTC[HTOTC==0]=np.nan
     current_cmap = matplotlib.cm.get_cmap()
     current_cmap.set_bad(color='white')
-    ax1.pcolormesh(X, Y, HTOTC,cmap=plt.cm.YlGnBu)
+    ax1.pcolormesh(X, Y, HTOTC,cmap=plt.cm.rainbow)
     ax1.plot(widthRange, DataMeanTOTc)
     #ax1.scatter(widthRange, DataMeanTOTc       , facecolors='none', edgecolors='b')
     ax1.grid(True)

@@ -97,7 +97,7 @@ if doNoise:
     thresMax=600
     QThresList=[0,8,16]#10
     QThresList=[8,17]#10
-
+    QThresList=[6,13]#V2
 
 if doVthcScan:
     doThres= 1
@@ -295,7 +295,7 @@ if __name__ == "__main__":
                     print ("********** PRB with dacMap, break*****",(board,ch,4))
                     time.sleep(0.005)
                     break
-            dacListLocal=[dacNom]
+            dacListLocal=[dacNom+10]
             if doTWscan:
                 dacListLocal=list(range(dacNom,dacNom+20,4))
             
@@ -358,7 +358,7 @@ if __name__ == "__main__":
                 if doTOA:
                     #print ("/ppppppppppppp",dacNom,dac)
                     for vthc in vthcList:
-                        if dac!=dacNom: continue
+                        #if dac!=dacNom: continue
                         for Q in QTOAList:
                             if Q<0:#trig ext                        
                                 delayMin=1800

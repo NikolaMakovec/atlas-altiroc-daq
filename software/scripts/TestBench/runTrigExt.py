@@ -43,10 +43,10 @@ if __name__ == "__main__":
     if board in boardASICV3: asicVersion=3
     ip=args.ip
 
-    chList=list(range(0,25))
+    chList=list(range(15,25))
     #chList=[6,11,16,21]
 
-    NTOT=20
+    NTOT=100
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeStep=20   #Need 1 for TOTf
@@ -87,6 +87,8 @@ if __name__ == "__main__":
 
 
         if args.tot:
+            if ch>=15 and     asicVersion==2:
+                totRiseEdgeMax=2000
             outdir="Data/"+bName+"-totTrigExt/"
             try:os.makedirs(outdir)
             except:pass
