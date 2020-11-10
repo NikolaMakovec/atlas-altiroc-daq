@@ -13,6 +13,8 @@ from DAC import *
 from computeVth import *
 from runParameters import *
 
+doSepDir = 1
+
 #####################
 # 
 #####################

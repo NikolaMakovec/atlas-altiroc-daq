@@ -1,4 +1,4 @@
-doThres     = 1
+doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -14,7 +14,8 @@ doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-chList=[4,9,14,19,24]
+#chList=[4,9,14,19,24]
+#chList=[15]
 #chList=range(15,25)
 #chList=range(25)
 
@@ -34,7 +35,7 @@ Rin_Vpa=0
 ON_rtest=0
 #toa_busy=0
 
-doSepDir = 1
+
 
 prefix=None
 #prefix="Cp7WithProbePA"

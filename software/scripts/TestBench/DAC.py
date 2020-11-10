@@ -40,6 +40,8 @@ def getDACList(board):
         dacList[(8,13,4)]=436#3,0.17,PRB!!!!!!!!! 
         dacList[(8,14,4)]=308#5,0.95,ok
 
+        dacList[(8,19,4)]=328#6,0.98,ok 
+        dacList[(8,24,4)]=342#done by hand to have a good TW
 
 
         
@@ -76,7 +78,11 @@ def getDACList(board):
         #dacList[(10,11,4)]=1022#3,1.00,ok
         dacList[(10,12,4)]=358#3,0.99,ok 
         dacList[(10,13,4)]=408#3,0.96,ok 
-        dacList[(10,14,4)]=326#5,0.89,ok 
+        dacList[(10,14,4)]=326#5,0.89,ok
+
+        dacList[(10,19,4)]=318#5,0.93,ok 
+        dacList[(10,24,4)]=314#5,0.80,PRB!!!!!!!!! 
+        
         pass
     elif board==11:
         dacList[(11,0,4)]=390#3,1.00,ok 
@@ -138,6 +144,9 @@ def getDACList(board):
         dacList[(13,21,0)]=334
         dacList[(13,22,0)]=404
         dacList[(13,23,0)]=376
+
+        dacList[(13,19,0)]=346#6,0.85,ok 
+        dacList[(13,24,0)]=334#6,0.89,ok 
 
     elif board==14:
         #dacList[(14,0,4)]=1022#3,1.00,ok 
