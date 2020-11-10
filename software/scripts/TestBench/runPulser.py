@@ -216,6 +216,11 @@ if __name__ == "__main__":
             toaDir+="-RinVpa"+str(Rin_Vpa)
             twDir+="-RinVpa"+str(Rin_Vpa)
             thresDir+="-RinVpa"+str(Rin_Vpa)
+            
+        if dacOffset!=0:
+            toaDir+="-dacOffset"+str(dacOffset)
+            twDir+="-dacOffset"+str(dacOffset)
+            thresDir+="-dacOffset"+str(dacOffset)
 
 
         if args.prefix is not None:
@@ -295,6 +300,7 @@ if __name__ == "__main__":
                     print ("********** PRB with dacMap, break*****",(board,ch,4))
                     time.sleep(0.005)
                     break
+            dacNom+=dacOffset
             dacListLocal=[dacNom]
             if doTWscan:
                 dacListLocal=list(range(dacNom,dacNom+20,4))

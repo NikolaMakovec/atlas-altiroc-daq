@@ -15,7 +15,7 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[0,24]
-chList=range(15,25)
+#chList=range(15,25)
 #chList=range(25)
 
 #cd list 
@@ -25,7 +25,7 @@ cdList=[4]
 
 QTOAList=[5]#6,7,16,63]#default
 #QTOAList=[4,5,6,8,12,16,24,32,63]#default
-QThresList=[3]#default
+QThresList=[3,4]#default
 #QThresList=[4]
 
 
@@ -39,3 +39,5 @@ doSepDir = 1
 prefix=None
 #prefix="Cp7WithProbePA"
 #prefix="Cp7"
+
+dacOffset=0
