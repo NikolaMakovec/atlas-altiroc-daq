@@ -132,6 +132,13 @@ def getDACList(board):
         dacList[(13,13,0)]=342#B13,3,0.97,ok
         #dacList[(13,14,0)]=324#B13,3,0.01,PRB!!!!!!!!! 
         dacList[(13,14,0)]=338#B13,5,0.95,ok
+        dacList[(13,15,0)]=366
+        dacList[(13,16,0)]=316
+        dacList[(13,17,0)]=370
+        dacList[(13,21,0)]=334
+        dacList[(13,22,0)]=404
+        dacList[(13,23,0)]=376
+
     elif board==14:
         #dacList[(14,0,4)]=1022#3,1.00,ok 
         dacList[(14,1,4)]=728#3,0.95,ok 

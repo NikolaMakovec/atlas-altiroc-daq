@@ -1,4 +1,4 @@
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -14,8 +14,8 @@ doXtalk     = 0 # TOA Channels should be ON
 
 #ch list
 chList=None
-#chList=[0,4,21]
-#chList=range(20,25)
+chList=[4,9,14,19,24]
+#chList=range(15,25)
 #chList=range(25)
 
 #cd list 
@@ -23,9 +23,9 @@ cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4]
 #cdList=range(0,4+1)
 
-QTOAList=[6]#6,7,16,63]#default
+QTOAList=[5]#6,7,16,63]#default
 #QTOAList=[4,5,6,8,12,16,24,32,63]#default
-QThresList=[4]#default
+QThresList=[3]#default
 #QThresList=[4]
 
 
@@ -39,3 +39,5 @@ doSepDir = 1
 prefix=None
 #prefix="Cp7WithProbePA"
 #prefix="Cp7"
+
+dacOffset=0
