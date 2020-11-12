@@ -15,8 +15,8 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9,14,19,24]
-chList=[16]
-#chList=range(15,25)
+chList=[15]
+#chList=range(17,25)
 #chList=range(25)
 
 #cd list 
