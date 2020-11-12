@@ -313,15 +313,17 @@ if __name__ == "__main__":
                 qMin=0;#for pedestal
                 qMax=60;
                 qStep=8   #default 8
-                dacStep=4 #default 8
-                dacListLocal=list(range(dacNom-40,dacNom+100,dacStep))
-                dacListLocal+=list(range(dacNom+100,dacNom+160,dacStep))
+                dacStep=4 #default 4
+                dacListLocal=list(range(dacNom-20,dacNom+100,dacStep))
+                dacListLocal+=list(range(dacNom+100,dacNom+160,dacStep))                
+                #dacListLocal+=list(range(dacNom-10,dacNom+10,2))#more point at low value
                 if board in boardASICAlone:
                     dacListLocal+=list(range(dacNom+160,dacNom+200,dacStep))
                     if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
                     if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
-                dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
-
+                dacListLocal=sorted(list(set([dac for dac in dacListLocal if dac<1024 ])))#remove value larger than max
+                
+                #print (dacListLocal)
                 if args.useVthc:
                     dacListLocal=[-1]
                     vthcList=range(32,96+1,32)

@@ -248,6 +248,7 @@ def measureTimeWalk(argsip,
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
+    print("TOP==================================================")
     # Setup root class
     top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
