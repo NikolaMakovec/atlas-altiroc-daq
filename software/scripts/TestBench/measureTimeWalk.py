@@ -260,7 +260,8 @@ def measureTimeWalk(argsip,
 
         if args.skipExistingFile  and os.path.exists(outFile+'.data'):
             print ('output file already exist. Skip......')
-            sys.exit()
+            #sys.exit()
+            continue
 
 
         # debug print
