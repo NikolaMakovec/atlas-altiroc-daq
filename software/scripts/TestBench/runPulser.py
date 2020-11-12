@@ -14,7 +14,6 @@ from computeVth import *
 from runParameters import *
 
 doSepDir = 1
-
 #####################
 # 
 #####################
@@ -220,9 +219,12 @@ if __name__ == "__main__":
             thresDir+="-RinVpa"+str(Rin_Vpa)
             
         if dacOffset!=0:
-            toaDir+="-dacOffset"+str(dacOffset)
-            twDir+="-dacOffset"+str(dacOffset)
-            thresDir+="-dacOffset"+str(dacOffset)
+            sign=""
+            if dacOffset<0:sign="minus"
+            
+            toaDir+="-dacOffset"+sign+str(abs(dacOffset))
+            twDir+="-dacOffset"+sign+str(abs(dacOffset))
+            thresDir+="-dacOffset"+sign+str(abs(dacOffset))
 
 
         if args.prefix is not None:

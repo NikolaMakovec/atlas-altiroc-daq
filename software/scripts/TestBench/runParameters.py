@@ -7,7 +7,7 @@ doTW        = 1
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -15,8 +15,8 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9,14,19,24]
-#chList=[15]
-#chList=range(15,25)
+#chList=[0,15]
+chList=range(15,25)
 #chList=range(25)
 
 #cd list 
