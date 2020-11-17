@@ -144,6 +144,8 @@ def parse_arguments():
     parser.add_argument("--toa_busy", type = int, required = False, default = 0, help = "")
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
+    parser.add_argument( "--doPS", type = argBool, required = False, default = False, help = "dac scan for pulse shape")
+    parser.add_argument( "--doTWscan", type = argBool, required = False, default = False, help = "dac scan")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
@@ -238,12 +240,15 @@ def measureTimeWalk(argsip,
     top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
     dacList=[DAC]
-    doPS=True
-    if doPS:
+    if args.doPS:
         dacStep=4
-        dacList=list(range(DAC-20,DAC+100,dacStep))
-        #dacList+=list(range(DAC+100,DAC+160,dacStep))                
-        dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
+        dacList=list(range(DAC-40,DAC+100,dacStep))
+        dacList+=list(range(DAC+100,DAC+160,dacStep))                
+        dacList+=list(range(DAC-20,DAC,2))#more point at low value
+        dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
+    elif args.doTWscan:
+        dacStep=2
+        dacList=list(range(DAC-10,DAC+10,dacStep))
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
         
     for DAC in dacList:
@@ -359,7 +364,7 @@ def measureTimeWalk(argsip,
            totcSatVal=127
            if args.ch>=15 and args.asicVersion==2:
                totcSatVal=63
-           print(toaSatVal)
+
 
 
            #fraction of saturated toa
