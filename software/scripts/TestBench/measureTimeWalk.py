@@ -247,11 +247,13 @@ def measureTimeWalk(argsip,
         dacList+=list(range(DAC-20,DAC,2))#more point at low value
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
     elif args.doTWscan:
-        dacStep=2
+        dacStep=4
         dacList=list(range(DAC-10,DAC+10,dacStep))
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
-        
+
+    counter=0
     for DAC in dacList:
+        counter+=1
         
         extra=""
         if args.allCkSRAMON:
@@ -565,7 +567,10 @@ def measureTimeWalk(argsip,
             # ax6.set_ylim(bottom = 0, top = np.max(TOTcMeanArray)*1.1)
 
            #  plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
-            plt.savefig(outFile.replace(".data",".pdf"))
+           #if not doPS:
+
+            if not args.doPS or (args.doPS and counter%10==0):
+                plt.savefig(outFile.replace(".data",".pdf"))
             if args.display:plt.show()
            #  #################################################################
 
