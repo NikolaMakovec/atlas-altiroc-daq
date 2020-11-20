@@ -15,7 +15,7 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9,14,19,24]
-#chList=[16]
+chList=[15]#,16,0,5]
 chList=range(15,25)
 #chList=range(25)
 
@@ -27,7 +27,7 @@ cdList=[4]
 QTOAList=[5]#6,7,16,63]#default
 #QTOAList=[3,4,5,6,9,13,63]#v2
 #QTOAList=[4,5,6,8,12,16,24,32,63]#v3
-QThresList=[3]#default
+QThresList=[3,4]#default
 #QThresList=[4]
 
 

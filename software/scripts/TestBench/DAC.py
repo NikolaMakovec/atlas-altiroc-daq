@@ -148,6 +148,29 @@ def getDACList(board):
         #dacList[(13,19,0)]=346#6,0.85,ok 
         #dacList[(13,24,0)]=334#6,0.89,ok 
 
+        # #All SRAM ON (lowest thres)
+        # dacList[(13,0,0)]=324
+        # dacList[(13,1,0)]=310
+        # dacList[(13,2,0)]=334
+        # dacList[(13,3,0)]=320
+        # dacList[(13,4,0)]=310
+        # dacList[(13,5,0)]=388
+        # dacList[(13,7,0)]=316
+        # dacList[(13,8,0)]=340
+        # dacList[(13,9,0)]=330
+        # dacList[(13,10,0)]=324
+        # dacList[(13,11,0)]=346
+        # dacList[(13,12,0)]=366
+        # dacList[(13,13,0)]=346
+        # dacList[(13,14,0)]=354
+        # dacList[(13,15,0)]=368
+        # dacList[(13,16,0)]=320
+        # dacList[(13,17,0)]=374
+        # dacList[(13,21,0)]=336
+        # dacList[(13,22,0)]=406
+        # dacList[(13,23,0)]=376
+
+
 
         
     elif board==14:
