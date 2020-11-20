@@ -10,19 +10,51 @@ def getDACList(board):
         dacList[(2,13,0)]=340
         dacList[(2,14,0)]=330
     elif board==3:
-        dacList[(3,1,0)]=408
-        dacList[(3,2,0)]=310
-        dacList[(3,3,0)]=348
-        dacList[(3,4,0)]=334
-        dacList[(3,5,0)]=374
-        dacList[(3,6,0)]=362
-        dacList[(3,7,0)]=344
-        dacList[(3,8,0)]=356      
-        dacList[(3,10,0)]=340
-        dacList[(3,11,0)]=374
-        dacList[(3,12,0)]=360
-        dacList[(3,13,0)]=382
-        dacList[(3,14,0)]=418        
+        # dacList[(3,1,0)]=408
+        # dacList[(3,2,0)]=310
+        # dacList[(3,3,0)]=348
+        # dacList[(3,4,0)]=334
+        # dacList[(3,5,0)]=374
+        # dacList[(3,6,0)]=362
+        # dacList[(3,7,0)]=344
+        # dacList[(3,8,0)]=356      
+        # dacList[(3,10,0)]=340
+        # dacList[(3,11,0)]=374
+        # dacList[(3,12,0)]=360
+        # dacList[(3,13,0)]=382
+        # dacList[(3,14,0)]=418
+
+
+        ###dacList[(3,0,0)]=99#3,0.00,ok 
+        dacList[(3,10,0)]=312#3,0.96,ok 
+        dacList[(3,11,0)]=348#3,0.98,ok 
+        dacList[(3,12,0)]=334#3,0.98,ok 
+        dacList[(3,13,0)]=352#3,0.98,ok 
+        ####dacList[(3,14,0)]=99#3,0.00,ok 
+        dacList[(3,1,0)]=382#3,0.99,ok 
+        dacList[(3,2,0)]=286#3,1.00,ok 
+        dacList[(3,3,0)]=322#3,0.97,ok 
+        dacList[(3,4,0)]=296#3,0.95,ok 
+        dacList[(3,5,0)]=350#3,0.95,ok 
+        dacList[(3,6,0)]=336#3,0.95,ok 
+        dacList[(3,7,0)]=314#3,0.65,PRB!!!!!!!!! 
+        dacList[(3,8,0)]=330#3,0.96,ok 
+        ###dacList[(3,9,0)]=422#3,0.53,PRB!!!!!!!!! 
+
+        dacList[(3,15,0)]=358#3,0.99,ok 
+        #dacList[(3,16,0)]=338#3,0.95,ok prb TDC???
+        dacList[(3,17,0)]=348#3,0.99,ok
+        dacList[(3,18,0)]=352#3,0.99,ok
+        ###dacList[(3,19,0)]= essayer larger Q
+        dacList[(3,20,0)]=378#3,0.96,ok 
+        dacList[(3,21,0)]=414#4,0.95,ok
+        dacList[(3,22,0)]=348#3,0.96,ok
+        dacList[(3,23,0)]=356#3,0.97,ok 
+        ####dacList[(3,24,0)]=99#4,0.00,ok  essayer larger Q
+        
+
+
+        
     elif board==8:
         dacList[(8,0,4)]=412#B8,3,1.00,ok 
         dacList[(8,1,4)]=406#B8,3,0.96,ok 

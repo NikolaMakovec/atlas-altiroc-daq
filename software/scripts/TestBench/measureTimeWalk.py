@@ -245,11 +245,11 @@ def measureTimeWalk(argsip,
         dacList=list(range(DAC-40,DAC+100,dacStep))
         dacList+=list(range(DAC+100,DAC+200,dacStep))
         dacList+=list(range(DAC+200,DAC+250,dacStep))                
-        ####dacList+=list(range(DAC-20,DAC,2))#more point at low value
+        dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
     elif args.doTWscan:
         dacStep=2
-        dacList=list(range(DAC-12,DAC+2,dacStep))
+        dacList=list(range(DAC+2,DAC+6,dacStep))
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
 
     counter=0
