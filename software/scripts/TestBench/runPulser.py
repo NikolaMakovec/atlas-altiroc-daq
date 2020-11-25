@@ -312,7 +312,7 @@ if __name__ == "__main__":
             
             if doPS:
                 qMin=0;#for pedestal
-                qMax=24+1;
+                qMax=54+1;
                 qStep=8   #default 8
                 #dacListLocal=[dacNom]
                 # dacStep=4 #default 4 
