@@ -79,6 +79,9 @@ def acquire_data(top, pulser, PulserRange, using_TZ_TOT):
     pixel_data = {
         'allTOTdata' : [],
         'HitDataTOA': [],
+        'HitDataTOT': [],
+        'HitDataTOAOverflow': [],
+        'HitDataTOTOverflow': [],
         'HitDataTOTf': [],
         'HitDataTOTc': [],
         'HitDataTOTc_int1': []
@@ -98,6 +101,9 @@ def acquire_data(top, pulser, PulserRange, using_TZ_TOT):
                 time.sleep(0.001)
 
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
+        pixel_data['HitDataTOT'].append( pixel_stream.HitDataTOT.copy() )
+        pixel_data['HitDataTOAOverflow'].append( pixel_stream.HitDataOverflow.copy() )
+        pixel_data['HitDataTOTOverflow'].append( pixel_stream.HitDataTOTOverflow.copy() )
         if int(args.ch)>=15 and args.asicVersion==2:
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
             pixel_data['HitDataTOTc'].append( pixel_stream.HitDataTOTc_tz.copy() )
@@ -342,13 +348,13 @@ def measureTOT( argsip,
     ff.write('Number of events = '+str(len(HitDataTOT))+'\n')
     ff.write('mean value = '+str(DataMeanTOT)+'\n')
     ff.write('sigma = '+str(DataStdevTOT)+'\n')
-    ff.write('Pulse width   TOT   TOTc   TOTf'+'\n')
+    ff.write('Pulse width   TOT   TOTc   TOTf  TOTOverflow'+'\n')
     allTOTC = []
     allWidth = []
     for ipuls, pulser in enumerate(PulserRange):
       width = fallEdge-pulser
       for itot in range(len(pixel_data['HitDataTOTc'][ipuls])):
-        ff.write(str(width)+' '+"999"+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')
+        ff.write(str(width)+' '+str(pixel_data['HitDataTOT'][ipuls][itot]) +' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+' '+str(pixel_data['HitDataTOTOverflow'][ipuls][itot])+'\n')
         allTOTC.append(pixel_data['HitDataTOTc'][ipuls][itot])
         allWidth.append(width)
         #ff.write(str(pulser)+' '+str(pixel_data['allTOTdata'][ipuls][itot])+' '+str(pixel_data['HitDataTOTc'][ipuls][itot])+' '+str(pixel_data['HitDataTOTf'][ipuls][itot])+'\n')

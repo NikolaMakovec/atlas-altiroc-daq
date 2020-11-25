@@ -285,6 +285,9 @@ class MakoPixelReader(rogue.interfaces.stream.Slave):
         rogue.interfaces.stream.Slave.__init__(self)
         self.count   = 0
         self.HitData = []
+        self.HitDataOverflow = []
+        self.HitDataTOT = []
+        self.HitDataTOTOverflow = []
         self.HitDataTOTf_vpa = []
         self.HitDataTOTf_tz = []
         self.HitDataTOTc_vpa = []
@@ -305,6 +308,9 @@ class MakoPixelReader(rogue.interfaces.stream.Slave):
     def clear(self):
         self.count = 0
         self.HitData.clear()
+        self.HitDataOverflow.clear()
+        self.HitDataTOT.clear()
+        self.HitDataTOTOverflow.clear()
         self.HitDataTOTf_vpa.clear()
         self.HitDataTOTf_tz.clear()
         self.HitDataTOTc_vpa.clear()
@@ -331,8 +337,11 @@ class MakoPixelReader(rogue.interfaces.stream.Slave):
 
                 
                 if (dat.Hit > 0):# and (dat.ToaOverflow == 0):
+                    self.HitDataOverflow.append(dat.ToaOverflow)
                     self.HitData.append(dat.ToaData)
-
+                    self.HitDataTOT.append(dat.TotData)
+                    self.HitDataTOTOverflow.append(dat.TotOverflow)
+                    
                 if (dat.Hit > 0):# and (dat.TotData != 0x1fc):
                     self.HitDataTOTf_vpa_temp = ((dat.TotData >>  0) & 0x3) + dat.TotOverflow*math.pow(2,2)
                     self.HitDataTOTc_vpa_temp = (dat.TotData >>  2) & 0x7F

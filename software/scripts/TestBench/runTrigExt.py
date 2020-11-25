@@ -43,13 +43,13 @@ if __name__ == "__main__":
     if board in boardASICV3: asicVersion=3
     ip=args.ip
 
-    chList=list(range(15,25))
-    #chList=[6,11,16,21]
+    chList=list(range(15,25))+list(range(0,15))
+    chList=[0,5,15,24]+list(range(15,25))+list(range(0,15))
 
     NTOT=100
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=20   #Need 1 for TOTf
+    totRiseEdgeStep=1  #Need 1 for TOTf
 
 
     NTOA=100#was 500
