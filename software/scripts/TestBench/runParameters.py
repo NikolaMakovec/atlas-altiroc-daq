@@ -4,8 +4,8 @@ doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
 doTW        = 0
-doTWscan    = 1
-doPS        = 0 # TW with thres. scan
+doTWscan    = 0
+doPS        = 1 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -15,8 +15,8 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9,14,19,24]
-#chList=[15]#,16,0,5]
-chList=range(15,25)
+chList=[15,16,1,2]
+#chList=range(0,25)
 #chList=range(25)
 
 #cd list 
@@ -25,7 +25,7 @@ cdList=[4]
 #cdList=range(0,4+1)
 
 QTOAList=[5]#6,7,16,63]#default
-#QTOAList=[3,4,5,6,9,13,63]#v2
+#QTOAList=[3,4,5,6,9,13,26,63]#v2
 #QTOAList=[4,5,6,8,12,16,24,32,63]#v3
 QThresList=[3]#default
 #QThresList=[4]

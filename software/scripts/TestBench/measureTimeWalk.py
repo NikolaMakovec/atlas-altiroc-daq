@@ -245,11 +245,11 @@ def measureTimeWalk(argsip,
         dacList=list(range(DAC-40,DAC+100,dacStep))
         dacList+=list(range(DAC+100,DAC+200,dacStep))
         dacList+=list(range(DAC+200,DAC+250,dacStep))                
-        dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
+        #dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
     elif args.doTWscan:
         dacStep=2
-        dacList=list(range(DAC+2,DAC+6,dacStep))
+        dacList=list(range(DAC+2,DAC+12,dacStep))
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
 
     counter=0
@@ -270,6 +270,8 @@ def measureTimeWalk(argsip,
             print ('output file already exist. Skip......')
             #sys.exit()
             continue
+            #break
+        
 
 
         # debug print
@@ -287,6 +289,7 @@ def measureTimeWalk(argsip,
         top.Fpga[0].Asic.Gpio.RSTB_TDC.set(0x0)
         time.sleep(0.001)
         top.Fpga[0].Asic.Gpio.RSTB_TDC.set(0x1)
+
 
         # Set parameters
         set_pixel_specific_parameters(top, pixel_number,args)
@@ -575,15 +578,18 @@ def measureTimeWalk(argsip,
             if args.display:plt.show()
            #  #################################################################
 
-            time.sleep(0.5)
+    
             # Close
-            top.stop()
+    
             #################################################################
 
-        else:
 
-            top.stop()
+    
+    time.sleep(0.1)
+    top.stop()
             #sys.exit()
+
+
 
 if __name__ == "__main__":
     args = parse_arguments()
