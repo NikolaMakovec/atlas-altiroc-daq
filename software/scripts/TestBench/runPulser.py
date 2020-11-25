@@ -13,6 +13,7 @@ from DAC import *
 from computeVth import *
 from runParameters import *
 
+doSepDir = 1
 #####################
 # 
 #####################
@@ -111,6 +112,8 @@ if doVthcScan:
 def getDelay(board,ch,cd):
     #delay
     delay=2450
+    if board==3:
+        delay=2500
     if board==8:
         delay=2500
     elif board==21:
@@ -218,9 +221,12 @@ if __name__ == "__main__":
             thresDir+="-RinVpa"+str(Rin_Vpa)
             
         if dacOffset!=0:
-            toaDir+="-dacOffset"+str(dacOffset)
-            twDir+="-dacOffset"+str(dacOffset)
-            thresDir+="-dacOffset"+str(dacOffset)
+            sign=""
+            if dacOffset<0:sign="minus"
+            
+            toaDir+="-dacOffset"+sign+str(abs(dacOffset))
+            twDir+="-dacOffset"+sign+str(abs(dacOffset))
+            thresDir+="-dacOffset"+sign+str(abs(dacOffset))
 
 
         if args.prefix is not None:
@@ -302,22 +308,24 @@ if __name__ == "__main__":
                     break
             dacNom+=dacOffset
             dacListLocal=[dacNom]
-            if doTWscan:
-                dacListLocal=list(range(dacNom,dacNom+20,4))
+
             
             if doPS:
                 qMin=0;#for pedestal
-                qMax=60;
+                qMax=54+1;
                 qStep=8   #default 8
-                dacStep=4 #default 8
-                dacListLocal=list(range(dacNom-40,dacNom+100,dacStep))
-                dacListLocal+=list(range(dacNom+100,dacNom+160,dacStep))
-                if board in boardASICAlone:
-                    dacListLocal+=list(range(dacNom+160,dacNom+200,dacStep))
-                    if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
-                    if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
-                dacListLocal=[dac for dac in dacListLocal if dac<1024 ]#remove value larger than max
-
+                #dacListLocal=[dacNom]
+                # dacStep=4 #default 4 
+                # dacListLocal=list(range(dacNom-20,dacNom+100,dacStep))
+                # dacListLocal+=list(range(dacNom+100,dacNom+160,dacStep))                
+                # #dacListLocal+=list(range(dacNom-10,dacNom+10,2))#more point at low value
+                # if board in boardASICAlone:
+                #     dacListLocal+=list(range(dacNom+160,dacNom+200,dacStep))
+                #     if cd<=3:dacListLocal+=list(range(dacNom+200,dacNom+280,8))
+                #     if cd<=1:dacListLocal+=list(range(dacNom+280,dacNom+360,16))
+                # dacListLocal=sorted(list(set([dac for dac in dacListLocal if dac<1024 ])))#remove value larger than max
+                
+                #print (dacListLocal)
                 if args.useVthc:
                     dacListLocal=[-1]
                     vthcList=range(32,96+1,32)
@@ -353,6 +361,12 @@ if __name__ == "__main__":
                             pass
                         if args.cfg is not None:
                             cmd+=" --cfg "+args.cfg
+                            pass
+                        if doPS :
+                            cmd+=" --doPS True "
+                            pass
+                        if doTWscan :
+                            cmd+=" --doTWscan True "
                             pass
                         
                         f.write(cmd+"\n sleep 5 \n")

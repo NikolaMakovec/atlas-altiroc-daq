@@ -10,19 +10,51 @@ def getDACList(board):
         dacList[(2,13,0)]=340
         dacList[(2,14,0)]=330
     elif board==3:
-        dacList[(3,1,0)]=408
-        dacList[(3,2,0)]=310
-        dacList[(3,3,0)]=348
-        dacList[(3,4,0)]=334
-        dacList[(3,5,0)]=374
-        dacList[(3,6,0)]=362
-        dacList[(3,7,0)]=344
-        dacList[(3,8,0)]=356      
-        dacList[(3,10,0)]=340
-        dacList[(3,11,0)]=374
-        dacList[(3,12,0)]=360
-        dacList[(3,13,0)]=382
-        dacList[(3,14,0)]=418        
+        # dacList[(3,1,0)]=408
+        # dacList[(3,2,0)]=310
+        # dacList[(3,3,0)]=348
+        # dacList[(3,4,0)]=334
+        # dacList[(3,5,0)]=374
+        # dacList[(3,6,0)]=362
+        # dacList[(3,7,0)]=344
+        # dacList[(3,8,0)]=356      
+        # dacList[(3,10,0)]=340
+        # dacList[(3,11,0)]=374
+        # dacList[(3,12,0)]=360
+        # dacList[(3,13,0)]=382
+        # dacList[(3,14,0)]=418
+
+
+        ###dacList[(3,0,0)]=99#3,0.00,ok 
+        dacList[(3,10,0)]=312#3,0.96,ok 
+        dacList[(3,11,0)]=348#3,0.98,ok 
+        dacList[(3,12,0)]=334#3,0.98,ok 
+        dacList[(3,13,0)]=352#3,0.98,ok 
+        ####dacList[(3,14,0)]=99#3,0.00,ok 
+        dacList[(3,1,0)]=382#3,0.99,ok 
+        dacList[(3,2,0)]=286#3,1.00,ok 
+        dacList[(3,3,0)]=322#3,0.97,ok 
+        dacList[(3,4,0)]=296#3,0.95,ok 
+        dacList[(3,5,0)]=350#3,0.95,ok 
+        dacList[(3,6,0)]=336#3,0.95,ok 
+        dacList[(3,7,0)]=314#3,0.65,PRB!!!!!!!!! 
+        dacList[(3,8,0)]=330#3,0.96,ok 
+        ###dacList[(3,9,0)]=422#3,0.53,PRB!!!!!!!!! 
+
+        dacList[(3,15,0)]=358#3,0.99,ok 
+        #dacList[(3,16,0)]=338#3,0.95,ok prb TDC???
+        dacList[(3,17,0)]=348#3,0.99,ok
+        dacList[(3,18,0)]=352#3,0.99,ok
+        ###dacList[(3,19,0)]= essayer larger Q
+        dacList[(3,20,0)]=378#3,0.96,ok 
+        dacList[(3,21,0)]=414#4,0.95,ok
+        dacList[(3,22,0)]=348#3,0.96,ok
+        dacList[(3,23,0)]=356#3,0.97,ok 
+        ####dacList[(3,24,0)]=99#4,0.00,ok  essayer larger Q
+        
+
+
+        
     elif board==8:
         dacList[(8,0,4)]=412#B8,3,1.00,ok 
         dacList[(8,1,4)]=406#B8,3,0.96,ok 
@@ -40,6 +72,8 @@ def getDACList(board):
         dacList[(8,13,4)]=436#3,0.17,PRB!!!!!!!!! 
         dacList[(8,14,4)]=308#5,0.95,ok
 
+        dacList[(8,19,4)]=328#6,0.98,ok 
+        dacList[(8,24,4)]=342#done by hand to have a good TW
 
 
         
@@ -76,7 +110,11 @@ def getDACList(board):
         #dacList[(10,11,4)]=1022#3,1.00,ok
         dacList[(10,12,4)]=358#3,0.99,ok 
         dacList[(10,13,4)]=408#3,0.96,ok 
-        dacList[(10,14,4)]=326#5,0.89,ok 
+        dacList[(10,14,4)]=326#5,0.89,ok
+
+        dacList[(10,19,4)]=318#5,0.93,ok 
+        dacList[(10,24,4)]=314#5,0.80,PRB!!!!!!!!! 
+        
         pass
     elif board==11:
         dacList[(11,0,4)]=390#3,1.00,ok 
@@ -139,6 +177,34 @@ def getDACList(board):
         dacList[(13,22,0)]=404
         dacList[(13,23,0)]=376
 
+        #dacList[(13,19,0)]=346#6,0.85,ok 
+        #dacList[(13,24,0)]=334#6,0.89,ok 
+
+        # #All SRAM ON (lowest thres)
+        # dacList[(13,0,0)]=324
+        # dacList[(13,1,0)]=310
+        # dacList[(13,2,0)]=334
+        # dacList[(13,3,0)]=320
+        # dacList[(13,4,0)]=310
+        # dacList[(13,5,0)]=388
+        # dacList[(13,7,0)]=316
+        # dacList[(13,8,0)]=340
+        # dacList[(13,9,0)]=330
+        # dacList[(13,10,0)]=324
+        # dacList[(13,11,0)]=346
+        # dacList[(13,12,0)]=366
+        # dacList[(13,13,0)]=346
+        # dacList[(13,14,0)]=354
+        # dacList[(13,15,0)]=368
+        # dacList[(13,16,0)]=320
+        # dacList[(13,17,0)]=374
+        # dacList[(13,21,0)]=336
+        # dacList[(13,22,0)]=406
+        # dacList[(13,23,0)]=376
+
+
+
+        
     elif board==14:
         #dacList[(14,0,4)]=1022#3,1.00,ok 
         dacList[(14,1,4)]=728#3,0.95,ok 

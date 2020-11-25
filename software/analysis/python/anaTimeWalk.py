@@ -183,7 +183,7 @@ axTOAmean.set_ylim(top=127*LSBTOA)
 axTOAmean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axTOAmean.set_ylabel("<TOA>  [ps]", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOAmean.pdf")
+plt.savefig("TW_SummaryTOAmean"+options.select+".pdf")
 
 
 #TOA rms
@@ -198,14 +198,14 @@ axTOArms.set_ylim(top=5*LSBTOA)
 axTOArms.set_xlabel("Injected charge [fC]", fontsize = 10)
 axTOArms.set_ylabel("Jitter  [ps]", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOArms.pdf")
+plt.savefig("TW_SummaryTOArms"+options.select+".pdf")
 
 
 
 
 plt.figure(figTOAhist.number)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOAhist.pdf")
+plt.savefig("TW_SummaryTOAhist"+options.select+".pdf")
 
 #TOTC mean
 axTOTCmean.set_title('Plot done with LSBTOTC='+str(LSBTOTC)+"ps", fontsize = 11)
@@ -219,12 +219,12 @@ axTOTCmean.set_ylim(top=127*LSBTOTC)
 axTOTCmean.set_xlabel("Injected charge [fC]", fontsize = 10)
 axTOTCmean.set_ylabel("<TOTC> [ps]", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOTCmean.pdf")
+plt.savefig("TW_SummaryTOTCmean"+options.select+".pdf")
 
 
 plt.figure(figTOTChist.number)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryTOTChist.pdf")
+plt.savefig("TW_SummaryTOTChist"+options.select+".pdf")
 
 
 #eff
@@ -237,7 +237,7 @@ axEff.set_ylim(top=1.2)
 axEff.set_xlabel("Injected charge [fC]", fontsize = 10)
 axEff.set_ylabel("Efficiency", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
-plt.savefig("TW_SummaryEff.pdf")
+plt.savefig("TW_SummaryEff"+options.select+".pdf")
 
 
 # #TOTC rms
@@ -252,7 +252,7 @@ plt.savefig("TW_SummaryEff.pdf")
 # axTOTCrms.set_xlabel("Q [fC]", fontsize = 10)
 # axTOTCrms.set_ylabel("TOTC rms [ps]", fontsize = 10)
 # plt.legend(loc='upper left', prop={"size":6})
-# plt.savefig("TW_SummaryTOTCrms.pdf")
+# plt.savefig("TW_SummaryTOTCrms"+options.select+".pdf")
 
 
 
