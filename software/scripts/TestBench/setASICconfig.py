@@ -50,7 +50,10 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     top.Fpga[0].Asic.SlowControl.cBit_s_TOT[pixel_number].set(0x0)
     top.Fpga[0].Asic.SlowControl.cBit_c_TOT[pixel_number].set(0x0)#V3 was 0xf Laurent 
 
-
+    # for ipix in range(25):
+    #     if ipix==pixel_number: continue
+    #     top.Fpga[0].Asic.SlowControl.en_rstb_toa[ipix].set(1)  # if 1, tdc under reset
+    #     top.Fpga[0].Asic.SlowControl.en_rstb_tot[ipix].set(1)
 
     #find columns
     if pixel_number in range(0, 5): bitset=0x1
