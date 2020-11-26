@@ -398,8 +398,8 @@ def measureTimeWalk(argsip,
            #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
 
            okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=toaSatVal #used to remove saturated toa
-           okTOTc=okTOA #used to remove saturated toa even when computed TOTc mean
-
+           #okTOTc=okTOA #used to remove saturated toa even when computed TOTc mean
+           okTOTc=np.logical_and(okTOA,np.array(pixel_data['HitDataTOTc'][iQ])!=totcSatVal) 
 
 
 
@@ -423,7 +423,7 @@ def measureTimeWalk(argsip,
            if not math.isnan(TOAmean):TOAMeanArray[iQ]=TOAmean
            if not math.isnan(TOArms):TOARMSArray[iQ]=TOArms
            if not math.isnan(TOTcmean):TOTcMeanArray[iQ]=TOTcmean
-           if not math.isnan(TOTcrms) and  not math.isnan(TOTcmean) and TOTcmean>0:TOTcRMSArray[iQ]=TOTcrms/TOTcmean
+           if not math.isnan(TOTcrms) and  not math.isnan(TOTcmean) and TOTcmean>0:TOTcRMSArray[iQ]=TOTcrms#/TOTcmean
            if not math.isnan(TOTmean):TOTMeanArray[iQ]=TOTmean
            if not math.isnan(TOTrms):TOTRMSArray[iQ]=TOTrms
 
@@ -530,7 +530,7 @@ def measureTimeWalk(argsip,
             ax4.grid(True)
             ax4.set_title('', fontsize = 11)
             ax4.set_xlabel(QTitle, fontsize = 10)
-            ax4.set_ylabel("RMS(TOTc)/<TOTc>", fontsize = 10)
+            ax4.set_ylabel("RMS(TOTc)", fontsize = 10)
             ax4.set_xlim(left = np.min(QArray)*0.9, right = np.max(QArray)*1.1)
             ax4.set_ylim(bottom = 0, top = np.max(TOTcRMSArray)*1.1)
 
