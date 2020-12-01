@@ -44,9 +44,10 @@ if __name__ == "__main__":
     ip=args.ip
 
     chList=list(range(15,25))+list(range(0,15))
-    chList=[0,5,15,24]+list(range(15,25))+list(range(0,15))
+    chList=[15,24,0,5]#+list(range(15,25))+list(range(0,15))
+    chList=list(range(0,25))
 
-    NTOT=100
+    NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeStep=1  #Need 1 for TOTf
@@ -88,7 +89,8 @@ if __name__ == "__main__":
 
         if args.tot:
             if ch>=15 and     asicVersion==2:
-                totRiseEdgeMax=2000
+                totRiseEdgeMin=1800
+                pass
             outdir="Data/"+bName+"-totTrigExt/"
             try:os.makedirs(outdir)
             except:pass
