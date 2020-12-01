@@ -44,10 +44,12 @@ if __name__ == "__main__":
     ip=args.ip
 
     chList=list(range(15,25))+list(range(0,15))
+
     chList=[15,24,0,5]#+list(range(15,25))+list(range(0,15))
     chList=list(range(0,25))
 
     NTOT=20
+
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeStep=1  #Need 1 for TOTf

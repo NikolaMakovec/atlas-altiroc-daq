@@ -281,11 +281,10 @@ if __name__ == "__main__":
     ###############################
     for ch in chList:
         for cd in cdList:
-
-
-
             
             delay=getDelay(board,ch,cd)
+            if len(delayList)==0:
+                delayList=[delay]
 
             #if ch not in [4,9,14] ans:
             #dac list
@@ -339,37 +338,38 @@ if __name__ == "__main__":
                 ###############################
                 if doTW:
                     for vthc in vthcList:
-                        outdir=args.outputDir+"/"+twDir+"/"
+                        for delay in delayList:
+                            outdir=args.outputDir+"/"+twDir+"/"
 
-                        try:os.makedirs(outdir)
-                        except:pass
-                        cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                            try:os.makedirs(outdir)
+                            except:pass
+                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
 
-                        if not args.useVthc  or (args.useVthc and doPS):#take the one from config
-                            #vthc=64
-                            cmd+=" --Vthc "+str(vthc)
-                            pass
-                        if args.chON:
-                            cmd+=" --allChON True"
-                            pass
-                        if args.ckSRAMON:
-                            cmd+=" --allCkSRAMON True"
-                            pass
-                        if args.ctestON:
-                            cmd+=" --allCtestON True"
-                            pass
-                        if args.cfg is not None:
-                            cmd+=" --cfg "+args.cfg
-                            pass
-                        if doPS :
-                            cmd+=" --doPS True "
-                            pass
-                        if doTWscan :
-                            cmd+=" --doTWscan True "
-                            pass
-                        
-                        f.write(cmd+"\n sleep 5 \n")
+                            if not args.useVthc  or (args.useVthc and doPS):#take the one from config
+                                #vthc=64
+                                cmd+=" --Vthc "+str(vthc)
+                                pass
+                            if args.chON:
+                                cmd+=" --allChON True"
+                                pass
+                            if args.ckSRAMON:
+                                cmd+=" --allCkSRAMON True"
+                                pass
+                            if args.ctestON:
+                                cmd+=" --allCtestON True"
+                                pass
+                            if args.cfg is not None:
+                                cmd+=" --cfg "+args.cfg
+                                pass
+                            if doPS :
+                                cmd+=" --doPS True "
+                                pass
+                            if doTWscan :
+                                cmd+=" --doTWscan True "
+                                pass
+
+                            f.write(cmd+"\n sleep 5 \n")
                     
                 ###############################
                 # measure TOA
@@ -488,6 +488,7 @@ print ("EN_toabusy:",args.toabusyON)
 print("===========================================> board: "+str(args.board))
 print ("Cd:",cdList)
 print ("Ch:",chList)
+print ("Delay:",delayList)
 print("source "+fname)
 
 
