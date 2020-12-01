@@ -44,8 +44,9 @@ if __name__ == "__main__":
     ip=args.ip
 
     chList=list(range(15,25))+list(range(0,15))
-    chList=[0,5,15,24]+list(range(15,25))+list(range(0,15))
-
+    #chList=[0,5,15,24]+list(range(15,25))+list(range(0,15))
+    chList=[15,23,1,8,17]
+    
     NTOT=100
     totRiseEdgeMin=700
     totRiseEdgeMax=3000

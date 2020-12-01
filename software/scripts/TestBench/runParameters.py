@@ -3,9 +3,9 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
-doTW        = 0
+doTW        = 1
 doTWscan    = 0
-doPS        = 1 # TW with thres. scan
+doPS        = 0 # TW with thres. scan
 
 doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
@@ -15,9 +15,12 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9,14,19,24]
-chList=[15,23,1,8,17]
+#chList=[15]#,23,1,8,17]
 #chList=range(0,25)
 #chList=range(25)
+
+delayList=[]
+delayList=range(2300,2500+1,50)
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -42,4 +45,4 @@ prefix=None
 #prefix="Cp7WithProbePA"
 #prefix="Cp7"
 
-dacOffset=0
+dacOffset=5
