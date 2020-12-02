@@ -573,9 +573,16 @@ def measureTimeWalk(argsip,
            #  plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
            #if not doPS:
 
+
+           
             if not args.doPS or (args.doPS and counter%10==0):
                 plt.savefig(outFile.replace(".data",".pdf"))
             if args.display:plt.show()
+            
+            print (effArray,np.sum(effArray),counter)
+            if counter>10 and np.sum(effArray)==0:
+                print ("break")
+                break
            #  #################################################################
 
     
