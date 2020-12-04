@@ -27,7 +27,11 @@ if doThres+doNoise+doVthcScan+doLinearity >1:
 if doTW+doTWscan+doPS>1:
     print ("Prb TW")
     sys.exit()
-    
+
+
+
+delayList=[]
+
 #####################
 # TW
 #####################
@@ -43,6 +47,14 @@ if doPS:
     
 if doTWscan:
     doTW=1
+    
+if doTWdelay:
+    doTW=1
+    delayList=range(2350,2550+1,100)
+    
+if doPSdelay:
+    doTW=1
+    delayList=range(2350,2550+1,100)
 #####################
 # TOA
 #####################
@@ -287,7 +299,10 @@ if __name__ == "__main__":
     ###############################
     for ch in chList:
         for cd in cdList:
-            
+
+
+
+
             delay=getDelay(board,ch,cd)
             if len(delayList)==0:
                 delayList=[delay]
