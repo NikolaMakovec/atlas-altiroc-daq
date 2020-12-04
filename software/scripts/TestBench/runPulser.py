@@ -48,7 +48,7 @@ if doTWscan:
 #####################
     
 Ntoa=50;
-delayStep=5 
+delayStep=10 
 delayMin=2200
 delayMax=2700
 
@@ -96,8 +96,8 @@ if doNoise:
     Nthres=100
     thresStep=1
     thresMax=600
-    QThresList=[0,8,16]#10
-    QThresList=[8,17]#10
+    QThresList=[0,8,17]#10
+    QThresList=[8,17]#V3
     QThresList=[6,13]#V2
 
 if doVthcScan:
@@ -161,7 +161,13 @@ if __name__ == "__main__":
     asicVersion=2
     if board in boardASICV3: asicVersion=3
     ip=args.ip
-    
+
+
+    if doFullQScanForTOA == 1:
+        if asicVersion==2:            
+            QTOAList=[3,4,5,6,9,13,19,26,63]#v2
+        else:
+            QTOAList=[4,5,6,8,12,18,24,32,63]#v3
     #detector capacitance
     #cdList=[4]
     if board not in boardASICAlone and cdZeroForASICAlone:
@@ -310,8 +316,8 @@ if __name__ == "__main__":
 
             
             if doPS:
-                qMin=0;#for pedestal
-                qMax=54+1;
+                qMin=8;#for pedestal
+                qMax=48+1#48+1;
                 qStep=8   #default 8
                 #dacListLocal=[dacNom]
                 # dacStep=4 #default 4 

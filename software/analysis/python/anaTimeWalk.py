@@ -46,6 +46,7 @@ fileNameList=getFileList(options.inputDir,options.fileList,measType="TW_B",selec
 LSBTOA=20
 LSBTOTC=160
 Qconv=0.6#10./13.
+Qconv=10./13.
 
 
 
