@@ -3,11 +3,11 @@ doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
-doTW        = 0
+doTW        = 1
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -15,12 +15,13 @@ doXtalk     = 0 # TOA Channels should be ON
 #ch list
 chList=None
 #chList=[4,9]#,14,19,24]#,19,24]
-chList=[1,17,3,15]#,23,13,8,17]
+#chList=[1,17,3,15]#B13 B3
+chList=[0]
 #chList=range(0,25)
 #chList=range(25)
 
 delayList=[]
-#delayList=range(2350,2550+1,100)
+delayList=range(2350,2550+1,100)
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
