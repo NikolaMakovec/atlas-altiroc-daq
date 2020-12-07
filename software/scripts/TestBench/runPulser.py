@@ -153,7 +153,7 @@ def parse_arguments():
     parser.add_argument("-p","--prefix", required = False, default = prefix)
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--toabusyON", action="store_true", default = False)
-    parser.add_argument("--probaPA", action="store_true", default = False)
+    parser.add_argument("--probePAON", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
@@ -174,6 +174,12 @@ if __name__ == "__main__":
     asicVersion=2
     if board in boardASICV3: asicVersion=3
     ip=args.ip
+
+    if len(QTOAList)==0:
+        if asicVersion==2:
+            QTOAList=[5,7,13]#v2
+        else:
+            QTOAList=[6,9,16]#v3
 
 
     if doFullQScanForTOA == 1:
@@ -372,7 +378,7 @@ if __name__ == "__main__":
                             except:pass
                             cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
-                            if args.probePA:
+                            if args.probePAON:
                                 cmd+=" --useProbePA True "
                             if not args.useVthc  or (args.useVthc and doPS):#take the one from config
                                 #vthc=64
@@ -418,7 +424,7 @@ if __name__ == "__main__":
                             cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
 
-                            if args.probePA:
+                            if args.probePAON:
                                 cmd+=" --useProbePA True "
                             
                             if not args.useVthc:#take the one from config
