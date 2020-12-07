@@ -177,9 +177,9 @@ if __name__ == "__main__":
 
     if doFullQScanForTOA == 1:
         if asicVersion==2:            
-            QTOAList=[3,4,5,6,9,13,19,26,63]#v2
+            QTOAList=[4,5,6,7,9,13,19,26,63]#v2
         else:
-            QTOAList=[4,5,6,8,12,18,24,32,63]#v3
+            QTOAList=[5,6,7,9,11,16,24,32,63]#v3
     #detector capacitance
     #cdList=[4]
     if board not in boardASICAlone and cdZeroForASICAlone:
@@ -410,6 +410,10 @@ if __name__ == "__main__":
                             except:pass
                             cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
+
+
+                            cmd+=" --useProbePA True "
+                            
                             if not args.useVthc:#take the one from config
                                 #vthc=64
                                 cmd+=" --Vthc "+str(vthc)
