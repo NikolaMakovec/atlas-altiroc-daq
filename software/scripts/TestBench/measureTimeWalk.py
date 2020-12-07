@@ -196,7 +196,7 @@ def parse_arguments():
 def writeData(f,iQ,Q,key,theMap):
     f.write("%s,%s"%(Q,key))
     for toa in theMap[key][iQ]:
-        f.write(",%f"%(toa))
+        f.write(",%d"%(toa))
     f.write("\n")
 
 #################################################################
