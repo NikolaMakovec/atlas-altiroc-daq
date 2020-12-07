@@ -153,6 +153,7 @@ def parse_arguments():
     parser.add_argument("-p","--prefix", required = False, default = prefix)
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--toabusyON", action="store_true", default = False)
+    parser.add_argument("--probaPA", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
@@ -212,6 +213,11 @@ if __name__ == "__main__":
             toaDir+="-toabusyON"
             twDir+="-toabusyON"
             thresDir+="-toabusyON"
+            
+        if args.probePAON:
+            toaDir+="-probePAON"
+            twDir+="-probePAON"
+            thresDir+="-probePAON"
             
         if args.ckSRAMON:
             toaDir+="-ckSRAMON"
@@ -364,9 +370,10 @@ if __name__ == "__main__":
 
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbePA False --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
-
+                            if args.probePA:
+                                cmd+=" --useProbePA True "
                             if not args.useVthc  or (args.useVthc and doPS):#take the one from config
                                 #vthc=64
                                 cmd+=" --Vthc "+str(vthc)
@@ -411,8 +418,8 @@ if __name__ == "__main__":
                             cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
 
-
-                            cmd+=" --useProbePA True "
+                            if args.probePA:
+                                cmd+=" --useProbePA True "
                             
                             if not args.useVthc:#take the one from config
                                 #vthc=64
