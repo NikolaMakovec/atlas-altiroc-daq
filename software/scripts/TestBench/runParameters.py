@@ -1,7 +1,6 @@
 doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
-doVthcScan  = 0
 
 doTW        = 0
 doTWdelay   = 0
@@ -18,12 +17,11 @@ doVthcScan=0
 
 #ch list
 chList=None
-#chList=[4,9]#,14,19,24]#,19,24]
-chList=[3]#,3,6,10]#B29
+#chList=[4,9]#,14,19,24]#,19,24]v2 ASIC
+#chList=[3]#,3,6,10]#B29
 #chList=[1,3,7,15,17]#B13
 #chList=[0]
 #chList=range(0,25)
-
 
 
 #cd list 

@@ -184,6 +184,7 @@ if __name__ == "__main__":
             QTOAList=[4,5,6,7,9,13,19,26,63]#v2
         else:
             QTOAList=[5,6,7,9,11,16,24,32,63]#v3
+            
     #detector capacitance
     #cdList=[4]
     if board not in boardASICAlone and cdZeroForASICAlone:
@@ -291,7 +292,9 @@ if __name__ == "__main__":
 
     #channel list
     if chList==None:
-        if dacMap==None or len(dacMap)==0:
+        if board in boardASICAlone   and board not in boardASICV3:
+            chList=[4,9,14,19,24]
+        elif dacMap==None or len(dacMap)==0:
             chList=range(25)
         else:            
             chList= set([k[1] for k in sorted(dacMap.keys())])
@@ -366,7 +369,7 @@ if __name__ == "__main__":
                     dacListLocal=[-1]
                     vthcList=range(32,96+1,32)
 
-            print (doPS)
+
             #print(ch,cd,delay,dacListLocal,vthcList)            
             for dac in dacListLocal:   
                 #print (dac)
@@ -401,7 +404,6 @@ if __name__ == "__main__":
                                 cmd+=" --cfg "+args.cfg
                                 pass
                             if doPS :
-                                print ("ok")
                                 cmd+=" --doPS True "
                                 pass
                             if doTWscan :
