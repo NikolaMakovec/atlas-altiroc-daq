@@ -40,6 +40,16 @@ qMax=63#63#63
 qStep=1#1 or x4
 Ntw=50
 morePointsAtLowQ=1
+if doTWdelay:
+    doTW=1
+    #delayList=range(2350,2550+1,100)
+    
+if doPSdelay:
+    doPS=1
+    doTW=1
+    #delayList=range(2350,2550+1,100)
+    #toooot
+
 if doPS:
     doTW=1
     morePointsAtLowQ=0
@@ -48,14 +58,7 @@ if doPS:
 if doTWscan:
     doTW=1
     
-if doTWdelay:
-    doTW=1
-    delayList=range(2350,2550+1,100)
-    
-if doPSdelay:
-    doTW=1
-    delayList=range(2350,2550+1,100)
-#####################
+
 # TOA
 #####################
     
@@ -174,12 +177,6 @@ if __name__ == "__main__":
     asicVersion=2
     if board in boardASICV3: asicVersion=3
     ip=args.ip
-
-    if len(QTOAList)==0:
-        if asicVersion==2:
-            QTOAList=[5,7,13]#v2
-        else:
-            QTOAList=[6,9,16]#v3
 
 
     if doFullQScanForTOA == 1:
@@ -316,9 +313,16 @@ if __name__ == "__main__":
 
 
             delay=getDelay(board,ch,cd)
-            if len(delayList)==0:
-                delayList=[delay]
+    
+            if doTWdelay or doPSdelay:
+                step=75
+                delayList=[delay-100,delay-step,delay,delay+step,delay+100]
+            else:
+                if len(delayList)==0:
+                    delayList=[delay]
 
+
+                
             #if ch not in [4,9,14] ans:
             #dac list
             dacNom=0
@@ -362,7 +366,7 @@ if __name__ == "__main__":
                     dacListLocal=[-1]
                     vthcList=range(32,96+1,32)
 
-            
+            print (doPS)
             #print(ch,cd,delay,dacListLocal,vthcList)            
             for dac in dacListLocal:   
                 #print (dac)
@@ -397,6 +401,7 @@ if __name__ == "__main__":
                                 cmd+=" --cfg "+args.cfg
                                 pass
                             if doPS :
+                                print ("ok")
                                 cmd+=" --doPS True "
                                 pass
                             if doTWscan :
