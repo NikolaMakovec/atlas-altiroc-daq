@@ -86,7 +86,7 @@ Top:
         ON_dac_biaspa: 0x1
         dac_pulser: 60
       
-        DAC10bit: 320 #320
+        DAC10bit: 400  #320 #320
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
