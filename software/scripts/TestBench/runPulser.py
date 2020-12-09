@@ -318,8 +318,8 @@ if __name__ == "__main__":
             delay=getDelay(board,ch,cd)
     
             if doTWdelay or doPSdelay:
-                step=75
-                delayList=[delay-100,delay-step,delay,delay+step,delay+100]
+                step=80
+                delayList=[delay-step,delay,delay+step]
             else:
                 if len(delayList)==0:
                     delayList=[delay]
