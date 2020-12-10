@@ -26,6 +26,7 @@ parser = argparse.ArgumentParser()
 
 # Add arguments
 parser.add_argument(
+    "-f",
     "--dataFile",
     type     = str,
     required = True,

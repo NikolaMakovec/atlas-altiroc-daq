@@ -163,7 +163,7 @@ Top:
         CalPulseDelay: 0x1388
         CalPulseWidth: 0x190
         CalPulseCount: 0x0
-        Continuous: 0x1
+        Continuous: 0x0
       Trig:
         enable: True
         TrigTypeSel: Master

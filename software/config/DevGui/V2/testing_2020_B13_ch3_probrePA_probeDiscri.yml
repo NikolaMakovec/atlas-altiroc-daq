@@ -2,7 +2,7 @@ Top:
   Fpga[0]: # "[:]" is a wildcard for a dict search
     ##########################################################################
     Asic: # Note: Configuration tuned for ASIC Board V2: #6
-      ##########################################################################
+      ########################################################################
       Gpio:
         RSTB_RAM: 0x1
         RST_COUNTER: 0x0
@@ -26,8 +26,8 @@ Top:
         FpgaTdcClkHigh: 0x1
         FpgaTdcClkLow: 0x1
       CalPulse:
-        CalPulseDelay: 2000
-        CalPulseWidth: 2000
+        #CalPulseDelay: 2000
+        CalPulseWidth: 0x2
         Continuous: 0x0
       ##########################################################################
       SlowControl:
@@ -86,7 +86,7 @@ Top:
         ON_dac_biaspa: 0x1
         dac_pulser: 60
       
-        DAC10bit: 400  #320 #320
+        DAC10bit: 550  #320 #320
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1

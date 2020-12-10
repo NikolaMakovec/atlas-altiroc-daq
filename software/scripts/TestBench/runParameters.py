@@ -6,9 +6,9 @@ doTW        = 0
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
-doPSdelay   = 1 # TW with thres. scan
+doPSdelay   = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -23,16 +23,14 @@ chList=None
 #chList=[0]
 #chList=range(0,25)
 
-
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4,7]
 
-
 doFullQScanForTOA = 0
-QTOAList=[]  #v2:5,7,13  v3:6,9,16
+QTOAList=[7]  #v2:5,7,13  v3:6,9,16
 #QTOAList=[7,13,26]#v2
-QTOAList=[6,9,16]#v3
+#QTOAList=[6,9,16]#v3
 
 QThresList=[3,4]#default
 #QThresList=[4]
