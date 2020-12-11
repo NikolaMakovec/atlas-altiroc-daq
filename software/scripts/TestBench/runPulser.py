@@ -292,8 +292,11 @@ if __name__ == "__main__":
 
     #channel list
     if chList==None:
-        if board in boardASICAlone   and board not in boardASICV3:
-            chList=[4,9,14,19,24]
+        if board in boardASICAlone:
+            if board  in boardASICV3:
+                chList=list(range(20))+[24]
+            else:
+                chList=[4,9,14,19,24]
         elif dacMap==None or len(dacMap)==0:
             chList=range(25)
         else:            
@@ -318,8 +321,8 @@ if __name__ == "__main__":
             delay=getDelay(board,ch,cd)
     
             if doTWdelay or doPSdelay:
-                step=75
-                delayList=[delay-100,delay-step,delay,delay+step,delay+100]
+                step=80
+                delayList=[delay-step,delay,delay+step]
             else:
                 if len(delayList)==0:
                     delayList=[delay]
@@ -338,9 +341,9 @@ if __name__ == "__main__":
                 if (board,ch,cd) in dacMap.keys():
                     dacNom=dacMap[(board,ch,cd)]
                 elif (board,ch,4) in dacMap.keys():
-                    print ("Take thres. for cd=4 while using cd=",cd)
+                    print (ch,"Take thres. for cd=4 while using cd=",cd)
                     dacNom=dacMap[(board,ch,4)]
-                    time.sleep(1)
+                    #time.sleep(1)
                 else:
                     print ("********** PRB with dacMap, break*****",(board,ch,4))
                     time.sleep(0.005)
@@ -476,7 +479,11 @@ if __name__ == "__main__":
                         thresMinLocal=thresMin
 
                     delay=getDelay(board,ch,cd)
-                        
+
+                    if (board,ch) not in [ ele[0:2] for ele in dacMap.keys()]:
+                        print ("Thres. skip ",board,ch)
+                        continue
+                    
                     #print (Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,args.outputDir)
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)

@@ -44,9 +44,5 @@ python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA True --useProbeDiscri True --delay 2400 --out Data/ --asicVersion 3 --Vthc 64 --ip 192.168.1.197     -N 1000 --board 29 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 300
 python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B29_ch3_probrePA_probeDiscri.yml               --printEvents True
 
-
-
-
 python scripts/DevGui.py --ip 192.168.1.198 --liveDisplay True --asicVersion 2 --userYaml config/config_out_PA_probe_ch9_Cdcode4_nsm2.yml
-
 
