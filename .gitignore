@@ -44,5 +44,7 @@ build*
 run*sh
 
 
+DataScope/
 Data/
+TestData/
 TRASH/
