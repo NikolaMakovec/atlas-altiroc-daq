@@ -1,5 +1,5 @@
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 0
@@ -8,7 +8,7 @@ doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 doPSdelay   = 0 # TW with thres. scan
 
-doTOA       = 0
+doTOA       = 1
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -30,17 +30,13 @@ QTOAList=[6,9,16]#v3
 
 #THRES
 QThresList=[3,4]#default
-#QThresList=[4]
-
-
-
-
-
+QThresList=[4]
 
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4,7]
+cdList=[4,5,6,7]
 
 
 #special settings
