@@ -22,34 +22,29 @@ chList=None
 #chList=[0]
 #chList=range(0,25)
 
-
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4,7]
 
 #TOA
 doFullQScanForTOA = 0
-QTOAList=[7]  #v2:5,7,13  v3:6,9,16
 #QTOAList=[7,13,26]#v2
 #QTOAList=[6,9,16]#v3
+#QTOAList=[7]  #v2:5,7,13  v3:6,9,16
 
 #THRES
 QThresList=[3,4]#default
 QThresList=[4]
 
 
-#cd list 
-cdZeroForASICAlone=True #overwritten to 0 for sensor boards
-cdList=[4,7]
-cdList=[4,5,6,7]
+
+
 
 
 #special settings
 Rin_Vpa=0
 ON_rtest=0
 #toa_busy=0
-
-
 
 prefix=None
 #prefix="Cp7WithProbePA"
