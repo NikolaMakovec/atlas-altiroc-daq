@@ -75,7 +75,7 @@ Top:
         en_rstb_toa[:]: 0x0  # if 1, tdc under reset
         en_rstb_tot[:]: 0x0
 
-        ref_bg: 0x1 # 0 if use of an external Vbg (1V ref from FPGA board)
+        ref_bg: 0x1 # B28 0x1=> use of internal BG and 120 Ohms between vcasc disc and 1.2V vcasc disc= 1.1 V). Not possible to use external Vbg (1V ref from FPGA board) with B28 (reason ??). Internal vbg= not measurable on B28 (no wire bond?) but should be around 850 mV as for other altiroc1_V3 boards => all bias voltages and currents derived from this vbg are teherefore smaller
  
         ###################
         DLL_ALockR_en: 0x1 # should be kept to 1
@@ -85,11 +85,11 @@ Top:
         DLLslow_EXTvctrl_en: 0x0
         DLLcoarse_EXTvctrl_en: 0x0
 
-        coarse_Lcomp_b: 8 # 6 bits, B29 8
-        coarse_Up_Downb: 1 # B29 1
-        fast_Lcomp_b: 0 # 6 bits, B29 0
+        coarse_Lcomp_b: 0 # 6 bits, B28 0
+        coarse_Up_Downb: 0 # B29 1
+        fast_Lcomp_b: 8 # 6 bits, B28 8
         fast_Up_Downb: 0 
-        slow_Lcomp_b: 0 # 6 bits, B29 0
+        slow_Lcomp_b: 12 # 6 bits, B28 12
         slow_Up_Downb: 0
        ###################
 
@@ -109,8 +109,8 @@ Top:
         cd[3]: 0x0 # for all pixels in the column
         cd[4]: 0x0 # only for last pixel (V3)
    
-        dac_biaspa: 30 #30
-        #ON_dac_biaspa: 0x1
+        dac_biaspa: 30 #30, set Id in input trans, should try to increase it with B28 to 63 as vbg internal is only 850 mV
+        #ON_dac_biaspa: 0x1 # Sc not used anymore in altiroc1_V3
         dac_pulser: 12 
 
         ON_dac_LR: 0x0 #RPG
@@ -122,7 +122,7 @@ Top:
 
         EN_toa_busy: 0
 
-        ref_bg: 0x0
+     
 
 ##########****************** Use of RPG ******************#######################
         ON_dac_LR: 0x0 #RPG
@@ -152,7 +152,7 @@ Top:
 #         EN_LowKvco: 0x0 # PLL
 #         FineDelay: 1 # PS fine delay LSB 100 ps (4 bits)
 #         CoarseDelay: 0x0 # PS corase delay LSB 1.6 ns (4 bits)
-#         p: 0x0
+#         p: 0x2
 #         forcedown: 0x0
 #         inita: 0x1 # 1 to init PPS Dll
 #         initb: 0x1 # 1 to init PPS Dll
