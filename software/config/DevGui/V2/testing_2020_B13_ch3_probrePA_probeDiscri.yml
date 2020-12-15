@@ -10,7 +10,7 @@ Top:
         DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
       Trig:
         TrigTypeSel: Master
-        CalStrobeAlign: 0x3      # Same as calibration pulse testing
+        CalStrobeAlign: 0x3      # ame as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
         EnCalPulseTrig: 0x0      # Disable calibration pulse
         EnBncExtTrig: 0x0        # Disable BNC external trigger
@@ -18,7 +18,7 @@ Top:
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
-        TrigSizeBeforePause: 4000 # number of triggers before o-scope deadtime (zero bypass deadtime
+        TrigSizeBeforePause: 00 # number of triggers before o-scope deadtime (zero bypass deadtime
         DeadtimeDuration: 20    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
       TdcClk:
@@ -84,9 +84,9 @@ Top:
    
         dac_biaspa: 0x1e #30
         ON_dac_biaspa: 0x1
-        dac_pulser: 60
+        dac_pulser: 10
       
-        DAC10bit: 500  #320 #320
+        DAC10bit: 360  #320 #320
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1

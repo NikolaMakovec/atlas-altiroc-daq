@@ -18,15 +18,15 @@ Top:
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
-        TrigSizeBeforePause: 0 # number of triggers before o-scope deadtime (zero bypass deadtime
-        DeadtimeDuration: 0    # number of seconds to hold off readout until o-scope recovers
+        TrigSizeBeforePause: 000 # number of triggers before o-scope deadtime (zero bypass deadtime
+        DeadtimeDuration: 20    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
       TdcClk:
         Tdc40MHzClkSel: Pll
         FpgaTdcClkHigh: 0x1
         FpgaTdcClkLow: 0x1
       CalPulse:
-        #CalPulseDelay: 2000
+        CalPulseDelay: 2000
         CalPulseWidth: 0x2
         Continuous: 0x0
       ##########################################################################
@@ -78,15 +78,15 @@ Top:
         Rin_Vpa: 0x0 #0
         Cp_Vpa: 0x0
       
-        cd[0]: 0x0 #6
-        cd[1]: 0x0 #6
-        cd[2]: 0x0 #6
+        cd[0]: 0x4 #6
+        cd[1]: 0x4 #6
+        cd[2]: 0x4 #6
    
         dac_biaspa: 0x1e #30
         ON_dac_biaspa: 0x1
         dac_pulser: 60
       
-        DAC10bit: 500  #320 #320
+        DAC10bit: 530  #320 #320
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
@@ -135,3 +135,4 @@ Top:
         EnProbeDigSelect: 0x0
         EnProbeDig: 0x3
         EnProbePa: 0x3
+

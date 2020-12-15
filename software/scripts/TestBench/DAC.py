@@ -138,25 +138,29 @@ def getDACList(board):
         dacList[(11,13,4)]=410#3,0.99,ok 
         dacList[(11,14,4)]=342#5,0.97,ok 
         pass
-
-
         
     elif board==12:#cd4
-        dacList[(12,0,4)]=400#3,0.97,ok 
-        dacList[(12,1,4)]=380#3,0.99,ok 
-        dacList[(12,2,4)]=348#3,0.97,ok 
+        # dacList[(12,0,4)]=400#3,0.97,ok 
+        # dacList[(12,1,4)]=380#3,0.99,ok 
+        # dacList[(12,2,4)]=348#3,0.97,ok 
         dacList[(12,3,4)]=402#3,0.97,ok 
-        dacList[(12,4,4)]=326#3,1.00,ok 
-        dacList[(12,5,4)]=426#3,0.97,ok 
-        dacList[(12,6,4)]=396#3,0.98,ok 
-        dacList[(12,7,4)]=400#3,0.99,ok 
-        dacList[(12,8,4)]=380#3,1.00,ok 
-        dacList[(12,9,4)]=346#3,0.97,ok
-        dacList[(12,10,4)]=394#3,0.98,ok 
-        dacList[(12,11,4)]=380#3,0.99,ok 
-        #dacList[(12,12,4)]=1022#3,1.00,ok 
-        dacList[(12,13,4)]=416#3,0.97,ok 
-        dacList[(12,14,4)]=360#5,0.98,ok 
+        # dacList[(12,4,4)]=326#3,1.00,ok 
+        # dacList[(12,5,4)]=426#3,0.97,ok 
+        # dacList[(12,6,4)]=396#3,0.98,ok 
+        # dacList[(12,7,4)]=400#3,0.99,ok 
+        # dacList[(12,8,4)]=380#3,1.00,ok 
+        # dacList[(12,9,4)]=346#3,0.97,ok
+        # dacList[(12,10,4)]=394#3,0.98,ok 
+        # dacList[(12,11,4)]=380#3,0.99,ok 
+        # #dacList[(12,12,4)]=1022#3,1.00,ok 
+        # dacList[(12,13,4)]=416#3,0.97,ok 
+        # dacList[(12,14,4)]=360#5,0.98,ok 
+
+        dacList[(12,4,4)]=328#3,0.98,ok 
+        dacList[(12,9,4)]=346#3,0.99,ok 
+        dacList[(12,14,4)]=360#5,1.00,ok 
+        dacList[(12,19,4)]=338#5,0.99,ok
+        dacList[(12,24,4)]=366#5,1.00,ok 
 
         pass
     elif board==13:
@@ -182,8 +186,7 @@ def getDACList(board):
         dacList[(13,22,0)]=404
         dacList[(13,23,0)]=376
 
-        #dacList[(13,19,0)]=346#6,0.85,ok 
-        #dacList[(13,24,0)]=334#6,0.89,ok 
+
 
         # #All SRAM ON (lowest thres)
         # dacList[(13,0,0)]=324
