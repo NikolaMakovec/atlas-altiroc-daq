@@ -111,9 +111,6 @@ if doNoise:
     Nthres=100
     thresStep=1
     thresMax=600
-    QThresList=[0,8,17]#10
-    QThresList=[8,17]#V3
-    QThresList=[6,13]#V2
 
 if doVthcScan:
     doThres= 1
@@ -138,6 +135,8 @@ def getDelay(board,ch,cd):
         delay=2400
         #print (ch,cd,delay)
     elif board==24:
+        delay=2400
+    elif board==28:
         delay=2400
     elif board==29:
         delay=2400
@@ -172,7 +171,7 @@ if __name__ == "__main__":
     
 
     boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31]
-    boardASICV3=[21,24,27,29,31]
+    boardASICV3=[21,24,27,28,29,31]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
@@ -184,7 +183,16 @@ if __name__ == "__main__":
             QTOAList=[4,5,6,7,9,13,19,26,63]#v2
         else:
             QTOAList=[5,6,7,9,11,16,24,32,63]#v3
-            
+
+    if doNoise:
+        if asicVersion==3:            
+            QThresList=[8,17]#V3
+        else:
+            QThresList=[6,13]#V2
+
+
+
+        
     #detector capacitance
     #cdList=[4]
     if board not in boardASICAlone and cdZeroForASICAlone:
@@ -480,7 +488,7 @@ if __name__ == "__main__":
 
                     delay=getDelay(board,ch,cd)
 
-                    if (board,ch) not in [ ele[0:2] for ele in dacMap.keys()]:
+                    if  (board,ch) not in [ ele[0:2] for ele in dacMap.keys()]:
                         print ("Thres. skip ",board,ch)
                         continue
                     
