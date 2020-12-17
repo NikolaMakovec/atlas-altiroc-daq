@@ -183,7 +183,12 @@ if __name__ == "__main__":
             QTOAList=[4,5,6,7,9,13,19,26,63]#v2
         else:
             QTOAList=[5,6,7,9,11,16,24,32,63]#v3
-
+    elif len(QTOAList)==0:
+        if asicVersion==2:            
+            QTOAList=[7,13,26,63]#v2:7,13,26,63
+        elif asicVersion==2:            
+            QTOAList=[9,16,32,63]#v3
+            
     if doNoise:
         if asicVersion==3:            
             QThresList=[8,17]#V3
