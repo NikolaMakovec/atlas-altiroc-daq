@@ -37,7 +37,7 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
 
-    boardASICV3=[21,24,27,29,31]
+    boardASICV3=[21,24,27,28,29,31]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
@@ -51,14 +51,17 @@ if __name__ == "__main__":
 
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=1  #Need 1 for TOTf
+    totRiseEdgeStep=50  #Need 1 for TOTf
 
 
     NTOA=100#was 500
-    toaDelayStep=1
+    toaDelayStep=10
     toaDelayMin=1750
     toaDelayMax=2350
     
+    if board==28:
+        toaDelayMin=1700
+        
     if board==14:
         toaDelayMin=1750
         toaDelayMax=2300

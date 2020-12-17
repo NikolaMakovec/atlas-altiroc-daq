@@ -25,6 +25,8 @@ B=21
 
 python scripts/TestBench/runTrigExt.py  -b $B --toa  --ip $ip  > runTOA.sh
 python scripts/TestBench/runTrigExt.py  -b $B --tot  --ip $ip  > runTOT.sh
+source runTOA.sh ; source runTOT.sh ;
+
 
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip --toabusyON
