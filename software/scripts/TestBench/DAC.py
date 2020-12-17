@@ -237,7 +237,13 @@ def getDACList(board):
         #dacList[(13,6,0)]=598#7,0.98,ok 
         dacList[(13,7,0)]=336#7,0.97,ok 
         dacList[(13,8,0)]=376#7,0.96,ok 
-        dacList[(13,9,0)]=344#7,0.96,ok 
+        dacList[(13,9,0)]=344#7,0.96,ok
+
+
+        # dacList[(13,3,0)] =380#TBNov2019        
+        # dacList[(13,13,0)]=430#TBNov2019
+        # dacList[(13,17,0)]=460#TBNov2019
+        # dacList[(13,21,0)]=380#TBNov2019
 
 
 

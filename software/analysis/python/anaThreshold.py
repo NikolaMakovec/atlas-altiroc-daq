@@ -84,7 +84,8 @@ for fileName in sorted(allData.keys(),key=lambda n: getInfoFromFileName(n)[1]):
 
     # extract information from the file name
     board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
-    label="B"+str(board)+" ch"+str(ch)+" Qdac="+str(Q)
+    thres=thresDict[(fileName,board,ch,cd,Q)]
+    label="B"+str(board)+" ch"+str(ch)+" Qdac="+str(Q)+" "+str(int(thres))
 
     #get data
     data=allData[fileName]

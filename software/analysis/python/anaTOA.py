@@ -43,6 +43,7 @@ fileNameList=getFileList(options.inputDir,options.fileList,measType="TOA_B",sele
 
 DelayStep=9.5582
 Qconv=0.6#10./13.
+Qconv=10./13.
 delayRef=2450*DelayStep
 nChannelsMax=25
 
@@ -163,8 +164,8 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     deltaT=delayArray[11]-delayArray[10]
     #localLSB=abs(1/(np.concatenate((np.ediff1d(toaMeanArray),np.zeros(1)))/deltaT))
     #localLSB=np.concatenate((abs(deltaT/np.ediff1d(toaMeanArray)),np.zeros(1)))
-    localLSB=abs(deltaT/np.ediff1d(toaMeanArray))
-    localLSB=np.concatenate((localLSB,np.zeros(1))) #add one dummy ele
+    #localLSB=abs(deltaT/np.ediff1d(toaMeanArray))
+    #localLSB=np.concatenate((localLSB,np.zeros(1))) #add one dummy ele
 
 
     #TOA vs delay 2D Hist
@@ -222,7 +223,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
         ax2.set_ylabel("Fit residual", fontsize = 10)
         ax2.set_xlabel("Delay [ps]", fontsize = 10)
         ax3 = plt.subplot(gs[3, :]) 
-        ax3.scatter(delayArray[okEff][:-1],localLSB[okEff][:-1],label="TOA with eff cut", facecolors='none', edgecolors='green')
+        #ax3.scatter(delayArray[okEff][:-1],localLSB[okEff][:-1],label="TOA with eff cut", facecolors='none', edgecolors='green')
         ax3.set_xlim(left=delayMin)
         ax3.set_xlim(right=delayMax)
         #ax3.set_ylim(top=40)
