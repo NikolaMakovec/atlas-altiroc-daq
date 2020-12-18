@@ -281,6 +281,8 @@ if __name__ == "__main__":
     fname="runPulser"#TW_B"+str(board)
     if args.useVthc:
         fname+="_useVthc"
+    if args.probePAON:
+        fname+="_probePAON"
     if args.toabusyON:
         fname+="_toabusyON"
     if args.ckSRAMON:

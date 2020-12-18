@@ -48,3 +48,15 @@ python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 3 -
 
 python scripts/DevGui.py --ip 192.168.1.198 --liveDisplay True --asicVersion 2 --userYaml config/config_out_PA_probe_ch9_Cdcode4_nsm2.yml
 
+
+
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip -p  TBDAC
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip -p  TBDAC --probePAON
+source runPulser.sh; source runPulser_probePAON.sh
+
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --probePAON
+source runPulser.sh; source runPulser_probePAON.sh
+
+
+
