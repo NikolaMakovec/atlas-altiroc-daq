@@ -366,6 +366,7 @@ if __name__ == "__main__":
             dacNom+=dacOffset
             dacListLocal=[dacNom]
             #dacListLocal=range(dacNom,dacNom+150,20)
+            #dacListLocal=range(dacNom,dacNom+70,10)
 
             
             if doPS:

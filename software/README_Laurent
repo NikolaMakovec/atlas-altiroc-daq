@@ -1,0 +1,16 @@
+=====> FPGA:
+
+python3 scripts/ReprogramFpga.py --ip 192.168.1.197 --mcs ../firmware/targets/AtlasAltirocV3/images/AtlasAltirocV3-0x40000000-20200623150825-ruckman-19a34a7.mcs
+
+
+=====> B13 ch3:
+
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch3_noProbe.yml --liveDisplay True --asicVersion 2
+python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch3_probrePA_probeDiscri.yml --liveDisplay True --asicVersion 2
+
+=====> B13 ch3:
+
+B29 ch3:
+python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B29_ch3_probrePA_probeDiscri.yml
+
+

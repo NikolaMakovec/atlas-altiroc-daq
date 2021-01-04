@@ -47,11 +47,11 @@ Top:
         
         ###################
         #turn ON single channel
-        EN_ck_SRAM[12]: 0x1
-        ON_Ctest[12]: 0x0
-        disable_pa[12]: 0x0
-        ON_discri[12]: 0x1
-        bit_vth_cor[12]: 64
+        EN_ck_SRAM[3]: 0x1
+        ON_Ctest[3]: 0x0
+        disable_pa[3]: 0x0
+        ON_discri[3]: 0x1
+        bit_vth_cor[3]: 64
         ###################
         
         DLL_ALockR_en: 0x1
@@ -85,7 +85,7 @@ Top:
         ON_dac_biaspa: 0x1
         dac_pulser: 12 #7
       
-        DAC10bit: 430 #dac active channel
+        DAC10bit: 380 #dac active channel
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
@@ -98,13 +98,13 @@ Top:
 
       ##########################################################################
       Probe:
-        en_probe_pa: 0x4
-        pix[12]:
+        en_probe_pa: 0x1
+        pix[3]:
             probe_pa: 0x1
       ##########################################################################
       Readout:
         ReadoutSize: 0
-        RdIndexLut[0]: 12
+        RdIndexLut[0]: 3
         #####################
         RstRamPulseWidth: 0xF
         ProbeToRstDly: 0x0  # Min. tuned on 18JULY2019:LLR
@@ -113,13 +113,13 @@ Top:
         RckHighWidth: 0x2   # Min. tuned on 18JULY2019:LLR
         RckLowWidth: 0x2    # Min. tuned on 18JULY2019:LLR
         #####################
-        RestoreProbeConfig: 0x1
+        RestoreProbeConfig: 0x0
         EnProbeWrite: 0x1
         OnlySendFirstHit: 0x1
         #####################
         #Probe cofiguration
         EnProbeDigOutDisc: 0x0
         EnProbeDigSelect: 0x0
-        EnProbeDig: 0x4
-        EnProbePa: 12
+        EnProbeDig: 0x0
+        EnProbePa: 0x0
 

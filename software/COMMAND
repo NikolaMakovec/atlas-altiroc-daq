@@ -45,12 +45,14 @@ python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestO
 
 #######################################################################################################################
 
-python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA False --useProbeDiscri False --delay 2450 --out Data/ --asicVersion 2 --Vthc 64 --ip 192.168.1.197     -N 1000 --board 13 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 320
-python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B13_ch3_noProbe.yml --liveDisplay True --asicVersion 2
  
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA True --useProbeDiscri True --delay 2400 --out Data/ --asicVersion 3 --Vthc 64 --ip 192.168.1.197     -N 1000 --board 29 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 300
 python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B29_ch3_probrePA_probeDiscri.yml               --printEvents True
-
 python scripts/DevGui.py --ip 192.168.1.198 --liveDisplay True --asicVersion 2 --userYaml config/config_out_PA_probe_ch9_Cdcode4_nsm2.yml
 
 
+python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA False --useProbeDiscri False --delay 2450 --out Data/ --asicVersion 2 --Vthc 64 --ip 192.168.1.198     -N 1000 --board 13 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 320
+
+python scripts/DevGui.py --ip 192.168.1.198  --liveDisplay True --asicVersion 2 --userYaml config/TestBeamJan2020/B13_ch3_dac10bit380_probrePA_probeDiscri.yml
+
+python scripts/PrintFileDump.py -f data_20210104_142437.dat -b 13

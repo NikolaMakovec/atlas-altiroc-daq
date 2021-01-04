@@ -2,7 +2,7 @@ Top:
   Fpga[0]: # "[:]" is a wildcard for a dict search
     ##########################################################################
     Asic: # Note: Configuration tuned for ASIC Board V2: #6
-      ##########################################################################
+      ########################################################################
       Gpio:
         RSTB_RAM: 0x1
         RST_COUNTER: 0x0
@@ -10,7 +10,7 @@ Top:
         DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
       Trig:
         TrigTypeSel: Master
-        CalStrobeAlign: 0x3      # Same as calibration pulse testing
+        CalStrobeAlign: 0x3      # ame as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
         EnCalPulseTrig: 0x0      # Disable calibration pulse
         EnBncExtTrig: 0x0        # Disable BNC external trigger
@@ -26,8 +26,9 @@ Top:
         FpgaTdcClkHigh: 0x1
         FpgaTdcClkLow: 0x1
       CalPulse:
-        CalPulseWidth: 0x2 
-        Continuous: 0x0 
+        CalPulseDelay: 2000
+        CalPulseWidth: 0x2
+        Continuous: 0x0
       ##########################################################################
       SlowControl:
         ########################
@@ -47,28 +48,28 @@ Top:
         
         ###################
         #turn ON single channel
-        EN_ck_SRAM[17]: 0x1
-        ON_Ctest[17]: 0x0
-        disable_pa[17]: 0x0
-        ON_discri[17]: 0x1
-        bit_vth_cor[17]: 64
+        EN_ck_SRAM[3]: 0x1
+        ON_Ctest[3]: 0x1
+        disable_pa[3]: 0x0
+        ON_discri[3]: 0x1
+        bit_vth_cor[3]: 64
         ###################
         
         DLL_ALockR_en: 0x1
-        CP_b: 0x4 #5
+        CP_b: 0x3 #5
         
-        ext_Vcrtlf_en: 0x0 #need to fix value externally
-        ext_Vcrtls_en: 0x0 #need to fix value externally
-        ext_Vcrtlc_en: 0x0 #0
+        ext_Vcrtlf_en: 0x1 #need to fix value externally
+        ext_Vcrtls_en: 0x1 #need to fix value externally
+        ext_Vcrtlc_en: 0x1 #0
 
-        totf_satovfw: 0x1
-        totc_satovfw: 0x1
-        toa_satovfw: 0x1      
+        totf_satovfw: 0x0
+        totc_satovfw: 0x0
+        toa_satovfw: 0x0      
       
-        SatFVa: 0x4 #3
+        SatFVa: 0x0 #3
         IntFVa: 0x0 #1
-        SatFTz: 0x4 #4
-        IntFTz: 0x1 #1  
+        SatFTz: 0x0 #4
+        IntFTz: 0x0 #1  
       
         cBitf: 0x0 #0
         cBits: 0x0 #f
@@ -83,9 +84,9 @@ Top:
    
         dac_biaspa: 0x1e #30
         ON_dac_biaspa: 0x1
-        dac_pulser: 12 #7
+        dac_pulser: 60
       
-        DAC10bit: 460 #dac active channel
+        DAC10bit: 380  
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
@@ -97,9 +98,26 @@ Top:
 
 
       ##########################################################################
+      Probe:
+        en_probe_dig: 0x1
+        en_probe_pa: 0x1
+        EN_dout: 0x0
+        pix[3]:
+            probe_pa: 0x1
+            probe_dig_out_disc: 0x1
+            probe_vthc: 0x0
+            probe_toa: 0x0
+            probe_tot: 0x0
+            totf: 0x0
+            tot_overflow: 0x0
+            toa_busy: 0x0
+            tot_busy: 0x0
+            tot_ready: 0x0
+            en_read: 0x1    #1 remove PA probe !?
+      ##########################################################################
       Readout:
         ReadoutSize: 0
-        RdIndexLut[0]: 17
+        RdIndexLut[0]: 3
         #####################
         RstRamPulseWidth: 0xF
         ProbeToRstDly: 0x0  # Min. tuned on 18JULY2019:LLR
@@ -108,13 +126,13 @@ Top:
         RckHighWidth: 0x2   # Min. tuned on 18JULY2019:LLR
         RckLowWidth: 0x2    # Min. tuned on 18JULY2019:LLR
         #####################
-        RestoreProbeConfig: 0x0
+        RestoreProbeConfig: 0x1
         EnProbeWrite: 0x1
         OnlySendFirstHit: 0x1
         #####################
         #Probe cofiguration
-        EnProbeDigOutDisc: 0x0
+        EnProbeDigOutDisc: 0x1
         EnProbeDigSelect: 0x0
-        EnProbeDig: 0x0
-        EnProbePa: 0x0
+        EnProbeDig: 0x3
+        EnProbePa: 0x3
 

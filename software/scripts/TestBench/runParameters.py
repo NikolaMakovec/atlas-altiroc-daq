@@ -1,5 +1,5 @@
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
 doTW        = 1
