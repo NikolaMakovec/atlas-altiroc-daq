@@ -1,8 +1,8 @@
 doThres     = 0
-doNoise     = 0 # Thres with high stat for few Q
+doNoise     = 1 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
-doTW        = 0
+doTW        = 1
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
@@ -19,8 +19,7 @@ doVthcScan=0
 chList=None
 #chList=[0,3,6,10]#B29
 #chList=[3,6,10,19]#B28
-chList=[1,3,7]#,15,17,21]#B13
-chList=[3,13,17,21]#B13 TB DAC
+chList=[7,21,3,17,13]#B13 TB
 #chList=[1]
 #chList=range(0,25)
 
@@ -30,8 +29,8 @@ cdList=[4,7]
 
 #TOA
 doFullQScanForTOA = 0
-QTOAList=[7,13,26]  #v2:5,7,13  v3:6,9,16
-QTOAList=[7,9,11,13,26]  #v2:5,7,13  v3:6,9,16
+QTOAList=[13,26]  #v2:5,7,13  v3:6,9,16
+#QTOAList=[7,9,11,13,26]  #v2:5,7,13  v3:6,9,16
 
 #THRES
 QThresList=[3,4]#default
@@ -43,7 +42,7 @@ QThresList=[7,13]#B13 TB
 
 
 #special settings
-Rin_Vpa=1
+Rin_Vpa=0
 ON_rtest=0
 #toa_busy=0
 

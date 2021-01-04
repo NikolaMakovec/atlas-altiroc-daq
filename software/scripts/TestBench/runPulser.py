@@ -365,6 +365,7 @@ if __name__ == "__main__":
                     break
             dacNom+=dacOffset
             dacListLocal=[dacNom]
+            #dacListLocal=range(dacNom,dacNom+150,20)
 
             
             if doPS:
@@ -437,7 +438,7 @@ if __name__ == "__main__":
                 if doTOA:
                     #print ("/ppppppppppppp",dacNom,dac)
                     for vthc in vthcList:
-                        if dac!=dacNom: continue
+                        #if dac!=dacNom: continue
                         for Q in QTOAList:
                             if Q<0:#trig ext                        
                                 delayMin=1800
