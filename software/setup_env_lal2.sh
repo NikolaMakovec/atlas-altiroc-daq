@@ -1,4 +1,4 @@
-##############################################################################
+cc##############################################################################
 ## This file is part of 'ATLAS ALTIROC DEV'.
 ## It is subject to the license terms in the LICENSE.txt file found in the 
 ## top-level directory of this distribution and at: 
@@ -27,3 +27,4 @@ export PYTHONPATH=${PWD}/python:${SURF_DIR}:${PYTHONPATH}
 #export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.7/site-packages/
 
 alias go="cd "$PWD
+alias convert="python scripts/PrintFileDump.py  -b 13 -f"

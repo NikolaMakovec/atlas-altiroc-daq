@@ -27,11 +27,15 @@ python scripts/TestBench/runTrigExt.py  -b $B --toa  --ip $ip  > runTOA.sh
 python scripts/TestBench/runTrigExt.py  -b $B --tot  --ip $ip  > runTOT.sh
 source runTOA.sh ; source runTOT.sh ;
 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --probeDiscriON
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --probePAON 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --probePAON --probeDiscriON
+source runPulser_probeDiscriON.sh;source runPulser_probePAON_probeDiscriON.sh;source runPulser_probePAON.sh;source runPulser.sh
 
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip --probePAON
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip --toabusyON --probePAON
 source runPulser.sh; source runPulser_toabusyON.sh
-
 
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip
 python scripts/TestBench/runPulser.py  -b $B  --ip $ip --toabusyON
@@ -55,4 +59,4 @@ python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug Fa
 
 python scripts/DevGui.py --ip 192.168.1.198  --liveDisplay True --asicVersion 2 --userYaml config/TestBeamJan2020/B13_ch3_dac10bit380_probrePA_probeDiscri.yml
 
-python scripts/PrintFileDump.py -f data_20210104_142437.dat -b 13
+python scripts/PrintFileDump.py  -b 13 -f data_20210104_142437.dat

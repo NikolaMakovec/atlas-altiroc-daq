@@ -156,6 +156,7 @@ def parse_arguments():
     parser.add_argument("--chON", action="store_true", default = False)
     parser.add_argument("--toabusyON", action="store_true", default = False)
     parser.add_argument("--probePAON", action="store_true", default = False)
+    parser.add_argument("--probeDiscriON", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
@@ -236,6 +237,11 @@ if __name__ == "__main__":
             twDir+="-probePAON"
             thresDir+="-probePAON"
             
+        if args.probeDiscriON:
+            toaDir+="-probeDiscriON"
+            twDir+="-probeDiscriON"
+            thresDir+="-probeDiscriON"
+            
         if args.ckSRAMON:
             toaDir+="-ckSRAMON"
             twDir+="-ckSRAMON"
@@ -283,6 +289,8 @@ if __name__ == "__main__":
         fname+="_useVthc"
     if args.probePAON:
         fname+="_probePAON"
+    if args.probeDiscriON:
+        fname+="_probeDiscriON"
     if args.toabusyON:
         fname+="_toabusyON"
     if args.ckSRAMON:
@@ -403,10 +411,12 @@ if __name__ == "__main__":
 
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d --useProbeDiscri False  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
 
                             if args.probePAON:
                                 cmd+=" --useProbePA True "
+                            if args.probeDiscriON:
+                                cmd+=" --useProbeDiscri True "
                             if not args.useVthc  or (args.useVthc and doPS):#take the one from config
                                 #vthc=64
                                 cmd+=" --Vthc "+str(vthc)
@@ -453,6 +463,8 @@ if __name__ == "__main__":
 
                             if args.probePAON:
                                 cmd+=" --useProbePA True "
+                            if args.probeDiscriON:
+                                cmd+=" --useProbeDiscri True "
                             
                             if not args.useVthc:#take the one from config
                                 #vthc=64

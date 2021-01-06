@@ -29,7 +29,7 @@ cdList=[4,7]
 
 #TOA
 doFullQScanForTOA = 0
-QTOAList=[13,26]  #v2:5,7,13  v3:6,9,16
+QTOAList=[8,9,13]  #v2:5,7,13  v3:6,9,16
 #QTOAList=[7,9,11,13,26]  #v2:5,7,13  v3:6,9,16
 
 #THRES
