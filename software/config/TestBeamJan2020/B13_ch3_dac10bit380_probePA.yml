@@ -135,6 +135,6 @@ Top:
         #Probe cofiguration
         EnProbeDigOutDisc: 0x0
         EnProbeDigSelect: 0x0
-        EnProbeDig: 0x3
-        EnProbePa: 0x3
+        EnProbeDig: 0x0
+        EnProbePa: 0x0
 
