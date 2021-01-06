@@ -47,17 +47,17 @@ if __name__ == "__main__":
     #chList=[15,17,22,13,1,8]+list(range(15,25))+list(range(0,15))
     #chList=list(range(15,25))+list(range(0,15))
     chList=list(range(0,25))
-    NTOT=20
+    chList=[7,21,3,17,13]#B13 TB
 
+    NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=50  #Need 1 for TOTf
-
+    totRiseEdgeStep=1  #Need 1 for TOTf
 
     NTOA=100#was 500
-    toaDelayStep=10
     toaDelayMin=1750
     toaDelayMax=2350
+    toaDelayStep=1
     
     if board==28:
         toaDelayMin=1700
@@ -72,7 +72,6 @@ if __name__ == "__main__":
         toaDelayMax=2200
 
 
-
     bName="B"
     if args.board<10:
         bName+="0"
@@ -82,7 +81,7 @@ if __name__ == "__main__":
     
     for ch in chList:
         if args.toa:
-            outdir="Data/"+bName+"-toaTrigExt/"
+            outdir="Data/"+bName+"-toaTrigExt"+str(toaDelayStep)+"/"
             try:os.makedirs(outdir)
             except:pass
             nameTOA=outdir+'/delayScanTrigExt_'
@@ -92,10 +91,10 @@ if __name__ == "__main__":
 
 
         if args.tot:
-            if ch>=15 and     asicVersion==2:
-                totRiseEdgeMin=1800
-                pass
-            outdir="Data/"+bName+"-totTrigExt/"
+            #if ch>=15 and     asicVersion==2:
+            #    totRiseEdgeMin=1800
+            #    pass
+            outdir="Data/"+bName+"-totTrigExt"+str(totRiseEdgeStep)+"/"
             try:os.makedirs(outdir)
             except:pass
             nameTOT=outdir+'/widthScanTrigExt_'
