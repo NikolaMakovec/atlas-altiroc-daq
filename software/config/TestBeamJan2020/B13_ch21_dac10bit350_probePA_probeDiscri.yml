@@ -88,7 +88,7 @@ Top:
         ON_dac_biaspa: 0x1
         dac_pulser: 60
       
-        DAC10bit: 380  
+        DAC10bit: 400
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
@@ -101,8 +101,8 @@ Top:
 
       ##########################################################################
       Probe:
-        en_probe_dig: 0x2  
-        en_probe_pa:  0x2  
+        en_probe_dig: 10
+        en_probe_pa:  10
         EN_dout: 0x0
         pix[7]:
             probe_pa: 0x1

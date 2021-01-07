@@ -47,7 +47,7 @@ if __name__ == "__main__":
     #chList=[15,17,22,13,1,8]+list(range(15,25))+list(range(0,15))
     #chList=list(range(15,25))+list(range(0,15))
     chList=list(range(0,25))
-    chList=[7,21,3,17,13]#B13 TB
+    #chList=[7,21,3,17,13]#B13 TB
 
     NTOT=20
     totRiseEdgeMin=700

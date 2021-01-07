@@ -101,8 +101,8 @@ Top:
 
       ##########################################################################
       Probe:
-        en_probe_dig: 0x0  #column number : 1,2,3,4 or 5
-        en_probe_pa:  0x0  #column number : 1,2,3,4 or 5
+        en_probe_dig: 0x0  
+        en_probe_pa:  0x0  
         EN_dout: 0x0
         pix[7]:
             probe_pa: 0x0
