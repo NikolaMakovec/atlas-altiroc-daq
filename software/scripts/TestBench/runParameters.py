@@ -20,7 +20,7 @@ chList=None
 #chList=[0,3,6,10]#B29
 #chList=[3,6,10,19]#B28
 chList=[7,21,3,17,13]#B13 TB
-#chList=[1]
+chList=[15]
 #chList=range(0,25)
 
 #cd list 

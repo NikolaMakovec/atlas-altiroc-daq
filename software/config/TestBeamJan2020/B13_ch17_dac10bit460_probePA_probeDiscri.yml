@@ -86,7 +86,7 @@ Top:
    
         dac_biaspa: 0x1e #30
         ON_dac_biaspa: 0x1
-        dac_pulser: 60
+        dac_pulser: 26
       
         DAC10bit: 460
 
