@@ -60,7 +60,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     if pixel_number in range(5, 10): bitset=0x2
     if pixel_number in range(10, 15): bitset=0x4
     if pixel_number in range(15, 20): bitset=0x8
-    if pixel_number in range(20, 25): bitset=0x10
+    if pixel_number in range(20, 25): bitset=16
     
     #Probes off
     top.Fpga[0].Asic.Probe.EN_dout.set(bitset)
