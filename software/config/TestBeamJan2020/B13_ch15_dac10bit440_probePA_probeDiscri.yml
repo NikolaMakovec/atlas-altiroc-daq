@@ -49,7 +49,7 @@ Top:
         ###################
         #turn ON single channel
         EN_ck_SRAM[15]: 0x1
-        ON_Ctest[15]: 0x1
+        ON_Ctest[15]: 0x0
         disable_pa[15]: 0x0
         ON_discri[15]: 0x1
         bit_vth_cor[15]: 64
