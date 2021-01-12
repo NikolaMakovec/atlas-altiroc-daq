@@ -1,4 +1,4 @@
-cc##############################################################################
+##############################################################################
 ## This file is part of 'ATLAS ALTIROC DEV'.
 ## It is subject to the license terms in the LICENSE.txt file found in the 
 ## top-level directory of this distribution and at: 

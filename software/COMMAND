@@ -13,7 +13,7 @@ python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_
 python scripts/DevGui.py --ip 192.168.1.197 --userYaml config/DevGui/V2/testing_2020_B10_ch4_noProbe.yml --liveDisplay True --asicVersion 2 --refClkSel ExtSmaClk --printEvents True
 
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False --display True  --debug False   --Vthc 64 --delay 2450 --out Data/  --asicVersion 3 --ip 192.168.1.196   --useProbePA False --useProbeDiscri False  -N 50 --board 24 --ch 3 --Cd 4 --QMin 5 --QMax 63 --QStep 5 --DAC 300
-python scripts/DevGui.py --ip 192.168.1.196 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B24_ch3_probrePA_probeDiscri.yml
+python scripts/DevGui.py --ip 192.168.1.196 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B24_ch3_probePA_probeDiscri.yml
 
 
 ###########################################################
@@ -57,6 +57,6 @@ python scripts/DevGui.py --ip 192.168.1.197 --liveDisplay True --asicVersion 2 -
 
 python scripts/TestBench/measureTimeWalk.py --skipExistingFile False  --debug False  --display True --useProbePA False --useProbeDiscri False --delay 2450 --out Data/ --asicVersion 2 --Vthc 64 --ip 192.168.1.197     -N 1000 --board 13 --ch 3 --Cd 0 --QMin 5 --QMax 63 --QStep 5 --DAC 320
 
-python scripts/DevGui.py --ip 192.168.1.197  --liveDisplay True --asicVersion 2 --userYaml config/TestBeamJan2020/B13_ch3_dac10bit380_probrePA_probeDiscri.yml
+python scripts/DevGui.py --ip 192.168.1.198  --liveDisplay True --asicVersion 2 --userYaml config/TestBeamJan2021/B13_ch3_dac10bit380_probePA_probeDiscri.yml
 
 python scripts/PrintFileDump.py  -b 13 -f data_20210104_142437.dat

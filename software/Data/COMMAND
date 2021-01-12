@@ -1,7 +1,0 @@
-cat *txt| grep List| grep \#4
-
-cat *txt| grep List| grep \#3
-
-
-cat thres_B_29_rin_0_0_toabusy_0_rtest_ch_*txt| grep bit| grep "\#300 4"
-
