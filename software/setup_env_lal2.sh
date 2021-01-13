@@ -27,4 +27,4 @@ export PYTHONPATH=${PWD}/python:${SURF_DIR}:${PYTHONPATH}
 #export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.7/site-packages/
 
 alias go="cd "$PWD
-alias convert="python scripts/PrintFileDump.py  -b 13 -f"
+alias convert="python scripts/PrintFileDump.py  -b 13 -f "

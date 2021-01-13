@@ -19,7 +19,7 @@ Top:
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
         TrigSizeBeforePause: 4000 # number of triggers before o-scope deadtime (zero bypass deadtime
-        DeadtimeDuration: 30    # number of seconds to hold off readout until o-scope recovers
+        DeadtimeDuration: 20    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
       TdcClk:
         Tdc40MHzClkSel: Pll
@@ -32,11 +32,11 @@ Top:
       ##########################################################################
       SlowControl:
         ########################
-        #general settings:all ON
-        EN_ck_SRAM[:]: 0x1
+        #general settings:all OFF
+        EN_ck_SRAM[:]: 0x0
         ON_Ctest[:]: 0x0
-        disable_pa[:]: 0x0
-        ON_discri[:]: 0x1
+        disable_pa[:]: 0x1
+        ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
@@ -47,16 +47,12 @@ Top:
         cBit_c_TOT[:]: 0x0
         
         ###################
-        #turn OFF few channels
-        EN_ck_SRAM[6]: 0x1
-        disable_pa[6]: 0x0
-        ON_discri[6]:  0x1
-        EN_ck_SRAM[18]: 0x1
-        disable_pa[18]: 0x0
-        ON_discri[18]:  0x1
-        EN_ck_SRAM[19]: 0x1
-        disable_pa[19]: 0x0
-        ON_discri[19]:  0x1
+        #turn ON single channel
+        EN_ck_SRAM[12]: 0x1
+        ON_Ctest[12]: 0x0
+        disable_pa[12]: 0x0
+        ON_discri[12]: 0x1
+        bit_vth_cor[12]: 64
         ###################
         
         DLL_ALockR_en: 0x1
@@ -92,34 +88,7 @@ Top:
         ON_dac_biaspa: 0x1
         dac_pulser: 26
       
-        DAC10bit: 380
-        bit_vth_cor[0]: 64   #356 356
-        bit_vth_cor[1]: 74   #336 356
-        bit_vth_cor[2]: 63   #358 356
-        bit_vth_cor[3]: 67   #350 356
-        bit_vth_cor[4]: 80   #324 356
-        bit_vth_cor[5]: 27   #430 356
-#        bit_vth_cor[6]: -1   #9999999999 356
-        bit_vth_cor[7]: 74   #336 356
-        bit_vth_cor[8]: 54   #376 356
-        bit_vth_cor[9]: 70   #344 356
-        bit_vth_cor[10]: 69   #346 356
-        bit_vth_cor[11]: 56   #372 356
-        bit_vth_cor[12]: 43   #398 356
-        bit_vth_cor[13]: 48   #388 356
-        bit_vth_cor[14]: 64   #356 356
-        bit_vth_cor[15]: 46   #392 356
-        bit_vth_cor[16]: 74   #336 356
-        bit_vth_cor[17]: 42   #400 356
-#        bit_vth_cor[18]: -1   #9999999999 356
-#        bit_vth_cor[19]: -1   #9999999999 356
-        bit_vth_cor[20]: 64   #356 356
-        bit_vth_cor[21]: 66   #352 356
-        bit_vth_cor[22]: 22   #440 356
-        bit_vth_cor[23]: 36   #412 356
-        bit_vth_cor[24]: 71   #342 356
-
-
+        DAC10bit: 440  
 
         ON_dac_LR: 0x0
         Ck40_choice: 0x1
@@ -149,29 +118,8 @@ Top:
             en_read: 0x1    #1 remove PA probe !?
       ##########################################################################
       Readout:
-        ReadoutSize: 21
-        RdIndexLut[0]: 0
-        RdIndexLut[1]: 1
-        RdIndexLut[2]: 2
-        RdIndexLut[3]: 3
-        RdIndexLut[4]: 4
-        RdIndexLut[5]: 5
-        RdIndexLut[6]: 7
-        RdIndexLut[7]: 8
-        RdIndexLut[8]: 9
-        RdIndexLut[9]: 10
-        RdIndexLut[10]: 11
-        RdIndexLut[11]: 12
-        RdIndexLut[12]: 13
-        RdIndexLut[13]: 14
-        RdIndexLut[14]: 15
-        RdIndexLut[15]: 16
-        RdIndexLut[16]: 17
-        RdIndexLut[17]: 20
-        RdIndexLut[18]: 21
-        RdIndexLut[19]: 22
-        RdIndexLut[20]: 23
-        RdIndexLut[21]: 24
+        ReadoutSize: 0
+        RdIndexLut[0]: 12
         #####################
         RstRamPulseWidth: 0xF
         ProbeToRstDly: 0x0  # Min. tuned on 18JULY2019:LLR
