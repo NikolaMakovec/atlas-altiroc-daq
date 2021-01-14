@@ -1,0 +1,192 @@
+Top:
+  Fpga[0]: # "[:]" is a wildcard for a dict search
+    ##########################################################################
+    Asic: # Note: Configuration tuned for ASIC Board V2: #6
+      ########################################################################
+      Gpio:
+        RSTB_RAM: 0x1
+        RST_COUNTER: 0x0
+        DlyCalPulseSet: 2450 # Rising edge of EXT_TRIG
+        DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
+      Trig:
+        TrigTypeSel: Master
+        CalStrobeAlign: 0x3      # ame as calibration pulse testing
+        TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
+        EnCalPulseTrig: 0x0      # Disable calibration pulse
+        EnBncExtTrig: 0x0        # Disable BNC external trigger
+        EnPcieLocalTrig: 0x1     # Enable the local TOA_BUSY trigger
+        EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
+        MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
+        ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
+        TrigSizeBeforePause: 0 # number of triggers before o-scope deadtime (zero bypass deadtime
+        DeadtimeDuration: 30    # number of seconds to hold off readout until o-scope recovers
+        EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
+      TdcClk:
+        Tdc40MHzClkSel: Pll
+        FpgaTdcClkHigh: 0x1
+        FpgaTdcClkLow: 0x1
+      CalPulse:
+        CalPulseDelay: 2000
+        CalPulseWidth: 0x2
+        Continuous: 0x0
+      ##########################################################################
+      SlowControl:
+        ########################
+        #general settings:all ON
+        EN_ck_SRAM[:]: 0x1
+        ON_Ctest[:]: 0x0
+        disable_pa[:]: 0x0
+        ON_discri[:]: 0x1
+        bit_vth_cor[:]: 0x40
+        EN_hyst[:]: 0x1
+        EN_trig_ext[:]: 0x0
+        cBit_f_TOA[:]: 0x0        
+        cBit_s_TOA[:]: 0x0
+        cBit_f_TOT[:]: 0x0
+        cBit_s_TOT[:]: 0x0
+        cBit_c_TOT[:]: 0x0
+        
+        ###################
+        #turn OFF few channels
+        EN_ck_SRAM[6]: 0x1
+        disable_pa[6]: 0x0
+        ON_discri[6]:  0x1
+        EN_ck_SRAM[18]: 0x1
+        disable_pa[18]: 0x0
+        ON_discri[18]:  0x1
+        EN_ck_SRAM[19]: 0x1
+        disable_pa[19]: 0x0
+        ON_discri[19]:  0x1
+        ###################
+        
+        DLL_ALockR_en: 0x1
+        CP_b: 0x3 #5
+        
+        ext_Vcrtlf_en: 0x1 #need to fix value externally
+        ext_Vcrtls_en: 0x1 #need to fix value externally
+        ext_Vcrtlc_en: 0x1 #0
+
+        totf_satovfw: 0x1
+        totc_satovfw: 0x1
+        toa_satovfw: 0x1     
+      
+        SatFVa: 0x4 
+        IntFVa: 0x0 
+        SatFTz: 0x4 
+        IntFTz: 0x1 
+      
+        cBitf: 0x0 #0
+        cBits: 0x0 #f
+        cBitc: 0x0 #f      
+      
+        Rin_Vpa: 0x0 #0
+        Cp_Vpa: 0x0
+      
+        cd[0]: 0x0 #6
+        cd[1]: 0x0 #6
+        cd[2]: 0x0 #6
+        cd[3]: 0x0 #6
+        cd[4]: 0x0 #6
+   
+        dac_biaspa: 0x1e #30
+        ON_dac_biaspa: 0x1
+        dac_pulser: 26
+      
+        DAC10bit: 380
+        bit_vth_cor[0]: 64   #356 356
+        bit_vth_cor[1]: 74   #336 356
+        bit_vth_cor[2]: 63   #358 356
+        bit_vth_cor[3]: 67   #350 356
+        bit_vth_cor[4]: 80   #324 356
+        bit_vth_cor[5]: 27   #430 356
+#        bit_vth_cor[6]: -1   #9999999999 356
+        bit_vth_cor[7]: 74   #336 356
+        bit_vth_cor[8]: 54   #376 356
+        bit_vth_cor[9]: 70   #344 356
+        bit_vth_cor[10]: 69   #346 356
+        bit_vth_cor[11]: 56   #372 356
+        bit_vth_cor[12]: 43   #398 356
+        bit_vth_cor[13]: 48   #388 356
+        bit_vth_cor[14]: 64   #356 356
+        bit_vth_cor[15]: 46   #392 356
+        bit_vth_cor[16]: 74   #336 356
+        bit_vth_cor[17]: 42   #400 356
+#        bit_vth_cor[18]: -1   #9999999999 356
+#        bit_vth_cor[19]: -1   #9999999999 356
+        bit_vth_cor[20]: 64   #356 356
+        bit_vth_cor[21]: 66   #352 356
+        bit_vth_cor[22]: 22   #440 356
+        bit_vth_cor[23]: 36   #412 356
+        bit_vth_cor[24]: 71   #342 356
+
+
+
+        ON_dac_LR: 0x0
+        Ck40_choice: 0x1
+        en_8drivers: 0x1
+
+        PLL: 0x0
+        Shifted_ck40: 0x0
+        #dac_CP_BWb: 0x10 # V2 maps dac_CP_BW<0> to Shifted_ck40
+
+
+      ##########################################################################
+      Probe:
+        en_probe_dig: 4  
+        en_probe_pa:  4  
+        EN_dout: 0x0
+        pix[12]:
+            probe_pa: 0x1
+            probe_dig_out_disc: 0x1
+            probe_vthc: 0x0
+            probe_toa: 0x0
+            probe_tot: 0x0
+            totf: 0x0
+            tot_overflow: 0x0
+            toa_busy: 0x0
+            tot_busy: 0x0
+            tot_ready: 0x0
+            en_read: 0x1    #1 remove PA probe !?
+      ##########################################################################
+      Readout:
+        ReadoutSize: 21
+        RdIndexLut[0]: 0
+        RdIndexLut[1]: 1
+        RdIndexLut[2]: 2
+        RdIndexLut[3]: 3
+        RdIndexLut[4]: 4
+        RdIndexLut[5]: 5
+        RdIndexLut[6]: 7
+        RdIndexLut[7]: 8
+        RdIndexLut[8]: 9
+        RdIndexLut[9]: 10
+        RdIndexLut[10]: 11
+        RdIndexLut[11]: 12
+        RdIndexLut[12]: 13
+        RdIndexLut[13]: 14
+        RdIndexLut[14]: 15
+        RdIndexLut[15]: 16
+        RdIndexLut[16]: 17
+        RdIndexLut[17]: 20
+        RdIndexLut[18]: 21
+        RdIndexLut[19]: 22
+        RdIndexLut[20]: 23
+        RdIndexLut[21]: 24
+        #####################
+        RstRamPulseWidth: 0xF
+        ProbeToRstDly: 0x0  # Min. tuned on 18JULY2019:LLR
+        RstPulseWidth: 0xF
+        RstToReadDly: 0x0   # Min. tuned on 18JULY2019:LLR
+        RckHighWidth: 0x2   # Min. tuned on 18JULY2019:LLR
+        RckLowWidth: 0x2    # Min. tuned on 18JULY2019:LLR
+        #####################
+        RestoreProbeConfig: 0x1
+        EnProbeWrite: 0x1
+        OnlySendFirstHit: 0x1
+        #####################
+        #Probe cofiguration
+        EnProbeDigOutDisc: 0x0
+        EnProbeDigSelect: 0x0
+        EnProbeDig: 0
+        EnProbePa: 0
+

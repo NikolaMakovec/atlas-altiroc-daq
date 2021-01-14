@@ -18,7 +18,7 @@ Top:
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
-        TrigSizeBeforePause: 4000 # number of triggers before o-scope deadtime (zero bypass deadtime
+        TrigSizeBeforePause: 0 # number of triggers before o-scope deadtime (zero bypass deadtime
         DeadtimeDuration: 30    # number of seconds to hold off readout until o-scope recovers
         EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
       TdcClk:
@@ -132,10 +132,10 @@ Top:
 
       ##########################################################################
       Probe:
-        en_probe_dig: 0x4  
-        en_probe_pa:  0x4  
+        en_probe_dig: 16  
+        en_probe_pa:  16  
         EN_dout: 0x0
-        pix[12]:
+        pix[24]:
             probe_pa: 0x1
             probe_dig_out_disc: 0x1
             probe_vthc: 0x0
