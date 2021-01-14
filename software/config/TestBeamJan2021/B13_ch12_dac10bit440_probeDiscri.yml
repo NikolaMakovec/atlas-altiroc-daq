@@ -101,12 +101,12 @@ Top:
 
       ##########################################################################
       Probe:
-        en_probe_dig: 0x0
-        en_probe_pa:  0x0  
+        en_probe_dig: 0x4  
+        en_probe_pa:  0  
         EN_dout: 0x0
         pix[12]:
             probe_pa: 0x0
-            probe_dig_out_disc: 0x0
+            probe_dig_out_disc: 0x1
             probe_vthc: 0x0
             probe_toa: 0x0
             probe_tot: 0x0
