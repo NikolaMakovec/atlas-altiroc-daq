@@ -1,4 +1,4 @@
-IP=192.168.1.198
+IP=192.168.1.10
 
 mkdir Data//B13-tw-checks/
 mkdir Data//B13-toa-checks/
