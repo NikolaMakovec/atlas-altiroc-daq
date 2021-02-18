@@ -28,8 +28,8 @@ cdZeroForASICAlone=True #overwritten to 0 for sensor boards
 cdList=[4]
 
 #TOA
-doFullQScanForTOA = 1
-QTOAList=[]  #v2:5,7,13  v3:6,9,16
+doFullQScanForTOA = 0
+QTOAList=[7,8,63]#6,9,16]  #v2:5,7,13,63  v3:6,9,16,63
 
 
 #THRES
@@ -46,4 +46,4 @@ prefix=None
 #prefix="Cp7WithProbePA"
 #prefix="Cp7"
 
-dacOffset=0
+dacOffset=10

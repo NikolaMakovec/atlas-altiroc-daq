@@ -184,7 +184,7 @@ if __name__ == "__main__":
             QTOAList=[4,5,6,7,9,13,19,26,63]#v2
         else:
             QTOAList=[5,6,7,9,11,16,24,32,63]#v3
-        QTOAList=list(range(3,26+1)+[63]
+        #QTOAList=list(range(3,26+1))+[63]
     elif len(QTOAList)==0:
         if asicVersion==2:            
             QTOAList=[5,7,13,26,63]#v2:7,13,26,63
