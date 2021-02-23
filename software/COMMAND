@@ -69,3 +69,4 @@ python scripts/DevGui.py --ip 192.168.1.10  --liveDisplay True --asicVersion 2 -
 python scripts/DevGui.py --ip 192.168.1.10 --liveDisplay True --asicVersion 2 --userYaml config/DevGui/B13_ch12_dac10bit440_probePA_probeDiscri.yml --printEvents True
 
 
+python scripts/DevGui.py --ip 192.168.1.10 --liveDisplay True --asicVersion 3 --userYaml config/DevGui/V3/testing_2020_B21_ch3_probrePA_probeDiscri.yml
