@@ -32,9 +32,9 @@ Top:
         ###TrigSizeBeforePause: 4000
         ###DeadtimeDuration: 20 
       CalPulse:
-        CalPulseDelay: 2000
-        CalPulseWidth: 2000
-        Continuous: 0x0
+        CalPulseDelay: 1000
+        CalPulseWidth: 20
+        Continuous: 0x1
       ##########################################################################
       SlowControl:
         ########################
@@ -45,13 +45,17 @@ Top:
         ON_Ctest[:]: 0x0
         disable_pa[:]: 0x1
         ON_discri[:]: 0x0
-        bit_vth_cor[:]: 0x40       
+        bit_vth_cor[:]: 0x40
+        en_rstb_toa[:]: 0x1  # if 1, tdc under reset
+        en_rstb_tot[:]: 0x1
         DAC10bit: 350
 
         EN_ck_SRAM[3]: 0x1
         ON_Ctest[3]: 0x1
         disable_pa[3]: 0x0
         ON_discri[3]: 0x1
+        en_rstb_toa[3]: 0x0  
+        en_rstb_tot[3]: 0x0
 
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
@@ -84,8 +88,6 @@ Top:
         Cbits: 0x0 #
         Cbitc: 0 # 
 
-        en_rstb_toa[:]: 0x0  # if 1, tdc under reset
-        en_rstb_tot[:]: 0x0
 
         ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
  
@@ -183,4 +185,4 @@ Top:
         EnProbeDigSelect: 0x0
         EnProbeDig: 0x3
         EnProbePa: 0x3
-
+        ProbeSclkConfig: 0

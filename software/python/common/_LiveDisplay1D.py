@@ -41,8 +41,9 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
                 print ("Channel,toa,jitter,totc: ",ipix,"- ",self.toa_counter[ipix],round(self.toa_mean[ipix],1), round(rms,1),"- ",self.totc_counter[ipix],round(self.totc_mean[ipix],1))
                 #print ( np.std(self.toa_all) )
                 #time.sleep(100000)
-                self.ax0.set_title( "TOA     "+str(round(self.toa_mean[ipix],1))+"     "+str(round(rms*20,1)) )
-                self.ax1.set_title("TOTc    "+str(round(self.totc_mean[ipix],1)) )
+                self.ax0.set_title( "TOA (Nall N mean std)     "+str(self.toaall_counter[ipix])+"   "+str(self.toa_counter[ipix])+"   "+str(round(self.toa_mean[ipix],1))+"     "+str(round(rms,1)) )
+                self.ax1.set_title("TOTc (mean)   "+str(round(self.totc_mean[ipix],1)) )
+
 
                 
     def __init__(self, plot_title='Live Display', font_size=6, fig_size=(15,8),
@@ -58,6 +59,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
         self.totc_counter =np.zeros(self.num_channels, dtype=int)
         self.totc_mean =np.zeros(self.num_channels, dtype=float)
         self.toa_counter =np.zeros(self.num_channels, dtype=int)
+        self.toaall_counter =np.zeros(self.num_channels, dtype=int)
         self.toa_mean =np.zeros(self.num_channels, dtype=float)
         self.toa_beta =np.zeros(self.num_channels, dtype=float)
         self.toa_alpha =np.zeros(self.num_channels, dtype=float)
@@ -140,6 +142,7 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
             self.totc_counter [ipix]=0
             self.totc_mean [ipix]=0
             self.toa_counter [ipix]=0
+            self.toaall_counter [ipix]=0
             self.toa_mean [ipix]=0
             self.toa_beta  [ipix]=0
             self.toa_alpha  [ipix]=0
@@ -160,40 +163,45 @@ class onlineEventDisplay1D(rogue.interfaces.stream.Slave):
             for i in range( len(eventFrame.pixValue) ):
                 pixel = eventFrame.pixValue[i]
                 pixIndex = pixel.PixelIndex
-                if pixel.Hit and not pixel.ToaOverflow:
+                if pixel.Hit:# and not pixel.ToaOverflow:
                     #print ("Display",pixIndex,pixel.ToaOverflow,"TOA=",pixel.ToaData,"TOTC=",(pixel.TotData >>  2) & 0x7F)
                     toa = pixel.ToaData
                     totc = (pixel.TotData >>  2) & 0x7F
                     #if pixel.PixelIndex > 14:  #No TZ for v3
                     #    totc = (pixel.TotData >>  3) & 0x3F
-
-                    toa_bin = int( toa * (self.toa_max/len(self.toa_array)) )
-                    totc_bin = int( totc * (self.totc_max/len(self.totc_array)) )
-                    self.toa_array[toa_bin][pixel.PixelIndex] += 1
-                    self.totc_array[totc_bin][pixel.PixelIndex] += 1
-                    #toa_list.append(toa)
-                    hit_data[pixel.PixelIndex] = pixel.Hit
-
-                    #print (toa)
-
                     #self.toa_all.append(toa)
-                    self.toa_counter[pixel.PixelIndex]+=1
-                    self.toa_mean[pixel.PixelIndex]=self.toa_mean[pixel.PixelIndex]+(toa-self.toa_mean[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
-                    self.totc_counter[pixel.PixelIndex]+=1
-                    self.totc_mean[pixel.PixelIndex]=self.totc_mean[pixel.PixelIndex]+(totc-self.totc_mean[pixel.PixelIndex])/self.totc_counter[pixel.PixelIndex]
                     
-                    if self.toa_counter[pixel.PixelIndex]<=1:
-                        self.toa_alpha[pixel.PixelIndex]=toa
-                    else:
-                        self.toa_prevalpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]
-                        self.toa_alpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
-                    self.toa_beta[pixel.PixelIndex]=self.toa_beta[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])*(toa-self.toa_prevalpha[pixel.PixelIndex])
+                    self.toaall_counter[pixel.PixelIndex]+=1
+                    
+                    if not pixel.ToaOverflow:
 
-                    # print (toa)
-                    # if self.toa_counter[pixel.PixelIndex]>1:                   
-                    #     rms=sqrt(self.toa_beta[pixel.PixelIndex]/(self.toa_counter[pixel.PixelIndex]))
-                    #     print(toa,self.toa_alpha[pixel.PixelIndex],self.toa_prevalpha[pixel.PixelIndex],self.toa_beta[pixel.PixelIndex],rms)
-                   
+                        
+                        toa_bin = int( toa * (self.toa_max/len(self.toa_array)) )
+                        totc_bin = int( totc * (self.totc_max/len(self.totc_array)) )
+                        self.toa_array[toa_bin][pixel.PixelIndex] += 1
+                        self.totc_array[totc_bin][pixel.PixelIndex] += 1
+                        #toa_list.append(toa)
+                        hit_data[pixel.PixelIndex] = pixel.Hit
+                        
+                        #print (toa)
+
+                        self.toa_counter[pixel.PixelIndex]+=1
+                        self.toa_mean[pixel.PixelIndex]=self.toa_mean[pixel.PixelIndex]+(toa-self.toa_mean[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
+                        self.totc_counter[pixel.PixelIndex]+=1
+                        self.totc_mean[pixel.PixelIndex]=self.totc_mean[pixel.PixelIndex]+(totc-self.totc_mean[pixel.PixelIndex])/self.totc_counter[pixel.PixelIndex]
+
+                        if self.toa_counter[pixel.PixelIndex]<=1:
+                            self.toa_alpha[pixel.PixelIndex]=toa
+                        else:
+                            self.toa_prevalpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]
+                            self.toa_alpha[pixel.PixelIndex]=self.toa_alpha[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])/self.toa_counter[pixel.PixelIndex]
+                        self.toa_beta[pixel.PixelIndex]=self.toa_beta[pixel.PixelIndex]+(toa-self.toa_alpha[pixel.PixelIndex])*(toa-self.toa_prevalpha[pixel.PixelIndex])
+
+                        # print (toa)
+                        # if self.toa_counter[pixel.PixelIndex]>1:                   
+                        #     rms=sqrt(self.toa_beta[pixel.PixelIndex]/(self.toa_counter[pixel.PixelIndex]))
+                        #     print(toa,self.toa_alpha[pixel.PixelIndex],self.toa_prevalpha[pixel.PixelIndex],self.toa_beta[pixel.PixelIndex],rms)
+
                    
 
             hits_data_binary = np.reshape(hit_data, (self.ypixels,self.xpixels), order='F')

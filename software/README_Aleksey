@@ -1,0 +1,26 @@
+go
+
+source mysetup.sh
+
+# pulser: scan of the thres  (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/thresholdScan.py --ip 192.168.1.10 --asicVersion 2  --autoStop True --debug False --out DataAleksey/  --Vthc 64  --minVth 220 --maxVth 600 --VthStep 2 --board 8 --delay 2500 --ch 19 --Cd 4   --Q 8 --N 100   
+
+
+# pulser: scan of the charge (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/measureTimeWalk.py --ip 192.168.1.10 --asicVersion 2 --debug False  --out DataAleksey/ --delay 2500  -N 50  --QMin 0 --QMax 63 --QStep 1  --board 8 --ch 19  --Cd 4 --DAC 340 
+
+
+# pulser: scan of the delay (switch 18 of the IB should be OFF)
+
+python scripts/TestBench/measureTOA.py --ip 192.168.1.10 --asicVersion 2 --debug False --out DataAleksey/  -N 50 --Vthc 64 --delayMin 2200 --delayMax 2700 --delayStep 10  --board 8  --ch 19 --Cd 4  --DAC 340 --Q 63   
+
+
+# External trigger: scan of the delay  (switch 18 of the IB should be ON)
+
+python scripts/TestBench/measureTOA.py --useExt True  --ip 192.168.1.10 --asicVersion 2 --debug False --out DataAleksey/  -N 100  --delayMin 1750 --delayMax 2350 --delayStep 1    --board 8 --ch 19
+
+# External trigger: scan of the width  (switch 18 of the IB should be ON)
+
+python scripts/TestBench/measureTOT.py --useExt True  --ip 192.168.1.10 --asicVersion 2 --debug False --out DataAleksey/  -N 100  --riseEdgeMin 1800 --riseEdgeMax 3000 --riseEdgeStep 1 --board 8 --ch 19 

@@ -323,7 +323,7 @@ if __name__ == "__main__":
             chList=range(25)
         else:            
             chList= set([k[1] for k in sorted(dacMap.keys())])
-        #chList=list(range(15,25))+list(range(0,15))
+    #chList=list(range(15,25))+list(range(0,15))
 
 
 

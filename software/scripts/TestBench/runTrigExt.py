@@ -12,8 +12,6 @@ import math                                                    ##
 #################################################################
 
 
-
-
 #################################################################
 # 
 #################################################################
@@ -46,14 +44,17 @@ if __name__ == "__main__":
     chList=list(range(15,25))+list(range(0,15)) # ATTENTION A L ORDRE!!!!!!!!!!!!!!!!!!!!!!!!
     #chList=[15,17,22,13,1,8]+list(range(15,25))+list(range(0,15))
     #chList=list(range(15,25))+list(range(0,15))
-    chList=list(range(0,25))
+    chList=list(range(15,25))+list(range(0,15))
     #chList=[7,21,3,17,13]#B13 TB
-
+    #chList=[14,19,24,4,9]#v2
+    chList=[19]
+    
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeStep=1  #Need 1 for TOTf
-
+    totRiseEdgeMinTZ=1800
+    
     NTOA=100#was 500
     toaDelayMin=1750
     toaDelayMax=2350
@@ -91,14 +92,15 @@ if __name__ == "__main__":
 
 
         if args.tot:
-            #if ch>=15 and     asicVersion==2:
-            #    totRiseEdgeMin=1800
-            #    pass
+            totRiseEdgeMinLocal=totRiseEdgeMin
+            if ch>=15 and     asicVersion==2:
+                totRiseEdgeMinLocal=totRiseEdgeMinTZ
+                pass
             outdir="Data/"+bName+"-totTrigExt"+str(totRiseEdgeStep)+"/"
             try:os.makedirs(outdir)
             except:pass
             nameTOT=outdir+'/widthScanTrigExt_'
-            cmdTOT="python scripts/TestBench/measureTOT.py --skipExistingFile True  -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --riseEdgeMin %d --riseEdgeMax %d --riseEdgeStep %s --out %s --asicVersion %d --ip %s"%(NTOT,board,ch,totRiseEdgeMin,totRiseEdgeMax,totRiseEdgeStep,nameTOT,asicVersion,ip)
+            cmdTOT="python scripts/TestBench/measureTOT.py --skipExistingFile True  -N %s --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --ch %d --Cd 0 --useExt True --riseEdgeMin %d --riseEdgeMax %d --riseEdgeStep %s --out %s --asicVersion %d --ip %s"%(NTOT,board,ch,totRiseEdgeMinLocal,totRiseEdgeMax,totRiseEdgeStep,nameTOT,asicVersion,ip)
             print(cmdTOT)
             print("sleep 5")
 

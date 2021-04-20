@@ -17,9 +17,9 @@ Top:
         TrigTypeSel: Master
         CalStrobeAlign: 0x3      # Same as calibration pulse testing
         TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
-        EnCalPulseTrig: 0x1      # Disable calibration pulse
+        EnCalPulseTrig: 0x0      # Disable calibration pulse
         EnBncExtTrig: 0x0        # Disable BNC external trigger
-        EnPcieLocalTrig: 0x0     # Enable the local TOA_BUSY trigger: SHOULD be 1 for particles and 0 for injected signal
+        EnPcieLocalTrig: 0x1     # Enable the local TOA_BUSY trigger: SHOULD be 1 for particles and 0 for injected signal
         EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
         MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
         ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
@@ -46,12 +46,16 @@ Top:
         disable_pa[:]: 0x1
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
+        en_rstb_toa[:]: 0x1  # if 1, tdc under reset
+        en_rstb_tot[:]: 0x1    
         DAC10bit: 350
-
+        
         EN_ck_SRAM[3]: 0x1
         ON_Ctest[3]: 0x1
         disable_pa[3]: 0x0
         ON_discri[3]: 0x1
+        en_rstb_toa[3]: 0x0  
+        en_rstb_tot[3]: 0x0
 
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
@@ -84,8 +88,6 @@ Top:
         Cbits: 0x0 #
         Cbitc: 0 # 
 
-        en_rstb_toa[:]: 0x0  # if 1, tdc under reset
-        en_rstb_tot[:]: 0x0
 
         ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
  
@@ -138,10 +140,11 @@ Top:
 
 ##########****************** Use of RPG ******************#######################
         ON_dac_LR: 0x1 #RPG
-        dac: 500   #500=x1f4 # DAC for RPG
         EN_RPG: 0x0 # !!! if 1, RPG OFF.......
         EN_clps: 1
-        setProbe: 2
+        setProbe: 5
+        dac: 0
+
 ##########****************** Use of RPG ******************#######################       
         
         EN_8drivers: 0x1
@@ -185,4 +188,4 @@ Top:
         EnProbeDigSelect: 0x0
         EnProbeDig: 0x3
         EnProbePa: 0x3
-
+        ProbeSclkConfig: 79

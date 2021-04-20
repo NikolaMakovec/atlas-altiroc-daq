@@ -24,8 +24,8 @@ python scripts/DevGui.py --ip 192.168.1.196 --liveDisplay True --asicVersion 3 -
 #
 ###########################################################
 
-ip=192.168.1.197
-B=21
+ip=192.168.1.10
+B=8
 
 python scripts/TestBench/runTrigExt.py  -b $B --toa  --ip $ip  > runTOA.sh
 python scripts/TestBench/runTrigExt.py  -b $B --tot  --ip $ip  > runTOT.sh
