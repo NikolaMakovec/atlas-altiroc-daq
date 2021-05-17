@@ -44,21 +44,22 @@ if __name__ == "__main__":
     chList=list(range(15,25))+list(range(0,15)) # ATTENTION A L ORDRE!!!!!!!!!!!!!!!!!!!!!!!!
     #chList=[15,17,22,13,1,8]+list(range(15,25))+list(range(0,15))
     #chList=list(range(15,25))+list(range(0,15))
-    chList=list(range(15,25))+list(range(0,15))
+    #chList=list(range(15,25))+list(range(0,15))
+    chList=list(range(0,25))
     #chList=[7,21,3,17,13]#B13 TB
     #chList=[14,19,24,4,9]#v2
-    chList=[19]
+    #chList=[19]
     
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
-    totRiseEdgeStep=1  #Need 1 for TOTf
+    totRiseEdgeStep=20  #Need 1 for TOTf
     totRiseEdgeMinTZ=1800
     
     NTOA=100#was 500
     toaDelayMin=1750
     toaDelayMax=2350
-    toaDelayStep=1
+    toaDelayStep=10
     
     if board==28:
         toaDelayMin=1700
