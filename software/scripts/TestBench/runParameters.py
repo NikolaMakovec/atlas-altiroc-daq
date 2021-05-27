@@ -1,8 +1,8 @@
-doThres     = 1
+doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 
-doTW        = 0
+doTW        = 1
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
