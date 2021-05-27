@@ -161,7 +161,8 @@ def parse_arguments():
     parser.add_argument("--ctestON", action="store_true", default = False)
     parser.add_argument("--useVthc", action="store_true", default = False)
     parser.add_argument("--readAllChannels", action="store_true", default = False)
-
+    parser.add_argument("--noDACCheck", action="store_true", default = False)
+    
     args = parser.parse_args()
     return args
 
@@ -172,7 +173,7 @@ if __name__ == "__main__":
     
 
     boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31]
-    boardASICV3=[21,24,27,28,29,31]
+    boardASICV3=[21,24,27,28,29,31,45]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
@@ -510,7 +511,7 @@ if __name__ == "__main__":
 
                     if  (board,ch) not in [ ele[0:2] for ele in dacMap.keys()]:
                         print ("Thres. skip ",board,ch)
-                        continue
+                        if not args.noDACCheck:continue
                     
                     #print (Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,args.outputDir)
                     outdir=args.outputDir+"/"+thresDir+"/"
