@@ -371,6 +371,7 @@ if __name__ == "__main__":
             if args.useVthc:                
                 #dacRef,vthcMap=getVthc(board,cd)
                 dacNom=-1#dacRef
+                dacNom=320
                 vthcList=[-1]
 
            

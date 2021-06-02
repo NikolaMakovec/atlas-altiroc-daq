@@ -1,9 +1,9 @@
 doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
-doVthcScan  = 1
+doVthcScan  = 0
 
-doTW        = 0
+doTW        = 1
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
@@ -32,10 +32,10 @@ cdList=[4]
 #TOA
 doFullQScanForTOA = 0
 QTOAList=[6,7,9,16,63]#6,9,16]  #v2:5,7,13,63  v3:6,9,16,63
-#QTOAList=[7]#6,9,16]  #v2:5,7,13,63  v3:6,9,16,63
+QTOAList=[7]  #v2:5,7,13,63  v3:6,9,16,63
 
 #THRES
-QThresList=[5]#default
+QThresList=[4,5]#default
 #QThresList=[7,13]#B13 TB
 
 

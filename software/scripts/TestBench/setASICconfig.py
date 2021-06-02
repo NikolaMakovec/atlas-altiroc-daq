@@ -158,13 +158,23 @@ def set_pixel_specific_parameters(top, pixel_number,args):
         for ipix in ckSRAMList:
             top.Fpga[0].Asic.SlowControl.EN_ck_SRAM[ipix].set(0x1)#New
 
-            
-    chONList=[4,9]
+    deadChannels={}
+    deadChannels[8]=[]
+    deadChannels[13]=[6,14,18,19,24]
+    deadChannels[21]=[11,16]
+    deadChannels[24]=[7,14,20,21,22,23]
+    deadChannels[29]=[7,11,12,17]
+    deadChannels[45]=[3,7,9,10,13,18]
+
+    
     #chONList=list(set(range(0,25)).difference(set([6,11,16,20,21,22,23])))
-    #chONList=list(set(range(0,25)).difference(set([7,14,20,21,22,23])))
     #chONList=list(set(range(0,25)))
-    chONList=list(set(range(0,25)))
+    chONList=list(set(range(0,25)).difference(set(deadChannels[args.board]))) #B45
+    
+    
+    
     print (chONList)
+
     if args.allChON:
         #for ipix in range(0,14):
         for ipix in chONList:

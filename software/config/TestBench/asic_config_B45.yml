@@ -41,50 +41,30 @@ Top:
         DAC10bit: 320
 
         #chON
+        bit_vth_cor[0]: 53   #320 4 0
+        bit_vth_cor[1]: 37   #320 4 0
+        bit_vth_cor[2]: 54   #320 4 0
+        bit_vth_cor[4]: 104   #320 4 0
+        bit_vth_cor[5]: 81   #320 4 0
+        bit_vth_cor[6]: 28   #320 4 0
+        bit_vth_cor[8]: 41   #320 4 0
+        #bit_vth_cor[11]: 99   #320 4 0
+        bit_vth_cor[12]: 38   #320 4 0
+        #bit_vth_cor[14]: 99   #320 4 0
+        #bit_vth_cor[15]: 99   #320 4 0
+        bit_vth_cor[16]: 42   #320 4 0
+        bit_vth_cor[17]: 51   #320 4 0
+        #bit_vth_cor[19]: 99   #320 4 0
+        bit_vth_cor[20]: 77   #320 4 0
+        bit_vth_cor[21]: 79   #320 4 0
+        bit_vth_cor[22]: 90   #320 4 0
+        bit_vth_cor[23]: 85   #320 4 0
+        #bit_vth_cor[24]: 99   #320 4 0
         bit_vth_cor[11]: 70   #320 5 0
-        bit_vth_cor[12]: 31   #320 5 0
-        bit_vth_cor[14]: 71   #320 5 0
-        bit_vth_cor[15]: 95   #320 5 0
-        bit_vth_cor[16]: 34   #320 5 0
-        bit_vth_cor[17]: 45   #320 5 0
-        bit_vth_cor[19]: 92   #320 5 0
-        bit_vth_cor[1]: 30   #320 5 0
-        bit_vth_cor[20]: 74   #320 5 0
-        bit_vth_cor[21]: 74   #320 5 0
-        bit_vth_cor[22]: 87   #320 5 0
-        bit_vth_cor[23]: 82   #320 5 0
-        bit_vth_cor[24]: 80   #320 5 0
-        bit_vth_cor[2]: 49   #320 5 0
-        bit_vth_cor[4]: 104   #320 5 0
-        bit_vth_cor[5]: 79   #320 5 0
-        bit_vth_cor[6]: 20   #320 5 0
-        bit_vth_cor[8]: 33   #320 5 0
-
-
-        # bit_vth_cor[0]: 54   #320 4 0
-        # bit_vth_cor[11]: 99   #320 4 0
-        # bit_vth_cor[12]: 38   #320 4 0
-        # bit_vth_cor[14]: 99   #320 4 0
-        # bit_vth_cor[15]: 99   #320 4 0
-        # bit_vth_cor[16]: 41   #320 4 0
-        # bit_vth_cor[17]: 51   #320 4 0
-        # bit_vth_cor[19]: 99   #320 4 0
-        # bit_vth_cor[1]: 37   #320 4 0
-        # bit_vth_cor[20]: 76   #320 4 0
-        # bit_vth_cor[21]: 76   #320 4 0
-        # bit_vth_cor[22]: 89   #320 4 0
-        # bit_vth_cor[23]: 84   #320 4 0
-        # bit_vth_cor[24]: 99   #320 4 0
-        # bit_vth_cor[2]: 55   #320 4 0
-        # bit_vth_cor[4]: 107   #320 4 0
-        # bit_vth_cor[5]: 82   #320 4 0
-        # bit_vth_cor[6]: 29   #320 4 0
-        # bit_vth_cor[8]: 42   #320 4 0
-
-        bit_vth_cor[0]: 47   #320 5 0
-
-
-        
+        bit_vth_cor[14]: 70   #320 5 0
+        bit_vth_cor[15]: 96   #320 5 0
+        bit_vth_cor[19]: 93   #320 5 0
+        bit_vth_cor[24]: 81   #320 5 0
       
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
