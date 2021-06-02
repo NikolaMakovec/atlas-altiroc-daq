@@ -142,6 +142,8 @@ def getDelay(board,ch,cd):
         delay=2400
     elif board==31:
         delay=2400
+    elif board==45:
+        delay=2400
     return delay
 
 def parse_arguments():    
@@ -355,22 +357,23 @@ if __name__ == "__main__":
             #if ch not in [4,9,14] ans:
             #dac list
             dacNom=0
+            vthcList=[64]
+            if (board,ch,cd) in dacMap.keys():
+                dacNom=dacMap[(board,ch,cd)]
+            elif (board,ch,4) in dacMap.keys():
+                print (ch,"Take thres. for cd=4 while using cd=",cd)
+                dacNom=dacMap[(board,ch,4)]
+                #time.sleep(1)
+            else:
+                print ("********** PRB with dacMap, break*****",(board,ch,4))
+                time.sleep(0.005)
+                break
             if args.useVthc:                
                 #dacRef,vthcMap=getVthc(board,cd)
                 dacNom=-1#dacRef
                 vthcList=[-1]
-            else:
-                vthcList=[64]
-                if (board,ch,cd) in dacMap.keys():
-                    dacNom=dacMap[(board,ch,cd)]
-                elif (board,ch,4) in dacMap.keys():
-                    print (ch,"Take thres. for cd=4 while using cd=",cd)
-                    dacNom=dacMap[(board,ch,4)]
-                    #time.sleep(1)
-                else:
-                    print ("********** PRB with dacMap, break*****",(board,ch,4))
-                    time.sleep(0.005)
-                    break
+
+           
             dacNom+=dacOffset
             dacListLocal=[dacNom]
             #dacListLocal=range(dacNom,dacNom+150,20)
@@ -565,12 +568,8 @@ print ("Rin_vpa:",Rin_Vpa)
 print ("ON_rtest:",ON_rtest)
 print ("EN_toabusy:",args.toabusyON)
 
-
 print("===========================================> board: "+str(args.board))
 print ("Cd:",cdList)
 print ("Ch:",chList)
 print ("Delay:",delayList)
 print("source "+fname)
-
-
-

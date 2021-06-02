@@ -43,7 +43,7 @@ fileNameList=getFileList(options.inputDir,options.fileList,measType="TOA_B",sele
 
 DelayStep=9.5582
 Qconv=0.6#10./13.
-Qconv=10./13.
+#Qconv=10./13.
 delayRef=2450*DelayStep
 nChannelsMax=25
 

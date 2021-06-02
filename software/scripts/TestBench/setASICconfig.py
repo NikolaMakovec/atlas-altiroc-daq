@@ -161,9 +161,9 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             
     chONList=[4,9]
     #chONList=list(set(range(0,25)).difference(set([6,11,16,20,21,22,23])))
-    chONList=list(set(range(0,25)).difference(set([7,14,20,21,22,23])))
+    #chONList=list(set(range(0,25)).difference(set([7,14,20,21,22,23])))
     #chONList=list(set(range(0,25)))
-    #chONList=list(set(range(0,25)))
+    chONList=list(set(range(0,25)))
     print (chONList)
     if args.allChON:
         #for ipix in range(0,14):

@@ -74,7 +74,7 @@ if __name__ == "__main__":
         #chList=[7,8,6,10,12,13,14,5]
         
     if board in boardASICV3:
-        toaDelayMin=1750
+        toaDelayMin=1700
         toaDelayMax=2200
 
 
