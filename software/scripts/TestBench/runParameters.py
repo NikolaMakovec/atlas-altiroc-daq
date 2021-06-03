@@ -1,9 +1,9 @@
 doThres     = 0
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
-doVthcScan  = 0
+doVthcScan  = 1
 
-doTW        = 1
+doTW        = 0
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
@@ -23,7 +23,7 @@ chList=None
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
 chList=range(0,25)
-#chList=[17]
+#chList=[5,21]
 
 #cd list 
 cdZeroForASICAlone=True #overwritten to 0 for sensor boards
@@ -32,10 +32,11 @@ cdList=[4]
 #TOA
 doFullQScanForTOA = 0
 QTOAList=[6,7,9,16,63]#6,9,16]  #v2:5,7,13,63  v3:6,9,16,63
-QTOAList=[7]  #v2:5,7,13,63  v3:6,9,16,63
+#QTOAList=[7]  #v2:5,7,13,63  v3:6,9,16,63
 
 #THRES
 QThresList=[4,5]#default
+#QThresList=[3,4,5,6,13]#default
 #QThresList=[7,13]#B13 TB
 
 

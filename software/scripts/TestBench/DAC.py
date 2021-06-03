@@ -810,7 +810,22 @@ def getDACList(board):
         dacList[(45,4,0)]=244#4,0.81,ok 
         dacList[(45,5,0)]=294#4,0.84,ok 
         #dacList[(45,7,0)]=488#4,0.97,ok 
-        #dacList[(45,9,0)]=256#4,0.61,PRB!!!!!!!!! 
+        #dacList[(45,9,0)]=256#4,0.61,PRB!!!!!!!!!
+
+        dacList[(45,11,0)]=312#4,0.83,6,diff. thres 
+        dacList[(45,14,0)]=314#4,0.14,2,ok 
+        dacList[(45,15,0)]=256#4,0.74,4,large saturated frac. 
+        dacList[(45,19,0)]=268#4,0.34,2,ok 
+        dacList[(45,20,0)]=294#4,0.00,0,ok 
+        dacList[(45,21,0)]=302#4,0.04,0,ok 
+        dacList[(45,22,0)]=276#4,0.18,2,ok 
+        dacList[(45,23,0)]=288#4,0.10,2,ok 
+        dacList[(45,24,0)]=290#4,0.08,2,ok 
+        dacList[(45,4,0)]=242#4,0.88,6,diff. thres 
+        dacList[(45,5,0)]=290#4,0.52,4,large saturated frac. 
+
+
+        
 
         pass
     return dacList                       
