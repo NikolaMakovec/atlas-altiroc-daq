@@ -40,32 +40,59 @@ Top:
         bit_vth_cor[:]: 0x40       
         DAC10bit: 320
 
-        #chON
+        #unconnected sensors
         bit_vth_cor[0]: 53   #320 4 0
         bit_vth_cor[1]: 37   #320 4 0
         bit_vth_cor[2]: 54   #320 4 0
-        bit_vth_cor[4]: 104   #320 4 0
-        bit_vth_cor[5]: 81   #320 4 0
         bit_vth_cor[6]: 28   #320 4 0
         bit_vth_cor[8]: 41   #320 4 0
-        #bit_vth_cor[11]: 99   #320 4 0
         bit_vth_cor[12]: 38   #320 4 0
-        #bit_vth_cor[14]: 99   #320 4 0
-        #bit_vth_cor[15]: 99   #320 4 0
         bit_vth_cor[16]: 42   #320 4 0
         bit_vth_cor[17]: 51   #320 4 0
-        #bit_vth_cor[19]: 99   #320 4 0
-        bit_vth_cor[20]: 77   #320 4 0
-        bit_vth_cor[21]: 79   #320 4 0
-        bit_vth_cor[22]: 90   #320 4 0
-        bit_vth_cor[23]: 85   #320 4 0
-        #bit_vth_cor[24]: 99   #320 4 0
-        bit_vth_cor[11]: 70   #320 5 0
-        bit_vth_cor[14]: 70   #320 5 0
-        bit_vth_cor[15]: 96   #320 5 0
-        bit_vth_cor[19]: 93   #320 5 0
-        bit_vth_cor[24]: 81   #320 5 0
-      
+
+        #vthcScan-Vthc
+        bit_vth_cor[11]: 67   #thres2 320 4 0 0.96 -3 diff. thres
+        bit_vth_cor[14]: 66   #thres2 320 4 0 0.15 -1 ok
+        #bit_vth_cor[15]: 127   #thres2 320 4 0 0.77 -36 diff. thres
+        bit_vth_cor[15]: 91   #thres1 320 4 0 0.77 -36 diff. thres
+        bit_vth_cor[19]: 89   #thres2 320 4 0 0.23 -2 ok
+        bit_vth_cor[20]: 73   #thres2 320 4 0 0.01 0 ok
+        bit_vth_cor[21]: 71   #thres2 320 4 0 0.0 0 ok
+        bit_vth_cor[22]: 83   #thres2 320 4 0 0.03 0 ok
+        bit_vth_cor[23]: 77   #thres2 320 4 0 0.04 0 ok
+        bit_vth_cor[24]: 77   #thres2 320 4 0 0.04 0 ok
+        bit_vth_cor[4]: 98   #thres2 320 4 0 0.68 -2 large saturated frac.
+        bit_vth_cor[5]: 77   #thres2 320 4 0 0.58 -2 large saturated frac.
+
+
+        #vthcScan-Vthc-chON
+        # bit_vth_cor[11]: 69   #thres2 320 6 0 0.9 -4 diff. thres
+        # bit_vth_cor[14]: 65   #thres2 320 7 0 0.26 -1 ok
+        # bit_vth_cor[15]: 95   #thres2 320 6 0 0.78 -2 ok
+        # bit_vth_cor[19]: 91   #thres2 320 6 0 0.76 -2 ok
+        # bit_vth_cor[20]: 77   #thres2 320 4 0 0.0 0 ok
+        # bit_vth_cor[21]: 77   #thres2 320 4 0 0.0 0 ok
+        # bit_vth_cor[22]: 90   #thres2 320 4 0 0.24 -1 ok
+        # bit_vth_cor[23]: 85   #thres2 320 4 0 0.02 0 ok
+        # bit_vth_cor[24]: 82   #thres2 320 5 0 0.1 -1 ok	
+        # bit_vth_cor[4]: 103   #thres2 320 5 0 0.9 -3 diff. thres
+        # bit_vth_cor[5]: 80   #thres2 320 5 0 1.0 -3 diff. thres
+
+        #vthcScan-Vthc-chON-ctestON
+        bit_vth_cor[11]: 70   #thres2 320 5 0 1.0 -12 diff. thres
+        bit_vth_cor[14]: 70   #thres2 320 5 0 1.0 -13 diff. thres
+        bit_vth_cor[15]: 94   #thres2 320 6 0 1.0 -4 diff. thres	
+        bit_vth_cor[19]: 93   #thres2 320 5 0 1.0 -8 diff. thres
+        bit_vth_cor[20]: 75   #thres2 320 4 0 1.0 -12 diff. thres
+        bit_vth_cor[21]: 75   #thres2 320 4 0 1.0 -13 diff. thres
+        bit_vth_cor[22]: 90   #thres2 320 4 0 1.0 -11 diff. thres
+        bit_vth_cor[23]: 84   #thres2 320 4 0 1.0 -12 diff. thres
+        bit_vth_cor[24]: 80   #thres2 320 5 0 1.0 -13 diff. thres
+        bit_vth_cor[4]: 103   #thres2 320 5 0 1.0 -14 diff. thres
+        bit_vth_cor[5]: 80   #thres2 320 5 0 1.0 -5 diff. thres
+
+
+
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
         cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        

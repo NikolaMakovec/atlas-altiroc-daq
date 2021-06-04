@@ -189,6 +189,8 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     #ctestONList=[0,1,2]#range(0,25,8)
     #ctestONList=[0,5,10]#range(0,25,8)
     ctestONList=chONList[::4]
+    ctestONList=[21,22,23,24]
+    print ctestONList
     if args.allCtestON:
         #for ipix in range(0,14,2):
         for ipix in ctestONList:

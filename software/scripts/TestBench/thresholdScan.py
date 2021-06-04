@@ -315,12 +315,12 @@ def thresholdScan(argip,
     print (suspicious)
     thresFlag="ok"
     if suspicious==0:
-        print ("Can't find a threshold")
+        print ("Strange")
     elif suspicious>0.5:
         print('Threshold = %d '% (thres2))
     else:
         print('Threshold = %d but LARGE FRAC OF TOA 127 (%f)'% (thres2,1-suspicious))
-        thresFlag="large saturated frac."
+        #thresFlag="large saturated frac."
     if abs(thres1-thres2)>2 and  args.vthcScan:
         thresFlag="diff. thres"
     if abs(thres1-thres2)>4 and  not args.vthcScan:

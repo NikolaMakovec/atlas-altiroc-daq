@@ -318,7 +318,7 @@ class Top(pr.Root):
 
             # Wait for the SiLab PLL to lock
             print ('Waiting for SiLab PLLs to lock')
-            time.sleep(10.0)
+            time.sleep(5.0)
 
             # Loop through the devices
             for i in range(self.numEthDev):

@@ -94,7 +94,7 @@ if doXtalk == 1:
 # Threshold
 #####################
 
-Nthres=100
+Nthres=50
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
 thresMax=600 #max is 1023
@@ -114,7 +114,7 @@ if doNoise:
 
 if doVthcScan:
     doThres= 1
-    Nthres=100
+    Nthres=50
     thresMin=0 
     thresMax=128
     thresStep=1
