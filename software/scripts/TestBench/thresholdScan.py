@@ -55,6 +55,7 @@ def parse_arguments():
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
+    parser.add_argument( "--CtestONList", type = str, required = False, default = None, help = "")
     parser.add_argument("--Vthc", type = int, required = False, default = Vthc, help = "Vth cor")
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = Rin_Vpa, help = "RinVpa")
     parser.add_argument("--ON_rtest", type = int, required = False, default = 0, help = "RinVpa")

@@ -154,6 +154,7 @@ def parse_arguments():
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
+    parser.add_argument( "--CtestONList", type = str, required = False, default = None, help = "")
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--useProbeDiscri", type = argBool, required = False, default = False, help = "use probe Discri")

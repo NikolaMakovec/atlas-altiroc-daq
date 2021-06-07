@@ -161,6 +161,7 @@ def parse_arguments():
     parser.add_argument("--probeDiscriON", action="store_true", default = False)
     parser.add_argument("--ckSRAMON", action="store_true", default = False)
     parser.add_argument("--ctestON", action="store_true", default = False)
+    parser.add_argument( "--ctestONList", type = str, required = False, default = None, help = "")
     parser.add_argument("--useVthc", action="store_true", default = False)
     parser.add_argument("--readAllChannels", action="store_true", default = False)
     parser.add_argument("--noDACCheck", action="store_true", default = False)
@@ -259,6 +260,11 @@ if __name__ == "__main__":
             twDir+="-ctestON"
             thresDir+="-ctestON"
             
+        if args.ctestONList is not None:
+            toaDir+="-"+args.ctestONList.replace(",","_")
+            twDir+="-"+args.ctestONList.replace(",","_")
+            thresDir+="-"+args.ctestONList.replace(",","_")
+            
         if ON_rtest>0:
             toaDir+="-rtestON"
             twDir+="-rtestON"
@@ -301,6 +307,8 @@ if __name__ == "__main__":
         fname+="_chON"
     if args.ctestON:
         fname+="_ctestON"
+    if args.ctestONList is not None:
+        fname+="-"+args.ctestONList.replace(",","_")
     fname+=".sh"
     f=open(fname,"w")
 
@@ -434,6 +442,9 @@ if __name__ == "__main__":
                             if args.ctestON:
                                 cmd+=" --allCtestON True"
                                 pass
+                            if args.ctestONList:
+                                cmd+=" --CtestONList "+args.ctestONList
+                                pass
                             if args.cfg is not None:
                                 cmd+=" --cfg "+args.cfg
                                 pass
@@ -482,6 +493,9 @@ if __name__ == "__main__":
                                 pass
                             if args.ctestON:
                                 cmd+=" --allCtestON True"
+                                pass
+                            if args.ctestONList:
+                                cmd+=" --CtestONList "+args.ctestONList
                                 pass
                             if Q<0:
                                 cmd+=" --useExt True "
@@ -533,6 +547,9 @@ if __name__ == "__main__":
                         pass
                     if args.ctestON:
                         cmd+=" --allCtestON True"
+                        pass
+                    if args.ctestONList:
+                        cmd+=" --CtestONList "+args.ctestONList
                         pass
                     if doVthcScan:
                         cmd+=" --vthcScan True "
