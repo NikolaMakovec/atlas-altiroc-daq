@@ -9,7 +9,7 @@ doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 doPSdelay   = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON

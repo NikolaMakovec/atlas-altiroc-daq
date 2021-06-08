@@ -79,17 +79,17 @@ Top:
         # bit_vth_cor[5]: 80   #thres2 320 5 0 1.0 -3 diff. thres
 
         #vthcScan-Vthc-chON-ctestON
-        bit_vth_cor[11]: 70   #thres2 320 5 0 1.0 -12 diff. thres
-        bit_vth_cor[14]: 70   #thres2 320 5 0 1.0 -13 diff. thres
-        bit_vth_cor[15]: 94   #thres2 320 6 0 1.0 -4 diff. thres	
-        bit_vth_cor[19]: 93   #thres2 320 5 0 1.0 -8 diff. thres
-        bit_vth_cor[20]: 75   #thres2 320 4 0 1.0 -12 diff. thres
-        bit_vth_cor[21]: 75   #thres2 320 4 0 1.0 -13 diff. thres
-        bit_vth_cor[22]: 90   #thres2 320 4 0 1.0 -11 diff. thres
-        bit_vth_cor[23]: 84   #thres2 320 4 0 1.0 -12 diff. thres
-        bit_vth_cor[24]: 80   #thres2 320 5 0 1.0 -13 diff. thres
-        bit_vth_cor[4]: 103   #thres2 320 5 0 1.0 -14 diff. thres
-        bit_vth_cor[5]: 80   #thres2 320 5 0 1.0 -5 diff. thres
+        # bit_vth_cor[11]: 70   #thres2 320 5 0 1.0 -12 diff. thres
+        # bit_vth_cor[14]: 70   #thres2 320 5 0 1.0 -13 diff. thres
+        # bit_vth_cor[15]: 94   #thres2 320 6 0 1.0 -4 diff. thres	
+        # bit_vth_cor[19]: 93   #thres2 320 5 0 1.0 -8 diff. thres
+        # bit_vth_cor[20]: 75   #thres2 320 4 0 1.0 -12 diff. thres
+        # bit_vth_cor[21]: 75   #thres2 320 4 0 1.0 -13 diff. thres
+        # bit_vth_cor[22]: 90   #thres2 320 4 0 1.0 -11 diff. thres
+        # bit_vth_cor[23]: 84   #thres2 320 4 0 1.0 -12 diff. thres
+        # bit_vth_cor[24]: 80   #thres2 320 5 0 1.0 -13 diff. thres
+        # bit_vth_cor[4]: 103   #thres2 320 5 0 1.0 -14 diff. thres
+        # bit_vth_cor[5]: 80   #thres2 320 5 0 1.0 -5 diff. thres
 
 
 
