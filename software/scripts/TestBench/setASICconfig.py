@@ -164,6 +164,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     deadChannels[21]=[11,16]
     deadChannels[24]=[7,14,20,21,22,23]
     deadChannels[29]=[7,11,12,17]
+    deadChannels[44]=[]
     deadChannels[45]=[3,7,9,10,13,18]
 
     

@@ -52,13 +52,13 @@ if __name__ == "__main__":
 
 
     #TOA
-    toaDelayStep=1
+    toaDelayStep=20
     NTOA=100#was 500
     toaDelayMin=1750
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=1  #40 or 1 for TOTf
+    totRiseEdgeStep=50  #40 or 1 for TOTf
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
