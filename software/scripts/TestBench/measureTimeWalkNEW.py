@@ -144,8 +144,6 @@ def parse_arguments():
     parser.add_argument("--toa_busy", type = int, required = False, default = 0, help = "")
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
-    parser.add_argument( "--doPS", type = argBool, required = False, default = False, help = "dac scan for pulse shape")
-    parser.add_argument( "--doTWscan", type = argBool, required = False, default = False, help = "dac scan")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
@@ -154,7 +152,6 @@ def parse_arguments():
     parser.add_argument( "--allChON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCkSRAMON", type = argBool, required = False, default = False, help = "")
     parser.add_argument( "--allCtestON", type = argBool, required = False, default = False, help = "")        
-    parser.add_argument( "--CtestONList", type = str, required = False, default = None, help = "")
     parser.add_argument( "--skipExistingFile", type = argBool, required = False, default = False, help = "")        
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--useProbeDiscri", type = argBool, required = False, default = False, help = "use probe Discri")
@@ -179,6 +176,13 @@ def parse_arguments():
 
     # Get the arguments
     args = parser.parse_args()
+    extra=""
+    if args.allCkSRAMON:
+        extra+="allCkSRAMON"
+    if args.allChON:
+        extra+="allChON"
+    if args.allCtestON:
+        extra+="allCtestON"
 
    
 
@@ -197,7 +201,7 @@ def parse_arguments():
 def writeData(f,iQ,Q,key,theMap):
     f.write("%s,%s"%(Q,key))
     for toa in theMap[key][iQ]:
-        f.write(",%d"%(toa))
+        f.write(",%f"%(toa))
     f.write("\n")
 
 #################################################################
@@ -214,6 +218,11 @@ def measureTimeWalk(argsip,
       DAC,
       delay,
       outFile):
+
+
+    if args.skipExistingFile  and os.path.exists(outFile+'.data'):
+        print ('output file already exist. Skip......')
+        sys.exit()
 
 
     #list of charge for looping
@@ -237,44 +246,23 @@ def measureTimeWalk(argsip,
     if args.cfg==None:
         Configuration_LOAD_file = 'config/TestBench/asic_config_B'+str(board)+'.yml'
 
+    print("TOP==================================================")
     # Setup root class
     top = feb.Top(ip = argsip, userYaml = [Configuration_LOAD_file],defaultFile=defaultFile,asicVersion=args.asicVersion)
 
     dacList=[DAC]
-    if args.doPS:
+    doPS=False
+    if doPS:
         dacStep=4
-        dacList=list(range(DAC-40,DAC+250,dacStep))
-        #dacList+=list(range(DAC+250,DAC+450,dacStep*2))                
-        #dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
+        dacList=list(range(DAC-20,DAC+100,dacStep))
+        #dacList+=list(range(DAC+100,DAC+160,dacStep))                
+        dacList+=list(range(DAC-10,DAC+10,2))#more point at low value
         dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
-    elif args.doTWscan:
-        #dacStep=2
-        #dacList=list(range(DAC+2,DAC+12,dacStep))
-        #dacList=list(range(DAC,DAC+150,10))
-        dacList=list(range(DAC-40,DAC+41,20))
-        dacList=list(range(DAC-40,DAC+1,10))
-        dacList=sorted(list(set([dac for dac in dacList if dac<1024 ])))#remove value larger than max
-
-    counter=0
+        
     for DAC in dacList:
-        counter+=1
         
-        extra=""
-        if args.allCkSRAMON:
-            extra+="allCkSRAMON"
-        if args.allChON:
-            extra+="allChON"
-        if args.allCtestON:
-            extra+="allCtestON"
-        outFile='%sTW_B_%d_rin_%d_toabusy_%d_rtest_%d_ch_%d_cd_%d_delay_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.toa_busy,args.ON_rtest,args.ch,args.Cd,args.delay,DAC,args.Vthc,extra)
-
-
-        if args.skipExistingFile  and os.path.exists(outFile+'.data'):
-            print ('output file already exist. Skip......')
-            #sys.exit()
-            continue
-            #break
-        
+        if doPS:
+            outFile='%sTW_B_%d_rin_%d_toabusy_%d_rtest_%d_ch_%d_cd_%d_delay_%d_thres_%d_vthc_%d_%s'%(args.out,args.board,args.Rin_Vpa,args.toa_busy,args.ON_rtest,args.ch,args.Cd,args.delay,DAC,args.Vthc,extra)
 
 
         # debug print
@@ -292,7 +280,6 @@ def measureTimeWalk(argsip,
         top.Fpga[0].Asic.Gpio.RSTB_TDC.set(0x0)
         time.sleep(0.001)
         top.Fpga[0].Asic.Gpio.RSTB_TDC.set(0x1)
-
 
         # Set parameters
         set_pixel_specific_parameters(top, pixel_number,args)
@@ -373,7 +360,7 @@ def measureTimeWalk(argsip,
            totcSatVal=127
            if args.ch>=15 and args.asicVersion==2:
                totcSatVal=63
-
+           print(toaSatVal)
 
 
            #fraction of saturated toa
@@ -401,8 +388,8 @@ def measureTimeWalk(argsip,
            #print (eff,len(pixel_data['HitDataTOA'][iQ]),Nevts)
 
            okTOA=np.array(pixel_data['HitDataTOA'][iQ])!=toaSatVal #used to remove saturated toa
-           #okTOTc=okTOA #used to remove saturated toa even when computed TOTc mean
-           okTOTc=np.logical_and(okTOA,np.array(pixel_data['HitDataTOTc'][iQ])!=totcSatVal) 
+           okTOTc=okTOA #used to remove saturated toa even when computed TOTc mean
+
 
 
 
@@ -426,7 +413,7 @@ def measureTimeWalk(argsip,
            if not math.isnan(TOAmean):TOAMeanArray[iQ]=TOAmean
            if not math.isnan(TOArms):TOARMSArray[iQ]=TOArms
            if not math.isnan(TOTcmean):TOTcMeanArray[iQ]=TOTcmean
-           if not math.isnan(TOTcrms) and  not math.isnan(TOTcmean) and TOTcmean>0:TOTcRMSArray[iQ]=TOTcrms#/TOTcmean
+           if not math.isnan(TOTcrms) and  not math.isnan(TOTcmean) and TOTcmean>0:TOTcRMSArray[iQ]=TOTcrms/TOTcmean
            if not math.isnan(TOTmean):TOTMeanArray[iQ]=TOTmean
            if not math.isnan(TOTrms):TOTRMSArray[iQ]=TOTrms
 
@@ -533,7 +520,7 @@ def measureTimeWalk(argsip,
             ax4.grid(True)
             ax4.set_title('', fontsize = 11)
             ax4.set_xlabel(QTitle, fontsize = 10)
-            ax4.set_ylabel("RMS(TOTc)", fontsize = 10)
+            ax4.set_ylabel("RMS(TOTc)/<TOTc>", fontsize = 10)
             ax4.set_xlim(left = np.min(QArray)*0.9, right = np.max(QArray)*1.1)
             ax4.set_ylim(bottom = 0, top = np.max(TOTcRMSArray)*1.1)
 
@@ -574,32 +561,19 @@ def measureTimeWalk(argsip,
             # ax6.set_ylim(bottom = 0, top = np.max(TOTcMeanArray)*1.1)
 
            #  plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
-           #if not doPS:
-
-
-           
-            if not args.doPS or (args.doPS and counter%10==0):
-                plt.savefig(outFile.replace(".data",".pdf"))
+            plt.savefig(outFile.replace(".data",".pdf"))
             if args.display:plt.show()
-            
-            print (effArray,np.sum(effArray),counter)
-            if counter>10 and np.sum(effArray)==0:
-                print ("break")
-                break
            #  #################################################################
 
-    
+            time.sleep(0.5)
             # Close
-    
+            top.stop()
             #################################################################
 
+        else:
 
-    
-    time.sleep(0.1)
-    top.stop()
+            top.stop()
             #sys.exit()
-
-
 
 if __name__ == "__main__":
     args = parse_arguments()

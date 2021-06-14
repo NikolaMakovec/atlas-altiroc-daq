@@ -1,0 +1,186 @@
+Top:
+  Fpga[0]: # "[:]" is a wildcard for a dict search
+    ##########################################################################
+    Asic: # Note: Configuration tuned for ASIC Board V2: #6
+      ##########################################################################
+      Gpio:
+        RSTB_RAM: 0x1
+        RST_COUNTER: 0x0
+        DlyCalPulseSet: 2400 # Rising edge of EXT_TRIG
+        DlyCalPulseReset: 0 # Falling edge of EXT_TRIG
+      TdcClk:
+        Tdc40MHzClkSel: Pll
+        FpgaTdcClkHigh: 0x1
+        FpgaTdcClkLow: 0x1
+      Trig:
+        enable: True
+        TrigTypeSel: Master
+        CalStrobeAlign: 0x3      # Same as calibration pulse testing
+        TrigStrobeAlign: 0x3     # Sets 6.25 ns trigger window w.r.t to 40 MHz clock  (might need tuning for the real system)
+        EnCalPulseTrig: 0x1      # Disable calibration pulse
+        EnBncExtTrig: 0x0        # Disable BNC external trigger
+        EnPcieLocalTrig: 0x0     # Enable the local TOA_BUSY trigger: SHOULD be 1 for particles and 0 for injected signal
+        EnLemoRemoteTrig: 0x0    # Enable the remote TOA_BUSY trigger   
+        MasterModeSel: OR        # Either OR or AND the TOA_BUSY triggers together (inverted to active HIGH logic in FW)
+        ReadoutStartDly: 128     # Units of 6.4ns (might need tuning for the real system)
+        TrigSizeBeforePause: 0   # number of triggers before o-scope deadtime (zero bypass deadtime
+        DeadtimeDuration: 0      # number of seconds to hold off readout until o-scope recovers
+        EnableReadout: 0x0       # prevents either o-scope or dataStream from receiving data until enabled
+        # #for noise,cosmics,testbeams:
+        # EnCalPulseTrig: 0x0
+        # EnPcieLocalTrig: 0x1
+        ###TrigSizeBeforePause: 4000
+        ###DeadtimeDuration: 20 
+      CalPulse:
+        CalPulseDelay: 2000
+        CalPulseWidth: 2000
+        Continuous: 0x1
+      ##########################################################################
+      SlowControl:
+        ########################
+
+        ########################
+        #general settings -> all off
+        EN_ck_SRAM[:]: 0x0
+        ON_Ctest[:]: 0x0
+        disable_pa[:]: 0x1
+        ON_discri[:]: 0x0
+        bit_vth_cor[:]: 0x40       
+        DAC10bit: 340
+
+        EN_ck_SRAM[24]: 0x1
+        ON_Ctest[24]: 0x1
+        disable_pa[24]: 0x0
+        ON_discri[24]: 0x1
+
+        EN_hyst[:]: 0x1
+        EN_trig_ext[:]: 0x0
+
+        cBit_f_TOA[:]: 0x0   # increase to 0 to f to reduce LSB while keeping cBit_s_TOA=0        
+        cBit_f_TOA[1]: 0x0
+        cBit_f_TOA[12]: 0x0
+        cBit_f_TOA[13]: 0x0
+        cBit_f_TOA[14]: 0x0
+        cBit_f_TOA[17]: 0x0
+        cBit_f_TOA[18]: 0x0
+ 
+        cBit_s_TOA[0]: 0x0
+        cBit_s_TOA[3]: 0x0
+        cBit_s_TOA[4]: 0x0
+        cBit_s_TOA[5]: 0x0
+        cBit_s_TOA[9]: 0x0
+        cBit_s_TOA[15]: 0x0
+        cBit_s_TOA[19]: 0x0
+        cBit_s_TOA[20]: 0x0
+        cBit_s_TOA[22]: 0x0
+        cBit_s_TOA[23]: 0x0
+
+        cBit_f_TOT[:]: 0x0
+        cBit_s_TOT[:]: 0x0
+        cBit_c_TOT[:]: 0x0
+        ###################
+
+        cBitf: 0x0 # Global SC, B24 2. DLL cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
+        Cbits: 0x0 #
+        Cbitc: 0 # 
+
+        en_rstb_toa[:]: 0x0  # if 1, tdc under reset
+        en_rstb_tot[:]: 0x0
+
+        ref_bg: 0x0 # 0 if use of an external Vbg (1V ref from FPGA board)
+ 
+        ###################
+        DLL_ALockR_en: 0x1 # should be kept to 1
+        DLL_CP_b: 16 # 5 bits
+        ON_ota_dll: 1
+        DLLfast_EXTvctrl_en: 0x0
+        DLLslow_EXTvctrl_en: 0x0
+        DLLcoarse_EXTvctrl_en: 0x0
+
+        coarse_Lcomp_b: 8 # 6 bits, B29 8
+        coarse_Up_Downb: 1 # B29 1
+        fast_Lcomp_b: 0 # 6 bits, B29 0
+        fast_Up_Downb: 0 
+        slow_Lcomp_b: 0 # 6 bits, B29 0
+        slow_Up_Downb: 0
+       ###################
+
+        totf_satovfw: 0x1
+        totc_satovfw: 0x1
+        toac_satovfw: 0x1      
+      
+        SatFVa: 0x4 #3
+        IntFVa: 0x0 #1
+                 
+        Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K for V3, 15K for V2
+        Cp_Vpa: 0x0 # 3 bits
+
+        cd[0]: 0x0 # for all pixels in the column
+        cd[1]: 0x0 # for all pixels in the column
+        cd[2]: 0x0 # for all pixels in the column
+        cd[3]: 0x0 # for all pixels in the column
+        cd[4]: 0x0 # only for last pixel (V3)
+   
+        dac_biaspa: 30 #30
+        #ON_dac_biaspa: 0x1
+        dac_pulser: 20 
+
+        ON_dac_LR: 0x0 #RPG
+        choice_shifted_ck40: 0x0
+        choice_fpga_ck40: 0x1
+        EN_8drivers: 0x1
+
+        ON_PLL: 0x0
+        ON_rtest: 0
+        EN_toa_busy: 0
+
+        ref_bg: 0x0
+
+##########****************** Use of RPG ******************#######################
+        ON_dac_LR: 0x0 #RPG
+        dac: 0 # DAC for RPG
+        EN_RPG: 0x1 # !!! if 1, RPG OFF.......
+##########****************** Use of RPG ******************#######################       
+        
+        EN_8drivers: 0x1
+
+
+      ##########################################################################
+      Probe:
+        en_probe_dig: 0x16
+        en_probe_pa: 0x16
+        EN_dout: 0x0
+        pix[24]:
+            probe_pa: 0x1
+            probe_dig_out_disc: 0x1
+            probe_vthc: 0x0
+            probe_toa: 0x0
+            probe_tot: 0x0
+            totf: 0x0
+            tot_overflow: 0x0
+            toa_busy: 0x0
+            tot_busy: 0x0
+            tot_ready: 0x0
+            en_read: 0x1    #1 remove PA probe !?
+      ##########################################################################
+      Readout:
+        ReadoutSize: 10
+        RdIndexLut[0]: 0
+        #####################
+        RstRamPulseWidth: 0xF
+        ProbeToRstDly: 0x0  # Min. tuned on 18JULY2019:LLR
+        RstPulseWidth: 0xF
+        RstToReadDly: 0x0   # Min. tuned on 18JULY2019:LLR
+        RckHighWidth: 0x2   # Min. tuned on 18JULY2019:LLR
+        RckLowWidth: 0x2    # Min. tuned on 18JULY2019:LLR
+        #####################
+        RestoreProbeConfig: 0x1
+        EnProbeWrite: 0x1
+        OnlySendFirstHit: 0x1
+        #####################
+        #Probe cofiguration
+        EnProbeDigOutDisc: 0x1
+        EnProbeDigSelect: 0x0
+        EnProbeDig: 0x0
+        EnProbePa: 0x0
+

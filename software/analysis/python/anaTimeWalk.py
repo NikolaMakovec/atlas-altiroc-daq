@@ -67,6 +67,8 @@ figTOAhist=plt.figure('TOAhist',figsize=(12,4))
 axTOAhist = figTOAhist.add_subplot(1,1,1)
 figEff=plt.figure('Efficiency')
 axEff = figEff.add_subplot(1,1,1)
+figEff2=plt.figure('Efficiency2')
+axEff2 = figEff2.add_subplot(1,1,1)
 #figTOTCrms=plt.figure('TOTCrms')
 #axTOTCrms = figTOTCrms.add_subplot(1,1,1)
 
@@ -86,6 +88,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
 
     #initialize list
     effArray = np.zeros(len(QArray))
+    eff2Array = np.zeros(len(QArray))
     TOAmeanArray = np.zeros(len(QArray))-9999.
     TOArmsArray = np.zeros(len(QArray))-9999.
     TOTCmeanArray = np.zeros(len(QArray))-9999.
@@ -108,6 +111,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
        for ele in  pixel_data[('HitDataTOA',Q)]:
            if ele==127:toaof+=1
        eff= float(len(pixel_data[('HitDataTOA',Q)])-toaof)/options.Nevents
+       eff2= float(len(pixel_data[('HitDataTOA',Q)]))/options.Nevents
        
        #stop here if very low eff (can't compute jitter with very low stat)
        if eff<0.05: continue
@@ -139,6 +143,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
            
        #fill list
        effArray[counter]=eff
+       eff2Array[counter]=eff2
        if not math.isnan(TOAmean):TOAmeanArray[counter]=TOAmean
        if not math.isnan(TOArms):TOArmsArray[counter]=TOArms
        if not math.isnan(TOTCmean):TOTCmeanArray[counter]=TOTCmean
@@ -150,6 +155,12 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     QThres=QArray[np.argmax(effArray>0.9)]
     print (np.argmax(effArray>0.9))
     plt.plot(QArray,effArray,label=label+' '+str(round(QThres,1)),color=colors[fileNb])
+    
+    # eff2 plot
+    plt.figure(figEff2.number)
+    QThres=QArray[np.argmax(eff2Array>0.9)]
+    print (np.argmax(eff2Array>0.9))
+    plt.plot(QArray,eff2Array,label=label+' '+str(round(QThres,1)),color=colors[fileNb])
 
     # TOA mean
     plt.figure(figTOAmean.number)
@@ -239,6 +250,18 @@ axEff.set_xlabel("Injected charge [fC]", fontsize = 10)
 axEff.set_ylabel("Efficiency", fontsize = 10)
 plt.legend(loc='upper right', prop={"size":6})
 plt.savefig("TW_SummaryEff"+options.select+".pdf")
+
+#eff2
+plt.figure(figEff2.number)
+if options.Qmax is not None:
+    axEff2.set_xlim(right=options.Qmax)
+if options.Qmin is not None:
+    axEff2.set_xlim(left=options.Qmin)
+axEff2.set_ylim(top=1.2)
+axEff2.set_xlabel("Injected charge [fC]", fontsize = 10)
+axEff2.set_ylabel("Eff2iciency", fontsize = 10)
+plt.legend(loc='upper right', prop={"size":6})
+plt.savefig("TW_SummaryEff2"+options.select+".pdf")
 
 
 # #TOTC rms

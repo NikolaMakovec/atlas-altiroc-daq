@@ -22,8 +22,9 @@ chList=None
 #chList=[3,6,10,19]#B28
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
-chList=range(0,25)
-#chList=[15]
+#chList=range(0,25)
+#chList=[1,4,14]
+#chList=[11,21]
 
 
 #cd list 
@@ -33,10 +34,10 @@ cdList=[4]
 #TOA
 doFullQScanForTOA = 0
 QTOAList=[6,7,9,16,63]#6,9,16]  #v2:5,7,13,63  v3:6,9,16,63
-QTOAList=[63]  #v2:5,7,13,63  v3:6,9,16,63
+QTOAList=[6]  #v2:5,7,13,63  v3:6,9,16,63
 
 #THRES
-QThresList=[20,22]#default
+QThresList=[4]#default
 #QThresList=[3,4,5,6,13]#default
 #QThresList=[7,13]#B13 TB
 

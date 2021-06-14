@@ -97,7 +97,7 @@ if doXtalk == 1:
 Nthres=50
 #QThresList=[1,2,3,5]
 thresMin=220  #overwritten for large Q
-thresMax=600 #max is 1023
+thresMax=800 #max is 1023
 thresStep=2
 if doLinearity:
     doThres= 1
@@ -108,9 +108,9 @@ if doLinearity:
     
 if doNoise:
     doThres=1
-    Nthres=100
+    Nthres=50
     thresStep=1
-    thresMax=600
+    thresMax=800
 
 if doVthcScan:
     doThres= 1
@@ -198,6 +198,7 @@ if __name__ == "__main__":
     if doNoise:
         if asicVersion==3:            
             QThresList=[8,17]#V3
+            #QThresList=[10,19]#V3
         else:
             QThresList=[6,13]#V2
 

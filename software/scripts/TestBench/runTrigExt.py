@@ -52,21 +52,18 @@ if __name__ == "__main__":
 
 
     #TOA
-    toaDelayStep=20
-    NTOA=100#was 500
+    toaDelayStep=1
+    NTOA=50#was 500
     toaDelayMin=1750
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=50  #40 or 1 for TOTf
+    totRiseEdgeStep=1  #40 or 1 for TOTf
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
     totRiseEdgeMinTZ=1800
     
-    
-    if board==28:
-        toaDelayMin=1700
         
     if board==14:
         toaDelayMin=1750
@@ -74,7 +71,7 @@ if __name__ == "__main__":
         #chList=[7,8,6,10,12,13,14,5]
         
     if board in boardASICV3:
-        toaDelayMin=1700
+        toaDelayMin=1650
         toaDelayMax=2200
 
 
