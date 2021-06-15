@@ -176,7 +176,7 @@ if __name__ == "__main__":
     
 
     boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31]
-    boardASICV3=[21,24,27,28,29,31,45]
+    boardASICV3=[21,24,27,28,29,31,45,102]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3

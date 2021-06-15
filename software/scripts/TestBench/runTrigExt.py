@@ -35,7 +35,7 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
 
-    boardASICV3=[21,24,27,28,29,31,45]
+    boardASICV3=[21,24,27,28,29,31,45,102]
     board=args.board
     asicVersion=2
     if board in boardASICV3: asicVersion=3
