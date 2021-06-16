@@ -599,47 +599,55 @@ def getDACList(board):
 
         
     elif board==29: #13 is not bump-bonded
-        dacList[(29,0,0)]=330#4,0.91,ok 
-        dacList[(29,10,0)]=268#4,0.76,PRB!!!!!!!!! 
-        #dacList[(29,11,0)]=302#4,0.89,ok 
-        #dacList[(29,12,0)]=288#4,0.54,PRB!!!!!!!!! 
-        dacList[(29,15,0)]=302#4,0.69,PRB!!!!!!!!! 
-        dacList[(29,16,0)]=304#4,0.60,PRB!!!!!!!!! 
-        #dacList[(29,17,0)]=286#4,0.59,PRB!!!!!!!!! 
-        dacList[(29,18,0)]=290#4,0.91,ok 
-        dacList[(29,20,0)]=322#4,0.96,ok 
-        dacList[(29,21,0)]=278#4,0.95,ok 
-        dacList[(29,22,0)]=312#4,0.97,ok 
-        dacList[(29,24,0)]=304#4,0.98,ok 
-        dacList[(29,2,0)]=320#4,0.86,ok 
-        dacList[(29,3,0)]=296#4,0.93,ok 
-        dacList[(29,4,0)]=288#4,0.53,PRB!!!!!!!!! 
-        dacList[(29,6,0)]=306#4,0.80,PRB!!!!!!!!! 
-        #dacList[(29,7,0)]=278#4,0.99,ok 
-        dacList[(29,8,0)]=314#4,0.88,ok 
-        dacList[(29,9,0)]=300#4,0.67,PRB!!!!!!!!!
+        # dacList[(29,0,0)]=330#4,0.91,ok 
+        # dacList[(29,10,0)]=268#4,0.76,PRB!!!!!!!!! 
+        # #dacList[(29,11,0)]=302#4,0.89,ok 
+        # #dacList[(29,12,0)]=288#4,0.54,PRB!!!!!!!!! 
+        # dacList[(29,15,0)]=302#4,0.69,PRB!!!!!!!!! 
+        # #dacList[(29,16,0)]=304#4,0.60,PRB!!!!!!!!! 
+        # #dacList[(29,17,0)]=286#4,0.59,PRB!!!!!!!!! 
+        # dacList[(29,18,0)]=290#4,0.91,ok 
+        # dacList[(29,20,0)]=322#4,0.96,ok 
+        # dacList[(29,21,0)]=278#4,0.95,ok 
+        # dacList[(29,22,0)]=312#4,0.97,ok 
+        # dacList[(29,24,0)]=304#4,0.98,ok 
+        # dacList[(29,2,0)]=320#4,0.86,ok 
+        # #dacList[(29,3,0)]=296#4,0.93,ok 
+        # dacList[(29,4,0)]=288#4,0.53,PRB!!!!!!!!! 
+        # dacList[(29,6,0)]=306#4,0.80,PRB!!!!!!!!! 
+        # #dacList[(29,7,0)]=278#4,0.99,ok 
+        # #dacList[(29,8,0)]=314#4,0.88,ok 
+        # dacList[(29,9,0)]=300#4,0.67,PRB!!!!!!!!!
 
 
+        #Not connected
+        dacList[(29,3,0)]=372#thres2 4,0.06,2,ok
+        dacList[(29,7,0)]=336#thres2 4,0.00,0,ok 
+        dacList[(29,8,0)]=398#thres2 4,0.00,0,ok
+        dacList[(29,11,0)]=376#thres2 4,0.02,0,ok 
+        dacList[(29,12,0)]=350#thres2 4,0.00,0,ok
+        dacList[(29,13,0)]=358#thres2 4,0.04,0,ok
+        dacList[(29,16,0)]=368#thres2 4,0.22,2,ok
+        dacList[(29,17,0)]=332#thres2 4,0.06,2,ok 
+        dacList[(29,22,0)]=362#thres2 4,0.04,0,ok
+                
+        dacList[(29,0,0)]=324#thres2 4,0.46,6,diff. thres 
+        #dacList[(29,10,0)]=127#thres2 4,0.88,147,diff. thres
+        dacList[(29,10,0)]=274#thres1 4,0.88,147,diff. thres 
+        #dacList[(29,14,0)]=394#thres2 4,1.00,404,diff. thres BAD TDC?
+        dacList[(29,15,0)]=300#thres2 4,0.62,4,ok 
+        dacList[(29,18,0)]=288#thres2 4,0.64,4,ok 
+        #dacList[(29,19,0)]=798#thres2 4,0.02,0,ok BAD TDC? 
+        #dacList[(29,1,0)]=798#thres2 4,0.02,0,ok  BAD TDC?
+        dacList[(29,20,0)]=322#thres2 4,0.00,0,ok 
+        dacList[(29,21,0)]=276#thres2 4,0.00,0,ok 
+        dacList[(29,24,0)]=302#thres2 4,0.02,0,ok 
+        dacList[(29,2,0)]=316#thres2 4,0.58,6,diff. thres 
+        dacList[(29,4,0)]=282#thres2 4,0.92,6,diff. thres 
+        #dacList[(29,5,0)]=127#thres2 4,1.00,671,diff. thres BQD TDC?
+        dacList[(29,6,0)]=300#thres2 4,0.16,2,ok 
+        dacList[(29,9,0)]=298#thres2 4,0.94,8,diff. thres 
 
-        # dacList[(29,0,0)]=320#3,0.81,ok 
-        # #dacList[(29,10,0)]=99#3,0.00,ok 
-        # dacList[(29,11,0)]=360#3,0.90,ok 
-        # dacList[(29,12,0)]=336#3,0.95,ok 
-        # #dacList[(29,15,0)]=99#3,0.00,ok 
-        # #dacList[(29,16,0)]=99#3,0.00,ok 
-        # dacList[(29,17,0)]=322#3,0.83,ok 
-        # #dacList[(29,18,0)]=99#3,0.00,ok 
-        # dacList[(29,20,0)]=310#3,0.84,ok 
-        # dacList[(29,21,0)]=268#3,0.98,ok 
-        # dacList[(29,22,0)]=306#3,0.94,ok 
-        # dacList[(29,24,0)]=296#3,0.89,ok 
-        # dacList[(29,2,0)]=312#3,0.55,PRB!!!!!!!!! 
-        # dacList[(29,3,0)]=288#3,0.67,PRB!!!!!!!!! 
-        # #dacList[(29,4,0)]=99#3,0.00,ok 
-        # #dacList[(29,6,0)]=99#3,0.00,ok 
-        # dacList[(29,7,0)]=322#3,1.00,ok 
-        # #dacList[(29,8,0)]=99#3,0.00,ok 
-        # #dacList[(29,9,0)]=99#3,0.00,ok
 
 
 

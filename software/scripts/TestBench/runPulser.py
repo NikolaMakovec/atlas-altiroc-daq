@@ -64,7 +64,7 @@ if doTWscan:
     
 Ntoa=50;
 delayStep=10 
-delayMin=2200
+delayMin=2100
 delayMax=2700
 
 if doDNL:
@@ -185,9 +185,9 @@ if __name__ == "__main__":
 
     if doFullQScanForTOA == 1:
         if asicVersion==2:            
-            QTOAList=[4,5,6,7,9,13,19,26,63]#v2
+            QTOAList=[4,5,6,7,8,9,13,19,26,63]#v2
         else:
-            QTOAList=[5,6,7,9,11,16,24,32,63]#v3
+            QTOAList=[5,6,7,8,9,10,11,16,24,32,63]#v3
         #QTOAList=list(range(3,26+1))+[63]
     elif len(QTOAList)==0:
         if asicVersion==2:            
@@ -357,6 +357,9 @@ if __name__ == "__main__":
             if doTWdelay or doPSdelay:
                 step=80
                 delayList=[delay-step,delay,delay+step]
+                delayList=range(delay-100,delay+101,20)
+                
+                
             else:
                 if len(delayList)==0:
                     delayList=[delay]

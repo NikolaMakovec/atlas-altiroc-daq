@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     #TOA
     toaDelayStep=1
-    NTOA=50#was 500
+    NTOA=20
     toaDelayMin=1750
     toaDelayMax=2350
 

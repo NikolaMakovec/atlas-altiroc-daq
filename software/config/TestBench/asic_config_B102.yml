@@ -125,10 +125,10 @@ Top:
         coarse_Lcomp_b: 0 # B24 0, 6 bits
         coarse_Up_Downb: 0
 
-        fast_Lcomp_b: 63 # B24 24 # 6 bits 25 Nov B24 works with 0 for Trig ext only
+        fast_Lcomp_b: 0 # B24 24 # 6 bits 25 Nov B24 works with 0 for Trig ext only
         fast_Up_Downb: 0x0
 
-        slow_Lcomp_b: 0 # 20 # 6 bits, B24 20 or 8, 25 Nov B24 works with 0 wi Trig EXt only
+        slow_Lcomp_b: 30 # 20 # 6 bits, B24 20 or 8, 25 Nov B24 works with 0 wi Trig EXt only
         slow_Up_Downb: 0x0
 
         ###################

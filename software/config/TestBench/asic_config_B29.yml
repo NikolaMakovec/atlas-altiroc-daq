@@ -100,7 +100,7 @@ Top:
       
         SatFVa: 0x4 #3
         IntFVa: 0x0 #1
-        IntFTz: 0x0 #1  
+
                  
         Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K for V3, 15K for V2
         Cp_Vpa: 0x0 # 3 bits

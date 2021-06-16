@@ -45,7 +45,7 @@ allData=collections.OrderedDict()
 for fileName in fileNameList:
 
     # extract information from the file name
-    board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
+    board,ch,cd,thres,vthc,Q,delay=getInfoFromFileName(fileName)
 
     #get data
     NArray,thresArray,nHitArray,nHit2Array=readThresFile(fileName)

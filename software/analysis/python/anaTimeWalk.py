@@ -80,8 +80,8 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     print ("Process: ",fileName)
 
     # extra informatiaon from the file name
-    board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
-    label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)#+" Vthc="+str(vthc)
+    board,ch,cd,thres,vthc,Q,delay=getInfoFromFileName(fileName)
+    label="B"+str(board)+" ch"+str(ch)+" Vth="+str(thres)+" d="+str(delay)#+" Vthc="+str(vthc)
 
     #get data
     QArray,QDACArray,pixel_data,Nevts=readTimeWalkFile(fileName,Qconv=Qconv)

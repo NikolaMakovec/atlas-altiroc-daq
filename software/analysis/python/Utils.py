@@ -59,10 +59,10 @@ def getFileList(inputDir,fileList,measType="",select="",extension="txt"):
     else:
         if inputDir!=None:
             print (inputDir+"/*"+measType+"*"+select+"*."+extension)
-            return glob.glob(inputDir+"/*"+measType+"*"+select+"*."+extension)
+            return sorted(glob.glob(inputDir+"/*"+measType+"*"+select+"*."+extension))
         else:
             f=open(fileList)
-            return [l.strip() for l in f.readlines()]
+            return sorted([l.strip() for l in f.readlines()])
 
 
 #first order polynom
@@ -77,16 +77,18 @@ def getInfoFromFileName(filename):
     cd=999
     thres=999
     Q=-1
+    delay=-1
     vthc=-1
     vecfilename=filename.split("_")
     if "B" in vecfilename:board=int(vecfilename[vecfilename.index("B")+1])
     if "ch" in vecfilename:ch=int(vecfilename[vecfilename.index("ch")+1])
     if "cd" in vecfilename:cd=int(vecfilename[vecfilename.index("cd")+1])
     if "thres" in vecfilename:thres=int(vecfilename[vecfilename.index("thres")+1])
+    if "delay" in vecfilename:delay=int(vecfilename[vecfilename.index("delay")+1])
     if "vthc" in vecfilename:vthc=int(vecfilename[vecfilename.index("vthc")+1])
     if "Q" in vecfilename:Q=int(vecfilename[vecfilename.index("Q")+1])
 
-    return board,ch,cd,thres,vthc,Q
+    return board,ch,cd,thres,vthc,Q,delay
     
 # read threshold scan file
 def readThresFile(filename):

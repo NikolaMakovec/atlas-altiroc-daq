@@ -82,7 +82,7 @@ for fileNb,fileName in enumerate(sorted(fileNameList,key=lambda n: getInfoFromFi
     allDelayList=[]
 
     # extract information from the file name
-    board,ch,cd,thres,vthc,Q=getInfoFromFileName(fileName)
+    board,ch,cd,thres,vthc,Q,delay=getInfoFromFileName(fileName)
     #if int(board)==21:
     #    Qconv=0.59
         
