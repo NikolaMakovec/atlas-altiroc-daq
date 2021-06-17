@@ -35,11 +35,11 @@ cdList=[4]
 doFullQScanForTOA = 0
 #QTOAList=[6,7,9,16,63]#6,9,16]  #v2:5,7,13,63  v3:6,7,8,9,16,63
 QTOAList=[6,9,16,32,45,63]  #v2:5,7,13,63  v3:6,9,16,63
-QTOAList=[6]  #v2:5,7,13,63  v3:6,9,16,63
+QTOAList=[5,9]  #v2:5,7,13,63  v3:6,9,16,63
 
 
 #THRES
-QThresList=[4]#default
+QThresList=[3]#default
 #QThresList=[3,4,5,6,13]#default
 #QThresList=[7,13]#B13 TB
 

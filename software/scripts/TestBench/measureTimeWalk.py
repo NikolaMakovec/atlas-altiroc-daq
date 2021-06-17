@@ -55,6 +55,8 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
         'HitDataTOA': [],
         'HitDataTOTf': [],
         'HitDataTOTc': [],
+        'HitDataTOAOverflow': [],
+        'HitDataTOTOverflow': [],
         #'HitDataTOT': [],
         #'allTOTdata' : [],
         #'HitDataTOTc_int1': []
@@ -91,6 +93,8 @@ def acquire_data(top, useExt,QRange,Nevts,chNb,readAllData=False):
 
 
         pixel_data['HitDataTOA'].append( pixel_stream.HitData.copy() )
+        pixel_data['HitDataTOAOverflow'].append( pixel_stream.HitDataOverflow.copy() )
+        pixel_data['HitDataTOTOverflow'].append( pixel_stream.HitDataTOTOverflow.copy() )
 
         if args.ch>=15 and args.asicVersion==2:
             pixel_data['HitDataTOTf'].append( pixel_stream.HitDataTOTf_tz.copy() )
@@ -367,6 +371,9 @@ def measureTimeWalk(argsip,
            writeData(ffData,iQ,Q,"HitDataTOA",pixel_data)       
            writeData(ffData,iQ,Q,"HitDataTOTc",pixel_data)       
            writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)
+           writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)   
+           writeData(ffData,iQ,Q,"HitDataTOAOverflow",pixel_data)
+           writeData(ffData,iQ,Q,"HitDataTOTOverflow",pixel_data)
 
            #max
            toaSatVal=127

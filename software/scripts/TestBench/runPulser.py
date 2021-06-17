@@ -125,7 +125,7 @@ def getDelay(board,ch,cd):
     #delay
     delay=2450
     if board==3:
-        delay=2500
+        delay=2450
     if board==8:
         delay=2500
     elif board==21:

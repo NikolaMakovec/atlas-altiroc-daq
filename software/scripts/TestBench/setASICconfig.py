@@ -159,11 +159,13 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             top.Fpga[0].Asic.SlowControl.EN_ck_SRAM[ipix].set(0x1)#New
 
     deadChannels={}
+    deadChannels[3]=[]
     deadChannels[8]=[]
     deadChannels[13]=[6,14,18,19,24]
     deadChannels[21]=[11,16]
     deadChannels[24]=[7,14,20,21,22,23]
     deadChannels[27]=[]
+    deadChannels[28]=[]
     deadChannels[29]=[7,11,12,17]
     deadChannels[43]=[]
     deadChannels[44]=[]

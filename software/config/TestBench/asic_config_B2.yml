@@ -66,7 +66,7 @@ Top:
         SatFVa: 0x4 #3
         IntFVa: 0x0 #1
         SatFTz: 0x4 #4
-        IntFTz: 0x1 #1  
+        IntFTz: 0x0 #1  
       
         cBitf: 0x0 # With Pull R cbitf 8 , with R dividers cbitf 0, decrease from f to 0 to reduce LSB while increasing cBits to f 
         cBits: 0x0 #
