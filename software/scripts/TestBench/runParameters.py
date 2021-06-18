@@ -22,7 +22,7 @@ chList=None
 #chList=[3,6,10,19]#B28
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
-chList=range(0,25)
+chList=range(15,25)
 #chList=[1,4,14]
 #chList=range(0,10)
 
@@ -53,4 +53,4 @@ prefix=None
 #prefix="Cp7WithProbePA"
 #prefix="Cp7"
 
-dacOffset=0
+dacOffset=5

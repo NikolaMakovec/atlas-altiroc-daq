@@ -58,7 +58,7 @@ if __name__ == "__main__":
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=40  #40 or 1 for TOTf
+    totRiseEdgeStep=1  #40 or 1 for TOTf
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000

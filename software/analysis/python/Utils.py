@@ -166,7 +166,7 @@ def readTimeWalkFile(filename,Qconv):
         if (name,Q) not in pixel_data.keys():
             pixel_data[(name,Q)]=np.array(data)
         else:
-            print ("There is a prb!!!!")
+            print ("There is a prb!!!!",filename,name,Q)
     return QList,QDACList,pixel_data,Nevts
 
 

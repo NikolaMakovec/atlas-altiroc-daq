@@ -371,7 +371,6 @@ def measureTimeWalk(argsip,
            writeData(ffData,iQ,Q,"HitDataTOA",pixel_data)       
            writeData(ffData,iQ,Q,"HitDataTOTc",pixel_data)       
            writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)
-           writeData(ffData,iQ,Q,"HitDataTOTf",pixel_data)   
            writeData(ffData,iQ,Q,"HitDataTOAOverflow",pixel_data)
            writeData(ffData,iQ,Q,"HitDataTOTOverflow",pixel_data)
 
