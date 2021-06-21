@@ -59,7 +59,9 @@ for ch in range(25):
     fnew=open(fname.split("/")[-1].replace("ch"+str(chRef) ,"ch"+str(ch)),"w")
     f=open(fname,"r")
     for line in f.readlines():
-        line=line.replace("[%d]"%(chRef),"[%d]"%(ch))
+
+        if line.find("Fpga")<0:
+            line=line.replace("[%d]"%(chRef),"[%d]"%(ch))
         
         if line.find("RdIndexLut[0]")>=0:
             line=line.replace(str(chRef),str(ch))

@@ -23,6 +23,7 @@ def parse_arguments():
     # Add arguments
     parser.add_argument("-b", "--board", type = int, required = False, default = 2,help = "Choose board")
     parser.add_argument("--toa", action="store_true", default = False)
+    parser.add_argument("-p","--prefix", required = False, default = "")
     parser.add_argument("--tot", action="store_true", default = False)
     parser.add_argument("--ip", required = False, default = '192.168.1.197', help = "IP address")
     # Get the arguments
@@ -58,7 +59,7 @@ if __name__ == "__main__":
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=1  #40 or 1 for TOTf
+    totRiseEdgeStep=10  #40 or 1 for TOTf
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000
@@ -84,7 +85,10 @@ if __name__ == "__main__":
     
     for ch in chList:
         if args.toa:
-            outdir="Data/"+bName+"-toaTrigExt"+str(toaDelayStep)+"/"
+            outdir="Data/"+bName+"-toaTrigExt"+str(toaDelayStep)
+            if args.prefix is not None:
+                outdir+="-"+args.prefix
+                
             try:os.makedirs(outdir)
             except:pass
             nameTOA=outdir+'/delayScanTrigExt_'
@@ -98,7 +102,9 @@ if __name__ == "__main__":
             if ch>=15 and     asicVersion==2:
                 totRiseEdgeMinLocal=totRiseEdgeMinTZ
                 pass
-            outdir="Data/"+bName+"-totTrigExt"+str(totRiseEdgeStep)+"/"
+            outdir="Data/"+bName+"-totTrigExt"+str(totRiseEdgeStep)
+            if args.prefix is not None:
+                outdir+="-"+args.prefix
             try:os.makedirs(outdir)
             except:pass
             nameTOT=outdir+'/widthScanTrigExt_'

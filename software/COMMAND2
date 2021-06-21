@@ -1,0 +1,36 @@
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 4
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 5
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 11
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 14
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 15
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 19
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 20
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 21
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 22
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 23
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 24
+
+
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 20,21,22,23,24
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 15,16,17,19
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 4,14,19,24
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON --ctestONList 1,6,11,16,21
+
+
+
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc 
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON  
+
+
+
+
+python scripts/TestBench/runPulser.py  -b $B  --ip $ip --useVthc --chON --ctestON 
+
+
+
+
+
+
+
+
+
