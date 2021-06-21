@@ -1,15 +1,15 @@
-doThres     = 0
+doThres     = 1
 doNoise     = 0 # Thres with high stat for few Q
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
-doTW        = 1
+doTW        = 0
 doTWdelay   = 0
 doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 doPSdelay   = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON

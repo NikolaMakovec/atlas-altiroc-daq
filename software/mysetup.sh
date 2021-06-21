@@ -28,3 +28,9 @@ export PYTHONPATH=${PWD}/python:${SURF_DIR}:${PYTHONPATH}
 
 alias go="cd "$PWD
 alias convert="python scripts/PrintFileDump.py  -b 13 -f "
+
+
+alias fpga2="python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV2/images/AtlasAltirocV2-0x40000000-20200623152309-ruckman-19a34a7.mcs" 
+
+alias fpg3="python3 scripts/ReprogramFpga.py --ip 192.168.1.10 --mcs ../firmware/targets/AtlasAltirocV3/images/AtlasAltirocV3-0x40000000-20200623150825-ruckman-19a34a7.mcs"
+
