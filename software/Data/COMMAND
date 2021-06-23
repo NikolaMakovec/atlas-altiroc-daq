@@ -1,0 +1,2 @@
+cat thres_*_ch_*_*Q_4*txt | grep vth| grep thres2
+cat thres_*_ch_*_*Q_4*txt | grep List| grep thres2

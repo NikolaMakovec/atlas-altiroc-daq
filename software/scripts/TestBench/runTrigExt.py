@@ -23,7 +23,7 @@ def parse_arguments():
     # Add arguments
     parser.add_argument("-b", "--board", type = int, required = False, default = 2,help = "Choose board")
     parser.add_argument("--toa", action="store_true", default = False)
-    parser.add_argument("-p","--prefix", required = False, default = "")
+    parser.add_argument("-p","--prefix", required = False, default = None)#"FPGA-C01-08")
     parser.add_argument("--tot", action="store_true", default = False)
     parser.add_argument("--ip", required = False, default = '192.168.1.197', help = "IP address")
     # Get the arguments
@@ -49,17 +49,17 @@ if __name__ == "__main__":
     chList=list(range(0,25))
     #chList=[7,21,3,17,13]#B13 TB
     #chList=[14,19,24,4,9]#v2
-    #chList=[19]
+    chList=[0,2,4,6,9,10,15,18,20,21,24]
 
 
     #TOA
-    toaDelayStep=1
+    toaDelayStep=10
     NTOA=20
     toaDelayMin=1750
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=10  #40 or 1 for TOTf
+    totRiseEdgeStep=50  #50 or 1 for TOTf
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000

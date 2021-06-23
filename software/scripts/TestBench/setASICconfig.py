@@ -162,11 +162,11 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     deadChannels[3]=[]
     deadChannels[8]=[]
     deadChannels[13]=[6,14,18,19,24]
-    deadChannels[21]=[11,16]
+    deadChannels[21]=[6,11,16,21]
     deadChannels[24]=[7,14,20,21,22,23]
     deadChannels[27]=[]
     deadChannels[28]=[]
-    deadChannels[29]=[7,11,12,17]
+    deadChannels[29]=[1,5,14,19,23]
     deadChannels[43]=[]
     deadChannels[44]=[]
     deadChannels[45]=[3,7,9,10,13,18]
@@ -205,6 +205,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
     #ctestONList=[14,15,16,17,19]
     #ctestONList=[1,6,11,16,21]
     ctestONList=chONList[::4]
+    
     if args.CtestONList is not None:
         ctestONList=[int(c) for c in args.CtestONList.split(",")]
     print (ctestONList)

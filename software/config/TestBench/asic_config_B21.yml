@@ -38,33 +38,29 @@ Top:
         disable_pa[:]: 0x0
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
-        DAC10bit: 300
+        DAC10bit: 310
 
-        bit_vth_cor[0]: 67   # NSM alignement at 310 for Q=3
-        bit_vth_cor[1]: 58   # NSM alignement at 310 for Q=3
-        bit_vth_cor[2]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[3]: 59   # NSM alignement at 310 for Q=3
-        bit_vth_cor[4]: 63   # NSM alignement at 310 for Q=3
-        bit_vth_cor[5]: 70   # NSM alignement at 310 for Q=3
-        bit_vth_cor[6]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[7]: 61   # NSM alignement at 310 for Q=3
-        bit_vth_cor[8]: 63   # NSM alignement at 310 for Q=3
-        bit_vth_cor[9]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[10]: 77   # NSM alignement at 310 for Q=3
-        bit_vth_cor[11]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[12]: 71   # NSM alignement at 310 for Q=3
-        bit_vth_cor[13]: 68   # NSM alignement at 310 for Q=3
-        bit_vth_cor[14]: 67   # NSM alignement at 310 for Q=3
-        bit_vth_cor[15]: 64   # NSM alignement at 310 for Q=3
-        bit_vth_cor[16]: 64   # NSM alignement at 310 for Q=3 B21 HS
-        bit_vth_cor[17]: 48   # NSM alignement at 310 for Q=3
-        bit_vth_cor[18]: 57   # NSM alignement at 310 for Q=3
-        bit_vth_cor[19]: 63   # NSM alignement at 310 for Q=3
-        bit_vth_cor[20]: 64   # 
-        bit_vth_cor[21]: 64   # 
-        bit_vth_cor[22]: 64   # 
-        bit_vth_cor[23]: 64   # 
-        bit_vth_cor[24]: 64   # NSM alignement at 310 for Q=3
+        bit_vth_cor[0]: 65   #thres2 310 4 4 0.36 -2 ok
+        bit_vth_cor[10]: 77   #thres2 310 4 4 0.6 -2 ok
+        bit_vth_cor[12]: 75   #thres2 310 4 4 0.1 -1 ok
+        bit_vth_cor[13]: 74   #thres2 310 4 4 0.18 -1 ok
+        bit_vth_cor[14]: 71   #thres2 310 4 4 0.08 -1 ok
+        bit_vth_cor[15]: 61   #thres2 310 4 4 0.32 -1 ok
+        bit_vth_cor[17]: 50   #thres2 310 4 4 0.18 -1 ok
+        bit_vth_cor[18]: 60   #thres2 310 4 4 0.38 -2 ok
+        bit_vth_cor[19]: 65   #thres2 310 4 4 0.12 -2 ok
+        bit_vth_cor[1]: 57   #thres2 310 4 4 0.4 -1 ok
+        bit_vth_cor[20]: 29   #thres2 310 4 4 0.0 0 ok
+        bit_vth_cor[22]: 10   #thres2 310 4 4 0.04 0 ok
+        bit_vth_cor[23]: 38   #thres2 310 4 4 0.04 0 ok
+        bit_vth_cor[24]: 65   #thres2 310 4 4 0.0 0 ok
+        bit_vth_cor[2]: 66   #thres2 310 4 4 0.44 -3 diff. thres
+        bit_vth_cor[3]: 62   #thres2 310 4 4 0.12 -1 ok
+        bit_vth_cor[4]: 67   #thres2 310 4 4 0.08 -1 ok
+        bit_vth_cor[5]: 71   #thres2 310 4 4 0.08 -1 ok
+        bit_vth_cor[7]: 63   #thres2 310 4 4 0.6 -2 ok
+        bit_vth_cor[8]: 67   #thres2 310 4 4 0.24 -1 ok
+        bit_vth_cor[9]: 70   #thres2 310 4 4 0.04 0 ok
         
       
         EN_hyst[:]: 0x1

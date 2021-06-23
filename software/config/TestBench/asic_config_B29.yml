@@ -38,9 +38,29 @@ Top:
         disable_pa[:]: 0x0
         ON_discri[:]: 0x0
         bit_vth_cor[:]: 0x40       
-        DAC10bit: 300
+        DAC10bit: 320
     
-        
+        bit_vth_cor[0]: 64   #thres1 320 4 0 0.08 -1 ok
+        bit_vth_cor[10]: 93   #thres1 320 4 0 0.92 -34 diff. thres
+        bit_vth_cor[11]: 37   #thres1 320 4 0 0.02 0 ok
+        bit_vth_cor[12]: 50   #thres1 320 4 0 0.1 -1 ok
+        bit_vth_cor[13]: 48   #thres1 320 4 0 0.04 0 ok
+        bit_vth_cor[15]: 78   #thres1 320 4 0 0.62 -11 diff. thres
+        bit_vth_cor[16]: 40   #thres1 320 4 0 0.22 -1 ok
+        bit_vth_cor[17]: 57   #thres1 320 4 0 0.02 0 ok
+        bit_vth_cor[18]: 83   #thres1 320 4 0 1.0 -44 diff. thres
+        bit_vth_cor[20]: 63   #thres1 320 4 0 0.04 0 ok
+        bit_vth_cor[21]: 89   #thres1 320 4 0 0.02 0 ok
+        bit_vth_cor[22]: 42   #thres1 320 4 0 0.0 0 ok
+        bit_vth_cor[24]: 76   #thres1 320 4 0 1.0 -51 diff. thres
+        bit_vth_cor[2]: 71   #thres1 320 4 0 0.42 -56 diff. thres
+        bit_vth_cor[3]: 41   #thres1 320 4 0 0.0 0 ok
+        bit_vth_cor[4]: 90   #thres1 320 4 0 1.0 -37 diff. thres
+        bit_vth_cor[6]: 78   #thres1 320 4 0 0.84 -49 diff. thres
+        bit_vth_cor[7]: 55   #thres1 320 4 0 0.2 -1 ok
+        bit_vth_cor[8]: 28   #thres1 320 4 0 0.0 0 ok
+        bit_vth_cor[9]: 79   #thres1 320 4 0 1.0 -48 diff. thres
+
       
         EN_hyst[:]: 0x1
         EN_trig_ext[:]: 0x0
