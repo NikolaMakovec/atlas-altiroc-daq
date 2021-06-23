@@ -71,59 +71,39 @@ def getDACList(board):
 
         
     elif board==8:
-        dacList[(8,0,4)]=412#B8,3,1.00,ok 
-        dacList[(8,1,4)]=406#B8,3,0.96,ok 
-        dacList[(8,2,4)]=340#B8,3,1.00,ok 
-        dacList[(8,3,4)]=412#3,0.99,ok 
-        dacList[(8,4,4)]=350#3,0.99,ok 
-        dacList[(8,5,4)]=408#3,0.99,ok 
-        dacList[(8,6,4)]=388#3,0.72,PRB!!!!!!!!! 
-        dacList[(8,7,4)]=356#3,0.97,ok 
-        dacList[(8,8,4)]=404#3,0.97,ok 
-        dacList[(8,9,4)]=298#3,0.98,ok 
-        dacList[(8,10,4)]=426#3,0.98,ok 
-        dacList[(8,11,4)]=418#3,0.98,ok 
-        dacList[(8,12,4)]=388#3,0.99,ok 
-        dacList[(8,13,4)]=436#3,0.17,PRB!!!!!!!!! 
-        dacList[(8,14,4)]=308#5,0.95,ok
-        dacList[(8,19,4)]=328#6,0.98,ok 
-        dacList[(8,24,4)]=342#done by hand to have a good TW
-
-        dacList[(8,4,7)]=342#3,0.96,ok
-        dacList[(8,9,7)]=290#3,0.85,ok
-        dacList[(8,14,7)]=300#5,0.90,ok
-        dacList[(8,19,7)]=332#7,0.97,ok
-        dacList[(8,24,7)]=344#6,0.99,ok
 
 
-        # dacList[(8,0,4)]=536#8,0.57,PRB!!!!!!!!! 
-        # dacList[(8,10,4)]=542#8,0.98,ok 
-        # dacList[(8,11,4)]=536#8,1.00,ok 
-        # dacList[(8,12,4)]=482#8,0.98,ok 
-        # dacList[(8,13,4)]=548#8,0.78,PRB!!!!!!!!! 
-        # dacList[(8,14,4)]=338#8,0.79,PRB!!!!!!!!! 
-        # dacList[(8,15,4)]=394#8,0.99,ok 
-        # dacList[(8,16,4)]=438#8,0.96,ok 
-        # dacList[(8,17,4)]=408#8,1.00,ok 
-        # dacList[(8,18,4)]=590#8,0.97,ok 
-        # dacList[(8,19,4)]=340#8,0.96,ok 
-        # dacList[(8,1,4)]=534#8,0.81,ok 
-        # dacList[(8,20,4)]=364#8,0.97,ok 
-        # dacList[(8,21,4)]=400#8,0.98,ok 
-        # dacList[(8,22,4)]=354#8,1.00,ok 
-        # dacList[(8,23,4)]=354#8,1.00,ok 
-        # dacList[(8,24,4)]=358#8,0.96,ok 
-        # dacList[(8,2,4)]=416#8,0.99,ok 
-        # dacList[(8,3,4)]=522#8,0.90,ok 
-        # dacList[(8,4,4)]=414#8,0.98,ok 
-        # dacList[(8,5,4)]=530#8,0.89,ok 
-        # dacList[(8,6,4)]=470#8,0.95,ok 
-        # dacList[(8,7,4)]=434#8,0.96,ok 
-        # dacList[(8,8,4)]=516#8,0.94,ok 
-        # dacList[(8,9,4)]=346#8,0.96,ok 
 
 
+        dacList[(8,0,4)]=410#thres2 3,0.02,0,ok 
+        dacList[(8,10,4)]=424#thres2 3,0.04,0,ok 
+        dacList[(8,11,4)]=416#thres2 3,0.02,0,ok 
+        dacList[(8,12,4)]=386#thres2 3,0.00,0,ok 
+        #dacList[(8,13,4)]=127#thres2 3,0.80,309,diff. thres BAD TDC?
+        #dacList[(8,14,4)]=127#thres2 3,1.00,161,diff. thres
+        dacList[(8,14,4)]=292#thres2 4,0.08,2,ok 
+        dacList[(8,15,4)]=360#thres2 3,0.02,0,ok 
+        dacList[(8,16,4)]=396#thres2 3,0.00,0,ok 
+        dacList[(8,17,4)]=372#thres2 3,0.00,0,ok 
+        #dacList[(8,18,4)]=794#thres2 3,0.04,0,ok BAD TDC?
+        #dacList[(8,19,4)]=127#thres2 3,1.00,195,diff. thres
+        dacList[(8,19,4)]=328+5#thres2 6,0.04,0,ok 
+        dacList[(8,1,4)]=404#thres2 3,0.00,0,ok 
+        dacList[(8,20,4)]=340#thres2 3,0.02,0,ok 
+        dacList[(8,21,4)]=370#thres2 3,0.02,0,ok 
+        dacList[(8,22,4)]=330#thres2 3,0.00,0,ok 
+        dacList[(8,23,4)]=334#thres2 3,0.00,0,ok 
+        dacList[(8,24,4)]=332+15#thres2 3,1.00,4,ok 
+        dacList[(8,2,4)]=338#thres2 3,0.14,2,ok 
+        dacList[(8,3,4)]=410#thres2 3,0.00,0,ok 
+        dacList[(8,4,4)]=348#thres2 3,0.02,0,ok 
+        dacList[(8,5,4)]=406#thres2 3,0.02,0,ok 
+        #dacList[(8,6,4)]=368#thres2 3,0.22,18,diff. thres BAD TDC?
+        dacList[(8,7,4)]=352#thres2 3,0.06,2,ok 
+        dacList[(8,8,4)]=402#thres2 3,0.00,0,ok 
+        dacList[(8,9,4)]=294#thres2 3,0.02,0,ok 
         
+    
 
     elif board==9:
         dacList[(9,0,4)]=416#B9,3,1.00,ok 
@@ -240,23 +220,23 @@ def getDACList(board):
         dacList[(13,12,0)]=356#thres2 3,0.02,0,ok 
         dacList[(13,13,0)]=340#thres2 3,0.02,0,ok 
         #dacList[(13,14,0)]=127#thres2 3,1.00,203,diff. thres
-        dacList[(13,14,0)]=334#thres2 5,0.28,2,ok 
-        dacList[(13,15,0)]=360#thres2 3,0.02,0,ok 
-        dacList[(13,16,0)]=310#thres2 3,0.02,0,ok 
+        dacList[(13,14,0)]=334+5#thres2 5,0.28,2,ok 
+        dacList[(13,15,0)]=360+5#thres2 3,0.02,0,ok 
+        dacList[(13,16,0)]=310+5#thres2 3,0.02,0,ok 
         #dacList[(13,17,0)]=127#thres2 3,0.06,239,diff. thres
-        dacList[(13,17,0)]=366#thres1 3,0.06,239,diff. thres 
+        dacList[(13,17,0)]=366+5#thres1 3,0.06,239,diff. thres 
         #dacList[(13,18,0)]=350#thres2 3,0.00,0,ok               BAD TDC
         #dacList[(13,19,0)]=127#thres2 3,1.00,211,diff. thres    BAD TDC
         dacList[(13,1,0)]=294#thres2 3,0.40,6,diff. thres 
-        dacList[(13,20,0)]=332#thres2 3,0.00,0,ok
+        dacList[(13,20,0)]=332+5#thres2 3,0.00,0,ok
         #dacList[(13,21,0)]=127#thres2 3,0.06,201,diff. thres
-        dacList[(13,21,0)]=328#thres1 3,0.06,201,diff. thres
-        dacList[(13,22,0)]=127#thres2 3,0.34,273,diff. thres
-        dacList[(13,22,0)]=400#thres1 3,0.34,273,diff. thres
+        dacList[(13,21,0)]=328+5#thres1 3,0.06,201,diff. thres
+        #dacList[(13,22,0)]=127#thres2 3,0.34,273,diff. thres
+        dacList[(13,22,0)]=400+5#thres1 3,0.34,273,diff. thres
         #dacList[(13,23,0)]=127#thres2 3,0.08,245,diff. thres        
-        dacList[(13,23,0)]=372#thres1 3,0.08,245,diff. thres
+        dacList[(13,23,0)]=372+5#thres1 3,0.08,245,diff. thres
         #dacList[(13,24,0)]=127#thres2 3,1.00,201,diff. thres
-        dacList[(13,24,0)]=328#thres1 3,1.00,201,diff. thres
+        dacList[(13,24,0)]=328+10#thres1 3,1.00,201,diff. thres
         #dacList[(13,2,0)]=127#thres2 3,0.36,195,diff. thres
         dacList[(13,2,0)]=322#thres1 3,0.36,195,diff. thres
         #dacList[(13,3,0)]=127#thres2 3,0.58,187,diff. thres        
