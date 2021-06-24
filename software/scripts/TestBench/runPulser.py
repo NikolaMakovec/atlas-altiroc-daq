@@ -21,7 +21,7 @@ doSepDir = 1
 if doTOA+doClockTree +doXtalk+doDNL>1:
     print ("Prb TOA")
     sys.exit()
-if doThres+doNoise+doVthcScan+doLinearity >1:
+if doThres+doNoise+doPedestal+doVthcScan+doLinearity >1:
     print ("Prb Thres")
     sys.exit()
 if doTW+doTWscan+doPS>1:
@@ -101,7 +101,7 @@ thresMax=800 #max is 1023
 thresStep=2
 if doLinearity:
     doThres= 1
-    Nthres=100
+    Nthres=50
     thresStep=2
     thresMax=1000
     QThresList=[0,2,4,8,16,32,63]#[0,3,5,9,13,18,26,39,63]
@@ -111,6 +111,12 @@ if doNoise:
     Nthres=50
     thresStep=1
     thresMax=800
+    
+if doPedestal:
+    doThres=1
+    Nthres=50
+    thresStep=2
+    thresMax=500
 
 if doVthcScan:
     doThres= 1
@@ -202,6 +208,9 @@ if __name__ == "__main__":
         else:
             QThresList=[6,13]#V2
 
+    if doPedestal:
+        QThresList=[0]
+        
 
     #detector capacitance
     #cdList=[4]
@@ -215,6 +224,7 @@ if __name__ == "__main__":
             bName+="0"
         bName+=str(args.board)
         thresDir=bName+"-thres"
+        if doNoise:thresDir+="-pedestal"
         if doNoise:thresDir+="-noise"
         if doVthcScan:thresDir+="-vthcScan"
         if doLinearity:thresDir+="-lin"
@@ -567,6 +577,7 @@ print ("*********************************************")
 print ("---------------------------------")
 print ("doThres     ",doThres     )
 print ("doNoise     ",doNoise     )
+print ("doPedestal     ",doPedestal     )
 print ("doLinearity ",doLinearity )
 print ("doVthcScan  ",doVthcScan     )
 print ("---------------------------------")
