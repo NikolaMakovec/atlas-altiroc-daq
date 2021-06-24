@@ -224,7 +224,7 @@ if __name__ == "__main__":
             bName+="0"
         bName+=str(args.board)
         thresDir=bName+"-thres"
-        if doNoise:thresDir+="-pedestal"
+        if doPedestal:thresDir+="-pedestal"
         if doNoise:thresDir+="-noise"
         if doVthcScan:thresDir+="-vthcScan"
         if doLinearity:thresDir+="-lin"
