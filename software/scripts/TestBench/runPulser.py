@@ -24,7 +24,7 @@ if doTOA+doClockTree +doXtalk+doDNL>1:
 if doThres+doNoise+doPedestal+doVthcScan+doLinearity >1:
     print ("Prb Thres")
     sys.exit()
-if doTW+doTWscan+doPS>1:
+if doTW+doTWHS+doTWscan+doPS>1:
     print ("Prb TW")
     sys.exit()
 
@@ -40,6 +40,11 @@ qMax=63#63#63
 qStep=1#1 or x4
 Ntw=50
 morePointsAtLowQ=1
+
+if doTWHS:
+    doTW=1
+    Ntw=50
+    
 if doTWdelay:
     doTW=1
     #delayList=range(2350,2550+1,100)
@@ -230,6 +235,7 @@ if __name__ == "__main__":
         if doLinearity:thresDir+="-lin"
         twDir=bName+"-tw"
         if doPS:twDir+="-ps"
+        if doTWHS:twDir+="-HighStat"
         if doTWscan:twDir+="-scan"
         toaDir=bName+"-toa"
         if doClockTree:toaDir+="-clkTree"
@@ -582,6 +588,7 @@ print ("doLinearity ",doLinearity )
 print ("doVthcScan  ",doVthcScan     )
 print ("---------------------------------")
 print ("doTW        ",doTW        )
+print ("doTWHS        ",doTWHS        )
 print ("doTWscan    ",doTWscan        )
 print ("doPS        ",doPS        )
 print ("---------------------------------")
