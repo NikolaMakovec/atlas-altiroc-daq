@@ -43,7 +43,7 @@ morePointsAtLowQ=1
 
 if doTWHS:
     doTW=1
-    Ntw=50
+    Ntw=500
     
 if doTWdelay:
     doTW=1
@@ -406,7 +406,7 @@ if __name__ == "__main__":
             dacNom+=dacOffset
             dacListLocal=[dacNom]
             #dacListLocal=range(dacNom,dacNom+150,20)
-            #dacListLocal=range(dacNom,dacNom+70,10)
+            #dacListLocal=range(dacNom,dacNom+30,5)
 
             
             if doPS:
