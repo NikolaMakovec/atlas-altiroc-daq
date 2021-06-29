@@ -43,7 +43,7 @@ morePointsAtLowQ=1
 
 if doTWHS:
     doTW=1
-    Ntw=50
+    Ntw=500
     
 if doTWdelay:
     doTW=1
