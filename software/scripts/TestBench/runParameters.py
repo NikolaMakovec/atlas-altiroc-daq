@@ -1,5 +1,5 @@
 doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doNoise     = 0 # Thres with high stat for few Q
 doPedestal  = 0
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -11,7 +11,7 @@ doTWscan    = 0
 doPS        = 0 # TW with thres. scan
 doPSdelay   = 0 # TW with thres. scan
 
-doTOA       = 1
+doTOA       = 0
 doClockTree = 0 # TOA with at least Q=63 and maybe larger N
 doDNL       = 0 # TOA step=1
 doXtalk     = 0 # TOA Channels should be ON
@@ -25,7 +25,7 @@ chList=None
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
 chList=range(0,25)
-#chList=[1,4,10,14,16,20,21]
+#chList=[1,4,6,11,16,21]#  0,2,3]
 #chList=range(0,10)
 
 
