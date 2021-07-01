@@ -155,6 +155,8 @@ def getDelay(board,ch,cd):
         delay=2400
     elif board==45:
         delay=2400
+    elif board==48:
+        delay=2350
     return delay
 
 def parse_arguments():    

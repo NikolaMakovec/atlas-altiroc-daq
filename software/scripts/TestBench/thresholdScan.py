@@ -344,7 +344,8 @@ def thresholdScan(argip,
     ff.write(line+"\n")
     line="        bit_vth_cor["+str(pixel_number)+"]: "+str(thres2)+"   #thres2 "+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+" "+str(Qinj)+" "+str(args.Cd)+" "+str(round(1-suspicious,2))+" "+str(round(thres1-thres2,2))+" "+thresFlag
     ff.write(line+"\n")
-
+    writeParameters(ff)
+    
     # ff.write('Threshold scan ----'+time.ctime()+'\n')
     # ff.write('Pixel = '+str(pixel_number)+'\n')
     # #ff.write('column = '+hex(column)+'\n')

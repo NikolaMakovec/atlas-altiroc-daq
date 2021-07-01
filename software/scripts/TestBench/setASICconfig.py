@@ -1,3 +1,5 @@
+from ASICInfo import *
+
 def printStatus(top):
     PAList=[]
     DiscriList=[]
@@ -216,7 +218,13 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             pass
 
 
-    #print (top.Fpga[0].Asic.SlowControl.dac_biaspa.value())
+    if int(args.board) in boardASICV3b:
+        if isTZ(int(args.board),int(args.ch)):
+            top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(1)
+        else:
+            top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(0)
+            
+    #print ( " ===> ",top.Fpga[0].Asic.SlowControl.Cp_Vpa.value())
     #toto
 
     
@@ -224,3 +232,30 @@ def set_pixel_specific_parameters(top, pixel_number,args):
 
 
 
+def writeParameters(top,f):
+    
+    f.write("Parameter %s %d \n"%(  "dac_biaspa ",  top.Fpga[0].Asic.SlowControl.dac_biaspa.value()  ))
+    f.write("Parameter %s %d \n"%(  "Cp_Vpa ",  top.Fpga[0].Asic.SlowControl.Cp_Vpa.value()  ))
+    f.write("Parameter %s %d \n"%(  "SatFVa",  top.Fpga[0].Asic.SlowControl.SatFVa.value()  ))
+    f.write("Parameter %s %d \n"%(  "IntFVa",  top.Fpga[0].Asic.SlowControl.IntFVa.value()  ))
+    f.write("Parameter %s %d \n"%(  "ON_rtest ",  top.Fpga[0].Asic.SlowControl.ON_rtest.value()  ))
+    f.write("Parameter %s %d \n"%(  "Rin_Vpa ",  top.Fpga[0].Asic.SlowControl.Rin_Vpa.value()  ))
+    f.write("Parameter %s %d \n"%(  "DAC10bit ",  top.Fpga[0].Asic.SlowControl.DAC10bit.value()  ))
+    f.write("Parameter %s %d \n"%(  "coarse_Lcomp_b ",  top.Fpga[0].Asic.SlowControl.coarse_Lcomp_b.value()  ))
+    f.write("Parameter %s %d \n"%(  "coarse_Up_Downb ",  top.Fpga[0].Asic.SlowControl.coarse_Up_Downb.value()  ))
+    f.write("Parameter %s %d \n"%(  "fast_Lcomp_b ",  top.Fpga[0].Asic.SlowControl.fast_Lcomp_b.value()  ))
+    f.write("Parameter %s %d \n"%(  "fast_Up_Downb ",  top.Fpga[0].Asic.SlowControl.fast_Up_Downb.value()  ))
+    f.write("Parameter %s %d \n"%(  "slow_Lcomp_b ",  top.Fpga[0].Asic.SlowControl.slow_Lcomp_b.value()  ))
+    f.write("Parameter %s %d \n"%(  "slow_Up_Downb ",  top.Fpga[0].Asic.SlowControl.slow_Up_Downb.value()  ))
+    f.write("Parameter %s %d \n"%(  "cBitf ",  top.Fpga[0].Asic.SlowControl.cBitf.value()  ))
+    f.write("Parameter %s %d \n"%(  "Cbits ",  top.Fpga[0].Asic.SlowControl.Cbits.value()  ))
+    f.write("Parameter %s %d \n"%(  "Cbitc ",  top.Fpga[0].Asic.SlowControl.Cbitc.value()  ))
+    #f.write("Parameter %s %d \n"%(  " ",  top.Fpga[0].Asic.SlowControl..value()  ))
+ 
+ 
+   #    EN_hyst[:]: 0x1
+   # cd[0]: 0x0 
+   #      cd[1]: 0x0 
+   #      cd[2]: 0x0
+   #      cd[3]: 0x0
+   #      cd[4]: 0x0 

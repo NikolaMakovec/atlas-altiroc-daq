@@ -100,6 +100,7 @@ def readThresFile(filename):
     for line in [line.strip() for line in f.readlines()]:
         if line.find("dacList")>=0: continue
         if line.find("vth_cor")>=0: continue
+        if line.find("Parameter")>=0: continue
         #the input file should contains: thres, number of events, nb of hits, nb of hits not saturated (!=127)
         thres,N,nHit,nHit2=line.split()
         thresArray.append(float(thres))
@@ -151,6 +152,7 @@ def readTimeWalkFile(filename,Qconv):
     f=open(filename.strip())
     Nevts=50
     for counter,line in enumerate(f.readlines()):
+        if line.find("Parameter")>=0: continue
         if line.find("NofIterations")>=0:
             Nevts=int(line.split()[2])
             continue
@@ -180,6 +182,7 @@ def readTOAFile(filename,Qconv,DelayStep):
     f=open(filename)
     Nevts=100
     for line in [line.strip() for line in f.readlines()]:
+        if line.find("Parameter")>=0: continue
         if line.find("NofIterations")>=0:
             Nevts=int(line.split()[2])
             continue

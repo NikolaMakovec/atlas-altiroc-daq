@@ -51,16 +51,16 @@ Top:
         DLL_CP_b: 0x10
         ON_ota_dll: 1
 
-        DLLfast_EXTvctrl_en: 0x1
-        DLLslow_EXTvctrl_en: 0x1 
-        DLLcoarse_EXTvctrl_en: 0x1
+        DLLfast_EXTvctrl_en: 0x0
+        DLLslow_EXTvctrl_en: 0x0 
+        DLLcoarse_EXTvctrl_en: 0x0
 
 
         coarse_Lcomp_b:  1
         coarse_Up_Downb: 0
-        fast_Lcomp_b:    0 
-        fast_Up_Downb:   0 
-        slow_Lcomp_b:    10 
+        fast_Lcomp_b:    35 
+        fast_Up_Downb:   1
+        slow_Lcomp_b:    40 
         slow_Up_Downb:   1
 
 

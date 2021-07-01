@@ -334,6 +334,7 @@ def measureTOT( argsip,
       outFile = outFile+ts
     
     ff = open(outFile+'.txt','a')
+    writeParameters(top,ff)
     if useExt:
         ff.write('TOT measurement with ext trigger ---- '+str(time.ctime())+'\n')
     else:

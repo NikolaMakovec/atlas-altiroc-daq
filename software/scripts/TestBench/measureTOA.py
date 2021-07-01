@@ -300,6 +300,7 @@ def measureTOA(argsip,
     
     ff = open(outFile,'a')
     ff.write('TOA measurement vs Delay ---- '+time.ctime()+'\n')
+    writeParameters(top,ff)
     if useExt:
         ff.write('Using ext trigger, width = '+str(pulseWidth)+'\n')
     ff.write('Pixel = '+str(pixel_number)+'\n')

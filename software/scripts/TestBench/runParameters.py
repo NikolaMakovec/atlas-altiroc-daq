@@ -1,5 +1,5 @@
-doThres     = 0
-doNoise     = 1 # Thres with high stat for few Q
+doThres     = 1
+doNoise     = 0 # Thres with high stat for few Q
 doPedestal  = 0
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
@@ -24,7 +24,7 @@ chList=None
 #chList=[3,6,10,19]#B28
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
-chList=range(0,15)
+chList=range(0,25)
 #chList=[1,4,10,14,16,20,21]
 #chList=range(0,10)
 

@@ -1,4 +1,4 @@
-boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31]
+boardASICAlone=[4,8,9,10,11,12,14,15,21,24,31,48]
 boardASICV2=[3,4,8,9,10,11,12,13,14,15,44,100]
 boardASICV3=[21,24,27,28,29,31,45,102]
 boardASICV3b=[48]
@@ -26,5 +26,5 @@ def isTZ(board,channel):
     if int(board) in boardASICV3b:
         if int(channel)<15: istz=True
     elif int(board) in boardASICV3:
-	if int(channel)>=15: istz=True
+        if int(channel)>=15: istz=True
     return istz

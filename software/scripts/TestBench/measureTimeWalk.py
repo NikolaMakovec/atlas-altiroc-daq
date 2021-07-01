@@ -356,7 +356,12 @@ def measureTimeWalk(argsip,
 
 
         QArray=np.array(QRange)*args.Qconv
-        ffData.write('NofIterations = '+str(args.N)+'\n')       
+        ffData.write('NofIterations = '+str(args.N)+'\n')
+        writeParameters(top,ffData)
+
+
+
+        top.Fpga[0].Asic.SlowControl.dac_biaspa.value()
         for iQ in range(len(QRange)):
            Q=QRange[iQ]
            # print ('--------------------------',Q)
