@@ -829,8 +829,14 @@ def getDACList(board):
         #dacList[(45,4,0)]=242#4,0.88,6,diff. thres 
         dacList[(45,5,0)]=290#4,0.52,4,large saturated frac. 
 
+    elif board==48:
 
-        
+
+        dacList[(48,0,4)]=292#thres2 4,0.76,8,diff. thres 
+        dacList[(48,1,4)]=268#thres2 4,0.90,8,diff. thres 
+        dacList[(48,2,4)]=302#thres2 4,1.00,12,diff. thres 
+
+
 
         pass
     return dacList                       
