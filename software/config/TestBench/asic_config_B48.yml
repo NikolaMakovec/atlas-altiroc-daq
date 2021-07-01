@@ -56,7 +56,7 @@ Top:
         DLLcoarse_EXTvctrl_en: 0x0
 
 
-        coarse_Lcomp_b:  1
+        coarse_Lcomp_b:  3
         coarse_Up_Downb: 0
         fast_Lcomp_b:    35 
         fast_Up_Downb:   1

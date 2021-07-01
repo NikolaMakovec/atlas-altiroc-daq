@@ -53,13 +53,13 @@ if __name__ == "__main__":
     #chList=[0]
 
     #TOA
-    toaDelayStep=1
+    toaDelayStep=10
     NTOA=20
     toaDelayMin=1750
     toaDelayMax=2350
 
     #TOT
-    totRiseEdgeStep=1  #50 or 1 for TOTf
+    totRiseEdgeStep=100
     NTOT=20
     totRiseEdgeMin=700
     totRiseEdgeMax=3000

@@ -153,6 +153,7 @@ def parse_arguments():
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
+    parser.add_argument( "--savePlots", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = False, help = "debug")
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--checkOFtoa", type = argBool, required = False, default = True, help = "check TOA overflow")
@@ -454,7 +455,7 @@ def measureTOT( argsip,
     
     plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
 
-    plt.savefig(outFile+".pdf")
+    if args.savePlots:plt.savefig(outFile+".pdf")
     if args.display:plt.show()
     #################################################################
     

@@ -111,6 +111,7 @@ def parse_arguments():
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
+    parser.add_argument( "--savePlots", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = False, help = "debug")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
@@ -413,8 +414,8 @@ def measureTOA(argsip,
     ax3.set_ylim(bottom = 0, top = np.max(HitCnt)*1.1)
     plt.subplots_adjust(hspace = 0.35, wspace = 0.2)
 
-        
-    plt.savefig(outFile.replace(".txt",".pdf"))
+    #print('save')    
+    if args.savePlots:plt.savefig(outFile.replace(".txt",".pdf"))
     if args.display:plt.show()
     #################################################################
     
@@ -431,3 +432,4 @@ if __name__ == "__main__":
     print(args)
 
     measureTOA(args.ip, args.board, args.useExt,args.cfg, args.ch, args.Q, args.DAC, args.delayMin, args.delayMax, args.delayStep, args.out)
+

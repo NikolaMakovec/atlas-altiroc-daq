@@ -67,6 +67,7 @@ def parse_arguments():
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")
     parser.add_argument( "--autoStop", type = argBool, required = False, default = False, help = "show plots")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "          ")
+    parser.add_argument( "--savePlots", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
     parser.add_argument( "--useProbePA", type = argBool, required = False, default = False, help = "use probe PA")
     parser.add_argument( "--useProbeDiscri", type = argBool, required = False, default = False, help = "use probe Discri")
@@ -344,7 +345,7 @@ def thresholdScan(argip,
     ff.write(line+"\n")
     line="        bit_vth_cor["+str(pixel_number)+"]: "+str(thres2)+"   #thres2 "+str(top.Fpga[0].Asic.SlowControl.DAC10bit.value())+" "+str(Qinj)+" "+str(args.Cd)+" "+str(round(1-suspicious,2))+" "+str(round(thres1-thres2,2))+" "+thresFlag
     ff.write(line+"\n")
-    writeParameters(ff)
+    writeParameters(top,ff)
     
     # ff.write('Threshold scan ----'+time.ctime()+'\n')
     # ff.write('Pixel = '+str(pixel_number)+'\n')

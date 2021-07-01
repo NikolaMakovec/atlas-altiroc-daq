@@ -151,6 +151,7 @@ def parse_arguments():
     parser.add_argument( "--doPS", type = argBool, required = False, default = False, help = "dac scan for pulse shape")
     parser.add_argument( "--doTWscan", type = argBool, required = False, default = False, help = "dac scan")
     parser.add_argument( "--display", type = argBool, required = False, default = True, help = "show plots")
+    parser.add_argument( "--savePlots", type = argBool, required = False, default = True, help = "show plots")
     parser.add_argument( "--debug", type = argBool, required = False, default = True, help = "debug")
     parser.add_argument( "--readAllChannels", type = argBool, required = False, default = False, help = " read all channels")
     parser.add_argument( "--moreStatAtLowQ", type = argBool, required = False, default = True, help = "increase statistics for low Q")
