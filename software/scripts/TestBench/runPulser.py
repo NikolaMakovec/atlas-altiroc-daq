@@ -109,7 +109,7 @@ if doLinearity:
     Nthres=50
     thresStep=2
     thresMax=1000
-    QThresList=[0,2,4,8,16,32,63]#[0,3,5,9,13,18,26,39,63]
+    QThresList=[0,2,4,8,12,16,20]#32,63]#[0,3,5,9,13,18,26,39,63]
     
 if doNoise:
     doThres=1
@@ -412,9 +412,9 @@ if __name__ == "__main__":
 
             
             if doPS:
-                qMin=8;#for pedestal
-                qMax=48+1#48+1;
-                qStep=8   #default 8
+                qMin=0;#for pedestal
+                qMax=32+1#48+1;
+                qStep=4   #default 8
                 #dacListLocal=[dacNom]
                 # dacStep=4 #default 4 
                 # dacListLocal=list(range(dacNom-20,dacNom+100,dacStep))

@@ -1,5 +1,5 @@
 Top:
-  Fpga[7]: # "[:]" is a wildcard for a dict search
+  Fpga[0]: # "[:]" is a wildcard for a dict search
     ##########################################################################
     Asic: # Note: Configuration tuned for ASIC Board V2: #6
       ##########################################################################
@@ -113,17 +113,17 @@ Top:
         IntFVa: 0x0 #1
                  
         Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K for V3, 15K for V2
-        Cp_Vpa: 0x0 # 3 bits
+        Cp_Vpa: 0x1 # 3 bits
 
-        cd[7]: 0x0 # for all pixels in the column
-        cd[1]: 0x0 # for all pixels in the column
-        cd[2]: 0x0 # for all pixels in the column
-        cd[3]: 0x0 # for all pixels in the column
-        cd[4]: 0x0 # only for last pixel (V3)
+        cd[7]: 0x4 # for all pixels in the column
+        cd[1]: 0x4 # for all pixels in the column
+        cd[2]: 0x4 # for all pixels in the column
+        cd[3]: 0x4 # for all pixels in the column
+        cd[4]: 0x4 # only for last pixel (V3)
    
         dac_biaspa: 30 #30
         #ON_dac_biaspa: 0x1
-        dac_pulser: 10 
+        dac_pulser: 10
 
         ON_dac_LR: 0x0 #RPG
         choice_shifted_ck40: 0x0
@@ -131,7 +131,7 @@ Top:
         EN_8drivers: 0x1
 
         ON_PLL: 0x0
-        ON_rtest: 0
+        ON_rtest: 1
         EN_toa_busy: 0
 
         ref_bg: 0x0

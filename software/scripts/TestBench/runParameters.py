@@ -1,10 +1,10 @@
 doThres     = 0
-doNoise     = 0 # Thres with high stat for few Q
+doNoise     = 1 # Thres with high stat for few Q
 doPedestal  = 0
 doLinearity = 0 # Thres for many Q
 doVthcScan  = 0
 
-doTW        = 1
+doTW        = 0
 doTWHS      = 0
 doTWdelay   = 0
 doTWscan    = 0
@@ -25,8 +25,9 @@ chList=None
 #chList=[7,21,3,17,13]#B13 TB
 #chList=[1,15,16,17,0,4]
 chList=range(0,25)
+#chList=[4]
 #chList=[1,4,6,11,16,21]#  0,2,3]
-#chList=range(0,10)
+#chList=[0,1,2,3,4,15,16,17,18,19]
 
 
 #cd list 
@@ -41,14 +42,14 @@ QTOAList=[6]
 #QTOAList=[5,6,7,9,13,63]  #v2:5,7,13,63  v3:6,9,16,63
 
 #THRES
-QThresList=[4]#default
+QThresList=[0,8,17,16]#default
 #QThresList=[3,4,5,6,13]#default
 #QThresList=[7,13]#B13 TB
 
 
 #special settings
 Rin_Vpa=0
-ON_rtest=1
+ON_rtest=0
 #toa_busy=0
 
 prefix=None

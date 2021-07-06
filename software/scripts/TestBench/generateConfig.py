@@ -69,7 +69,7 @@ for ch in range(25):
         if any(np.array([line.find(l) for l in ["en_probe_dig","en_probe_pa"]])>=0):
             if line.find(probeRef)<0: 
                 print ("Strange")
-                print (line,probeRef,probe)
+                print (line.strip(),probeRef,probe)
             line=line.replace(str(probeRef),str(probe))
 
 
