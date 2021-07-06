@@ -51,7 +51,7 @@ if fname.find("ch"+str(chRef)+"_")<0:
 
 
 for ch in range(25):
-    if ch==chRef: continue
+    #if ch==chRef: continue
     print ("============> ",ch)
     probe=getProbe(ch)
 

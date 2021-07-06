@@ -121,9 +121,9 @@ Top:
         cd[3]: 0x4 # for all pixels in the column
         cd[4]: 0x4 # only for last pixel (V3)
    
-        dac_biaspa: 30 #30
+        dac_biaspa: 2 #30
         #ON_dac_biaspa: 0x1
-        dac_pulser: 10
+        dac_pulser: 0
 
         ON_dac_LR: 0x0 #RPG
         choice_shifted_ck40: 0x0

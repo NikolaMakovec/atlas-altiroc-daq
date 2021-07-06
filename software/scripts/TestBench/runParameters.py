@@ -27,7 +27,7 @@ chList=None
 chList=range(0,25)
 #chList=[4]
 #chList=[1,4,6,11,16,21]#  0,2,3]
-#chList=[0,1,2,3,4,15,16,17,18,19]
+chList=[0,1,2,3,4,15,16,17,18,19]
 
 
 #cd list 
@@ -42,7 +42,7 @@ QTOAList=[6]
 #QTOAList=[5,6,7,9,13,63]  #v2:5,7,13,63  v3:6,9,16,63
 
 #THRES
-QThresList=[0,8,17,16]#default
+QThresList=[4]#default
 #QThresList=[3,4,5,6,13]#default
 #QThresList=[7,13]#B13 TB
 

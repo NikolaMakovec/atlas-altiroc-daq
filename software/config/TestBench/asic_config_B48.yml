@@ -79,14 +79,14 @@ Top:
         Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K.
 
         Cp_Vpa: 0x0  # strange for VPA, to be checked
-        dac_biaspa: 2    # strange for TZ, to be checked
+        dac_biaspa: 18    # strange for TZ, to be checked
 
 
-        cd[0]: 0x0 
-        cd[1]: 0x0 
-        cd[2]: 0x0
-        cd[3]: 0x0
-        cd[4]: 0x0 
+        cd[0]: 0x4 
+        cd[1]: 0x4 
+        cd[2]: 0x4
+        cd[3]: 0x4
+        cd[4]: 0x4 
    
 
         #ON_dac_biaspa: 0x1
