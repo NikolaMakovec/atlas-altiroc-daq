@@ -831,95 +831,110 @@ def getDACList(board):
 
     elif board==48:
 
-        # #rtest=0  dacbiaspa=2
-        # dacList[(48,0,4)]=280#thres2 4,0.02,0,ok 
-        # dacList[(48,10,4)]=314#thres2 4,0.00,0,ok 
-        # dacList[(48,11,4)]=264#thres2 4,0.02,0,ok 
-        # dacList[(48,12,4)]=288#thres2 4,0.00,0,ok 
-        # dacList[(48,13,4)]=254#thres2 4,0.00,0,ok 
-        # dacList[(48,14,4)]=326#thres2 4,0.00,0,ok 
-        # dacList[(48,15,4)]=254#thres2 4,0.30,2,ok 
-        # dacList[(48,16,4)]=284#thres2 4,0.16,2,ok 
-        # dacList[(48,17,4)]=310#thres2 4,0.02,0,ok 
-        # dacList[(48,18,4)]=258#thres2 4,0.04,0,ok 
-        # dacList[(48,19,4)]=268#thres2 4,0.00,0,ok 
-        # dacList[(48,1,4)]=266#thres2 4,0.02,0,ok 
-        # dacList[(48,20,4)]=318#thres2 4,0.00,0,ok 
-        # dacList[(48,21,4)]=296#thres2 4,0.04,0,ok 
-        # dacList[(48,22,4)]=318#thres2 4,0.06,2,ok 
-        # dacList[(48,23,4)]=284#thres2 4,0.00,0,ok 
-        # dacList[(48,24,4)]=284#thres2 4,0.00,0,ok 
-        # dacList[(48,2,4)]=290#thres2 4,0.00,0,ok 
-        # dacList[(48,3,4)]=266#thres2 4,0.00,0,ok 
-        # dacList[(48,4,4)]=300#thres2 4,0.02,0,ok 
-        # #dacList[(48,5,4)]=127#thres2 4,1.00,671,diff. thres 
-        # dacList[(48,6,4)]=266#thres2 4,0.04,0,ok 
-        # dacList[(48,7,4)]=286#thres2 4,0.06,2,ok 
-        # dacList[(48,8,4)]=254#thres2 4,0.00,0,ok 
-        # dacList[(48,9,4)]=266#thres2 4,0.04,0,ok 
+        #rtest=1  dacbiaspa=2 cp=0
+        dacList[(48,0,4)]=276#thres2 3,0.00,0,ok 
+        dacList[(48,10,4)]=312#thres2 3,0.02,0,ok 
+        dacList[(48,11,4)]=260#thres2 3,0.04,0,ok 
+        dacList[(48,12,4)]=286#thres2 3,0.06,2,ok 
+        dacList[(48,13,4)]=254#thres2 3,0.00,0,ok 
+        dacList[(48,14,4)]=330#thres2 3,0.00,0,ok 
+        dacList[(48,15,4)]=246#thres2 3,0.92,6,diff. thres 
+        dacList[(48,16,4)]=272#thres2 3,0.42,2,ok 
+        dacList[(48,17,4)]=294#thres2 3,0.40,4,ok 
+        dacList[(48,18,4)]=246#thres2 3,0.66,6,diff. thres 
+        dacList[(48,19,4)]=256#thres2 3,0.12,2,ok 
+        dacList[(48,1,4)]=264#thres2 3,0.00,0,ok 
+        dacList[(48,20,4)]=302#thres2 3,0.06,2,ok 
+        dacList[(48,21,4)]=284#thres2 3,0.10,2,ok 
+        dacList[(48,22,4)]=302#thres2 3,0.28,4,ok 
+        dacList[(48,23,4)]=270#thres2 3,0.06,2,ok 
+        dacList[(48,24,4)]=270#thres2 3,0.12,2,ok 
+        dacList[(48,2,4)]=288#thres2 3,0.06,2,ok 
+        dacList[(48,3,4)]=266#thres2 3,0.02,0,ok 
+        dacList[(48,4,4)]=312#thres2 3,0.02,0,ok 
+        dacList[(48,6,4)]=262#thres2 3,0.02,0,ok 
+        dacList[(48,7,4)]=284#thres2 3,0.04,0,ok 
+        dacList[(48,8,4)]=254#thres2 3,0.00,0,ok 
+        dacList[(48,9,4)]=270#thres2 3,0.00,0,ok
 
-
-        # #rtest=0  dacbiaspa=18
-        # dacList[(48,0,4)]=288#thres2 4,0.02,0,ok 
-        # dacList[(48,10,4)]=302#thres2 4,0.00,0,ok 
-        # dacList[(48,11,4)]=272#thres2 4,0.00,0,ok 
-        # dacList[(48,12,4)]=304#thres2 4,0.04,0,ok 
-        # dacList[(48,13,4)]=276#thres2 4,0.00,0,ok 
-        # dacList[(48,14,4)]=322#thres2 4,0.02,0,ok 
-        # dacList[(48,1,4)]=268#thres2 4,0.00,0,ok 
-        # dacList[(48,2,4)]=298#thres2 4,0.02,0,ok 
-        # dacList[(48,3,4)]=268#thres2 4,0.00,0,ok 
-        # dacList[(48,4,4)]=304#thres2 4,0.02,0,ok 
-        # dacList[(48,6,4)]=268#thres2 4,0.02,0,ok 
-        # dacList[(48,7,4)]=292#thres2 4,0.04,0,ok 
-        # dacList[(48,8,4)]=270#thres2 4,0.02,0,ok 
-        # dacList[(48,9,4)]=292#thres2 4,0.02,0,ok 
-
-
-        #rtest=1  dacbiaspa=18
         # dacList[(48,0,4)]=284#thres2 4,0.00,0,ok 
-        # dacList[(48,10,4)]=298#thres2 4,0.06,2,ok 
-        # dacList[(48,11,4)]=270#thres2 4,0.00,0,ok 
-        # dacList[(48,12,4)]=298#thres2 4,0.00,0,ok 
-        # dacList[(48,13,4)]=272#thres2 4,0.00,0,ok 
-        # dacList[(48,14,4)]=316#thres2 4,0.00,0,ok 
-        # dacList[(48,1,4)]=264#thres2 4,0.00,0,ok 
-        # dacList[(48,2,4)]=294#thres2 4,0.02,0,ok 
-        # dacList[(48,3,4)]=264#thres2 4,0.04,0,ok 
-        # dacList[(48,4,4)]=294#thres2 4,0.04,0,ok 
-        # dacList[(48,6,4)]=264#thres2 4,0.00,0,ok 
-        # dacList[(48,7,4)]=288#thres2 4,0.00,0,ok 
-        # dacList[(48,8,4)]=266#thres2 4,0.02,0,ok 
-        # dacList[(48,9,4)]=284#thres2 4,0.00,0,ok 
+        # dacList[(48,10,4)]=322#thres2 4,0.02,0,ok 
+        # dacList[(48,11,4)]=264#thres2 4,0.06,2,ok 
+        # dacList[(48,12,4)]=294#thres2 4,0.00,0,ok 
+        # dacList[(48,13,4)]=258#thres2 4,0.00,0,ok 
+        # dacList[(48,14,4)]=338#thres2 4,0.04,0,ok 
+        # dacList[(48,15,4)]=254#thres2 4,0.88,2,ok 
+        # dacList[(48,16,4)]=280#thres2 4,0.44,4,ok 
+        # dacList[(48,17,4)]=306#thres2 4,0.22,2,ok 
+        # dacList[(48,18,4)]=254#thres2 4,0.40,2,ok 
+        # dacList[(48,19,4)]=266#thres2 4,0.18,2,ok 
+        # dacList[(48,1,4)]=270#thres2 4,0.00,0,ok 
+        # dacList[(48,20,4)]=314#thres2 4,0.06,2,ok 
+        # dacList[(48,21,4)]=294#thres2 4,0.00,0,ok 
+        # dacList[(48,22,4)]=314#thres2 4,0.04,0,ok 
+        # dacList[(48,23,4)]=280#thres2 4,0.08,2,ok 
+        # dacList[(48,24,4)]=280#thres2 4,0.00,0,ok 
+        # dacList[(48,2,4)]=298#thres2 4,0.02,0,ok 
+        # dacList[(48,3,4)]=270#thres2 4,0.02,0,ok 
+        # dacList[(48,4,4)]=322#thres2 4,0.02,0,ok 
+        # dacList[(48,6,4)]=268#thres2 4,0.08,2,ok 
+        # dacList[(48,7,4)]=292#thres2 4,0.04,0,ok 
+        # dacList[(48,8,4)]=260#thres2 4,0.04,0,ok 
+        # dacList[(48,9,4)]=276#thres2 4,0.02,0,ok
+
+
+        dacList[(48,0,4)]=266#thres2 1,0.04,0,ok 
+        dacList[(48,10,4)]=300#thres2 1,0.02,0,ok 
+        dacList[(48,11,4)]=254#thres2 1,0.02,0,ok 
+        dacList[(48,12,4)]=274#thres2 1,0.06,2,ok 
+        dacList[(48,13,4)]=246#thres2 1,0.02,0,ok 
+        dacList[(48,14,4)]=316#thres2 1,0.02,0,ok 
+        dacList[(48,15,4)]=228#thres2 1,1.00,12,diff. thres 
+        dacList[(48,16,4)]=250#thres2 1,1.00,12,diff. thres 
+        dacList[(48,17,4)]=264#thres2 1,1.00,20,diff. thres 
+        dacList[(48,18,4)]=226#thres2 1,1.00,12,diff. thres 
+        dacList[(48,19,4)]=242#thres2 1,0.62,6,diff. thres 
+        dacList[(48,1,4)]=254#thres2 1,0.00,0,ok 
+        dacList[(48,20,4)]=127#thres2 1,0.42,163,diff. thres 
+        dacList[(48,21,4)]=127#thres2 1,0.54,145,diff. thres 
+        dacList[(48,22,4)]=284#thres2 1,0.36,4,ok 
+        dacList[(48,23,4)]=254#thres2 1,0.50,4,ok 
+        dacList[(48,24,4)]=254#thres2 1,0.52,4,ok 
+        dacList[(48,2,4)]=276#thres2 1,0.02,0,ok 
+        dacList[(48,3,4)]=254#thres2 1,0.02,0,ok 
+        dacList[(48,4,4)]=298#thres2 1,0.02,0,ok 
+        dacList[(48,6,4)]=254#thres2 1,0.02,0,ok 
+        dacList[(48,7,4)]=272#thres2 1,0.00,0,ok 
+        dacList[(48,8,4)]=244#thres2 1,0.00,0,ok 
+        dacList[(48,9,4)]=260#thres2 1,0.02,0,ok
+
+
+
+        dacList[(48,0,4)]=270#thres2 2,0.00,0,ok 
+        dacList[(48,10,4)]=304#thres2 2,0.04,0,ok 
+        dacList[(48,11,4)]=254#thres2 2,0.00,0,ok 
+        dacList[(48,12,4)]=280#thres2 2,0.02,0,ok 
+        dacList[(48,13,4)]=250#thres2 2,0.02,0,ok 
+        dacList[(48,14,4)]=324#thres2 2,0.00,0,ok 
+        dacList[(48,15,4)]=238#thres2 2,0.94,6,diff. thres 
+        dacList[(48,16,4)]=262#thres2 2,0.86,6,diff. thres 
+        dacList[(48,17,4)]=284#thres2 2,0.84,6,diff. thres 
+        dacList[(48,18,4)]=238#thres2 2,0.90,6,diff. thres 
+        dacList[(48,19,4)]=250#thres2 2,0.38,4,ok 
+        dacList[(48,1,4)]=256#thres2 2,0.00,0,ok 
+        dacList[(48,20,4)]=294#thres2 2,0.08,2,ok 
+        dacList[(48,21,4)]=276#thres2 2,0.16,2,ok 
+        dacList[(48,22,4)]=292#thres2 2,0.20,4,ok 
+        dacList[(48,23,4)]=262#thres2 2,0.10,2,ok 
+        dacList[(48,24,4)]=262#thres2 2,0.16,2,ok 
+        dacList[(48,2,4)]=284#thres2 2,0.04,0,ok 
+        dacList[(48,3,4)]=258#thres2 2,0.04,0,ok 
+        dacList[(48,4,4)]=304#thres2 2,0.02,0,ok 
+        dacList[(48,6,4)]=256#thres2 2,0.00,0,ok 
+        dacList[(48,7,4)]=278#thres2 2,0.00,0,ok 
+        dacList[(48,8,4)]=250#thres2 2,0.02,0,ok 
+        dacList[(48,9,4)]=264#thres2 2,0.04,0,ok 
 
         
-
-        
-        #rtest=1 dacb
-        dacList[(48,0,4)]=278#thres2 4,0.04,0,ok 
-        dacList[(48,10,4)]=308#thres2 4,0.02,0,ok 
-        dacList[(48,11,4)]=260#thres2 4,0.04,0,ok 
-        dacList[(48,12,4)]=286#thres2 4,0.04,0,ok 
-        dacList[(48,13,4)]=254#thres2 4,0.00,0,ok 
-        dacList[(48,14,4)]=318#thres2 4,0.00,0,ok 
-        dacList[(48,15,4)]=254#thres2 4,0.80,2,ok 
-        dacList[(48,16,4)]=280#thres2 4,0.54,4,ok 
-        dacList[(48,17,4)]=306#thres2 4,0.40,2,ok 
-        dacList[(48,18,4)]=254#thres2 4,0.34,2,ok 
-        dacList[(48,19,4)]=266#thres2 4,0.26,2,ok 
-        dacList[(48,1,4)]=262#thres2 4,0.00,0,ok 
-        dacList[(48,20,4)]=314#thres2 4,0.06,2,ok 
-        dacList[(48,21,4)]=294#thres2 4,0.02,0,ok 
-        dacList[(48,22,4)]=312#thres2 4,0.06,2,ok 
-        dacList[(48,23,4)]=280#thres2 4,0.06,2,ok 
-        dacList[(48,24,4)]=280#thres2 4,0.06,2,ok 
-        dacList[(48,2,4)]=288#thres2 4,0.02,0,ok 
-        dacList[(48,3,4)]=264#thres2 4,0.04,0,ok 
-        dacList[(48,4,4)]=290#thres2 4,0.02,0,ok 
-        dacList[(48,6,4)]=262#thres2 4,0.00,0,ok 
-        dacList[(48,7,4)]=284#thres2 4,0.00,0,ok 
-        dacList[(48,8,4)]=254#thres2 4,0.00,0,ok 
-        dacList[(48,9,4)]=260#thres2 4,0.00,0,ok 
-
         pass
     return dacList                       

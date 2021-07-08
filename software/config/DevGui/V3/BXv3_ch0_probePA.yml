@@ -123,7 +123,7 @@ Top:
    
         dac_biaspa: 2 #30
         #ON_dac_biaspa: 0x1
-        dac_pulser: 0
+        dac_pulser: 16
 
         ON_dac_LR: 0x0 #RPG
         choice_shifted_ck40: 0x0

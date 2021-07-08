@@ -220,7 +220,7 @@ def set_pixel_specific_parameters(top, pixel_number,args):
 
     if int(args.board) in boardASICV3b:
         if isTZ(int(args.board),int(args.ch)):
-            top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(1)
+            top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(0)
         else:
             top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(0)
     if args.dac_biaspa>=0:
