@@ -107,6 +107,7 @@ def parse_arguments():
     parser.add_argument("--Rin_Vpa", type = int, required = False, default = 0, help = "RinVpa")
     parser.add_argument("--ON_rtest", type = int, required = False, default = 0, help = "RinVpa")
     parser.add_argument("--toa_busy", type = int, required = False, default = 0, help = "")
+    parser.add_argument("--dac_biaspa", type = int, required = False, default = -1, help = "dac_biaspa")
     parser.add_argument("--Vthc", type = int, required = False, default = -1, help = "Vth cor")
     parser.add_argument( "--ip", nargs ='+', required = False, default = ['192.168.1.10'], help = "List of IP addresses")
     parser.add_argument( "--board", type = int, required = False, default = 7,help = "Choose board")

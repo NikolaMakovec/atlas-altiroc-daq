@@ -78,8 +78,8 @@ Top:
         ON_rtest: 0x0 # with 1 add  1kOhm in // 
         Rin_Vpa: 0x0 #0 0 => 25K, 1 => 20K.
 
-        Cp_Vpa: 0x0  # strange for VPA, to be checked
-        dac_biaspa: 18    # strange for TZ, to be checked
+        Cp_Vpa: 0x0  # 
+        dac_biaspa: 2    # 
 
 
         cd[0]: 0x4 

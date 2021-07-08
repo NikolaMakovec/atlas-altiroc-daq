@@ -223,7 +223,8 @@ def set_pixel_specific_parameters(top, pixel_number,args):
             top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(1)
         else:
             top.Fpga[0].Asic.SlowControl.Cp_Vpa.set(0)
-            
+    if args.dac_biaspa>=0:
+        top.Fpga[0].Asic.SlowControl.dac_biaspa.set(args.dac_biaspa)
     #print ( " ===> ",top.Fpga[0].Asic.SlowControl.Cp_Vpa.value())
     #toto
 

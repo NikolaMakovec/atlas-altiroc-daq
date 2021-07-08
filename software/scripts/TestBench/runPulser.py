@@ -288,11 +288,17 @@ if __name__ == "__main__":
             toaDir+="-rtestON"
             twDir+="-rtestON"
             thresDir+="-rtestON"
-            
+
+            dac_biaspa
         if Rin_Vpa>0:
             toaDir+="-RinVpa"+str(Rin_Vpa)
             twDir+="-RinVpa"+str(Rin_Vpa)
             thresDir+="-RinVpa"+str(Rin_Vpa)
+            
+        if dac_biaspa>0:
+            toaDir+="-dacbiaspa"+str(dac_biaspa)
+            twDir+="-dacbiaspa"+str(dac_biaspa)
+            thresDir+="-dacbiaspa"+str(dac_biaspa)
             
         if dacOffset!=0:
             sign=""
@@ -445,7 +451,7 @@ if __name__ == "__main__":
 
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTimeWalk.py --skipExistingFile True --moreStatAtLowQ False --morePointsAtLowQ %d --debug False --display False -N %d  --checkOFtoa False --checkOFtot False --board %d  --delay %d  --QMin %d --QMax %d --QStep %d --out %s  --ch %d  --Cd %d --DAC %d --Rin_Vpa %d  --dac_biaspa %d --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(morePointsAtLowQ,Ntw,board,delay,qMin,qMax,qStep,outdir,ch,cd,dac,Rin_Vpa,dac_biaspa,args.toabusyON,ON_rtest,asicVersion,ip)
 
                             if args.probePAON:
                                 cmd+=" --useProbePA True "
@@ -495,7 +501,7 @@ if __name__ == "__main__":
                             logName=outdir+'/delayTOA_B_%d_rin_%d_toabusy_%d_rtest_%d_ch_%d_cd_%d_Q_%d_thres_%d.log'%(board,Rin_Vpa,args.toabusyON,ON_rtest,ch,cd,Q,dac)
                             try:os.makedirs(outdir)
                             except:pass
-                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                            cmd="python scripts/TestBench/measureTOA.py --skipExistingFile True -N %d --debug False --display False --Cd %d --checkOFtoa False --checkOFtot False --ch %d --board %d --DAC %d --Q %d --delayMin %d --delayMax %d --delayStep %d --out %s/delay  --Rin_Vpa %d  --dac_biaspa %d   --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Ntoa,cd,ch,board,dac,Q,delayMin,delayMax,delayStep,outdir,Rin_Vpa,dac_biaspa,args.toabusyON,ON_rtest,asicVersion,ip)
 
 
                             if args.probePAON:
@@ -557,7 +563,7 @@ if __name__ == "__main__":
                     outdir=args.outputDir+"/"+thresDir+"/"
                     try:os.makedirs(outdir)
                     except:pass
-                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d  --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,args.toabusyON,ON_rtest,asicVersion,ip)
+                    cmd="python scripts/TestBench/thresholdScan.py  --skipExistingFile True --N %d --debug False --display False --checkOFtoa False --checkOFtot False  --board %d --delay %d --minVth %d --maxVth %d --VthStep %d --Cd %d --ch %d  --Q %d --out %s  --Rin_Vpa %d  --dac_biaspa %d  --toa_busy %d --ON_rtest %d --asicVersion %d --ip %s"%(Nthres,board,delay,thresMinLocal,thresMax,thresStep,cd,ch,Q,outdir,Rin_Vpa,dac_biaspa,args.toabusyON,ON_rtest,asicVersion,ip)
                     cmd+=" --Vthc 64"
 
                     
@@ -606,6 +612,7 @@ print (" " )
 print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
 print (" ************ CHECK TRIG EXT ***************")
+print ("dac_biaspa:",dac_biaspa)
 print ("Rin_vpa:",Rin_Vpa)
 print ("ON_rtest:",ON_rtest)
 print ("EN_toabusy:",args.toabusyON)
